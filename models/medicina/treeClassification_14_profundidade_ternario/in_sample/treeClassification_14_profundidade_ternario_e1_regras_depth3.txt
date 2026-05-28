@@ -1,0 +1,46 @@
+|--- num__gap <= -29.1300
+|   |--- num__gap <= -44.4700
+|   |   |--- num__gap <= -58.1700
+|   |   |   |--- num__gap <= -93.8100
+|   |   |   |   |--- truncated branch of depth 11
+|   |   |   |--- num__gap >  -93.8100
+|   |   |   |   |--- truncated branch of depth 11
+|   |   |--- num__gap >  -58.1700
+|   |   |   |--- num__gap <= -47.5900
+|   |   |   |   |--- truncated branch of depth 10
+|   |   |   |--- num__gap >  -47.5900
+|   |   |   |   |--- truncated branch of depth 9
+|   |--- num__gap >  -44.4700
+|   |   |--- num__gap <= -36.1100
+|   |   |   |--- num__gap <= -40.8900
+|   |   |   |   |--- truncated branch of depth 6
+|   |   |   |--- num__gap >  -40.8900
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |--- num__gap >  -36.1100
+|   |   |   |--- num__renda_gap <= -66882.2461
+|   |   |   |   |--- truncated branch of depth 5
+|   |   |   |--- num__renda_gap >  -66882.2461
+|   |   |   |   |--- truncated branch of depth 10
+|--- num__gap >  -29.1300
+|   |--- num__gap <= -15.5700
+|   |   |--- num__gap <= -22.6900
+|   |   |   |--- num__renda_per_capita <= 1439.7650
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |   |--- num__renda_per_capita >  1439.7650
+|   |   |   |   |--- truncated branch of depth 5
+|   |   |--- num__gap >  -22.6900
+|   |   |   |--- num__renda_per_capita <= 2973.9150
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |   |--- num__renda_per_capita >  2973.9150
+|   |   |   |   |--- class: 1
+|   |--- num__gap >  -15.5700
+|   |   |--- num__gap <= 51.0300
+|   |   |   |--- num__renda_gap <= -6092.9077
+|   |   |   |   |--- truncated branch of depth 8
+|   |   |   |--- num__renda_gap >  -6092.9077
+|   |   |   |   |--- truncated branch of depth 10
+|   |   |--- num__gap >  51.0300
+|   |   |   |--- num__gap <= 262.4300
+|   |   |   |   |--- truncated branch of depth 6
+|   |   |   |--- num__gap >  262.4300
+|   |   |   |   |--- truncated branch of depth 5

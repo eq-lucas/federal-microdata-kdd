@@ -1,0 +1,444 @@
+from pathlib import Path
+import sys
+
+PROJECT_ROOT_FOR_IMPORT = Path(__file__).resolve().parents[2]
+if str(PROJECT_ROOT_FOR_IMPORT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT_FOR_IMPORT))
+
+import textwrap
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib import font_manager
+from sklearn.model_selection import train_test_split
+from sklearn.tree import plot_tree
+
+SAVE_DPI = 700
+
+BINS_RENDA = [-np.inf, 600, 1200, 1800, 2400, 3000, np.inf]
+LABELS_RENDA = ["I", "II", "III", "IV", "V", "VI"]
+BINS_DESEMPENHO = [-np.inf, -150, -50, 0, 50, 150, np.inf]
+LABELS_DESEMPENHO = ["< -150", "-150 a -50", "-50 a 0", "0 a +50", "+50 a +150", "> +150"]
+ORDEM_DESEMPENHO_PLOT = ["> +150", "+50 a +150", "0 a +50", "-50 a 0", "-150 a -50", "< -150"]
+
+COR_CABECALHO = "#1f4e79"
+COR_LINHA_1 = "#eaf2f8"
+COR_LINHA_2 = "#ffffff"
+COR_BORDA = "#b7c9d6"
+
+
+def obter_fonte_padrao() -> str:
+    fontes_disponiveis = {f.name for f in font_manager.fontManager.ttflist}
+    if "Times New Roman" in fontes_disponiveis:
+        return "Times New Roman"
+    if "Liberation Serif" in fontes_disponiveis:
+        return "Liberation Serif"
+    if "Nimbus Roman" in fontes_disponiveis:
+        return "Nimbus Roman"
+    return "DejaVu Sans"
+
+
+def configurar_matplotlib() -> None:
+    plt.rcParams["font.family"] = obter_fonte_padrao()
+    plt.rcParams["axes.linewidth"] = 1.0
+
+
+def fmt_int(valor):
+    if pd.isna(valor):
+        return ""
+    return f"{int(valor):,}".replace(",", ".")
+
+
+def fmt_float(valor, casas=4):
+    if pd.isna(valor):
+        return ""
+    return f"{float(valor):.{casas}f}".replace(".", ",")
+
+
+def quebrar_texto(texto, largura=48):
+    return "\n".join(textwrap.wrap(str(texto), width=largura))
+
+
+def salvar_figura(fig, caminho_base: Path) -> dict:
+    caminho_base.parent.mkdir(parents=True, exist_ok=True)
+    paths = {
+        "pdf": caminho_base.with_suffix(".pdf"),
+        "png": caminho_base.with_suffix(".png"),
+    }
+    fig.savefig(paths["pdf"], bbox_inches="tight", pad_inches=0.02, facecolor="white")
+    fig.savefig(paths["png"], dpi=SAVE_DPI, bbox_inches="tight", pad_inches=0.02, facecolor="white")
+    plt.close(fig)
+    return {k: str(v) for k, v in paths.items()}
+
+
+def salvar_tabela_latex(df_tabela: pd.DataFrame, caminho_base: Path, caption: str, label: str) -> dict:
+    caminho_base.parent.mkdir(parents=True, exist_ok=True)
+    tex = df_tabela.to_latex(index=False, caption=caption, label=label, escape=True)
+    tex_path = caminho_base.with_suffix(".tex")
+    latex_path = caminho_base.with_suffix(".latex")
+    tex_path.write_text(tex, encoding="utf-8")
+    latex_path.write_text(tex, encoding="utf-8")
+    return {"tex": str(tex_path), "latex": str(latex_path)}
+
+
+def salvar_tabela_como_imagem(df_tabela: pd.DataFrame, caminho_base: Path, figsize=(8.0, 3.5), col_widths=None, fontsize=9.5) -> dict:
+    caminho_base.parent.mkdir(parents=True, exist_ok=True)
+    fig = plt.figure(figsize=figsize, dpi=300)
+    ax = fig.add_axes([0, 0, 1, 1])
+    ax.axis("off")
+    tabela = ax.table(
+        cellText=df_tabela.values,
+        colLabels=df_tabela.columns,
+        cellLoc="center",
+        colLoc="center",
+        bbox=[0, 0, 1, 1],
+        colWidths=col_widths,
+    )
+    tabela.auto_set_font_size(False)
+    tabela.set_fontsize(fontsize)
+    for (linha, coluna), celula in tabela.get_celld().items():
+        celula.set_edgecolor(COR_BORDA)
+        celula.set_linewidth(0.8)
+        celula.PAD = 0.025
+        if linha == 0:
+            celula.set_facecolor(COR_CABECALHO)
+            celula.get_text().set_color("white")
+            celula.get_text().set_fontweight("bold")
+        else:
+            celula.set_facecolor(COR_LINHA_1 if linha % 2 == 1 else COR_LINHA_2)
+            if coluna == 0:
+                celula.get_text().set_fontweight("bold")
+                celula.get_text().set_ha("left")
+    return salvar_figura(fig, caminho_base)
+
+
+def preparar_base_probabilidades(df: pd.DataFrame, prob_col: str) -> pd.DataFrame:
+    out = df.copy()
+    out["faixa_renda"] = pd.cut(out["renda_per_capita"], bins=BINS_RENDA, labels=LABELS_RENDA, ordered=True)
+    out["faixa_desempenho"] = pd.cut(out["gap"], bins=BINS_DESEMPENHO, labels=LABELS_DESEMPENHO, ordered=True)
+    out = out.dropna(subset=["faixa_renda", "faixa_desempenho", prob_col]).copy()
+    return out
+
+
+def matriz_probabilidade_prevista(df_pred: pd.DataFrame, prob_col: str) -> pd.DataFrame:
+    return (
+        df_pred
+        .groupby(["faixa_desempenho", "faixa_renda"], observed=True)[prob_col]
+        .mean()
+        .reset_index()
+        .pivot(index="faixa_desempenho", columns="faixa_renda", values=prob_col)
+        .reindex(index=ORDEM_DESEMPENHO_PLOT, columns=LABELS_RENDA)
+    )
+
+
+def tabela_media_prob_por_faixas(df_pred: pd.DataFrame, prob_col: str) -> pd.DataFrame:
+    return df_pred.groupby(["faixa_renda", "faixa_desempenho"], observed=True)[prob_col].mean().reset_index()
+
+
+def gerar_heatmap_probabilidade(df_pred: pd.DataFrame, prob_col: str, caminho_base: Path) -> dict:
+    matriz = matriz_probabilidade_prevista(df_pred, prob_col)
+    fig, ax = plt.subplots(figsize=(7.6, 4.7), dpi=300)
+    valores = matriz.to_numpy(dtype=float)
+    ax.imshow(valores, cmap="Greys", vmin=0, vmax=100, aspect="auto")
+    for i in range(matriz.shape[0]):
+        for j in range(matriz.shape[1]):
+            valor = matriz.iloc[i, j]
+            if pd.isna(valor):
+                texto = ""
+                cor = "black"
+            else:
+                texto = f"{valor:.1f}".replace(".", ",")
+                cor = "white" if valor >= 55 else "black"
+            ax.text(j, i, texto, ha="center", va="center", fontsize=10.5, fontweight="bold", color=cor)
+    ax.set_xlabel("Faixa de renda familiar per capita", fontsize=11, fontweight="bold", labelpad=10)
+    ax.set_ylabel("Desempenho acadêmico", fontsize=11, fontweight="bold", labelpad=10)
+    ax.set_xticks(np.arange(len(LABELS_RENDA)))
+    ax.set_xticklabels(LABELS_RENDA, rotation=0, fontsize=10.5)
+    ax.set_yticks(np.arange(len(ORDEM_DESEMPENHO_PLOT)))
+    ax.set_yticklabels(ORDEM_DESEMPENHO_PLOT, rotation=0, fontsize=10.5)
+    ax.tick_params(axis="both", length=0)
+    for lado in ["top", "right", "left", "bottom"]:
+        ax.spines[lado].set_visible(True)
+        ax.spines[lado].set_linewidth(1.0)
+        ax.spines[lado].set_color("black")
+    fig.subplots_adjust(left=0.17, right=0.985, bottom=0.16, top=0.985)
+    return salvar_figura(fig, caminho_base)
+
+
+def gerar_curvas_desempenho_por_renda(df_pred: pd.DataFrame, prob_col: str, caminho_base: Path) -> dict:
+    tabela = tabela_media_prob_por_faixas(df_pred, prob_col)
+    estilos = ["-", "--", "-.", ":", "-", "--"]
+    marcadores = ["o", "s", "^", "D", "P", "X"]
+    fig, ax = plt.subplots(figsize=(8.2, 5.3), dpi=300)
+    x = np.arange(len(LABELS_DESEMPENHO))
+    for idx, faixa_renda in enumerate(LABELS_RENDA):
+        subset = tabela[tabela["faixa_renda"] == faixa_renda].set_index("faixa_desempenho").reindex(LABELS_DESEMPENHO).reset_index()
+        ax.plot(x, subset[prob_col], linestyle=estilos[idx % len(estilos)], marker=marcadores[idx % len(marcadores)], linewidth=1.8, markersize=5.0, label=faixa_renda, color=str(0.15 + idx * 0.12))
+    ax.set_xlabel("Desempenho acadêmico", fontsize=11, fontweight="bold")
+    ax.set_ylabel("Probabilidade prevista de contratação (%)", fontsize=11, fontweight="bold")
+    ax.set_xticks(x)
+    ax.set_xticklabels(LABELS_DESEMPENHO, rotation=0, fontsize=9.5)
+    ax.set_ylim(0, 100)
+    ax.grid(True, linestyle="--", alpha=0.35)
+    ax.legend(title="Faixa de renda", loc="lower center", bbox_to_anchor=(0.5, 1.02), ncol=6, frameon=True, fancybox=False, edgecolor="black", facecolor="white", fontsize=9.3, title_fontsize=9.8)
+    fig.subplots_adjust(left=0.12, right=0.985, bottom=0.16, top=0.78)
+    return salvar_figura(fig, caminho_base)
+
+
+def gerar_curvas_renda_por_desempenho(df_pred: pd.DataFrame, prob_col: str, caminho_base: Path) -> dict:
+    tabela = tabela_media_prob_por_faixas(df_pred, prob_col)
+    estilos = ["-", "--", "-.", ":", "-", "--"]
+    marcadores = ["o", "s", "^", "D", "P", "X"]
+    fig, ax = plt.subplots(figsize=(8.2, 5.3), dpi=300)
+    x = np.arange(len(LABELS_RENDA))
+    for idx, faixa_desempenho in enumerate(LABELS_DESEMPENHO):
+        subset = tabela[tabela["faixa_desempenho"] == faixa_desempenho].set_index("faixa_renda").reindex(LABELS_RENDA).reset_index()
+        ax.plot(x, subset[prob_col], linestyle=estilos[idx % len(estilos)], marker=marcadores[idx % len(marcadores)], linewidth=1.8, markersize=5.0, label=faixa_desempenho, color=str(0.15 + idx * 0.12))
+    ax.set_xlabel("Faixa de renda familiar per capita", fontsize=11, fontweight="bold")
+    ax.set_ylabel("Probabilidade prevista de contratação (%)", fontsize=11, fontweight="bold")
+    ax.set_xticks(x)
+    ax.set_xticklabels(LABELS_RENDA, rotation=0, fontsize=10.5)
+    ax.set_ylim(0, 100)
+    ax.grid(True, linestyle="--", alpha=0.35)
+    ax.legend(title="Desempenho acadêmico", loc="lower center", bbox_to_anchor=(0.5, 1.02), ncol=3, frameon=True, fancybox=False, edgecolor="black", facecolor="white", fontsize=9.3, title_fontsize=9.8)
+    fig.subplots_adjust(left=0.12, right=0.985, bottom=0.14, top=0.72)
+    return salvar_figura(fig, caminho_base)
+
+
+def renderizar_matriz_confusao(matriz: pd.DataFrame, caminho_base: Path) -> dict:
+    fig, ax = plt.subplots(figsize=(6.4, 5.2), dpi=300)
+    valores = matriz.to_numpy(dtype=float)
+    ax.imshow(valores, cmap="Greys", aspect="auto")
+    max_val = np.nanmax(valores) if np.isfinite(valores).any() else 0
+    for i in range(matriz.shape[0]):
+        for j in range(matriz.shape[1]):
+            valor = matriz.iloc[i, j]
+            cor = "white" if max_val > 0 and valor >= max_val * 0.45 else "black"
+            ax.text(j, i, fmt_int(valor), ha="center", va="center", fontsize=13, fontweight="bold", color=cor)
+    ax.set_xlabel("Previsto", fontsize=11, fontweight="bold", labelpad=10)
+    ax.set_ylabel("Real", fontsize=11, fontweight="bold", labelpad=10)
+    ax.set_xticks(np.arange(matriz.shape[1]))
+    ax.set_xticklabels(matriz.columns, rotation=0, fontsize=10.5)
+    ax.set_yticks(np.arange(matriz.shape[0]))
+    ax.set_yticklabels(matriz.index, rotation=0, fontsize=10.5)
+    ax.tick_params(axis="both", length=0)
+    for lado in ["top", "right", "left", "bottom"]:
+        ax.spines[lado].set_visible(True)
+        ax.spines[lado].set_linewidth(1.0)
+        ax.spines[lado].set_color("black")
+    fig.subplots_adjust(left=0.24, right=0.985, bottom=0.14, top=0.985)
+    return salvar_figura(fig, caminho_base)
+
+
+def gerar_barra_importancias(df_imp: pd.DataFrame, caminho_base: Path, top_n: int = 20) -> dict:
+    top = df_imp.sort_values("importancia_normalizada", ascending=False).head(top_n).iloc[::-1]
+    labels = top["bloco_label"].astype(str).tolist()
+    vals = top["importancia_normalizada"].to_numpy(dtype=float)
+    fig, ax = plt.subplots(figsize=(8.0, max(4.5, 0.35 * len(top))), dpi=300)
+    y = np.arange(len(top))
+    ax.barh(y, vals, color="0.45")
+    ax.set_yticks(y)
+    ax.set_yticklabels(labels, fontsize=9.0)
+    ax.set_xlabel("Importância normalizada", fontsize=11, fontweight="bold")
+    ax.grid(True, axis="x", linestyle="--", alpha=0.35)
+    for i, v in enumerate(vals):
+        ax.text(v + max(vals.max() * 0.01, 0.001), i, f"{v:.3f}".replace(".", ","), va="center", fontsize=8.5)
+    fig.subplots_adjust(left=0.38, right=0.985, bottom=0.12, top=0.98)
+    return salvar_figura(fig, caminho_base)
+
+import argparse
+
+from src import constants as C
+from src.modeling.treeClassification_utils import diagnostics_dir, normalizar_recorte, normalizar_target, target_config
+from src.article.treeClassification import appendix_tree_dir
+
+PROJECT_ROOT = getattr(C, "PROJECT_ROOT", PROJECT_ROOT_FOR_IMPORT)
+LOGS_DIR = getattr(C, "LOGS_DIR", PROJECT_ROOT / "reports" / "logs")
+APPENDIX_DIR = getattr(C, "APPENDIX_DIR", PROJECT_ROOT / "reports" / "article" / "appendix")
+
+
+def log(message: str) -> None:
+    LOGS_DIR.mkdir(parents=True, exist_ok=True)
+    path = LOGS_DIR / "article_apendice_treeClassification.log"
+    with path.open("a", encoding="utf-8", errors="replace") as file:
+        file.write(str(message) + "\n")
+    print(message)
+
+
+def carregar_metricas(target: str, recorte: str, avaliacao: str) -> pd.DataFrame:
+    target = normalizar_target(target)
+    recorte = normalizar_recorte(recorte)
+    cfg = target_config(target)
+    path = diagnostics_dir(target, recorte, avaliacao) / f"{cfg['model_dir_name']}_experimentos_metricas.csv"
+    if not path.exists():
+        raise FileNotFoundError(f"Métricas não encontradas: {path}")
+    return pd.read_csv(path)
+
+
+def preparar_tabela_completa(df: pd.DataFrame, target: str) -> pd.DataFrame:
+    target = normalizar_target(target)
+    if target == "binario":
+        roc_col = "roc_auc"
+        f1_col = "f1"
+        f1_label = "F1"
+    else:
+        roc_col = "roc_auc_ovr_weighted"
+        f1_col = "f1_macro"
+        f1_label = "F1 macro"
+    tabela = pd.DataFrame({
+        "Experimento": df["experimento"] + " - " + df["experimento_nome"],
+        "Descrição": df["experimento_descricao"],
+        "N": df["n_total_abt"].map(fmt_int),
+        "N treino": df["n_treino"].map(fmt_int),
+        "N teste": df["n_teste"].map(fmt_int),
+        "ROC-AUC": df[roc_col].map(fmt_float),
+        "Acurácia balanceada": df["balanced_accuracy"].map(fmt_float),
+        f1_label: df[f1_col].map(fmt_float),
+        "Renda": df["importancia_renda_per_capita"].map(fmt_float),
+        "Desempenho": df["importancia_gap"].map(fmt_float),
+        "Interação": df["importancia_renda_gap"].map(fmt_float),
+        "Primeira divisão": df["primeira_divisao"],
+        "Profundidade": df["tree_depth_observada"].map(fmt_int),
+        "Folhas": df["tree_n_leaves"].map(fmt_int),
+        "Blocos": df["blocos_variaveis_qtd"].map(fmt_int),
+        "Colunas finais": df["colunas_finais_pos_processamento"].map(fmt_int),
+        "Blocos incluídos": df["blocos_incluidos"],
+        "Avaliação": df["avaliacao_descricao"],
+    })
+    return tabela
+
+
+def preparar_tabela_compacta(df: pd.DataFrame, target: str) -> pd.DataFrame:
+    target = normalizar_target(target)
+    roc_col = "roc_auc" if target == "binario" else "roc_auc_ovr_weighted"
+    tabela = pd.DataFrame({
+        "Especificação": df["experimento"].str.replace("E", "Modelo ", regex=False),
+        "N": df["n_total_abt"].map(fmt_int),
+        "ROC-AUC": df[roc_col].map(fmt_float),
+        "Renda": df["importancia_renda_per_capita"].map(fmt_float),
+        "Desempenho": df["importancia_gap"].map(fmt_float),
+        "Interação": df["importancia_renda_gap"].map(fmt_float),
+        "Variáveis": df["blocos_variaveis_qtd"].map(fmt_int),
+        "Profundidade": df["tree_depth_observada"].map(fmt_int),
+    })
+    return tabela
+
+
+def renderizar_tabela_completa(tabela: pd.DataFrame, caminho_base: Path) -> dict:
+    tabela_img = tabela.copy()
+    tabela_img["Descrição"] = tabela_img["Descrição"].map(lambda x: quebrar_texto(x, 40))
+    tabela_img["Blocos incluídos"] = tabela_img["Blocos incluídos"].map(lambda x: quebrar_texto(x, 58))
+    colunas = ["Experimento", "N", "N teste", "ROC-AUC", "Renda", "Desempenho", "Interação", "Primeira divisão", "Profundidade", "Folhas", "Blocos", "Blocos incluídos"]
+    tabela_img = tabela_img[colunas]
+    return salvar_tabela_como_imagem(
+        tabela_img,
+        caminho_base,
+        figsize=(18.5, max(4.0, 0.80 * (len(tabela_img) + 1))),
+        col_widths=[0.12, 0.07, 0.07, 0.06, 0.06, 0.07, 0.06, 0.10, 0.06, 0.05, 0.05, 0.23],
+        fontsize=7.4,
+    )
+
+
+def gerar_tabela_completa(target: str, recorte: str, avaliacao: str) -> dict:
+    target = normalizar_target(target)
+    recorte = normalizar_recorte(recorte)
+    df = carregar_metricas(target, recorte, avaliacao)
+    tabela = preparar_tabela_completa(df, target)
+    out_dir = appendix_tree_dir(target, recorte) / avaliacao / recorte
+    nome = f"tabela_treeClassification_{target}_recorte_{recorte}_{avaliacao}"
+    base = out_dir / nome
+    out_dir.mkdir(parents=True, exist_ok=True)
+    csv_path = base.with_suffix(".csv")
+    tabela.to_csv(csv_path, index=False, encoding="utf-8")
+    out = {"tipo": "tabela_completa", "target": target, "recorte": recorte, "avaliacao": avaliacao, "csv": str(csv_path)}
+    out.update(salvar_tabela_latex(tabela, base, caption=f"Comparação de experimentos da árvore de decisão, target {target}, recorte {recorte}, avaliação {avaliacao}.", label=f"tab:{nome}"))
+    out.update(renderizar_tabela_completa(tabela, base))
+    log(f"[OK] Tabela completa gerada: {csv_path}")
+    return out
+
+
+def gerar_tabela_compacta(target: str, recorte: str, avaliacao: str) -> dict:
+    target = normalizar_target(target)
+    recorte = normalizar_recorte(recorte)
+    df = carregar_metricas(target, recorte, avaliacao)
+    tabela = preparar_tabela_compacta(df, target)
+    out_dir = appendix_tree_dir(target, recorte) / avaliacao / recorte
+    nome = f"tabela_compacta_treeClassification_{target}_recorte_{recorte}_{avaliacao}"
+    base = out_dir / nome
+    out_dir.mkdir(parents=True, exist_ok=True)
+    csv_path = base.with_suffix(".csv")
+    tabela.to_csv(csv_path, index=False, encoding="utf-8")
+    out = {"tipo": "tabela_compacta", "target": target, "recorte": recorte, "avaliacao": avaliacao, "csv": str(csv_path)}
+    out.update(salvar_tabela_latex(tabela, base, caption=f"Resumo compacto da árvore de decisão, target {target}, recorte {recorte}, avaliação {avaliacao}.", label=f"tab:{nome}"))
+    out.update(salvar_tabela_como_imagem(tabela, base, figsize=(8.6, 2.4), col_widths=[0.18, 0.15, 0.12, 0.12, 0.12, 0.12, 0.10, 0.09], fontsize=8.8))
+    log(f"[OK] Tabela compacta gerada: {csv_path}")
+    return out
+
+
+def matriz_confusao_da_linha(row: pd.Series, target: str) -> pd.DataFrame:
+    cfg = target_config(target)
+    classes = cfg["classes"]
+    labels = [cfg["class_labels"][c] for c in classes]
+    if normalizar_target(target) == "binario":
+        matriz = [[int(row["tn"]), int(row["fp"])], [int(row["fn"]), int(row["tp"])] ]
+    else:
+        matriz = []
+        for real in classes:
+            linha = []
+            for pred in classes:
+                linha.append(int(row[f"confusao_real_{real}_pred_{pred}"]))
+            matriz.append(linha)
+    return pd.DataFrame(matriz, index=labels, columns=labels)
+
+
+def gerar_matriz_confusao(target: str, recorte: str, avaliacao: str, experimento: str = "E5") -> dict:
+    target = normalizar_target(target)
+    recorte = normalizar_recorte(recorte)
+    df = carregar_metricas(target, recorte, avaliacao)
+    linha = df[df["experimento"].eq(experimento)].copy()
+    if linha.empty:
+        raise ValueError(f"Experimento {experimento} não encontrado nas métricas de {avaliacao}.")
+    matriz = matriz_confusao_da_linha(linha.iloc[0], target)
+    out_dir = appendix_tree_dir(target, recorte) / avaliacao / recorte / "matriz_confusao"
+    nome = f"matriz_confusao_treeClassification_{target}_recorte_{recorte}_{avaliacao}_{experimento.lower()}"
+    base = out_dir / nome
+    out_dir.mkdir(parents=True, exist_ok=True)
+    csv_path = base.with_suffix(".csv")
+    matriz.to_csv(csv_path, encoding="utf-8", index_label="Classe real")
+    matriz_latex = matriz.reset_index().rename(columns={"index": "Classe real"})
+    out = {"tipo": "matriz_confusao", "target": target, "recorte": recorte, "avaliacao": avaliacao, "experimento": experimento, "csv": str(csv_path)}
+    out.update(salvar_tabela_latex(matriz_latex, base, caption=f"Matriz de confusão da árvore de decisão, target {target}, recorte {recorte}, experimento {experimento}.", label=f"tab:{nome}"))
+    out.update(renderizar_matriz_confusao(matriz, base))
+    log(f"[OK] Matriz de confusão gerada: {csv_path}")
+    return out
+
+
+def run(target: str = "binario", recorte: str = "geral", avaliacao: str = "all", experimento: str = "E5") -> None:
+    configurar_matplotlib()
+    targets = ["binario", "ternario"] if target == "all" else [normalizar_target(target)]
+    recortes = ["geral", "medicina"] if recorte == "all" else [normalizar_recorte(recorte)]
+    avaliacoes = ["in_sample", "holdout_80_20"] if avaliacao == "all" else [avaliacao]
+    registros = []
+    for target_atual in targets:
+        for recorte_atual in recortes:
+            for avaliacao_atual in avaliacoes:
+                registros.append(gerar_tabela_completa(target_atual, recorte_atual, avaliacao_atual))
+                registros.append(gerar_tabela_compacta(target_atual, recorte_atual, avaliacao_atual))
+                registros.append(gerar_matriz_confusao(target_atual, recorte_atual, avaliacao_atual, experimento=experimento))
+    resumo_path = LOGS_DIR / "article_apendice_treeClassification_resumo.csv"
+    pd.DataFrame(registros).to_csv(resumo_path, index=False, encoding="utf-8")
+    log(f"[OK] Resumo salvo em: {resumo_path}")
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Gera apêndice da árvore de decisão classificatória.")
+    parser.add_argument("--target", choices=["binario", "ternario", "all"], default="binario")
+    parser.add_argument("--recorte", choices=["geral", "medicina", "all"], default="geral")
+    parser.add_argument("--avaliacao", choices=["in_sample", "holdout_80_20", "all"], default="all")
+    parser.add_argument("--experimento", choices=["E1", "E2", "E3", "E4", "E5"], default="E5")
+    return parser.parse_args()
+
+
+if __name__ == "__main__":
+    args = parse_args()
+    run(target=args.target, recorte=args.recorte, avaliacao=args.avaliacao, experimento=args.experimento)

@@ -1,0 +1,88 @@
+================================================================================
+STAGING FIES
+================================================================================
+[OK] relatorio_dados_abertos_oferta_12019_18102021.csv -> fies_ofertas_2019_1.csv | linhas: 28157 -> 28157 | duplicatas removidas: 0 | colunas: 65 -> 65
+[OK] relatorio_dados_abertos_oferta_12020_18102021.csv -> fies_ofertas_2020_1.csv | linhas: 49283 -> 24668 | duplicatas removidas: 24615 | colunas: 68 -> 65
+[OK] relatorio_dados_abertos_oferta_12021_18102021.csv -> fies_ofertas_2021_1.csv | linhas: 23463 -> 23463 | duplicatas removidas: 0 | colunas: 58 -> 58
+[IGNORADO] relatorio_dados_abertos_oferta_12022_15072022.csv | ano fora de PIPELINE_FIES_YEARS: 2022
+[OK] relatorio_dados_abertos_oferta_22019_18102021.csv -> fies_ofertas_2019_2.csv | linhas: 22059 -> 22059 | duplicatas removidas: 0 | colunas: 68 -> 65
+[OK] relatorio_dados_abertos_oferta_22020_18102021.csv -> fies_ofertas_2020_2.csv | linhas: 21956 -> 21956 | duplicatas removidas: 0 | colunas: 61 -> 58
+[OK] relatorio_dados_abertos_oferta_22021_18102021.csv -> fies_ofertas_2021_2.csv | linhas: 23320 -> 23320 | duplicatas removidas: 0 | colunas: 58 -> 58
+[IGNORADO] relatorio_inscricao_dados_abertos_fies_12018.csv | ano fora de PIPELINE_FIES_YEARS: 2018
+[OK] relatorio_inscricao_dados_abertos_fies_12019.csv -> fies_inscricoes_2019_1.csv | linhas: 697599 -> 696731 | duplicatas removidas: 868 | colunas: 59 -> 59
+[OK] relatorio_inscricao_dados_abertos_fies_12020.csv -> fies_inscricoes_2020_1.csv | linhas: 540353 -> 539373 | duplicatas removidas: 980 | colunas: 59 -> 59
+[OK] relatorio_inscricao_dados_abertos_fies_12021.csv -> fies_inscricoes_2021_1.csv | linhas: 257744 -> 251018 | duplicatas removidas: 6726 | colunas: 59 -> 59
+[IGNORADO] relatorio_inscricao_dados_abertos_fies_22018.csv | ano fora de PIPELINE_FIES_YEARS: 2018
+[OK] relatorio_inscricao_dados_abertos_fies_22019.csv -> fies_inscricoes_2019_2.csv | linhas: 271856 -> 271316 | duplicatas removidas: 540 | colunas: 59 -> 59
+[OK] relatorio_inscricao_dados_abertos_fies_22020.csv -> fies_inscricoes_2020_2.csv | linhas: 212404 -> 209502 | duplicatas removidas: 2902 | colunas: 59 -> 59
+[OK] relatorio_inscricao_dados_abertos_fies_22021.csv -> fies_inscricoes_2021_2.csv | linhas: 237965 -> 229294 | duplicatas removidas: 8671 | colunas: 59 -> 59
+[ERROS] relatorio_resultado_fies_12021.csv -> relatorio_resultado_fies_12021.csv
+FIES concluído. Processados: 12. Enviados para errors: 1. Ignorados por ano: 3. Erros: 0.
+
+================================================================================
+STAGING INEP
+================================================================================
+[OK] MICRODADOS_CADASTRO_CURSOS_2016.CSV -> microdados_cadastro_cursos_2016.csv
+[OK] MICRODADOS_CADASTRO_IES_2016.CSV -> microdados_cadastro_ies_2016.csv
+[OK] MICRODADOS_CADASTRO_CURSOS_2017.CSV -> microdados_cadastro_cursos_2017.csv
+[OK] MICRODADOS_CADASTRO_IES_2017.CSV -> microdados_cadastro_ies_2017.csv
+[OK] MICRODADOS_CADASTRO_CURSOS_2018.CSV -> microdados_cadastro_cursos_2018.csv
+[OK] MICRODADOS_CADASTRO_IES_2018.CSV -> microdados_cadastro_ies_2018.csv
+[OK] MICRODADOS_CADASTRO_CURSOS_2019.CSV -> microdados_cadastro_cursos_2019.csv
+[OK] MICRODADOS_CADASTRO_IES_2019.CSV -> microdados_cadastro_ies_2019.csv
+[OK] MICRODADOS_CADASTRO_CURSOS_2020.CSV -> microdados_cadastro_cursos_2020.csv
+[OK] MICRODADOS_CADASTRO_IES_2020.CSV -> microdados_cadastro_ies_2020.csv
+[OK] MICRODADOS_CADASTRO_CURSOS_2021.CSV -> microdados_cadastro_cursos_2021.csv
+[OK] MICRODADOS_CADASTRO_IES_2021.CSV -> microdados_cadastro_ies_2021.csv
+[OK] MICRODADOS_CADASTRO_CURSOS_2022.CSV -> microdados_cadastro_cursos_2022.csv
+[AVISO] Arquivo INEP não encontrado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/01_raw/inep/microdados_educa??o_superior_2022/dados/MICRODADOS_CADASTRO_IES_2022.CSV
+[OK] MICRODADOS_CADASTRO_CURSOS_2023.CSV -> microdados_cadastro_cursos_2023.csv
+[AVISO] Arquivo INEP não encontrado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/01_raw/inep/microdados_censo_da_educacao_superior_2023/dados/MICRODADOS_CADASTRO_IES_2023.CSV
+[OK] MICRODADOS_CADASTRO_CURSOS_2024.CSV -> microdados_cadastro_cursos_2024.csv
+[AVISO] Arquivo INEP não encontrado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/01_raw/inep/microdados_censo_da_educacao_superior_2024/dados/MICRODADOS_CADASTRO_IES_2024.CSV
+INEP concluído. Copiados: 15. Ausentes: 3.
+
+================================================================================
+STAGING FIES
+================================================================================
+[OK] relatorio_dados_abertos_oferta_12019_18102021.csv -> fies_ofertas_2019_1.csv | linhas: 28157 -> 28157 | duplicatas removidas: 0 | colunas: 65 -> 65
+[OK] relatorio_dados_abertos_oferta_12020_18102021.csv -> fies_ofertas_2020_1.csv | linhas: 49283 -> 24668 | duplicatas removidas: 24615 | colunas: 68 -> 65
+[OK] relatorio_dados_abertos_oferta_12021_18102021.csv -> fies_ofertas_2021_1.csv | linhas: 23463 -> 23463 | duplicatas removidas: 0 | colunas: 58 -> 58
+[IGNORADO] relatorio_dados_abertos_oferta_12022_15072022.csv | ano fora de PIPELINE_FIES_YEARS: 2022
+[OK] relatorio_dados_abertos_oferta_22019_18102021.csv -> fies_ofertas_2019_2.csv | linhas: 22059 -> 22059 | duplicatas removidas: 0 | colunas: 68 -> 65
+[OK] relatorio_dados_abertos_oferta_22020_18102021.csv -> fies_ofertas_2020_2.csv | linhas: 21956 -> 21956 | duplicatas removidas: 0 | colunas: 61 -> 58
+[OK] relatorio_dados_abertos_oferta_22021_18102021.csv -> fies_ofertas_2021_2.csv | linhas: 23320 -> 23320 | duplicatas removidas: 0 | colunas: 58 -> 58
+[IGNORADO] relatorio_inscricao_dados_abertos_fies_12018.csv | ano fora de PIPELINE_FIES_YEARS: 2018
+[OK] relatorio_inscricao_dados_abertos_fies_12019.csv -> fies_inscricoes_2019_1.csv | linhas: 697599 -> 696731 | duplicatas removidas: 868 | colunas: 59 -> 59
+[OK] relatorio_inscricao_dados_abertos_fies_12020.csv -> fies_inscricoes_2020_1.csv | linhas: 540353 -> 539373 | duplicatas removidas: 980 | colunas: 59 -> 59
+[OK] relatorio_inscricao_dados_abertos_fies_12021.csv -> fies_inscricoes_2021_1.csv | linhas: 257744 -> 251018 | duplicatas removidas: 6726 | colunas: 59 -> 59
+[IGNORADO] relatorio_inscricao_dados_abertos_fies_22018.csv | ano fora de PIPELINE_FIES_YEARS: 2018
+[OK] relatorio_inscricao_dados_abertos_fies_22019.csv -> fies_inscricoes_2019_2.csv | linhas: 271856 -> 271316 | duplicatas removidas: 540 | colunas: 59 -> 59
+[OK] relatorio_inscricao_dados_abertos_fies_22020.csv -> fies_inscricoes_2020_2.csv | linhas: 212404 -> 209502 | duplicatas removidas: 2902 | colunas: 59 -> 59
+[OK] relatorio_inscricao_dados_abertos_fies_22021.csv -> fies_inscricoes_2021_2.csv | linhas: 237965 -> 229294 | duplicatas removidas: 8671 | colunas: 59 -> 59
+[ERROS] relatorio_resultado_fies_12021.csv -> relatorio_resultado_fies_12021.csv
+FIES concluído. Processados: 12. Enviados para errors: 1. Ignorados por ano: 3. Erros: 0.
+
+================================================================================
+STAGING INEP
+================================================================================
+[OK] MICRODADOS_CADASTRO_CURSOS_2016.CSV -> microdados_cadastro_cursos_2016.csv
+[OK] MICRODADOS_CADASTRO_IES_2016.CSV -> microdados_cadastro_ies_2016.csv
+[OK] MICRODADOS_CADASTRO_CURSOS_2017.CSV -> microdados_cadastro_cursos_2017.csv
+[OK] MICRODADOS_CADASTRO_IES_2017.CSV -> microdados_cadastro_ies_2017.csv
+[OK] MICRODADOS_CADASTRO_CURSOS_2018.CSV -> microdados_cadastro_cursos_2018.csv
+[OK] MICRODADOS_CADASTRO_IES_2018.CSV -> microdados_cadastro_ies_2018.csv
+[OK] MICRODADOS_CADASTRO_CURSOS_2019.CSV -> microdados_cadastro_cursos_2019.csv
+[OK] MICRODADOS_CADASTRO_IES_2019.CSV -> microdados_cadastro_ies_2019.csv
+[OK] MICRODADOS_CADASTRO_CURSOS_2020.CSV -> microdados_cadastro_cursos_2020.csv
+[OK] MICRODADOS_CADASTRO_IES_2020.CSV -> microdados_cadastro_ies_2020.csv
+[OK] MICRODADOS_CADASTRO_CURSOS_2021.CSV -> microdados_cadastro_cursos_2021.csv
+[OK] MICRODADOS_CADASTRO_IES_2021.CSV -> microdados_cadastro_ies_2021.csv
+[OK] MICRODADOS_CADASTRO_CURSOS_2022.CSV -> microdados_cadastro_cursos_2022.csv
+[AVISO] Arquivo INEP não encontrado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/01_raw/inep/microdados_educa??o_superior_2022/dados/MICRODADOS_CADASTRO_IES_2022.CSV
+[OK] MICRODADOS_CADASTRO_CURSOS_2023.CSV -> microdados_cadastro_cursos_2023.csv
+[AVISO] Arquivo INEP não encontrado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/01_raw/inep/microdados_censo_da_educacao_superior_2023/dados/MICRODADOS_CADASTRO_IES_2023.CSV
+[OK] MICRODADOS_CADASTRO_CURSOS_2024.CSV -> microdados_cadastro_cursos_2024.csv
+[AVISO] Arquivo INEP não encontrado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/01_raw/inep/microdados_censo_da_educacao_superior_2024/dados/MICRODADOS_CADASTRO_IES_2024.CSV
+INEP concluído. Copiados: 15. Ausentes: 3.
+

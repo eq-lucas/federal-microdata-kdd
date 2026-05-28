@@ -1,0 +1,15 @@
+\begin{table}
+\caption{Resumo compacto das especificações da regressão logística binária, recorte geral, avaliação in_sample.}
+\label{tab:tabela_compacta_logit_binario_geral_in_sample}
+\begin{tabular}{lllllll}
+\toprule
+Especificação & N & ROC-AUC & Renda & Desempenho & Interação & Variáveis \\
+\midrule
+Modelo 1 & 1.184.972 & 0,6194 & -0,2982 & 0,1993 & 0,1086 & 3 \\
+Modelo 2 & 1.184.972 & 0,8173 & -0,3731 & 0,2511 & 0,1103 & 6 \\
+Modelo 3 & 1.184.972 & 0,8291 & -0,3996 & 0,2213 & 0,0934 & 10 \\
+Modelo 4 & 1.184.972 & 0,8422 & -0,4128 & 0,1712 & 0,0978 & 14 \\
+Modelo 5 & 1.184.972 & 0,8453 & -0,4030 & 0,1579 & 0,1016 & 20 \\
+\bottomrule
+\end{tabular}
+\end{table}

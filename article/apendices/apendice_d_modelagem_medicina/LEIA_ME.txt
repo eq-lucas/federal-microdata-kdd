@@ -1,0 +1,3 @@
+Apêndice D – Evidências complementares de modelagem no recorte Medicina
+
+Reúne quatro tabelas: especificações do logit multinomial, coeficientes-chave do logit multinomial, resumo da árvore de decisão e top 10 importâncias da árvore.

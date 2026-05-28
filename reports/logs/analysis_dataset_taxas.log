@@ -1,0 +1,14 @@
+================================================================================
+ANALYSIS: DATASET DE TAXAS
+================================================================================
+[OK] Funil carregado | linhas: 301 | colunas: 27
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/analysis_dataset_taxas_resumo.csv
+[OK] Dataset de taxas salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/05_analysis/dataset_taxas.parquet
+Dataset de taxas concluído.
+================================================================================
+ANALYSIS: DATASET DE TAXAS
+================================================================================
+[OK] Funil carregado | linhas: 301 | colunas: 27
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/analysis_dataset_taxas_resumo.csv
+[OK] Dataset de taxas salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/05_analysis/dataset_taxas.parquet
+Dataset de taxas concluído.

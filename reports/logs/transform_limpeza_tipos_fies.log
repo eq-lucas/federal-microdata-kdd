@@ -1,0 +1,58 @@
+================================================================================
+TRANSFORM: LIMPEZA E TIPAGEM FIES
+================================================================================
+[INÍCIO] fies_inscricoes_2019_1.csv
+[OK] fies_inscricoes_2019_1.csv -> fies_inscricoes_2019_1_limpo.parquet | linhas: 696731 | colunas: 59 -> 63
+[INÍCIO] fies_inscricoes_2019_2.csv
+[OK] fies_inscricoes_2019_2.csv -> fies_inscricoes_2019_2_limpo.parquet | linhas: 271316 | colunas: 59 -> 63
+[INÍCIO] fies_inscricoes_2020_1.csv
+[OK] fies_inscricoes_2020_1.csv -> fies_inscricoes_2020_1_limpo.parquet | linhas: 539373 | colunas: 59 -> 63
+[INÍCIO] fies_inscricoes_2020_2.csv
+[OK] fies_inscricoes_2020_2.csv -> fies_inscricoes_2020_2_limpo.parquet | linhas: 209502 | colunas: 59 -> 63
+[INÍCIO] fies_inscricoes_2021_1.csv
+[OK] fies_inscricoes_2021_1.csv -> fies_inscricoes_2021_1_limpo.parquet | linhas: 251018 | colunas: 59 -> 63
+[INÍCIO] fies_inscricoes_2021_2.csv
+[OK] fies_inscricoes_2021_2.csv -> fies_inscricoes_2021_2_limpo.parquet | linhas: 229294 | colunas: 59 -> 63
+[INÍCIO] fies_ofertas_2019_1.csv
+[OK] fies_ofertas_2019_1.csv -> fies_ofertas_2019_1_limpo.parquet | linhas: 28157 | colunas: 65 -> 68
+[INÍCIO] fies_ofertas_2019_2.csv
+[OK] fies_ofertas_2019_2.csv -> fies_ofertas_2019_2_limpo.parquet | linhas: 22059 | colunas: 65 -> 68
+[INÍCIO] fies_ofertas_2020_1.csv
+[OK] fies_ofertas_2020_1.csv -> fies_ofertas_2020_1_limpo.parquet | linhas: 24668 | colunas: 65 -> 68
+[INÍCIO] fies_ofertas_2020_2.csv
+[OK] fies_ofertas_2020_2.csv -> fies_ofertas_2020_2_limpo.parquet | linhas: 21956 | colunas: 58 -> 68
+[INÍCIO] fies_ofertas_2021_1.csv
+[OK] fies_ofertas_2021_1.csv -> fies_ofertas_2021_1_limpo.parquet | linhas: 23463 | colunas: 58 -> 68
+[INÍCIO] fies_ofertas_2021_2.csv
+[OK] fies_ofertas_2021_2.csv -> fies_ofertas_2021_2_limpo.parquet | linhas: 23320 | colunas: 58 -> 68
+Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/transform_limpeza_tipos_fies_resumo.csv
+Transformação de limpeza/tipagem FIES concluída.
+================================================================================
+TRANSFORM: LIMPEZA E TIPAGEM FIES
+================================================================================
+[INÍCIO] fies_inscricoes_2019_1.csv
+[OK] fies_inscricoes_2019_1.csv -> fies_inscricoes_2019_1_limpo.parquet | linhas: 696731 | colunas: 59 -> 63
+[INÍCIO] fies_inscricoes_2019_2.csv
+[OK] fies_inscricoes_2019_2.csv -> fies_inscricoes_2019_2_limpo.parquet | linhas: 271316 | colunas: 59 -> 63
+[INÍCIO] fies_inscricoes_2020_1.csv
+[OK] fies_inscricoes_2020_1.csv -> fies_inscricoes_2020_1_limpo.parquet | linhas: 539373 | colunas: 59 -> 63
+[INÍCIO] fies_inscricoes_2020_2.csv
+[OK] fies_inscricoes_2020_2.csv -> fies_inscricoes_2020_2_limpo.parquet | linhas: 209502 | colunas: 59 -> 63
+[INÍCIO] fies_inscricoes_2021_1.csv
+[OK] fies_inscricoes_2021_1.csv -> fies_inscricoes_2021_1_limpo.parquet | linhas: 251018 | colunas: 59 -> 63
+[INÍCIO] fies_inscricoes_2021_2.csv
+[OK] fies_inscricoes_2021_2.csv -> fies_inscricoes_2021_2_limpo.parquet | linhas: 229294 | colunas: 59 -> 63
+[INÍCIO] fies_ofertas_2019_1.csv
+[OK] fies_ofertas_2019_1.csv -> fies_ofertas_2019_1_limpo.parquet | linhas: 28157 | colunas: 65 -> 68
+[INÍCIO] fies_ofertas_2019_2.csv
+[OK] fies_ofertas_2019_2.csv -> fies_ofertas_2019_2_limpo.parquet | linhas: 22059 | colunas: 65 -> 68
+[INÍCIO] fies_ofertas_2020_1.csv
+[OK] fies_ofertas_2020_1.csv -> fies_ofertas_2020_1_limpo.parquet | linhas: 24668 | colunas: 65 -> 68
+[INÍCIO] fies_ofertas_2020_2.csv
+[OK] fies_ofertas_2020_2.csv -> fies_ofertas_2020_2_limpo.parquet | linhas: 21956 | colunas: 58 -> 68
+[INÍCIO] fies_ofertas_2021_1.csv
+[OK] fies_ofertas_2021_1.csv -> fies_ofertas_2021_1_limpo.parquet | linhas: 23463 | colunas: 58 -> 68
+[INÍCIO] fies_ofertas_2021_2.csv
+[OK] fies_ofertas_2021_2.csv -> fies_ofertas_2021_2_limpo.parquet | linhas: 23320 | colunas: 58 -> 68
+Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/transform_limpeza_tipos_fies_resumo.csv
+Transformação de limpeza/tipagem FIES concluída.

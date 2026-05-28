@@ -1,0 +1,46 @@
+|--- num__renda_gap <= -26257.6904
+|   |--- num__renda_per_capita <= 899.9700
+|   |   |--- num__renda_per_capita <= 499.9450
+|   |   |   |--- num__renda_per_capita <= 374.3600
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__renda_per_capita >  374.3600
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |--- num__renda_per_capita >  499.9450
+|   |   |   |--- num__renda_per_capita <= 598.8350
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__renda_per_capita >  598.8350
+|   |   |   |   |--- truncated branch of depth 3
+|   |--- num__renda_per_capita >  899.9700
+|   |   |--- num__gap <= -49.4300
+|   |   |   |--- num__renda_per_capita <= 992.4950
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__renda_per_capita >  992.4950
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |--- num__gap >  -49.4300
+|   |   |   |--- num__renda_per_capita <= 2029.0350
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__renda_per_capita >  2029.0350
+|   |   |   |   |--- truncated branch of depth 3
+|--- num__renda_gap >  -26257.6904
+|   |--- num__renda_per_capita <= 498.7250
+|   |   |--- num__gap <= -0.7700
+|   |   |   |--- num__renda_per_capita <= 275.9550
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__renda_per_capita >  275.9550
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |--- num__gap >  -0.7700
+|   |   |   |--- num__renda_per_capita <= 299.4300
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__renda_per_capita >  299.4300
+|   |   |   |   |--- truncated branch of depth 3
+|   |--- num__renda_per_capita >  498.7250
+|   |   |--- num__renda_gap <= -6007.1035
+|   |   |   |--- num__renda_per_capita <= 899.6050
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__renda_per_capita >  899.6050
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |--- num__renda_gap >  -6007.1035
+|   |   |   |--- num__renda_per_capita <= 993.3250
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__renda_per_capita >  993.3250
+|   |   |   |   |--- truncated branch of depth 3

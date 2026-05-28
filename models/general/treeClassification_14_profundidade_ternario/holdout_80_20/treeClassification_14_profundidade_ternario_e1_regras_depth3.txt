@@ -1,0 +1,46 @@
+|--- num__renda_gap <= -27016.7783
+|   |--- num__renda_gap <= -91876.3750
+|   |   |--- num__gap <= -139.8900
+|   |   |   |--- num__gap <= -177.3500
+|   |   |   |   |--- truncated branch of depth 9
+|   |   |   |--- num__gap >  -177.3500
+|   |   |   |   |--- truncated branch of depth 11
+|   |   |--- num__gap >  -139.8900
+|   |   |   |--- num__renda_gap <= -179550.0938
+|   |   |   |   |--- truncated branch of depth 11
+|   |   |   |--- num__renda_gap >  -179550.0938
+|   |   |   |   |--- truncated branch of depth 11
+|   |--- num__renda_gap >  -91876.3750
+|   |   |--- num__gap <= -82.3300
+|   |   |   |--- num__gap <= -120.4500
+|   |   |   |   |--- truncated branch of depth 11
+|   |   |   |--- num__gap >  -120.4500
+|   |   |   |   |--- truncated branch of depth 11
+|   |   |--- num__gap >  -82.3300
+|   |   |   |--- num__renda_gap <= -47439.1895
+|   |   |   |   |--- truncated branch of depth 11
+|   |   |   |--- num__renda_gap >  -47439.1895
+|   |   |   |   |--- truncated branch of depth 11
+|--- num__renda_gap >  -27016.7783
+|   |--- num__renda_gap <= -10202.4399
+|   |   |--- num__gap <= -41.1900
+|   |   |   |--- num__renda_per_capita <= 399.3150
+|   |   |   |   |--- truncated branch of depth 10
+|   |   |   |--- num__renda_per_capita >  399.3150
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |--- num__gap >  -41.1900
+|   |   |   |--- num__renda_per_capita <= 498.9600
+|   |   |   |   |--- truncated branch of depth 8
+|   |   |   |--- num__renda_per_capita >  498.9600
+|   |   |   |   |--- truncated branch of depth 11
+|   |--- num__renda_gap >  -10202.4399
+|   |   |--- num__renda_per_capita <= 748.3250
+|   |   |   |--- num__renda_per_capita <= 399.3250
+|   |   |   |   |--- truncated branch of depth 11
+|   |   |   |--- num__renda_per_capita >  399.3250
+|   |   |   |   |--- truncated branch of depth 11
+|   |   |--- num__renda_per_capita >  748.3250
+|   |   |   |--- num__gap <= 177.5600
+|   |   |   |   |--- truncated branch of depth 11
+|   |   |   |--- num__gap >  177.5600
+|   |   |   |   |--- truncated branch of depth 6

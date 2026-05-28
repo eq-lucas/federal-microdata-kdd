@@ -1,0 +1,38 @@
+================================================================================
+ARTICLE: RENDA, FINANCIAMENTO E COPARTICIPAÇÃO IMPLÍCITA
+================================================================================
+[OK] Base carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/04_curated/parquet/inscricoes_fies_2019_2021.parquet
+[OK] Linhas: 2197234 | Colunas: 119
+[OK] Contratos efetivados na base: 160369
+[OK] Contratos com renda e percentual válidos antes dos filtros: 160350
+[OK] Contratos usados na regressão: 160323
+[OK] Estatísticas calculadas
+     n = 160323
+     Pearson r = -0.7057
+     beta = -0.0188
+     intercepto = 91.62
+     R² = 0.4980
+     efeito a cada R$ 100 = -1.88 p.p.
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_financiamento_coparticipacao_resumo.csv
+[OK] Figura 4 salva em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/financiamento_coparticipacao
+[OK] Tabela 2 salva em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_4_3
+Financiamento e coparticipação concluídos.
+================================================================================
+ARTICLE: RENDA, FINANCIAMENTO E COPARTICIPAÇÃO IMPLÍCITA
+================================================================================
+[OK] Base carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/04_curated/parquet/inscricoes_fies_2019_2021.parquet
+[OK] Linhas: 2197234 | Colunas: 119
+[OK] Contratos efetivados na base: 160369
+[OK] Contratos com renda e percentual válidos antes dos filtros: 160350
+[OK] Contratos usados na regressão: 160323
+[OK] Estatísticas calculadas
+     n = 160323
+     Pearson r = -0.7057
+     beta = -0.0188
+     intercepto = 91.62
+     R² = 0.4980
+     efeito a cada R$ 100 = -1.88 p.p.
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_financiamento_coparticipacao_resumo.csv
+[OK] Figura 4 salva em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/financiamento_coparticipacao
+[OK] Tabela 2 salva em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_4_3
+Financiamento e coparticipação concluídos.

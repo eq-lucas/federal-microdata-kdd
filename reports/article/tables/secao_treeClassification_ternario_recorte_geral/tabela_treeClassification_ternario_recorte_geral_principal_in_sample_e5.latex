@@ -1,0 +1,23 @@
+\begin{table}
+\caption{Resumo da árvore de decisão, target ternario, recorte geral.}
+\label{tab:tabela_treeClassification_ternario_recorte_geral_principal_in_sample_e5}
+\begin{tabular}{ll}
+\toprule
+Medida & Valor \\
+\midrule
+Observações da ABT & 1.925.666 \\
+Observações de treino & 1.925.666 \\
+Observações de teste & 1.925.666 \\
+ROC-AUC OVR ponderado & 0,8714 \\
+Acurácia balanceada & 0,7164 \\
+F1 macro & 0,5778 \\
+Importância: renda & 0,0136 \\
+Importância: desempenho & 0,0334 \\
+Importância: interação & 0,2974 \\
+Primeira divisão da árvore & renda\_gap \\
+Profundidade observada & 6 \\
+Folhas & 58 \\
+Blocos de variáveis & 20 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,268 @@
+{
+  "registro": {
+    "recorte": "medicina",
+    "avaliacao": "holdout_80_20",
+    "avaliacao_descricao": "holdout_80_20_estratificado",
+    "modelo": "logit_ternario",
+    "modelo_descricao": "Regressão logística multinomial",
+    "experimento": "E3",
+    "experimento_nome": "Modelo intermediário",
+    "experimento_descricao": "E2 acrescido de ano, semestre, conceito do curso, turno e ensino médio público.",
+    "n_total_abt": 311329,
+    "n_treino": 249063,
+    "n_teste": 62266,
+    "target_0": "Lista de espera",
+    "target_1": "Não contratado",
+    "target_2": "Contratada",
+    "roc_auc_ovr_weighted": 0.9495582457055326,
+    "accuracy": 0.8145055086242894,
+    "balanced_accuracy": 0.6891577481668173,
+    "precision_macro": 0.47773817514033784,
+    "recall_macro": 0.6891577481668173,
+    "f1_macro": 0.4945823433674712,
+    "precision_weighted": 0.9391875942006642,
+    "recall_weighted": 0.8145055086242894,
+    "f1_weighted": 0.8641946499932791,
+    "log_loss": 0.45995978502687523,
+    "coef_renda_per_capita_classe_contratada": -0.09032230340345769,
+    "coef_gap_classe_contratada": 2.3298755248255127,
+    "coef_renda_gap_classe_contratada": -0.2003221020663551,
+    "blocos_variaveis_qtd": 10,
+    "colunas_finais_pos_processamento": 19,
+    "blocos_incluidos": "Renda familiar per capita; Desempenho relativo à nota de corte; Interação renda × desempenho; Idade; Nota de corte do grupo; Opção de curso; Ano do processo seletivo; Semestre do processo seletivo; Conceito do curso; Turno",
+    "blocos_ausentes": "Ensino médio em escola pública",
+    "variaveis_numericas": "renda_per_capita; gap; renda_gap; idade; nota_corte_gp",
+    "variaveis_categoricas": "opcao_curso; ano; semestre; conceito_curso_gp; turno",
+    "model_path": "/home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/holdout_80_20/logit_ternario_e3.joblib",
+    "confusao_real_0_pred_0": 48155,
+    "confusao_real_0_pred_1": 2811,
+    "confusao_real_0_pred_2": 6551,
+    "confusao_real_1_pred_0": 141,
+    "confusao_real_1_pred_1": 1372,
+    "confusao_real_1_pred_2": 1773,
+    "confusao_real_2_pred_0": 67,
+    "confusao_real_2_pred_1": 207,
+    "confusao_real_2_pred_2": 1189
+  },
+  "experimento": {
+    "id": "E3",
+    "name": "Modelo intermediário",
+    "description": "E2 acrescido de ano, semestre, conceito do curso, turno e ensino médio público.",
+    "blocks": [
+      "renda_per_capita",
+      "gap",
+      "renda_gap",
+      "idade",
+      "nota_corte_gp",
+      "opcao_curso",
+      "ano",
+      "semestre",
+      "conceito_curso_gp",
+      "turno",
+      "ensino_medio_escola_publica"
+    ]
+  },
+  "blocos_usados": [
+    "renda_per_capita",
+    "gap",
+    "renda_gap",
+    "idade",
+    "nota_corte_gp",
+    "opcao_curso",
+    "ano",
+    "semestre",
+    "conceito_curso_gp",
+    "turno"
+  ],
+  "blocos_ausentes": [
+    "ensino_medio_escola_publica"
+  ],
+  "numericas": [
+    "renda_per_capita",
+    "gap",
+    "renda_gap",
+    "idade",
+    "nota_corte_gp"
+  ],
+  "categoricas": [
+    "opcao_curso",
+    "ano",
+    "semestre",
+    "conceito_curso_gp",
+    "turno"
+  ],
+  "classes": [
+    "0",
+    "1",
+    "2"
+  ],
+  "class_labels": {
+    "0": "Lista de espera",
+    "1": "Não contratado",
+    "2": "Contratada"
+  },
+  "feature_names_out": [
+    "num__renda_per_capita",
+    "num__gap",
+    "num__renda_gap",
+    "num__idade",
+    "num__nota_corte_gp",
+    "cat__opcao_curso_1",
+    "cat__opcao_curso_2",
+    "cat__opcao_curso_3",
+    "cat__ano_2019",
+    "cat__ano_2020",
+    "cat__ano_2021",
+    "cat__semestre_1",
+    "cat__semestre_2",
+    "cat__conceito_curso_gp_3",
+    "cat__conceito_curso_gp_4",
+    "cat__conceito_curso_gp_5",
+    "cat__conceito_curso_gp_Não informado",
+    "cat__turno_INTEGRAL",
+    "cat__turno_infrequent_sklearn"
+  ],
+  "abt_metadata": {
+    "target": "ternario",
+    "target_col": "target_ternario",
+    "target_map": {
+      "0": "LISTA DE ESPERA",
+      "1": "NÃO CONTRATADO",
+      "2": "CONTRATADA"
+    },
+    "recorte": "medicina",
+    "path_base": "/home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/04_curated/parquet/inscricoes_fies_2019_2021.parquet",
+    "linhas_apos_target_antes_drop": 311330,
+    "linhas_abt": 311329,
+    "colunas_abt": 26,
+    "distribuicao_target": {
+      "0": 287584,
+      "1": 16430,
+      "2": 7315
+    },
+    "mapa_colunas_origem": {
+      "id_estudante": "id_estudante",
+      "ano": "ano",
+      "semestre": "semestre",
+      "situacao_fies": "situacao_fies",
+      "nome_curso": "nome_curso",
+      "renda_per_capita": "renda_per_capita",
+      "media_enem": "media_enem",
+      "nota_corte_gp": "nota_corte_gp",
+      "idade": null,
+      "opcao_curso": "opcao_curso",
+      "conceito_curso_gp": "conceito_curso_gp",
+      "turno": "turno",
+      "ensino_medio_escola_publica": null,
+      "regiao_ies_alvo": "regiao_ies_alvo",
+      "natureza_juridica_mantenedora": "natureza_juridica_mantenedora",
+      "etnia_cor": "etnia_cor",
+      "sexo": "sexo",
+      "regiao_morar": "regiao_morar",
+      "organizacao_academica": "organizacao_academica_ies",
+      "subarea_conhecimento": "subarea_conhecimento",
+      "concluiu_curso_superior": "concluiu_curso_superior",
+      "beneficiado_creduc_fies": "beneficiado_creduc_fies",
+      "uf_local_oferta": "uf_local_oferta",
+      "data_nascimento": "data_nascimento"
+    },
+    "resumo_categorias": {
+      "ano": {
+        "categorias_originais": 3,
+        "tratamento": "mantida"
+      },
+      "semestre": {
+        "categorias_originais": 2,
+        "tratamento": "mantida"
+      },
+      "opcao_curso": {
+        "categorias_originais": 3,
+        "tratamento": "mantida"
+      },
+      "conceito_curso_gp": {
+        "categorias_originais": 3,
+        "tratamento": "mantida"
+      },
+      "turno": {
+        "categorias_originais": 4,
+        "tratamento": "mantida"
+      },
+      "ensino_medio_escola_publica": {
+        "categorias_originais": 0,
+        "tratamento": "mantida"
+      },
+      "regiao_ies_alvo": {
+        "categorias_originais": 5,
+        "tratamento": "mantida"
+      },
+      "natureza_juridica_mantenedora": {
+        "categorias_originais": 7,
+        "tratamento": "mantida"
+      },
+      "etnia_cor": {
+        "categorias_originais": 5,
+        "tratamento": "mantida"
+      },
+      "sexo": {
+        "categorias_originais": 2,
+        "tratamento": "mantida"
+      },
+      "regiao_morar": {
+        "categorias_originais": 5,
+        "tratamento": "mantida"
+      },
+      "organizacao_academica": {
+        "categorias_originais": 3,
+        "tratamento": "mantida"
+      },
+      "subarea_conhecimento": {
+        "categorias_originais": 1,
+        "tratamento": "mantida"
+      },
+      "concluiu_curso_superior": {
+        "categorias_originais": 2,
+        "tratamento": "mantida"
+      },
+      "beneficiado_creduc_fies": {
+        "categorias_originais": 3,
+        "tratamento": "mantida"
+      },
+      "uf_local_oferta": {
+        "categorias_originais": 25,
+        "tratamento": "mantida"
+      }
+    },
+    "colunas_numericas": [
+      "renda_per_capita",
+      "gap",
+      "renda_gap",
+      "idade",
+      "nota_corte_gp"
+    ],
+    "colunas_categoricas": [
+      "ano",
+      "semestre",
+      "opcao_curso",
+      "conceito_curso_gp",
+      "turno",
+      "ensino_medio_escola_publica",
+      "regiao_ies_alvo",
+      "natureza_juridica_mantenedora",
+      "etnia_cor",
+      "sexo",
+      "regiao_morar",
+      "organizacao_academica",
+      "subarea_conhecimento",
+      "concluiu_curso_superior",
+      "beneficiado_creduc_fies",
+      "uf_local_oferta"
+    ],
+    "variaveis_principais_obrigatorias": [
+      "renda_per_capita",
+      "gap",
+      "renda_gap"
+    ],
+    "observacao": "ABT ternária para regressão logística multinomial. Não inclui variáveis pós-contratação."
+  },
+  "observacao": "Modelo logístico multinomial. Métricas calculadas no conjunto indicado por avaliacao_descricao."
+}

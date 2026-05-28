@@ -1,0 +1,46 @@
+================================================================================
+ARTICLE: MATRIZES RENDA × DESEMPENHO
+================================================================================
+[OK] Base carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/04_curated/parquet/inscricoes_fies_2019_2021.parquet
+[OK] Linhas: 2197234 | Colunas: 119
+[OK] Recorte curso priorizado | linhas: 1109861
+[INFO] Linhas removidas por renda/nota/corte ausente: 4
+[OK] matriz_status_por_area_cine: todas as células somam 100%
+[OK] matriz_status_nacional: todas as células somam 100%
+[INFO] Gerando heatmap por área CINE: AGRICULTURA, SILVICULTURA, PESCA E VETERINÁRIA
+[INFO] Gerando heatmap por área CINE: ARTES E HUMANIDADES
+[INFO] Gerando heatmap por área CINE: CIÊNCIAS NATURAIS, MATEMÁTICA E ESTATÍSTICA
+[INFO] Gerando heatmap por área CINE: CIÊNCIAS SOCIAIS, COMUNICAÇÃO E INFORMAÇÃO
+[INFO] Gerando heatmap por área CINE: COMPUTAÇÃO E TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (TIC)
+[INFO] Gerando heatmap por área CINE: EDUCAÇÃO
+[INFO] Gerando heatmap por área CINE: ENGENHARIA, PRODUÇÃO E CONSTRUÇÃO
+[INFO] Gerando heatmap por área CINE: NEGÓCIOS, ADMINISTRAÇÃO E DIREITO
+[INFO] Gerando heatmap por área CINE: SAÚDE E BEM-ESTAR
+[INFO] Gerando heatmap por área CINE: SERVIÇOS
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_matrizes_renda_desempenho_resumo.csv
+[OK] Heatmaps contratados/não contratados: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/heatmap_contratados_x_nao_contratados
+[OK] Heatmap lista de espera: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_b/heatmap_lista_espera
+Matrizes renda × desempenho concluídas.
+================================================================================
+ARTICLE: MATRIZES RENDA × DESEMPENHO
+================================================================================
+[OK] Base carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/04_curated/parquet/inscricoes_fies_2019_2021.parquet
+[OK] Linhas: 2197234 | Colunas: 119
+[OK] Base de inscrições para matrizes | linhas: 2197229
+[INFO] Linhas removidas por renda/nota/corte ausente: 5
+[OK] matriz_status_por_area_cine: todas as células somam 100%
+[OK] matriz_status_nacional: todas as células somam 100%
+[INFO] Gerando heatmap por área CINE: AGRICULTURA, SILVICULTURA, PESCA E VETERINÁRIA
+[INFO] Gerando heatmap por área CINE: ARTES E HUMANIDADES
+[INFO] Gerando heatmap por área CINE: CIÊNCIAS NATURAIS, MATEMÁTICA E ESTATÍSTICA
+[INFO] Gerando heatmap por área CINE: CIÊNCIAS SOCIAIS, COMUNICAÇÃO E INFORMAÇÃO
+[INFO] Gerando heatmap por área CINE: COMPUTAÇÃO E TECNOLOGIAS DA INFORMAÇÃO E COMUNICAÇÃO (TIC)
+[INFO] Gerando heatmap por área CINE: EDUCAÇÃO
+[INFO] Gerando heatmap por área CINE: ENGENHARIA, PRODUÇÃO E CONSTRUÇÃO
+[INFO] Gerando heatmap por área CINE: NEGÓCIOS, ADMINISTRAÇÃO E DIREITO
+[INFO] Gerando heatmap por área CINE: SAÚDE E BEM-ESTAR
+[INFO] Gerando heatmap por área CINE: SERVIÇOS
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_matrizes_renda_desempenho_resumo.csv
+[OK] Heatmaps contratados/não contratados: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/heatmap_contratados_x_nao_contratados
+[OK] Heatmap lista de espera: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_b/heatmap_lista_espera
+Matrizes renda × desempenho concluídas.

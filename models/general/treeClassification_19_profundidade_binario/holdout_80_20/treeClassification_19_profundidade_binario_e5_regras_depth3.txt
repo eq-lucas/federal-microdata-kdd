@@ -1,0 +1,46 @@
+|--- cat__opcao_curso_1 <= 0.5000
+|   |--- cat__subarea_conhecimento_MEDICINA <= 0.5000
+|   |   |--- cat__subarea_conhecimento_ODONTOLOGIA, QUIROPRAXIA, FÍSICA MÉDICA E NATUROLOGIA <= 0.5000
+|   |   |   |--- num__renda_per_capita <= 399.6100
+|   |   |   |   |--- truncated branch of depth 13
+|   |   |   |--- num__renda_per_capita >  399.6100
+|   |   |   |   |--- truncated branch of depth 16
+|   |   |--- cat__subarea_conhecimento_ODONTOLOGIA, QUIROPRAXIA, FÍSICA MÉDICA E NATUROLOGIA >  0.5000
+|   |   |   |--- num__renda_per_capita <= 799.2350
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |   |--- num__renda_per_capita >  799.2350
+|   |   |   |   |--- truncated branch of depth 9
+|   |--- cat__subarea_conhecimento_MEDICINA >  0.5000
+|   |   |--- cat__organizacao_academica_UNIVERSIDADE <= 0.5000
+|   |   |   |--- num__renda_gap <= -10074.9111
+|   |   |   |   |--- class: 0
+|   |   |   |--- num__renda_gap >  -10074.9111
+|   |   |   |   |--- truncated branch of depth 2
+|   |   |--- cat__organizacao_academica_UNIVERSIDADE >  0.5000
+|   |   |   |--- cat__opcao_curso_2 <= 0.5000
+|   |   |   |   |--- truncated branch of depth 2
+|   |   |   |--- cat__opcao_curso_2 >  0.5000
+|   |   |   |   |--- truncated branch of depth 4
+|--- cat__opcao_curso_1 >  0.5000
+|   |--- num__renda_per_capita <= 748.9350
+|   |   |--- num__renda_per_capita <= 498.4850
+|   |   |   |--- cat__regiao_ies_alvo_Sudeste <= 0.5000
+|   |   |   |   |--- truncated branch of depth 16
+|   |   |   |--- cat__regiao_ies_alvo_Sudeste >  0.5000
+|   |   |   |   |--- truncated branch of depth 10
+|   |   |--- num__renda_per_capita >  498.4850
+|   |   |   |--- cat__subarea_conhecimento_ADMINISTRAÇÃO, ADMINISTRAÇÃO PÚBLICA, GESTÃO, LOGÍSTICA, NEGÓCIOS E CURSOS RELACIONADOS <= 0.5000
+|   |   |   |   |--- truncated branch of depth 16
+|   |   |   |--- cat__subarea_conhecimento_ADMINISTRAÇÃO, ADMINISTRAÇÃO PÚBLICA, GESTÃO, LOGÍSTICA, NEGÓCIOS E CURSOS RELACIONADOS >  0.5000
+|   |   |   |   |--- truncated branch of depth 7
+|   |--- num__renda_per_capita >  748.9350
+|   |   |--- cat__turno_INTEGRAL <= 0.5000
+|   |   |   |--- num__renda_gap <= -13926.2559
+|   |   |   |   |--- truncated branch of depth 16
+|   |   |   |--- num__renda_gap >  -13926.2559
+|   |   |   |   |--- truncated branch of depth 16
+|   |   |--- cat__turno_INTEGRAL >  0.5000
+|   |   |   |--- num__renda_gap <= -11480.6074
+|   |   |   |   |--- truncated branch of depth 6
+|   |   |   |--- num__renda_gap >  -11480.6074
+|   |   |   |   |--- truncated branch of depth 10

@@ -1,0 +1,793 @@
+[INÍCIO] binario | geral | in_sample | E1 | n_treino=1184972 | n_teste=1184972 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_binario/in_sample/treeClassification_binario_e1.joblib
+[INÍCIO] binario | geral | in_sample | E2 | n_treino=1184972 | n_teste=1184972 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_binario/in_sample/treeClassification_binario_e2.joblib
+[INÍCIO] binario | geral | in_sample | E3 | n_treino=1184972 | n_teste=1184972 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_binario/in_sample/treeClassification_binario_e3.joblib
+[INÍCIO] binario | geral | in_sample | E4 | n_treino=1184972 | n_teste=1184972 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_binario/in_sample/treeClassification_binario_e4.joblib
+[INÍCIO] binario | geral | in_sample | E5 | n_treino=1184972 | n_teste=1184972 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_binario/in_sample/treeClassification_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_binario/in_sample/geral/treeClassification_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_binario/in_sample/geral/treeClassification_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_binario/in_sample/geral/treeClassification_binario_importancias_agregadas.csv
+[INÍCIO] binario | geral | holdout_80_20 | E1 | n_treino=947977 | n_teste=236995 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_binario/holdout_80_20/treeClassification_binario_e1.joblib
+[INÍCIO] binario | geral | holdout_80_20 | E2 | n_treino=947977 | n_teste=236995 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_binario/holdout_80_20/treeClassification_binario_e2.joblib
+[INÍCIO] binario | geral | holdout_80_20 | E3 | n_treino=947977 | n_teste=236995 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_binario/holdout_80_20/treeClassification_binario_e3.joblib
+[INÍCIO] binario | geral | holdout_80_20 | E4 | n_treino=947977 | n_teste=236995 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_binario/holdout_80_20/treeClassification_binario_e4.joblib
+[INÍCIO] binario | geral | holdout_80_20 | E5 | n_treino=947977 | n_teste=236995 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_binario/holdout_80_20/treeClassification_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_binario/holdout_80_20/geral/treeClassification_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_binario/holdout_80_20/geral/treeClassification_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_binario/holdout_80_20/geral/treeClassification_binario_importancias_agregadas.csv
+[INÍCIO] ternario | geral | in_sample | E1 | n_treino=1925666 | n_teste=1925666 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_ternario/in_sample/treeClassification_ternario_e1.joblib
+[INÍCIO] ternario | geral | in_sample | E2 | n_treino=1925666 | n_teste=1925666 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_ternario/in_sample/treeClassification_ternario_e2.joblib
+[INÍCIO] ternario | geral | in_sample | E3 | n_treino=1925666 | n_teste=1925666 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_ternario/in_sample/treeClassification_ternario_e3.joblib
+[INÍCIO] ternario | geral | in_sample | E4 | n_treino=1925666 | n_teste=1925666 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_ternario/in_sample/treeClassification_ternario_e4.joblib
+[INÍCIO] ternario | geral | in_sample | E5 | n_treino=1925666 | n_teste=1925666 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_ternario/in_sample/treeClassification_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_ternario/in_sample/geral/treeClassification_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_ternario/in_sample/geral/treeClassification_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_ternario/in_sample/geral/treeClassification_ternario_importancias_agregadas.csv
+[INÍCIO] ternario | geral | holdout_80_20 | E1 | n_treino=1540532 | n_teste=385134 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_ternario/holdout_80_20/treeClassification_ternario_e1.joblib
+[INÍCIO] ternario | geral | holdout_80_20 | E2 | n_treino=1540532 | n_teste=385134 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_ternario/holdout_80_20/treeClassification_ternario_e2.joblib
+[INÍCIO] ternario | geral | holdout_80_20 | E3 | n_treino=1540532 | n_teste=385134 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_ternario/holdout_80_20/treeClassification_ternario_e3.joblib
+[INÍCIO] ternario | geral | holdout_80_20 | E4 | n_treino=1540532 | n_teste=385134 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_ternario/holdout_80_20/treeClassification_ternario_e4.joblib
+[INÍCIO] ternario | geral | holdout_80_20 | E5 | n_treino=1540532 | n_teste=385134 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_ternario/holdout_80_20/treeClassification_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_ternario/holdout_80_20/geral/treeClassification_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_ternario/holdout_80_20/geral/treeClassification_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_ternario/holdout_80_20/geral/treeClassification_ternario_importancias_agregadas.csv
+[INÍCIO] ternario | medicina | in_sample | E1 | n_treino=311329 | n_teste=311329 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_ternario/in_sample/treeClassification_ternario_e1.joblib
+[INÍCIO] ternario | medicina | in_sample | E2 | n_treino=311329 | n_teste=311329 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_ternario/in_sample/treeClassification_ternario_e2.joblib
+[INÍCIO] ternario | medicina | in_sample | E3 | n_treino=311329 | n_teste=311329 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_ternario/in_sample/treeClassification_ternario_e3.joblib
+[INÍCIO] ternario | medicina | in_sample | E4 | n_treino=311329 | n_teste=311329 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_ternario/in_sample/treeClassification_ternario_e4.joblib
+[INÍCIO] ternario | medicina | in_sample | E5 | n_treino=311329 | n_teste=311329 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_ternario/in_sample/treeClassification_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_ternario/in_sample/medicina/treeClassification_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_ternario/in_sample/medicina/treeClassification_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_ternario/in_sample/medicina/treeClassification_ternario_importancias_agregadas.csv
+[INÍCIO] ternario | medicina | holdout_80_20 | E1 | n_treino=249063 | n_teste=62266 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_ternario/holdout_80_20/treeClassification_ternario_e1.joblib
+[INÍCIO] ternario | medicina | holdout_80_20 | E2 | n_treino=249063 | n_teste=62266 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_ternario/holdout_80_20/treeClassification_ternario_e2.joblib
+[INÍCIO] ternario | medicina | holdout_80_20 | E3 | n_treino=249063 | n_teste=62266 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_ternario/holdout_80_20/treeClassification_ternario_e3.joblib
+[INÍCIO] ternario | medicina | holdout_80_20 | E4 | n_treino=249063 | n_teste=62266 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_ternario/holdout_80_20/treeClassification_ternario_e4.joblib
+[INÍCIO] ternario | medicina | holdout_80_20 | E5 | n_treino=249063 | n_teste=62266 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_ternario/holdout_80_20/treeClassification_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_ternario/holdout_80_20/medicina/treeClassification_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_ternario/holdout_80_20/medicina/treeClassification_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_ternario/holdout_80_20/medicina/treeClassification_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_10_profundidade_binario | geral | in_sample | E1 | n_treino=1184972 | n_teste=1184972 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/in_sample/treeClassification_10_profundidade_binario_e1.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | in_sample | E2 | n_treino=1184972 | n_teste=1184972 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/in_sample/treeClassification_10_profundidade_binario_e2.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | in_sample | E3 | n_treino=1184972 | n_teste=1184972 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/in_sample/treeClassification_10_profundidade_binario_e3.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | in_sample | E4 | n_treino=1184972 | n_teste=1184972 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/in_sample/treeClassification_10_profundidade_binario_e4.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | in_sample | E5 | n_treino=1184972 | n_teste=1184972 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/in_sample/treeClassification_10_profundidade_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/in_sample/geral/treeClassification_10_profundidade_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/in_sample/geral/treeClassification_10_profundidade_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/in_sample/geral/treeClassification_10_profundidade_binario_importancias_agregadas.csv
+[INÍCIO] treeClassification_10_profundidade_binario | geral | holdout_80_20 | E1 | n_treino=947977 | n_teste=236995 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/holdout_80_20/treeClassification_10_profundidade_binario_e1.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | holdout_80_20 | E2 | n_treino=947977 | n_teste=236995 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/holdout_80_20/treeClassification_10_profundidade_binario_e2.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | holdout_80_20 | E3 | n_treino=947977 | n_teste=236995 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/holdout_80_20/treeClassification_10_profundidade_binario_e3.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | holdout_80_20 | E4 | n_treino=947977 | n_teste=236995 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/holdout_80_20/treeClassification_10_profundidade_binario_e4.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | holdout_80_20 | E5 | n_treino=947977 | n_teste=236995 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/holdout_80_20/treeClassification_10_profundidade_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/holdout_80_20/geral/treeClassification_10_profundidade_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/holdout_80_20/geral/treeClassification_10_profundidade_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/holdout_80_20/geral/treeClassification_10_profundidade_binario_importancias_agregadas.csv
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | in_sample | E1 | n_treino=1925666 | n_teste=1925666 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | in_sample | E2 | n_treino=1925666 | n_teste=1925666 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | in_sample | E3 | n_treino=1925666 | n_teste=1925666 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | in_sample | E4 | n_treino=1925666 | n_teste=1925666 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | in_sample | E5 | n_treino=1925666 | n_teste=1925666 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/in_sample/geral/treeClassification_10_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/in_sample/geral/treeClassification_10_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/in_sample/geral/treeClassification_10_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | holdout_80_20 | E1 | n_treino=1540532 | n_teste=385134 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | holdout_80_20 | E2 | n_treino=1540532 | n_teste=385134 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | holdout_80_20 | E3 | n_treino=1540532 | n_teste=385134 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | holdout_80_20 | E4 | n_treino=1540532 | n_teste=385134 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | holdout_80_20 | E5 | n_treino=1540532 | n_teste=385134 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/holdout_80_20/geral/treeClassification_10_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/holdout_80_20/geral/treeClassification_10_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/holdout_80_20/geral/treeClassification_10_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | in_sample | E1 | n_treino=311329 | n_teste=311329 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | in_sample | E2 | n_treino=311329 | n_teste=311329 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | in_sample | E3 | n_treino=311329 | n_teste=311329 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | in_sample | E4 | n_treino=311329 | n_teste=311329 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | in_sample | E5 | n_treino=311329 | n_teste=311329 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/in_sample/medicina/treeClassification_10_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/in_sample/medicina/treeClassification_10_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/in_sample/medicina/treeClassification_10_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | holdout_80_20 | E1 | n_treino=249063 | n_teste=62266 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | holdout_80_20 | E2 | n_treino=249063 | n_teste=62266 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | holdout_80_20 | E3 | n_treino=249063 | n_teste=62266 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | holdout_80_20 | E4 | n_treino=249063 | n_teste=62266 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | holdout_80_20 | E5 | n_treino=249063 | n_teste=62266 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/holdout_80_20/medicina/treeClassification_10_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/holdout_80_20/medicina/treeClassification_10_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/holdout_80_20/medicina/treeClassification_10_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_14_profundidade_binario | geral | in_sample | E1 | n_treino=1184972 | n_teste=1184972 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/in_sample/treeClassification_14_profundidade_binario_e1.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | in_sample | E2 | n_treino=1184972 | n_teste=1184972 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/in_sample/treeClassification_14_profundidade_binario_e2.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | in_sample | E3 | n_treino=1184972 | n_teste=1184972 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/in_sample/treeClassification_14_profundidade_binario_e3.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | in_sample | E4 | n_treino=1184972 | n_teste=1184972 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/in_sample/treeClassification_14_profundidade_binario_e4.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | in_sample | E5 | n_treino=1184972 | n_teste=1184972 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/in_sample/treeClassification_14_profundidade_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_binario/in_sample/geral/treeClassification_14_profundidade_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_binario/in_sample/geral/treeClassification_14_profundidade_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_binario/in_sample/geral/treeClassification_14_profundidade_binario_importancias_agregadas.csv
+[INÍCIO] treeClassification_14_profundidade_binario | geral | holdout_80_20 | E1 | n_treino=947977 | n_teste=236995 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/holdout_80_20/treeClassification_14_profundidade_binario_e1.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | holdout_80_20 | E2 | n_treino=947977 | n_teste=236995 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/holdout_80_20/treeClassification_14_profundidade_binario_e2.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | holdout_80_20 | E3 | n_treino=947977 | n_teste=236995 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/holdout_80_20/treeClassification_14_profundidade_binario_e3.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | holdout_80_20 | E4 | n_treino=947977 | n_teste=236995 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/holdout_80_20/treeClassification_14_profundidade_binario_e4.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | holdout_80_20 | E5 | n_treino=947977 | n_teste=236995 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/holdout_80_20/treeClassification_14_profundidade_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_binario/holdout_80_20/geral/treeClassification_14_profundidade_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_binario/holdout_80_20/geral/treeClassification_14_profundidade_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_binario/holdout_80_20/geral/treeClassification_14_profundidade_binario_importancias_agregadas.csv
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | in_sample | E1 | n_treino=1925666 | n_teste=1925666 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | in_sample | E2 | n_treino=1925666 | n_teste=1925666 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | in_sample | E3 | n_treino=1925666 | n_teste=1925666 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | in_sample | E4 | n_treino=1925666 | n_teste=1925666 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | in_sample | E5 | n_treino=1925666 | n_teste=1925666 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/in_sample/geral/treeClassification_14_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/in_sample/geral/treeClassification_14_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/in_sample/geral/treeClassification_14_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | holdout_80_20 | E1 | n_treino=1540532 | n_teste=385134 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | holdout_80_20 | E2 | n_treino=1540532 | n_teste=385134 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | holdout_80_20 | E3 | n_treino=1540532 | n_teste=385134 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | holdout_80_20 | E4 | n_treino=1540532 | n_teste=385134 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | holdout_80_20 | E5 | n_treino=1540532 | n_teste=385134 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/holdout_80_20/geral/treeClassification_14_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/holdout_80_20/geral/treeClassification_14_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/holdout_80_20/geral/treeClassification_14_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | in_sample | E1 | n_treino=311329 | n_teste=311329 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | in_sample | E2 | n_treino=311329 | n_teste=311329 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | in_sample | E3 | n_treino=311329 | n_teste=311329 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | in_sample | E4 | n_treino=311329 | n_teste=311329 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | in_sample | E5 | n_treino=311329 | n_teste=311329 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/in_sample/medicina/treeClassification_14_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/in_sample/medicina/treeClassification_14_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/in_sample/medicina/treeClassification_14_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | holdout_80_20 | E1 | n_treino=249063 | n_teste=62266 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | holdout_80_20 | E2 | n_treino=249063 | n_teste=62266 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | holdout_80_20 | E3 | n_treino=249063 | n_teste=62266 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | holdout_80_20 | E4 | n_treino=249063 | n_teste=62266 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | holdout_80_20 | E5 | n_treino=249063 | n_teste=62266 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/holdout_80_20/medicina/treeClassification_14_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/holdout_80_20/medicina/treeClassification_14_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/holdout_80_20/medicina/treeClassification_14_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_19_profundidade_binario | geral | in_sample | E1 | n_treino=1184972 | n_teste=1184972 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/in_sample/treeClassification_19_profundidade_binario_e1.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | in_sample | E2 | n_treino=1184972 | n_teste=1184972 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/in_sample/treeClassification_19_profundidade_binario_e2.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | in_sample | E3 | n_treino=1184972 | n_teste=1184972 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/in_sample/treeClassification_19_profundidade_binario_e3.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | in_sample | E4 | n_treino=1184972 | n_teste=1184972 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/in_sample/treeClassification_19_profundidade_binario_e4.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | in_sample | E5 | n_treino=1184972 | n_teste=1184972 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/in_sample/treeClassification_19_profundidade_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_binario/in_sample/geral/treeClassification_19_profundidade_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_binario/in_sample/geral/treeClassification_19_profundidade_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_binario/in_sample/geral/treeClassification_19_profundidade_binario_importancias_agregadas.csv
+[INÍCIO] treeClassification_19_profundidade_binario | geral | holdout_80_20 | E1 | n_treino=947977 | n_teste=236995 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/holdout_80_20/treeClassification_19_profundidade_binario_e1.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | holdout_80_20 | E2 | n_treino=947977 | n_teste=236995 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/holdout_80_20/treeClassification_19_profundidade_binario_e2.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | holdout_80_20 | E3 | n_treino=947977 | n_teste=236995 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/holdout_80_20/treeClassification_19_profundidade_binario_e3.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | holdout_80_20 | E4 | n_treino=947977 | n_teste=236995 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/holdout_80_20/treeClassification_19_profundidade_binario_e4.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | holdout_80_20 | E5 | n_treino=947977 | n_teste=236995 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/holdout_80_20/treeClassification_19_profundidade_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_binario/holdout_80_20/geral/treeClassification_19_profundidade_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_binario/holdout_80_20/geral/treeClassification_19_profundidade_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_binario/holdout_80_20/geral/treeClassification_19_profundidade_binario_importancias_agregadas.csv
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | in_sample | E1 | n_treino=1925666 | n_teste=1925666 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | in_sample | E2 | n_treino=1925666 | n_teste=1925666 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | in_sample | E3 | n_treino=1925666 | n_teste=1925666 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | in_sample | E4 | n_treino=1925666 | n_teste=1925666 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | in_sample | E5 | n_treino=1925666 | n_teste=1925666 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/in_sample/geral/treeClassification_19_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/in_sample/geral/treeClassification_19_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/in_sample/geral/treeClassification_19_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | holdout_80_20 | E1 | n_treino=1540532 | n_teste=385134 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | holdout_80_20 | E2 | n_treino=1540532 | n_teste=385134 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | holdout_80_20 | E3 | n_treino=1540532 | n_teste=385134 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | holdout_80_20 | E4 | n_treino=1540532 | n_teste=385134 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | holdout_80_20 | E5 | n_treino=1540532 | n_teste=385134 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/holdout_80_20/geral/treeClassification_19_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/holdout_80_20/geral/treeClassification_19_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/holdout_80_20/geral/treeClassification_19_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | in_sample | E1 | n_treino=311329 | n_teste=311329 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | in_sample | E2 | n_treino=311329 | n_teste=311329 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | in_sample | E3 | n_treino=311329 | n_teste=311329 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | in_sample | E4 | n_treino=311329 | n_teste=311329 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | in_sample | E5 | n_treino=311329 | n_teste=311329 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/in_sample/medicina/treeClassification_19_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/in_sample/medicina/treeClassification_19_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/in_sample/medicina/treeClassification_19_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | holdout_80_20 | E1 | n_treino=249063 | n_teste=62266 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | holdout_80_20 | E2 | n_treino=249063 | n_teste=62266 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | holdout_80_20 | E3 | n_treino=249063 | n_teste=62266 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | holdout_80_20 | E4 | n_treino=249063 | n_teste=62266 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | holdout_80_20 | E5 | n_treino=249063 | n_teste=62266 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/holdout_80_20/medicina/treeClassification_19_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/holdout_80_20/medicina/treeClassification_19_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/holdout_80_20/medicina/treeClassification_19_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_10_profundidade_binario | geral | in_sample | E1 | n_treino=1184972 | n_teste=1184972 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/in_sample/treeClassification_10_profundidade_binario_e1.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | in_sample | E2 | n_treino=1184972 | n_teste=1184972 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/in_sample/treeClassification_10_profundidade_binario_e2.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | in_sample | E3 | n_treino=1184972 | n_teste=1184972 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/in_sample/treeClassification_10_profundidade_binario_e3.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | in_sample | E4 | n_treino=1184972 | n_teste=1184972 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/in_sample/treeClassification_10_profundidade_binario_e4.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | in_sample | E5 | n_treino=1184972 | n_teste=1184972 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/in_sample/treeClassification_10_profundidade_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/in_sample/geral/treeClassification_10_profundidade_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/in_sample/geral/treeClassification_10_profundidade_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/in_sample/geral/treeClassification_10_profundidade_binario_importancias_agregadas.csv
+[INÍCIO] treeClassification_10_profundidade_binario | geral | in_sample | E1 | n_treino=1184972 | n_teste=1184972 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/in_sample/treeClassification_10_profundidade_binario_e1.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | in_sample | E2 | n_treino=1184972 | n_teste=1184972 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/in_sample/treeClassification_10_profundidade_binario_e2.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | in_sample | E3 | n_treino=1184972 | n_teste=1184972 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/in_sample/treeClassification_10_profundidade_binario_e3.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | in_sample | E4 | n_treino=1184972 | n_teste=1184972 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/in_sample/treeClassification_10_profundidade_binario_e4.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | in_sample | E5 | n_treino=1184972 | n_teste=1184972 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/in_sample/treeClassification_10_profundidade_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/in_sample/geral/treeClassification_10_profundidade_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/in_sample/geral/treeClassification_10_profundidade_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/in_sample/geral/treeClassification_10_profundidade_binario_importancias_agregadas.csv
+[INÍCIO] treeClassification_10_profundidade_binario | geral | holdout_80_20 | E1 | n_treino=947977 | n_teste=236995 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/holdout_80_20/treeClassification_10_profundidade_binario_e1.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | holdout_80_20 | E2 | n_treino=947977 | n_teste=236995 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/holdout_80_20/treeClassification_10_profundidade_binario_e2.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | holdout_80_20 | E3 | n_treino=947977 | n_teste=236995 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/holdout_80_20/treeClassification_10_profundidade_binario_e3.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | holdout_80_20 | E4 | n_treino=947977 | n_teste=236995 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/holdout_80_20/treeClassification_10_profundidade_binario_e4.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | holdout_80_20 | E5 | n_treino=947977 | n_teste=236995 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/holdout_80_20/treeClassification_10_profundidade_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/holdout_80_20/geral/treeClassification_10_profundidade_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/holdout_80_20/geral/treeClassification_10_profundidade_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/holdout_80_20/geral/treeClassification_10_profundidade_binario_importancias_agregadas.csv
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | in_sample | E1 | n_treino=1925666 | n_teste=1925666 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | in_sample | E2 | n_treino=1925666 | n_teste=1925666 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | in_sample | E3 | n_treino=1925666 | n_teste=1925666 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | in_sample | E4 | n_treino=1925666 | n_teste=1925666 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | in_sample | E5 | n_treino=1925666 | n_teste=1925666 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/in_sample/geral/treeClassification_10_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/in_sample/geral/treeClassification_10_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/in_sample/geral/treeClassification_10_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | holdout_80_20 | E1 | n_treino=1540532 | n_teste=385134 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | holdout_80_20 | E2 | n_treino=1540532 | n_teste=385134 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | holdout_80_20 | E3 | n_treino=1540532 | n_teste=385134 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | holdout_80_20 | E4 | n_treino=1540532 | n_teste=385134 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | holdout_80_20 | E5 | n_treino=1540532 | n_teste=385134 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/holdout_80_20/geral/treeClassification_10_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/holdout_80_20/geral/treeClassification_10_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/holdout_80_20/geral/treeClassification_10_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | in_sample | E1 | n_treino=311329 | n_teste=311329 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | in_sample | E2 | n_treino=311329 | n_teste=311329 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | in_sample | E3 | n_treino=311329 | n_teste=311329 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | in_sample | E4 | n_treino=311329 | n_teste=311329 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | in_sample | E5 | n_treino=311329 | n_teste=311329 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/in_sample/medicina/treeClassification_10_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/in_sample/medicina/treeClassification_10_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/in_sample/medicina/treeClassification_10_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | holdout_80_20 | E1 | n_treino=249063 | n_teste=62266 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | holdout_80_20 | E2 | n_treino=249063 | n_teste=62266 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | holdout_80_20 | E3 | n_treino=249063 | n_teste=62266 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | holdout_80_20 | E4 | n_treino=249063 | n_teste=62266 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | holdout_80_20 | E5 | n_treino=249063 | n_teste=62266 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/holdout_80_20/medicina/treeClassification_10_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/holdout_80_20/medicina/treeClassification_10_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/holdout_80_20/medicina/treeClassification_10_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_14_profundidade_binario | geral | in_sample | E1 | n_treino=1184972 | n_teste=1184972 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/in_sample/treeClassification_14_profundidade_binario_e1.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | in_sample | E2 | n_treino=1184972 | n_teste=1184972 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/in_sample/treeClassification_14_profundidade_binario_e2.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | in_sample | E3 | n_treino=1184972 | n_teste=1184972 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/in_sample/treeClassification_14_profundidade_binario_e3.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | in_sample | E4 | n_treino=1184972 | n_teste=1184972 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/in_sample/treeClassification_14_profundidade_binario_e4.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | in_sample | E5 | n_treino=1184972 | n_teste=1184972 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/in_sample/treeClassification_14_profundidade_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_binario/in_sample/geral/treeClassification_14_profundidade_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_binario/in_sample/geral/treeClassification_14_profundidade_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_binario/in_sample/geral/treeClassification_14_profundidade_binario_importancias_agregadas.csv
+[INÍCIO] treeClassification_14_profundidade_binario | geral | holdout_80_20 | E1 | n_treino=947977 | n_teste=236995 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/holdout_80_20/treeClassification_14_profundidade_binario_e1.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | holdout_80_20 | E2 | n_treino=947977 | n_teste=236995 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/holdout_80_20/treeClassification_14_profundidade_binario_e2.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | holdout_80_20 | E3 | n_treino=947977 | n_teste=236995 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/holdout_80_20/treeClassification_14_profundidade_binario_e3.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | holdout_80_20 | E4 | n_treino=947977 | n_teste=236995 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/holdout_80_20/treeClassification_14_profundidade_binario_e4.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | holdout_80_20 | E5 | n_treino=947977 | n_teste=236995 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/holdout_80_20/treeClassification_14_profundidade_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_binario/holdout_80_20/geral/treeClassification_14_profundidade_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_binario/holdout_80_20/geral/treeClassification_14_profundidade_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_binario/holdout_80_20/geral/treeClassification_14_profundidade_binario_importancias_agregadas.csv
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | in_sample | E1 | n_treino=1925666 | n_teste=1925666 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | in_sample | E2 | n_treino=1925666 | n_teste=1925666 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | in_sample | E3 | n_treino=1925666 | n_teste=1925666 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | in_sample | E4 | n_treino=1925666 | n_teste=1925666 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | in_sample | E5 | n_treino=1925666 | n_teste=1925666 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/in_sample/geral/treeClassification_14_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/in_sample/geral/treeClassification_14_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/in_sample/geral/treeClassification_14_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | holdout_80_20 | E1 | n_treino=1540532 | n_teste=385134 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | holdout_80_20 | E2 | n_treino=1540532 | n_teste=385134 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | holdout_80_20 | E3 | n_treino=1540532 | n_teste=385134 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | holdout_80_20 | E4 | n_treino=1540532 | n_teste=385134 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | holdout_80_20 | E5 | n_treino=1540532 | n_teste=385134 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/holdout_80_20/geral/treeClassification_14_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/holdout_80_20/geral/treeClassification_14_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/holdout_80_20/geral/treeClassification_14_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | in_sample | E1 | n_treino=311329 | n_teste=311329 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | in_sample | E2 | n_treino=311329 | n_teste=311329 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | in_sample | E3 | n_treino=311329 | n_teste=311329 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | in_sample | E4 | n_treino=311329 | n_teste=311329 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | in_sample | E5 | n_treino=311329 | n_teste=311329 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/in_sample/medicina/treeClassification_14_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/in_sample/medicina/treeClassification_14_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/in_sample/medicina/treeClassification_14_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | holdout_80_20 | E1 | n_treino=249063 | n_teste=62266 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | holdout_80_20 | E2 | n_treino=249063 | n_teste=62266 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | holdout_80_20 | E3 | n_treino=249063 | n_teste=62266 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | holdout_80_20 | E4 | n_treino=249063 | n_teste=62266 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | holdout_80_20 | E5 | n_treino=249063 | n_teste=62266 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/holdout_80_20/medicina/treeClassification_14_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/holdout_80_20/medicina/treeClassification_14_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/holdout_80_20/medicina/treeClassification_14_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_19_profundidade_binario | geral | in_sample | E1 | n_treino=1184972 | n_teste=1184972 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/in_sample/treeClassification_19_profundidade_binario_e1.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | in_sample | E2 | n_treino=1184972 | n_teste=1184972 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/in_sample/treeClassification_19_profundidade_binario_e2.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | in_sample | E3 | n_treino=1184972 | n_teste=1184972 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/in_sample/treeClassification_19_profundidade_binario_e3.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | in_sample | E4 | n_treino=1184972 | n_teste=1184972 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/in_sample/treeClassification_19_profundidade_binario_e4.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | in_sample | E5 | n_treino=1184972 | n_teste=1184972 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/in_sample/treeClassification_19_profundidade_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_binario/in_sample/geral/treeClassification_19_profundidade_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_binario/in_sample/geral/treeClassification_19_profundidade_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_binario/in_sample/geral/treeClassification_19_profundidade_binario_importancias_agregadas.csv
+[INÍCIO] treeClassification_19_profundidade_binario | geral | holdout_80_20 | E1 | n_treino=947977 | n_teste=236995 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/holdout_80_20/treeClassification_19_profundidade_binario_e1.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | holdout_80_20 | E2 | n_treino=947977 | n_teste=236995 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/holdout_80_20/treeClassification_19_profundidade_binario_e2.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | holdout_80_20 | E3 | n_treino=947977 | n_teste=236995 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/holdout_80_20/treeClassification_19_profundidade_binario_e3.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | holdout_80_20 | E4 | n_treino=947977 | n_teste=236995 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/holdout_80_20/treeClassification_19_profundidade_binario_e4.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | holdout_80_20 | E5 | n_treino=947977 | n_teste=236995 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/holdout_80_20/treeClassification_19_profundidade_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_binario/holdout_80_20/geral/treeClassification_19_profundidade_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_binario/holdout_80_20/geral/treeClassification_19_profundidade_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_binario/holdout_80_20/geral/treeClassification_19_profundidade_binario_importancias_agregadas.csv
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | in_sample | E1 | n_treino=1925666 | n_teste=1925666 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | in_sample | E2 | n_treino=1925666 | n_teste=1925666 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | in_sample | E3 | n_treino=1925666 | n_teste=1925666 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | in_sample | E4 | n_treino=1925666 | n_teste=1925666 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | in_sample | E5 | n_treino=1925666 | n_teste=1925666 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/in_sample/geral/treeClassification_19_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/in_sample/geral/treeClassification_19_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/in_sample/geral/treeClassification_19_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | holdout_80_20 | E1 | n_treino=1540532 | n_teste=385134 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | holdout_80_20 | E2 | n_treino=1540532 | n_teste=385134 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | holdout_80_20 | E3 | n_treino=1540532 | n_teste=385134 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | holdout_80_20 | E4 | n_treino=1540532 | n_teste=385134 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | holdout_80_20 | E5 | n_treino=1540532 | n_teste=385134 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/holdout_80_20/geral/treeClassification_19_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/holdout_80_20/geral/treeClassification_19_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/holdout_80_20/geral/treeClassification_19_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | in_sample | E1 | n_treino=311329 | n_teste=311329 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | in_sample | E2 | n_treino=311329 | n_teste=311329 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | in_sample | E3 | n_treino=311329 | n_teste=311329 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | in_sample | E4 | n_treino=311329 | n_teste=311329 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | in_sample | E5 | n_treino=311329 | n_teste=311329 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/in_sample/medicina/treeClassification_19_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/in_sample/medicina/treeClassification_19_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/in_sample/medicina/treeClassification_19_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | holdout_80_20 | E1 | n_treino=249063 | n_teste=62266 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | holdout_80_20 | E2 | n_treino=249063 | n_teste=62266 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | holdout_80_20 | E3 | n_treino=249063 | n_teste=62266 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | holdout_80_20 | E4 | n_treino=249063 | n_teste=62266 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | holdout_80_20 | E5 | n_treino=249063 | n_teste=62266 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/holdout_80_20/medicina/treeClassification_19_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/holdout_80_20/medicina/treeClassification_19_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/holdout_80_20/medicina/treeClassification_19_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_10_profundidade_binario | geral | in_sample | E1 | n_treino=1184972 | n_teste=1184972 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/in_sample/treeClassification_10_profundidade_binario_e1.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | in_sample | E2 | n_treino=1184972 | n_teste=1184972 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/in_sample/treeClassification_10_profundidade_binario_e2.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | in_sample | E3 | n_treino=1184972 | n_teste=1184972 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/in_sample/treeClassification_10_profundidade_binario_e3.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | in_sample | E4 | n_treino=1184972 | n_teste=1184972 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/in_sample/treeClassification_10_profundidade_binario_e4.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | in_sample | E5 | n_treino=1184972 | n_teste=1184972 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/in_sample/treeClassification_10_profundidade_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/in_sample/geral/treeClassification_10_profundidade_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/in_sample/geral/treeClassification_10_profundidade_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/in_sample/geral/treeClassification_10_profundidade_binario_importancias_agregadas.csv
+[INÍCIO] treeClassification_10_profundidade_binario | geral | holdout_80_20 | E1 | n_treino=947977 | n_teste=236995 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/holdout_80_20/treeClassification_10_profundidade_binario_e1.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | holdout_80_20 | E2 | n_treino=947977 | n_teste=236995 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/holdout_80_20/treeClassification_10_profundidade_binario_e2.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | holdout_80_20 | E3 | n_treino=947977 | n_teste=236995 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/holdout_80_20/treeClassification_10_profundidade_binario_e3.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | holdout_80_20 | E4 | n_treino=947977 | n_teste=236995 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/holdout_80_20/treeClassification_10_profundidade_binario_e4.joblib
+[INÍCIO] treeClassification_10_profundidade_binario | geral | holdout_80_20 | E5 | n_treino=947977 | n_teste=236995 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/holdout_80_20/treeClassification_10_profundidade_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/holdout_80_20/geral/treeClassification_10_profundidade_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/holdout_80_20/geral/treeClassification_10_profundidade_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_binario/holdout_80_20/geral/treeClassification_10_profundidade_binario_importancias_agregadas.csv
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | in_sample | E1 | n_treino=1925666 | n_teste=1925666 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | in_sample | E2 | n_treino=1925666 | n_teste=1925666 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | in_sample | E3 | n_treino=1925666 | n_teste=1925666 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | in_sample | E4 | n_treino=1925666 | n_teste=1925666 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | in_sample | E5 | n_treino=1925666 | n_teste=1925666 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/in_sample/geral/treeClassification_10_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/in_sample/geral/treeClassification_10_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/in_sample/geral/treeClassification_10_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | holdout_80_20 | E1 | n_treino=1540532 | n_teste=385134 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | holdout_80_20 | E2 | n_treino=1540532 | n_teste=385134 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | holdout_80_20 | E3 | n_treino=1540532 | n_teste=385134 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | holdout_80_20 | E4 | n_treino=1540532 | n_teste=385134 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | geral | holdout_80_20 | E5 | n_treino=1540532 | n_teste=385134 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/holdout_80_20/geral/treeClassification_10_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/holdout_80_20/geral/treeClassification_10_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/holdout_80_20/geral/treeClassification_10_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | in_sample | E1 | n_treino=311329 | n_teste=311329 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | in_sample | E2 | n_treino=311329 | n_teste=311329 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | in_sample | E3 | n_treino=311329 | n_teste=311329 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | in_sample | E4 | n_treino=311329 | n_teste=311329 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | in_sample | E5 | n_treino=311329 | n_teste=311329 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/in_sample/treeClassification_10_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/in_sample/medicina/treeClassification_10_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/in_sample/medicina/treeClassification_10_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/in_sample/medicina/treeClassification_10_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | holdout_80_20 | E1 | n_treino=249063 | n_teste=62266 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | holdout_80_20 | E2 | n_treino=249063 | n_teste=62266 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | holdout_80_20 | E3 | n_treino=249063 | n_teste=62266 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | holdout_80_20 | E4 | n_treino=249063 | n_teste=62266 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_10_profundidade_ternario | medicina | holdout_80_20 | E5 | n_treino=249063 | n_teste=62266 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_10_profundidade_ternario/holdout_80_20/treeClassification_10_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/holdout_80_20/medicina/treeClassification_10_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/holdout_80_20/medicina/treeClassification_10_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_10_profundidade_ternario/holdout_80_20/medicina/treeClassification_10_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_14_profundidade_binario | geral | in_sample | E1 | n_treino=1184972 | n_teste=1184972 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/in_sample/treeClassification_14_profundidade_binario_e1.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | in_sample | E2 | n_treino=1184972 | n_teste=1184972 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/in_sample/treeClassification_14_profundidade_binario_e2.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | in_sample | E3 | n_treino=1184972 | n_teste=1184972 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/in_sample/treeClassification_14_profundidade_binario_e3.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | in_sample | E4 | n_treino=1184972 | n_teste=1184972 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/in_sample/treeClassification_14_profundidade_binario_e4.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | in_sample | E5 | n_treino=1184972 | n_teste=1184972 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/in_sample/treeClassification_14_profundidade_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_binario/in_sample/geral/treeClassification_14_profundidade_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_binario/in_sample/geral/treeClassification_14_profundidade_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_binario/in_sample/geral/treeClassification_14_profundidade_binario_importancias_agregadas.csv
+[INÍCIO] treeClassification_14_profundidade_binario | geral | holdout_80_20 | E1 | n_treino=947977 | n_teste=236995 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/holdout_80_20/treeClassification_14_profundidade_binario_e1.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | holdout_80_20 | E2 | n_treino=947977 | n_teste=236995 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/holdout_80_20/treeClassification_14_profundidade_binario_e2.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | holdout_80_20 | E3 | n_treino=947977 | n_teste=236995 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/holdout_80_20/treeClassification_14_profundidade_binario_e3.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | holdout_80_20 | E4 | n_treino=947977 | n_teste=236995 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/holdout_80_20/treeClassification_14_profundidade_binario_e4.joblib
+[INÍCIO] treeClassification_14_profundidade_binario | geral | holdout_80_20 | E5 | n_treino=947977 | n_teste=236995 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/holdout_80_20/treeClassification_14_profundidade_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_binario/holdout_80_20/geral/treeClassification_14_profundidade_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_binario/holdout_80_20/geral/treeClassification_14_profundidade_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_binario/holdout_80_20/geral/treeClassification_14_profundidade_binario_importancias_agregadas.csv
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | in_sample | E1 | n_treino=1925666 | n_teste=1925666 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | in_sample | E2 | n_treino=1925666 | n_teste=1925666 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | in_sample | E3 | n_treino=1925666 | n_teste=1925666 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | in_sample | E4 | n_treino=1925666 | n_teste=1925666 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | in_sample | E5 | n_treino=1925666 | n_teste=1925666 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/in_sample/geral/treeClassification_14_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/in_sample/geral/treeClassification_14_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/in_sample/geral/treeClassification_14_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | holdout_80_20 | E1 | n_treino=1540532 | n_teste=385134 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | holdout_80_20 | E2 | n_treino=1540532 | n_teste=385134 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | holdout_80_20 | E3 | n_treino=1540532 | n_teste=385134 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | holdout_80_20 | E4 | n_treino=1540532 | n_teste=385134 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | geral | holdout_80_20 | E5 | n_treino=1540532 | n_teste=385134 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/holdout_80_20/geral/treeClassification_14_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/holdout_80_20/geral/treeClassification_14_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/holdout_80_20/geral/treeClassification_14_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | in_sample | E1 | n_treino=311329 | n_teste=311329 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | in_sample | E2 | n_treino=311329 | n_teste=311329 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | in_sample | E3 | n_treino=311329 | n_teste=311329 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | in_sample | E4 | n_treino=311329 | n_teste=311329 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | in_sample | E5 | n_treino=311329 | n_teste=311329 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/in_sample/medicina/treeClassification_14_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/in_sample/medicina/treeClassification_14_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/in_sample/medicina/treeClassification_14_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | holdout_80_20 | E1 | n_treino=249063 | n_teste=62266 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | holdout_80_20 | E2 | n_treino=249063 | n_teste=62266 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | holdout_80_20 | E3 | n_treino=249063 | n_teste=62266 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | holdout_80_20 | E4 | n_treino=249063 | n_teste=62266 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_14_profundidade_ternario | medicina | holdout_80_20 | E5 | n_treino=249063 | n_teste=62266 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/holdout_80_20/medicina/treeClassification_14_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/holdout_80_20/medicina/treeClassification_14_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_14_profundidade_ternario/holdout_80_20/medicina/treeClassification_14_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_19_profundidade_binario | geral | in_sample | E1 | n_treino=1184972 | n_teste=1184972 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/in_sample/treeClassification_19_profundidade_binario_e1.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | in_sample | E2 | n_treino=1184972 | n_teste=1184972 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/in_sample/treeClassification_19_profundidade_binario_e2.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | in_sample | E3 | n_treino=1184972 | n_teste=1184972 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/in_sample/treeClassification_19_profundidade_binario_e3.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | in_sample | E4 | n_treino=1184972 | n_teste=1184972 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/in_sample/treeClassification_19_profundidade_binario_e4.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | in_sample | E5 | n_treino=1184972 | n_teste=1184972 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/in_sample/treeClassification_19_profundidade_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_binario/in_sample/geral/treeClassification_19_profundidade_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_binario/in_sample/geral/treeClassification_19_profundidade_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_binario/in_sample/geral/treeClassification_19_profundidade_binario_importancias_agregadas.csv
+[INÍCIO] treeClassification_19_profundidade_binario | geral | holdout_80_20 | E1 | n_treino=947977 | n_teste=236995 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/holdout_80_20/treeClassification_19_profundidade_binario_e1.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | holdout_80_20 | E2 | n_treino=947977 | n_teste=236995 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/holdout_80_20/treeClassification_19_profundidade_binario_e2.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | holdout_80_20 | E3 | n_treino=947977 | n_teste=236995 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/holdout_80_20/treeClassification_19_profundidade_binario_e3.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | holdout_80_20 | E4 | n_treino=947977 | n_teste=236995 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/holdout_80_20/treeClassification_19_profundidade_binario_e4.joblib
+[INÍCIO] treeClassification_19_profundidade_binario | geral | holdout_80_20 | E5 | n_treino=947977 | n_teste=236995 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_binario/holdout_80_20/treeClassification_19_profundidade_binario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_binario/holdout_80_20/geral/treeClassification_19_profundidade_binario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_binario/holdout_80_20/geral/treeClassification_19_profundidade_binario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_binario/holdout_80_20/geral/treeClassification_19_profundidade_binario_importancias_agregadas.csv
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | in_sample | E1 | n_treino=1925666 | n_teste=1925666 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | in_sample | E2 | n_treino=1925666 | n_teste=1925666 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | in_sample | E3 | n_treino=1925666 | n_teste=1925666 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | in_sample | E4 | n_treino=1925666 | n_teste=1925666 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | in_sample | E5 | n_treino=1925666 | n_teste=1925666 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/in_sample/geral/treeClassification_19_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/in_sample/geral/treeClassification_19_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/in_sample/geral/treeClassification_19_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | holdout_80_20 | E1 | n_treino=1540532 | n_teste=385134 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | holdout_80_20 | E2 | n_treino=1540532 | n_teste=385134 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | holdout_80_20 | E3 | n_treino=1540532 | n_teste=385134 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | holdout_80_20 | E4 | n_treino=1540532 | n_teste=385134 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | geral | holdout_80_20 | E5 | n_treino=1540532 | n_teste=385134 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/holdout_80_20/geral/treeClassification_19_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/holdout_80_20/geral/treeClassification_19_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/holdout_80_20/geral/treeClassification_19_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | in_sample | E1 | n_treino=311329 | n_teste=311329 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | in_sample | E2 | n_treino=311329 | n_teste=311329 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | in_sample | E3 | n_treino=311329 | n_teste=311329 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | in_sample | E4 | n_treino=311329 | n_teste=311329 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | in_sample | E5 | n_treino=311329 | n_teste=311329 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/in_sample/treeClassification_19_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/in_sample/medicina/treeClassification_19_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/in_sample/medicina/treeClassification_19_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/in_sample/medicina/treeClassification_19_profundidade_ternario_importancias_agregadas.csv
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | holdout_80_20 | E1 | n_treino=249063 | n_teste=62266 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e1.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | holdout_80_20 | E2 | n_treino=249063 | n_teste=62266 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e2.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | holdout_80_20 | E3 | n_treino=249063 | n_teste=62266 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e3.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | holdout_80_20 | E4 | n_treino=249063 | n_teste=62266 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e4.joblib
+[INÍCIO] treeClassification_19_profundidade_ternario | medicina | holdout_80_20 | E5 | n_treino=249063 | n_teste=62266 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_19_profundidade_ternario/holdout_80_20/treeClassification_19_profundidade_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/holdout_80_20/medicina/treeClassification_19_profundidade_ternario_experimentos_metricas.csv
+[OK] Importâncias transformadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/holdout_80_20/medicina/treeClassification_19_profundidade_ternario_importancias_transformadas.csv
+[OK] Importâncias agregadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/treeClassification_19_profundidade_ternario/holdout_80_20/medicina/treeClassification_19_profundidade_ternario_importancias_agregadas.csv

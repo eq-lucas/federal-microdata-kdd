@@ -1,0 +1,46 @@
+|--- num__gap <= -29.3700
+|   |--- num__gap <= -44.4700
+|   |   |--- num__nota_corte_gp <= 709.0900
+|   |   |   |--- cat__ano_2020 <= 0.5000
+|   |   |   |   |--- class: 2
+|   |   |   |--- cat__ano_2020 >  0.5000
+|   |   |   |   |--- truncated branch of depth 2
+|   |   |--- num__nota_corte_gp >  709.0900
+|   |   |   |--- cat__conceito_curso_gp_Não informado <= 0.5000
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- cat__conceito_curso_gp_Não informado >  0.5000
+|   |   |   |   |--- truncated branch of depth 3
+|   |--- num__gap >  -44.4700
+|   |   |--- cat__ano_2021 <= 0.5000
+|   |   |   |--- num__gap <= -35.4100
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__gap >  -35.4100
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |--- cat__ano_2021 >  0.5000
+|   |   |   |--- num__nota_corte_gp <= 750.1400
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__nota_corte_gp >  750.1400
+|   |   |   |   |--- truncated branch of depth 3
+|--- num__gap >  -29.3700
+|   |--- cat__opcao_curso_1 <= 0.5000
+|   |   |--- num__nota_corte_gp <= 582.7400
+|   |   |   |--- num__gap <= 262.2600
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__gap >  262.2600
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |--- num__nota_corte_gp >  582.7400
+|   |   |   |--- num__gap <= -15.4500
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__gap >  -15.4500
+|   |   |   |   |--- truncated branch of depth 3
+|   |--- cat__opcao_curso_1 >  0.5000
+|   |   |--- num__gap <= -15.7100
+|   |   |   |--- cat__ano_2021 <= 0.5000
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- cat__ano_2021 >  0.5000
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |--- num__gap >  -15.7100
+|   |   |   |--- num__nota_corte_gp <= 568.8800
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__nota_corte_gp >  568.8800
+|   |   |   |   |--- truncated branch of depth 3

@@ -1,0 +1,23 @@
+\begin{table}
+\caption{Resumo da árvore de decisão, target ternario, recorte medicina.}
+\label{tab:tabela_treeClassification_ternario_recorte_medicina_principal_holdout_80_20_e5}
+\begin{tabular}{ll}
+\toprule
+Medida & Valor \\
+\midrule
+Observações da ABT & 311.329 \\
+Observações de treino & 249.063 \\
+Observações de teste & 62.266 \\
+ROC-AUC OVR ponderado & 0,9846 \\
+Acurácia balanceada & 0,7366 \\
+F1 macro & 0,6027 \\
+Importância: renda & 0,0039 \\
+Importância: desempenho & 0,7656 \\
+Importância: interação & 0,0073 \\
+Primeira divisão da árvore & gap \\
+Profundidade observada & 15 \\
+Folhas & 162 \\
+Blocos de variáveis & 19 \\
+\bottomrule
+\end{tabular}
+\end{table}

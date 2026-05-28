@@ -1,0 +1,15 @@
+\begin{table}
+\caption{Resumo compacto das especificações da regressão logística binária, recorte geral, avaliação holdout_80_20.}
+\label{tab:tabela_compacta_logit_binario_geral_holdout_80_20}
+\begin{tabular}{lllllll}
+\toprule
+Especificação & N & ROC-AUC & Renda & Desempenho & Interação & Variáveis \\
+\midrule
+Modelo 1 & 1.184.972 & 0,6174 & -0,2991 & 0,2037 & 0,1049 & 3 \\
+Modelo 2 & 1.184.972 & 0,8162 & -0,3749 & 0,2555 & 0,1070 & 6 \\
+Modelo 3 & 1.184.972 & 0,8285 & -0,4016 & 0,2257 & 0,0892 & 10 \\
+Modelo 4 & 1.184.972 & 0,8418 & -0,4146 & 0,1723 & 0,0971 & 14 \\
+Modelo 5 & 1.184.972 & 0,8446 & -0,4047 & 0,1617 & 0,0976 & 20 \\
+\bottomrule
+\end{tabular}
+\end{table}

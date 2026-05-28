@@ -1,0 +1,46 @@
+|--- num__renda_gap <= -27016.7783
+|   |--- num__nota_corte_gp <= 689.4100
+|   |   |--- cat__opcao_curso_1 <= 0.5000
+|   |   |   |--- num__gap <= -78.7500
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |   |--- num__gap >  -78.7500
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |--- cat__opcao_curso_1 >  0.5000
+|   |   |   |--- num__gap <= -92.2300
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |   |--- num__gap >  -92.2300
+|   |   |   |   |--- truncated branch of depth 7
+|   |--- num__nota_corte_gp >  689.4100
+|   |   |--- num__gap <= -22.7500
+|   |   |   |--- num__nota_corte_gp <= 710.3600
+|   |   |   |   |--- truncated branch of depth 5
+|   |   |   |--- num__nota_corte_gp >  710.3600
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |--- num__gap >  -22.7500
+|   |   |   |--- num__gap <= -13.3100
+|   |   |   |   |--- truncated branch of depth 5
+|   |   |   |--- num__gap >  -13.3100
+|   |   |   |   |--- class: 0
+|--- num__renda_gap >  -27016.7783
+|   |--- cat__opcao_curso_1 <= 0.5000
+|   |   |--- num__gap <= -34.2100
+|   |   |   |--- num__nota_corte_gp <= 567.0100
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |   |--- num__nota_corte_gp >  567.0100
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |--- num__gap >  -34.2100
+|   |   |   |--- num__nota_corte_gp <= 710.4800
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |   |--- num__nota_corte_gp >  710.4800
+|   |   |   |   |--- truncated branch of depth 6
+|   |--- cat__opcao_curso_1 >  0.5000
+|   |   |--- num__renda_gap <= -10202.4399
+|   |   |   |--- num__nota_corte_gp <= 710.2800
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |   |--- num__nota_corte_gp >  710.2800
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |--- num__renda_gap >  -10202.4399
+|   |   |   |--- num__renda_per_capita <= 898.9750
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |   |--- num__renda_per_capita >  898.9750
+|   |   |   |   |--- truncated branch of depth 7

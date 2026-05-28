@@ -1,0 +1,18 @@
+================================================================================
+ANALYSIS: DATASET DO FUNIL DO FLUXO SELETIVO
+================================================================================
+[OK] Ofertas carregadas | linhas: 143622
+[OK] Inscrições carregadas | linhas: 2197234
+[OK] Candidatos únicos carregados | linhas: 1109893
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/analysis_dataset_funil_resumo.csv
+[OK] Dataset de funil salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/05_analysis/dataset_funil_por_regiao.parquet
+Dataset de funil concluído.
+================================================================================
+ANALYSIS: DATASET DO FUNIL DO FLUXO SELETIVO
+================================================================================
+[OK] Ofertas carregadas | linhas: 143622
+[OK] Inscrições carregadas | linhas: 2197234
+[OK] Candidatos únicos carregados | linhas: 1109893
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/analysis_dataset_funil_resumo.csv
+[OK] Dataset de funil salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/05_analysis/dataset_funil_por_regiao.parquet
+Dataset de funil concluído.

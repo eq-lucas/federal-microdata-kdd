@@ -1,0 +1,96 @@
+[INÍCIO] geral | in_sample | E1 | n_treino=1925666 | n_teste=1925666 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_ternario/in_sample/logit_ternario_e1.joblib
+[INÍCIO] geral | in_sample | E2 | n_treino=1925666 | n_teste=1925666 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_ternario/in_sample/logit_ternario_e2.joblib
+[INÍCIO] geral | in_sample | E3 | n_treino=1925666 | n_teste=1925666 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_ternario/in_sample/logit_ternario_e3.joblib
+[INÍCIO] geral | in_sample | E4 | n_treino=1925666 | n_teste=1925666 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_ternario/in_sample/logit_ternario_e4.joblib
+[INÍCIO] geral | in_sample | E5 | n_treino=1925666 | n_teste=1925666 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_ternario/in_sample/logit_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/logit_ternario/in_sample/geral/logit_ternario_experimentos_metricas.csv
+[OK] Coeficientes salvos em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/logit_ternario/in_sample/geral/logit_ternario_coeficientes.csv
+[INÍCIO] geral | holdout_80_20 | E1 | n_treino=1540532 | n_teste=385134 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_ternario/holdout_80_20/logit_ternario_e1.joblib
+[INÍCIO] geral | holdout_80_20 | E2 | n_treino=1540532 | n_teste=385134 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_ternario/holdout_80_20/logit_ternario_e2.joblib
+[INÍCIO] geral | holdout_80_20 | E3 | n_treino=1540532 | n_teste=385134 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_ternario/holdout_80_20/logit_ternario_e3.joblib
+[INÍCIO] geral | holdout_80_20 | E4 | n_treino=1540532 | n_teste=385134 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_ternario/holdout_80_20/logit_ternario_e4.joblib
+[INÍCIO] geral | holdout_80_20 | E5 | n_treino=1540532 | n_teste=385134 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_ternario/holdout_80_20/logit_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/logit_ternario/holdout_80_20/geral/logit_ternario_experimentos_metricas.csv
+[OK] Coeficientes salvos em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/logit_ternario/holdout_80_20/geral/logit_ternario_coeficientes.csv
+[INÍCIO] medicina | in_sample | E1 | n_treino=311329 | n_teste=311329 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/in_sample/logit_ternario_e1.joblib
+[INÍCIO] medicina | in_sample | E2 | n_treino=311329 | n_teste=311329 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/in_sample/logit_ternario_e2.joblib
+[INÍCIO] medicina | in_sample | E3 | n_treino=311329 | n_teste=311329 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/in_sample/logit_ternario_e3.joblib
+[INÍCIO] medicina | in_sample | E4 | n_treino=311329 | n_teste=311329 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/in_sample/logit_ternario_e4.joblib
+[INÍCIO] medicina | in_sample | E5 | n_treino=311329 | n_teste=311329 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/in_sample/logit_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/logit_ternario/in_sample/medicina/logit_ternario_experimentos_metricas.csv
+[OK] Coeficientes salvos em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/logit_ternario/in_sample/medicina/logit_ternario_coeficientes.csv
+[INÍCIO] medicina | holdout_80_20 | E1 | n_treino=249063 | n_teste=62266 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/holdout_80_20/logit_ternario_e1.joblib
+[INÍCIO] medicina | holdout_80_20 | E2 | n_treino=249063 | n_teste=62266 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/holdout_80_20/logit_ternario_e2.joblib
+[INÍCIO] medicina | holdout_80_20 | E3 | n_treino=249063 | n_teste=62266 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/holdout_80_20/logit_ternario_e3.joblib
+[INÍCIO] medicina | holdout_80_20 | E4 | n_treino=249063 | n_teste=62266 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/holdout_80_20/logit_ternario_e4.joblib
+[INÍCIO] medicina | holdout_80_20 | E5 | n_treino=249063 | n_teste=62266 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/holdout_80_20/logit_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/logit_ternario/holdout_80_20/medicina/logit_ternario_experimentos_metricas.csv
+[OK] Coeficientes salvos em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/logit_ternario/holdout_80_20/medicina/logit_ternario_coeficientes.csv
+[INÍCIO] geral | in_sample | E1 | n_treino=1925666 | n_teste=1925666 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_ternario/in_sample/logit_ternario_e1.joblib
+[INÍCIO] geral | in_sample | E2 | n_treino=1925666 | n_teste=1925666 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_ternario/in_sample/logit_ternario_e2.joblib
+[INÍCIO] geral | in_sample | E3 | n_treino=1925666 | n_teste=1925666 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_ternario/in_sample/logit_ternario_e3.joblib
+[INÍCIO] geral | in_sample | E4 | n_treino=1925666 | n_teste=1925666 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_ternario/in_sample/logit_ternario_e4.joblib
+[INÍCIO] geral | in_sample | E5 | n_treino=1925666 | n_teste=1925666 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_ternario/in_sample/logit_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/logit_ternario/in_sample/geral/logit_ternario_experimentos_metricas.csv
+[OK] Coeficientes salvos em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/logit_ternario/in_sample/geral/logit_ternario_coeficientes.csv
+[INÍCIO] geral | holdout_80_20 | E1 | n_treino=1540532 | n_teste=385134 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_ternario/holdout_80_20/logit_ternario_e1.joblib
+[INÍCIO] geral | holdout_80_20 | E2 | n_treino=1540532 | n_teste=385134 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_ternario/holdout_80_20/logit_ternario_e2.joblib
+[INÍCIO] geral | holdout_80_20 | E3 | n_treino=1540532 | n_teste=385134 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_ternario/holdout_80_20/logit_ternario_e3.joblib
+[INÍCIO] geral | holdout_80_20 | E4 | n_treino=1540532 | n_teste=385134 | blocos=14
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_ternario/holdout_80_20/logit_ternario_e4.joblib
+[INÍCIO] geral | holdout_80_20 | E5 | n_treino=1540532 | n_teste=385134 | blocos=20
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_ternario/holdout_80_20/logit_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/logit_ternario/holdout_80_20/geral/logit_ternario_experimentos_metricas.csv
+[OK] Coeficientes salvos em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/logit_ternario/holdout_80_20/geral/logit_ternario_coeficientes.csv
+[INÍCIO] medicina | in_sample | E1 | n_treino=311329 | n_teste=311329 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/in_sample/logit_ternario_e1.joblib
+[INÍCIO] medicina | in_sample | E2 | n_treino=311329 | n_teste=311329 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/in_sample/logit_ternario_e2.joblib
+[INÍCIO] medicina | in_sample | E3 | n_treino=311329 | n_teste=311329 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/in_sample/logit_ternario_e3.joblib
+[INÍCIO] medicina | in_sample | E4 | n_treino=311329 | n_teste=311329 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/in_sample/logit_ternario_e4.joblib
+[INÍCIO] medicina | in_sample | E5 | n_treino=311329 | n_teste=311329 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/in_sample/logit_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/logit_ternario/in_sample/medicina/logit_ternario_experimentos_metricas.csv
+[OK] Coeficientes salvos em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/logit_ternario/in_sample/medicina/logit_ternario_coeficientes.csv
+[INÍCIO] medicina | holdout_80_20 | E1 | n_treino=249063 | n_teste=62266 | blocos=3
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/holdout_80_20/logit_ternario_e1.joblib
+[INÍCIO] medicina | holdout_80_20 | E2 | n_treino=249063 | n_teste=62266 | blocos=6
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/holdout_80_20/logit_ternario_e2.joblib
+[INÍCIO] medicina | holdout_80_20 | E3 | n_treino=249063 | n_teste=62266 | blocos=10
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/holdout_80_20/logit_ternario_e3.joblib
+[INÍCIO] medicina | holdout_80_20 | E4 | n_treino=249063 | n_teste=62266 | blocos=13
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/holdout_80_20/logit_ternario_e4.joblib
+[INÍCIO] medicina | holdout_80_20 | E5 | n_treino=249063 | n_teste=62266 | blocos=19
+[OK] Modelo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/logit_ternario/holdout_80_20/logit_ternario_e5.joblib
+[OK] Métricas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/logit_ternario/holdout_80_20/medicina/logit_ternario_experimentos_metricas.csv
+[OK] Coeficientes salvos em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/diagnostics/modeling/logit_ternario/holdout_80_20/medicina/logit_ternario_coeficientes.csv

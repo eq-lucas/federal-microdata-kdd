@@ -1,0 +1,37 @@
+\begin{table}[htbp]
+\centering
+\caption{Coeficientes das variáveis-chave no modelo logístico multinomial, recorte geral, avaliação in\_sample.}
+\label{tab:coeficientes_chave_logit_ternario_recorte_geral_in_sample}
+\small
+\begin{tabular}{lllll}
+\toprule
+\rowcolor[gray]{0.85}
+Especificação & Classe & Renda & Desempenho & Interação \\
+\midrule
+Modelo 1 & Lista de espera & 0,4392 & -1,2353 & 0,2572 \\
+\rowcolor[gray]{0.95}
+Modelo 1 & Não contratado & -0,0493 & 0,4835 & -0,1544 \\
+Modelo 1 & Contratada & -0,3899 & 0,7517 & -0,1028 \\
+\rowcolor[gray]{0.95}
+Modelo 2 & Lista de espera & 0,2861 & -0,9781 & 0,2904 \\
+Modelo 2 & Não contratado & 0,0515 & 0,3510 & -0,2190 \\
+\rowcolor[gray]{0.95}
+Modelo 2 & Contratada & -0,3376 & 0,6271 & -0,0714 \\
+Modelo 3 & Lista de espera & 0,3024 & -1,2019 & 0,3230 \\
+\rowcolor[gray]{0.95}
+Modelo 3 & Não contratado & 0,0534 & 0,4821 & -0,2327 \\
+Modelo 3 & Contratada & -0,3558 & 0,7198 & -0,0903 \\
+\rowcolor[gray]{0.95}
+Modelo 4 & Lista de espera & 0,2871 & -1,4018 & 0,2430 \\
+Modelo 4 & Não contratado & 0,0720 & 0,5775 & -0,1883 \\
+\rowcolor[gray]{0.95}
+Modelo 4 & Contratada & -0,3591 & 0,8243 & -0,0547 \\
+Modelo 5 & Lista de espera & 0,2661 & -1,5430 & 0,2187 \\
+\rowcolor[gray]{0.95}
+Modelo 5 & Não contratado & 0,0781 & 0,6592 & -0,1814 \\
+Modelo 5 & Contratada & -0,3442 & 0,8838 & -0,0373 \\
+\bottomrule
+\end{tabular}
+\par\footnotesize{Notas: Coeficientes extraídos dos modelos treinados. Em modelos multinomiais, os coeficientes pertencem às classes do desfecho; por isso, devem ser lidos como informação complementar às probabilidades previstas.}
+\par\footnotesize{Fonte: elaboração própria (2026).}
+\end{table}

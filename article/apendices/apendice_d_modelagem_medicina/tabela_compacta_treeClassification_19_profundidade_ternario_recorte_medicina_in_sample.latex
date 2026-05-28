@@ -1,0 +1,22 @@
+\begin{table}[htbp]
+\centering
+\caption{Resumo da árvore de decisão multinomial, recorte medicina, avaliação in\_sample, profundidade máxima 19.}
+\label{tab:tabela_compacta_treeClassification_19_profundidade_ternario_recorte_medicina_in_sample}
+\small
+\begin{tabular}{lllllll}
+\toprule
+\rowcolor[gray]{0.85}
+Especificação & N & ROC-AUC & Renda & Desempenho & Interação & Variáveis \\
+\midrule
+Modelo 1 & 311.329 & 0,9760 & 0,0357 & 0,9438 & 0,0205 & 3 \\
+\rowcolor[gray]{0.95}
+Modelo 2 & 311.329 & 0,9814 & 0,0083 & 0,7874 & 0,0111 & 6 \\
+Modelo 3 & 311.329 & 0,9819 & 0,0057 & 0,7814 & 0,0118 & 10 \\
+\rowcolor[gray]{0.95}
+Modelo 4 & 311.329 & 0,9818 & 0,0072 & 0,7735 & 0,0098 & 13 \\
+Modelo 5 & 311.329 & 0,9866 & 0,0056 & 0,7573 & 0,0079 & 19 \\
+\bottomrule
+\end{tabular}
+\par\footnotesize{Notas: Renda, desempenho e interação indicam importâncias normalizadas das variáveis na árvore. A profundidade máxima parametrizada é 19.}
+\par\footnotesize{Fonte: elaboração própria (2026).}
+\end{table}

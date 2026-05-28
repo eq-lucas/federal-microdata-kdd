@@ -1,0 +1,54 @@
+================================================================================
+TRANSFORM: UNIFICAÇÃO FIES
+================================================================================
+[INÍCIO] Lendo fies_inscricoes_2019_1_limpo.parquet
+[INÍCIO] Lendo fies_inscricoes_2019_2_limpo.parquet
+[INÍCIO] Lendo fies_inscricoes_2020_1_limpo.parquet
+[INÍCIO] Lendo fies_inscricoes_2020_2_limpo.parquet
+[INÍCIO] Lendo fies_inscricoes_2021_1_limpo.parquet
+[INÍCIO] Lendo fies_inscricoes_2021_2_limpo.parquet
+[AUDITORIA] inscrições: duplicatas exatas após unificação: 0
+[AUDITORIA] Inscrições: linhas totais: 2197234
+[AUDITORIA] Inscrições: combinações únicas id_estudante + opção: 2197234
+[AUDITORIA] Inscrições: diferença: 0
+[OK] Inscrições unificadas: fies_inscricoes_unificadas.parquet | arquivos: 6 | linhas: 2197234 | colunas: 63
+[INÍCIO] Lendo fies_ofertas_2019_1_limpo.parquet
+[INÍCIO] Lendo fies_ofertas_2019_2_limpo.parquet
+[INÍCIO] Lendo fies_ofertas_2020_1_limpo.parquet
+[INÍCIO] Lendo fies_ofertas_2020_2_limpo.parquet
+[INÍCIO] Lendo fies_ofertas_2021_1_limpo.parquet
+[INÍCIO] Lendo fies_ofertas_2021_2_limpo.parquet
+[AUDITORIA] ofertas: duplicatas exatas após unificação: 0
+[AUDITORIA] Ofertas: linhas totais: 143623
+[AUDITORIA] Ofertas: combinações únicas por chave de oferta: 143623
+[AUDITORIA] Ofertas: diferença: 0
+[OK] Ofertas unificadas: fies_ofertas_unificadas.parquet | arquivos: 6 | linhas: 143623 | colunas: 68
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/transform_unificacao_fies_resumo.csv
+Unificação FIES concluída.
+================================================================================
+TRANSFORM: UNIFICAÇÃO FIES
+================================================================================
+[INÍCIO] Lendo fies_inscricoes_2019_1_limpo.parquet
+[INÍCIO] Lendo fies_inscricoes_2019_2_limpo.parquet
+[INÍCIO] Lendo fies_inscricoes_2020_1_limpo.parquet
+[INÍCIO] Lendo fies_inscricoes_2020_2_limpo.parquet
+[INÍCIO] Lendo fies_inscricoes_2021_1_limpo.parquet
+[INÍCIO] Lendo fies_inscricoes_2021_2_limpo.parquet
+[AUDITORIA] inscrições: duplicatas exatas após unificação: 0
+[AUDITORIA] Inscrições: linhas totais: 2197234
+[AUDITORIA] Inscrições: combinações únicas id_estudante + opção: 2197234
+[AUDITORIA] Inscrições: diferença: 0
+[OK] Inscrições unificadas: fies_inscricoes_unificadas.parquet | arquivos: 6 | linhas: 2197234 | colunas: 63
+[INÍCIO] Lendo fies_ofertas_2019_1_limpo.parquet
+[INÍCIO] Lendo fies_ofertas_2019_2_limpo.parquet
+[INÍCIO] Lendo fies_ofertas_2020_1_limpo.parquet
+[INÍCIO] Lendo fies_ofertas_2020_2_limpo.parquet
+[INÍCIO] Lendo fies_ofertas_2021_1_limpo.parquet
+[INÍCIO] Lendo fies_ofertas_2021_2_limpo.parquet
+[AUDITORIA] ofertas: duplicatas exatas após unificação: 0
+[AUDITORIA] Ofertas: linhas totais: 143623
+[AUDITORIA] Ofertas: combinações únicas por chave de oferta: 143623
+[AUDITORIA] Ofertas: diferença: 0
+[OK] Ofertas unificadas: fies_ofertas_unificadas.parquet | arquivos: 6 | linhas: 143623 | colunas: 68
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/transform_unificacao_fies_resumo.csv
+Unificação FIES concluída.

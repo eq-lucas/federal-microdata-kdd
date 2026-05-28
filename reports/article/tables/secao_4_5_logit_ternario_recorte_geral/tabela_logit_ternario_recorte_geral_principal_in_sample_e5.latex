@@ -1,0 +1,20 @@
+\begin{table}
+\caption{Resumo do modelo logístico multinomial, recorte geral.}
+\label{tab:tabela_logit_ternario_recorte_geral_principal_in_sample_e5}
+\begin{tabular}{ll}
+\toprule
+Medida & Valor \\
+\midrule
+Observações da ABT & 1.925.666 \\
+Observações de treino & 1.925.666 \\
+Observações de teste & 1.925.666 \\
+ROC-AUC OVR ponderado & 0,8972 \\
+Acurácia balanceada & 0,7412 \\
+F1 macro & 0,6349 \\
+Coeficiente padronizado: renda, classe contratada & -0,3442 \\
+Coeficiente padronizado: desempenho, classe contratada & 0,8838 \\
+Coeficiente padronizado: interação, classe contratada & -0,0373 \\
+Blocos de variáveis & 20 \\
+\bottomrule
+\end{tabular}
+\end{table}

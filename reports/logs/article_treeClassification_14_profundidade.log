@@ -1,0 +1,144 @@
+================================================================================
+ARTICLE: TREECLASSIFICATION_14_PROFUNDIDADE | BINARIO | GERAL | IN_SAMPLE | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/in_sample/treeClassification_14_profundidade_binario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_binaria_geral.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/treeClassification_14_profundidade_binario_recorte_geral e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_treeClassification_14_profundidade_binario_recorte_geral
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/treeClassification_14_profundidade_binario_recorte_geral/in_sample/geral
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_treeClassification_14_profundidade_binario_recorte_geral_in_sample_e5_resumo.csv
+================================================================================
+ARTICLE: TREECLASSIFICATION_14_PROFUNDIDADE | BINARIO | GERAL | HOLDOUT_80_20 | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/holdout_80_20/treeClassification_14_profundidade_binario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_binaria_geral.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/treeClassification_14_profundidade_binario_recorte_geral e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_treeClassification_14_profundidade_binario_recorte_geral
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/treeClassification_14_profundidade_binario_recorte_geral/holdout_80_20/geral
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_treeClassification_14_profundidade_binario_recorte_geral_holdout_80_20_e5_resumo.csv
+================================================================================
+ARTICLE: TREECLASSIFICATION_14_PROFUNDIDADE | TERNARIO | GERAL | IN_SAMPLE | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_ternaria_recorte_geral.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/treeClassification_14_profundidade_ternario_recorte_geral e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_treeClassification_14_profundidade_ternario_recorte_geral
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/treeClassification_14_profundidade_ternario_recorte_geral/in_sample/geral
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_treeClassification_14_profundidade_ternario_recorte_geral_in_sample_e5_resumo.csv
+================================================================================
+ARTICLE: TREECLASSIFICATION_14_PROFUNDIDADE | TERNARIO | GERAL | HOLDOUT_80_20 | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_ternaria_recorte_geral.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/treeClassification_14_profundidade_ternario_recorte_geral e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_treeClassification_14_profundidade_ternario_recorte_geral
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/treeClassification_14_profundidade_ternario_recorte_geral/holdout_80_20/geral
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_treeClassification_14_profundidade_ternario_recorte_geral_holdout_80_20_e5_resumo.csv
+================================================================================
+ARTICLE: TREECLASSIFICATION_14_PROFUNDIDADE | TERNARIO | MEDICINA | IN_SAMPLE | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_ternaria_recorte_medicina.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/treeClassification_14_profundidade_ternario_recorte_medicina e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_treeClassification_14_profundidade_ternario_recorte_medicina
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/treeClassification_14_profundidade_ternario_recorte_medicina/in_sample/medicina
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_treeClassification_14_profundidade_ternario_recorte_medicina_in_sample_e5_resumo.csv
+================================================================================
+ARTICLE: TREECLASSIFICATION_14_PROFUNDIDADE | TERNARIO | MEDICINA | HOLDOUT_80_20 | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_ternaria_recorte_medicina.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/treeClassification_14_profundidade_ternario_recorte_medicina e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_treeClassification_14_profundidade_ternario_recorte_medicina
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/treeClassification_14_profundidade_ternario_recorte_medicina/holdout_80_20/medicina
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_treeClassification_14_profundidade_ternario_recorte_medicina_holdout_80_20_e5_resumo.csv
+================================================================================
+ARTICLE: TREECLASSIFICATION_14_PROFUNDIDADE | BINARIO | GERAL | IN_SAMPLE | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/in_sample/treeClassification_14_profundidade_binario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_binaria_geral.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/treeClassification_14_profundidade_binario_recorte_geral e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_treeClassification_14_profundidade_binario_recorte_geral
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/treeClassification_14_profundidade_binario_recorte_geral/in_sample/geral
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_treeClassification_14_profundidade_binario_recorte_geral_in_sample_e5_resumo.csv
+================================================================================
+ARTICLE: TREECLASSIFICATION_14_PROFUNDIDADE | BINARIO | GERAL | HOLDOUT_80_20 | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/holdout_80_20/treeClassification_14_profundidade_binario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_binaria_geral.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/treeClassification_14_profundidade_binario_recorte_geral e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_treeClassification_14_profundidade_binario_recorte_geral
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/treeClassification_14_profundidade_binario_recorte_geral/holdout_80_20/geral
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_treeClassification_14_profundidade_binario_recorte_geral_holdout_80_20_e5_resumo.csv
+================================================================================
+ARTICLE: TREECLASSIFICATION_14_PROFUNDIDADE | TERNARIO | GERAL | IN_SAMPLE | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_ternaria_recorte_geral.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/treeClassification_14_profundidade_ternario_recorte_geral e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_treeClassification_14_profundidade_ternario_recorte_geral
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/treeClassification_14_profundidade_ternario_recorte_geral/in_sample/geral
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_treeClassification_14_profundidade_ternario_recorte_geral_in_sample_e5_resumo.csv
+================================================================================
+ARTICLE: TREECLASSIFICATION_14_PROFUNDIDADE | TERNARIO | GERAL | HOLDOUT_80_20 | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_ternaria_recorte_geral.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/treeClassification_14_profundidade_ternario_recorte_geral e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_treeClassification_14_profundidade_ternario_recorte_geral
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/treeClassification_14_profundidade_ternario_recorte_geral/holdout_80_20/geral
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_treeClassification_14_profundidade_ternario_recorte_geral_holdout_80_20_e5_resumo.csv
+================================================================================
+ARTICLE: TREECLASSIFICATION_14_PROFUNDIDADE | TERNARIO | MEDICINA | IN_SAMPLE | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_ternaria_recorte_medicina.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/treeClassification_14_profundidade_ternario_recorte_medicina e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_treeClassification_14_profundidade_ternario_recorte_medicina
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/treeClassification_14_profundidade_ternario_recorte_medicina/in_sample/medicina
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_treeClassification_14_profundidade_ternario_recorte_medicina_in_sample_e5_resumo.csv
+================================================================================
+ARTICLE: TREECLASSIFICATION_14_PROFUNDIDADE | TERNARIO | MEDICINA | HOLDOUT_80_20 | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_ternaria_recorte_medicina.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/treeClassification_14_profundidade_ternario_recorte_medicina e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_treeClassification_14_profundidade_ternario_recorte_medicina
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/treeClassification_14_profundidade_ternario_recorte_medicina/holdout_80_20/medicina
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_treeClassification_14_profundidade_ternario_recorte_medicina_holdout_80_20_e5_resumo.csv
+================================================================================
+ARTICLE: TREECLASSIFICATION_14_PROFUNDIDADE | BINARIO | GERAL | IN_SAMPLE | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/in_sample/treeClassification_14_profundidade_binario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_binaria_geral.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/treeClassification_14_profundidade_binario_recorte_geral e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_treeClassification_14_profundidade_binario_recorte_geral
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/treeClassification_14_profundidade_binario_recorte_geral/in_sample/geral
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_treeClassification_14_profundidade_binario_recorte_geral_in_sample_e5_resumo.csv
+================================================================================
+ARTICLE: TREECLASSIFICATION_14_PROFUNDIDADE | BINARIO | GERAL | HOLDOUT_80_20 | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_binario/holdout_80_20/treeClassification_14_profundidade_binario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_binaria_geral.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/treeClassification_14_profundidade_binario_recorte_geral e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_treeClassification_14_profundidade_binario_recorte_geral
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/treeClassification_14_profundidade_binario_recorte_geral/holdout_80_20/geral
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_treeClassification_14_profundidade_binario_recorte_geral_holdout_80_20_e5_resumo.csv
+================================================================================
+ARTICLE: TREECLASSIFICATION_14_PROFUNDIDADE | TERNARIO | GERAL | IN_SAMPLE | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_ternaria_recorte_geral.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/treeClassification_14_profundidade_ternario_recorte_geral e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_treeClassification_14_profundidade_ternario_recorte_geral
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/treeClassification_14_profundidade_ternario_recorte_geral/in_sample/geral
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_treeClassification_14_profundidade_ternario_recorte_geral_in_sample_e5_resumo.csv
+================================================================================
+ARTICLE: TREECLASSIFICATION_14_PROFUNDIDADE | TERNARIO | GERAL | HOLDOUT_80_20 | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_ternaria_recorte_geral.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/treeClassification_14_profundidade_ternario_recorte_geral e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_treeClassification_14_profundidade_ternario_recorte_geral
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/treeClassification_14_profundidade_ternario_recorte_geral/holdout_80_20/geral
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_treeClassification_14_profundidade_ternario_recorte_geral_holdout_80_20_e5_resumo.csv
+================================================================================
+ARTICLE: TREECLASSIFICATION_14_PROFUNDIDADE | TERNARIO | MEDICINA | IN_SAMPLE | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/in_sample/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_ternaria_recorte_medicina.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/treeClassification_14_profundidade_ternario_recorte_medicina e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_treeClassification_14_profundidade_ternario_recorte_medicina
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/treeClassification_14_profundidade_ternario_recorte_medicina/in_sample/medicina
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_treeClassification_14_profundidade_ternario_recorte_medicina_in_sample_e5_resumo.csv
+================================================================================
+ARTICLE: TREECLASSIFICATION_14_PROFUNDIDADE | TERNARIO | MEDICINA | HOLDOUT_80_20 | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/medicina/treeClassification_14_profundidade_ternario/holdout_80_20/treeClassification_14_profundidade_ternario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_ternaria_recorte_medicina.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/treeClassification_14_profundidade_ternario_recorte_medicina e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_treeClassification_14_profundidade_ternario_recorte_medicina
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/treeClassification_14_profundidade_ternario_recorte_medicina/holdout_80_20/medicina
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_treeClassification_14_profundidade_ternario_recorte_medicina_holdout_80_20_e5_resumo.csv

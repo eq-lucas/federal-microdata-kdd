@@ -1,0 +1,477 @@
+Fiz a mesma análise agora para a **regressão logística** dentro do `reports(1).zip`: CSVs, tabelas, matrizes de confusão, probabilidades previstas e figuras. O pacote bate com a listagem de saídas que você tinha gerado no terminal para `logit_binario`, `logit_ternario_recorte_geral` e `logit_ternario_recorte_medicina`. 
+
+Arquivos gerados:
+
+[Relatório completo da análise logit](sandbox:/mnt/data/analise_logit_reports.md)
+[Figuras principais da regressão logística](sandbox:/mnt/data/logit_article_figures_contact.png)
+[Figuras de apêndice e matrizes da regressão logística](sandbox:/mnt/data/logit_appendix_figures_contact.png)
+
+## Veredito geral
+
+Está **OK e coerente**.
+
+```text
+CSVs totais lidos no pacote: 140
+CSVs com erro de leitura: 0
+Arquivos relacionados a logit: 248
+CSVs relacionados a logit: 54
+PDFs relacionados a logit: 42
+PNGs relacionados a logit: 42
+TIFF/TIF no ZIP: 0
+Ocorrências ruins medicina_medicina: 0
+```
+
+Os `.tiff` não aparecem, o que está coerente com o que você disse que removeu antes de enviar.
+
+Aparecem alguns logs antigos com nome `logit_ternario_medicina`, mas **não encontrei pasta problemática** tipo:
+
+```text
+logit_ternario_medicina/
+logit_ternario_medicina_medicina
+medicina_medicina
+```
+
+Então isso é só nome antigo de log, não erro nos produtos finais.
+
+---
+
+# 1. Logit binário geral
+
+Target:
+
+```text
+0 = Não contratado
+1 = Contratada
+```
+
+## Resultado holdout E5
+
+```text
+N total ABT: 1.184.275
+Treino: 947.420
+Teste: 236.855
+ROC-AUC: 0,8462
+Acurácia: 0,6918
+Acurácia balanceada: 0,7732
+F1: 0,4373
+Log loss: 0,4907
+
+Coef. renda per capita: -0,4015
+Coef. gap: 0,1573
+Coef. renda × gap: 0,1008
+Variáveis pós-processamento: 156
+```
+
+A matriz de confusão E5 holdout ficou:
+
+```text
+                    Prev. não contratado   Prev. contratada
+Real não contratado       135.485              69.314
+Real contratada             3.692              28.364
+```
+
+Métricas por classe:
+
+```text
+Não contratado:
+precisão ≈ 97,35%
+recall ≈ 66,16%
+F1 ≈ 0,7878
+
+Contratada:
+precisão ≈ 29,04%
+recall ≈ 88,48%
+F1 ≈ 0,4373
+```
+
+## Interpretação
+
+O modelo está sensível para capturar contratos reais: o recall da classe `Contratada` é alto. Mas a precisão da classe `Contratada` é baixa, então ele também classifica muitos não contratados como contratados.
+
+Isso é coerente com base desbalanceada e `class_weight="balanced"`. Não é bug. A leitura correta é:
+
+```text
+bom modelo de ordenação/associação;
+não é classificador individual preciso de contratação.
+```
+
+O E5 é o melhor no binário por praticamente tudo:
+
+```text
+E1 ROC-AUC: 0,6198
+E2 ROC-AUC: 0,8172
+E3 ROC-AUC: 0,8289
+E4 ROC-AUC: 0,8355
+E5 ROC-AUC: 0,8462
+```
+
+Os sinais centrais estão coerentes com o artigo:
+
+```text
+renda: negativo
+gap/desempenho: positivo
+interação renda × gap: positivo
+```
+
+---
+
+# 2. Logit ternário geral
+
+Target:
+
+```text
+0 = Lista de espera
+1 = Não contratado
+2 = Contratada
+```
+
+## Resultado holdout E5
+
+```text
+N total ABT: 1.913.389
+Treino: 1.530.711
+Teste: 382.678
+ROC-AUC OVR ponderado: 0,8996
+Acurácia: 0,6933
+Acurácia balanceada: 0,7452
+F1 macro: 0,6396
+Log loss: 0,6154
+
+Coef. renda per capita na classe Contratada: -0,2594
+Coef. gap na classe Contratada: 0,8022
+Coef. renda × gap na classe Contratada: 0,0833
+Variáveis pós-processamento: 157
+```
+
+Matriz de confusão E5 holdout:
+
+```text
+                    Prev. lista   Prev. não contratado   Prev. contratada
+Real lista            120.396            12.334              13.093
+Real não contratado    22.443           118.206              64.150
+Real contratada         2.436             2.920              26.700
+```
+
+Métricas por classe:
+
+```text
+Lista de espera:
+precisão ≈ 82,87%
+recall ≈ 82,56%
+F1 ≈ 0,8272
+
+Não contratado:
+precisão ≈ 88,57%
+recall ≈ 57,72%
+F1 ≈ 0,6989
+
+Contratada:
+precisão ≈ 25,69%
+recall ≈ 83,29%
+F1 ≈ 0,3926
+```
+
+## Interpretação
+
+O ternário geral é muito útil porque separa melhor os estágios do fluxo. Ele distingue bem `Lista de espera` e razoavelmente `Não contratado`, mas a classe `Contratada` continua com precisão baixa e recall alto.
+
+O E5 é claramente o melhor no ternário geral:
+
+```text
+E1 ROC-AUC: 0,7615
+E2 ROC-AUC: 0,8231
+E3 ROC-AUC: 0,8675
+E4 ROC-AUC: 0,8752
+E5 ROC-AUC: 0,8996
+```
+
+No E5, o desempenho (`gap`) aparece muito mais forte para a classe `Contratada` do que no binário:
+
+```text
+gap classe Contratada: 0,8022
+renda classe Contratada: -0,2594
+interação: 0,0833
+```
+
+Leitura substantiva:
+
+```text
+no ternário geral, superar a nota de corte importa muito para sair da lista/não contratação rumo à contratação;
+renda ainda aparece negativamente associada à contratação;
+a interação renda × desempenho permanece positiva, mas menor que o efeito direto do gap.
+```
+
+---
+
+# 3. Logit ternário Medicina
+
+Target:
+
+```text
+0 = Lista de espera
+1 = Não contratado
+2 = Contratada
+```
+
+## Resultado holdout E5
+
+```text
+N total ABT: 306.504
+Treino: 245.203
+Teste: 61.301
+ROC-AUC OVR ponderado: 0,9706
+Acurácia: 0,8527
+Acurácia balanceada: 0,7134
+F1 macro: 0,5425
+Log loss: 0,3588
+
+Coef. renda per capita na classe Contratada: -0,0238
+Coef. gap na classe Contratada: 2,1979
+Coef. renda × gap na classe Contratada: 0,0418
+Variáveis pós-processamento: 81
+```
+
+Matriz de confusão E5 holdout:
+
+```text
+                    Prev. lista   Prev. não contratado   Prev. contratada
+Real lista             49.450             2.463               4.658
+Real não contratado        91             1.760               1.420
+Real contratada            47               350               1.062
+```
+
+Métricas por classe:
+
+```text
+Lista de espera:
+precisão ≈ 99,72%
+recall ≈ 87,41%
+F1 ≈ 0,9316
+
+Não contratado:
+precisão ≈ 38,49%
+recall ≈ 53,81%
+F1 ≈ 0,4488
+
+Contratada:
+precisão ≈ 14,87%
+recall ≈ 72,79%
+F1 ≈ 0,2470
+```
+
+## Interpretação
+
+Medicina é o caso em que o desempenho acadêmico domina. O coeficiente do `gap` na classe `Contratada` é muito alto:
+
+```text
+gap: 2,1979
+renda: -0,0238
+interação: 0,0418
+```
+
+Isso significa que, no recorte Medicina, a fronteira de classificação é muito mais acadêmica/competitiva do que financeira no modelo.
+
+Mas a classe `Contratada` continua difícil: precisão baixa e recall alto. O modelo identifica muitos contratos reais, mas também superestima contratação em vários casos.
+
+O E5 é o melhor no ternário Medicina:
+
+```text
+E1 ROC-AUC: 0,9479
+E2 ROC-AUC: 0,9431
+E3 ROC-AUC: 0,9525
+E4 ROC-AUC: 0,9557
+E5 ROC-AUC: 0,9706
+```
+
+---
+
+# 4. In-sample vs holdout
+
+A estabilidade está excelente.
+
+```text
+Binário geral E5:
+ROC-AUC in_sample: 0,8465
+ROC-AUC holdout:   0,8462
+diferença:        -0,0002
+
+Ternário geral E5:
+ROC-AUC in_sample: 0,8988
+ROC-AUC holdout:   0,8996
+diferença:        +0,0007
+
+Ternário Medicina E5:
+ROC-AUC in_sample: 0,9693
+ROC-AUC holdout:   0,9706
+diferença:        +0,0013
+```
+
+Isso indica que não há sinal relevante de overfitting. Os resultados do holdout são praticamente iguais aos resultados in-sample.
+
+---
+
+# 5. Probabilidades previstas
+
+Os tamanhos estão corretos:
+
+```text
+Binário geral:
+in_sample: 1.184.275
+holdout:     236.855
+
+Ternário geral:
+in_sample: 1.913.389
+holdout:     382.678
+
+Ternário Medicina:
+in_sample:   306.504
+holdout:      61.301
+```
+
+Então a regra foi obedecida:
+
+```text
+in_sample = base inteira
+holdout_80_20 = somente teste
+```
+
+## Probabilidade média de contratação no holdout
+
+Binário geral:
+
+```text
+Não contratado: 30,50%
+Contratada:     69,37%
+```
+
+Ternário geral:
+
+```text
+Lista de espera: 10,78%
+Não contratado:  26,76%
+Contratada:      62,52%
+```
+
+Ternário Medicina:
+
+```text
+Lista de espera:  8,83%
+Não contratado:  38,80%
+Contratada:      52,17%
+```
+
+Isso é ótimo como ordenação: em todos os modelos, a probabilidade média prevista de contratação é maior para quem realmente contratou.
+
+---
+
+# 6. Imagens
+
+As figuras estão coerentes visualmente.
+
+## Figuras principais
+
+As figuras principais mostram superfícies/heatmaps de probabilidade prevista de contratação para:
+
+```text
+logit binário geral
+logit ternário geral
+logit ternário Medicina
+```
+
+As versões `in_sample` e `holdout_80_20` estão muito parecidas, o que é compatível com a estabilidade das métricas.
+
+## Figuras C1/C2 do apêndice
+
+As curvas C1/C2 estão mais suaves que as da árvore, como esperado para regressão logística. Isso é bom: a árvore cria degraus; o logit gera relação mais contínua.
+
+A leitura visual bate com os CSVs:
+
+```text
+maior desempenho tende a elevar a probabilidade de contratação;
+renda tem efeito negativo ou condicionado;
+Medicina é fortemente dominada pelo desempenho acadêmico.
+```
+
+## Matrizes de confusão
+
+As matrizes renderizadas em PNG/PDF batem com os CSVs e com os `n_teste`.
+
+---
+
+# 7. Comparação com árvore de decisão
+
+A leitura conjunta ficou muito boa:
+
+```text
+Logit:
+melhor para coeficientes, sinais e interpretação estatística paramétrica.
+
+Árvore:
+melhor para hierarquia de variáveis, regras e não linearidade.
+```
+
+As conclusões convergem:
+
+```text
+no geral, desempenho e renda importam;
+no geral ternário, a conversão em contrato é melhor explicada quando se separa lista de espera, não contratado e contratada;
+em Medicina, o desempenho acadêmico domina fortemente.
+```
+
+Diferença importante:
+
+```text
+na árvore ternária geral, renda_gap apareceu como variável central;
+no logit ternário geral, o gap direto na classe Contratada aparece como coeficiente central mais forte que a interação.
+```
+
+Isso não é contradição. São modelos diferentes:
+
+```text
+o logit mede efeito linear padronizado condicionado aos demais controles;
+a árvore mede ganho de impureza/partição.
+```
+
+---
+
+# 8. Pontos de atenção para o artigo
+
+Eu escreveria com cuidado:
+
+```text
+Os modelos apresentam bom poder de discriminação, mas a classe Contratada tem precisão baixa em razão do desbalanceamento e da configuração com peso de classes. Portanto, os resultados devem ser interpretados como padrões de associação e ordenação, não como previsão individual determinística.
+```
+
+Para Medicina:
+
+```text
+No recorte Medicina, o desempenho relativo à nota de corte domina a probabilidade de contratação, enquanto a renda isolada perde força no modelo multinomial. Isso sugere que, em cursos altamente competitivos, a seleção acadêmica organiza de forma mais intensa a transição entre lista de espera, não contratação e contratação.
+```
+
+Para o geral:
+
+```text
+No recorte geral, renda per capita tem coeficiente negativo e o desempenho relativo à nota de corte tem coeficiente positivo, indicando que a contratação está associada simultaneamente à posição acadêmica e às condições socioeconômicas dos candidatos.
+```
+
+---
+
+## Veredito final
+
+```text
+Logit binário geral: OK.
+Logit ternário geral: OK.
+Logit ternário Medicina: OK.
+
+CSV: OK.
+Tabelas: OK.
+Matrizes: OK.
+Figuras: OK.
+Probabilidades holdout: OK.
+Probabilidades in-sample: OK.
+Sem resíduos medicina_medicina: OK.
+Sem erro estrutural detectado: OK.
+```
+
+A regressão logística está pronta para entrar como **modelo principal de associação**, enquanto a árvore fica como **modelo complementar de interpretação não linear/hierárquica**.
+

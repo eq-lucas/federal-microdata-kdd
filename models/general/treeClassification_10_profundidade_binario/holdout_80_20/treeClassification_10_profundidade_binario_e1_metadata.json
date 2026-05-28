@@ -1,0 +1,227 @@
+{
+  "registro": {
+    "target": "binario",
+    "recorte": "geral",
+    "avaliacao": "holdout_80_20",
+    "avaliacao_descricao": "holdout_80_20_estratificado",
+    "modelo": "treeClassification_10_profundidade_binario",
+    "modelo_descricao": "Árvore de decisão classificatória binária | profundidade máxima 10 | pré-poda por min_samples_leaf/min_samples_split",
+    "experimento": "E1",
+    "experimento_nome": "Modelo mínimo substantivo",
+    "experimento_descricao": "Renda, desempenho acadêmico relativo e interação entre renda e desempenho.",
+    "n_total_abt": 1184972,
+    "n_treino": 947977,
+    "n_teste": 236995,
+    "tree_criterion": "gini",
+    "tree_max_depth_param": 10,
+    "tree_profile": "treeClassification_10_profundidade",
+    "tree_profile_descricao": "Árvore de decisão com profundidade máxima 10 e pré-poda mínima de 400 amostras por folha.",
+    "tree_min_samples_leaf": 474,
+    "tree_min_samples_split": 948,
+    "tree_depth_observada": 10,
+    "tree_n_leaves": 445,
+    "primeira_divisao": "renda_gap",
+    "importancia_renda_per_capita": 0.5383524023215289,
+    "importancia_gap": 0.05376744646065827,
+    "importancia_renda_gap": 0.4078801512178129,
+    "blocos_variaveis_qtd": 3,
+    "colunas_finais_pos_processamento": 3,
+    "blocos_incluidos": "Renda familiar per capita; Desempenho relativo à nota de corte; Interação renda × desempenho",
+    "blocos_ausentes": "",
+    "variaveis_numericas": "renda_per_capita; gap; renda_gap",
+    "variaveis_categoricas": "",
+    "model_path": "/home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/holdout_80_20/treeClassification_10_profundidade_binario_e1.joblib",
+    "rules_path": "/home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/holdout_80_20/treeClassification_10_profundidade_binario_e1_regras_depth3.txt",
+    "target_0": "Não contratado",
+    "target_1": "Contratada",
+    "roc_auc": 0.6511356274294078,
+    "accuracy": 0.5791894343762527,
+    "balanced_accuracy": 0.6075396746357002,
+    "precision": 0.189998350470116,
+    "recall": 0.6464114235829644,
+    "f1": 0.29367687469899995,
+    "log_loss": 0.654273329992346,
+    "tn": 116532,
+    "fp": 88389,
+    "fn": 11341,
+    "tp": 20733
+  },
+  "target": "binario",
+  "recorte": "geral",
+  "classes": [
+    "0",
+    "1"
+  ],
+  "class_labels": {
+    "0": "Não contratado",
+    "1": "Contratada"
+  },
+  "experimento": {
+    "id": "E1",
+    "name": "Modelo mínimo substantivo",
+    "description": "Renda, desempenho acadêmico relativo e interação entre renda e desempenho.",
+    "blocks": [
+      "renda_per_capita",
+      "gap",
+      "renda_gap"
+    ]
+  },
+  "blocos_usados": [
+    "renda_per_capita",
+    "gap",
+    "renda_gap"
+  ],
+  "blocos_ausentes": [],
+  "numericas": [
+    "renda_per_capita",
+    "gap",
+    "renda_gap"
+  ],
+  "categoricas": [],
+  "feature_names_out": [
+    "num__renda_per_capita",
+    "num__gap",
+    "num__renda_gap"
+  ],
+  "abt_metadata": {
+    "target": "binario",
+    "target_col": "target_binario",
+    "target_map": {
+      "0": "NÃO CONTRATADO",
+      "1": "CONTRATADA"
+    },
+    "recorte": "geral",
+    "path_base": "/home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/04_curated/parquet/inscricoes_fies_2019_2021.parquet",
+    "linhas_apos_target_antes_drop": 1184973,
+    "linhas_abt": 1184972,
+    "colunas_abt": 26,
+    "distribuicao_target": {
+      "0": 1024603,
+      "1": 160369
+    },
+    "mapa_colunas_origem": {
+      "id_estudante": "id_estudante",
+      "ano": "ano",
+      "semestre": "semestre",
+      "situacao_fies": "situacao_fies",
+      "nome_curso": "nome_curso",
+      "renda_per_capita": "renda_per_capita",
+      "media_enem": "media_enem",
+      "nota_corte_gp": "nota_corte_gp",
+      "idade": null,
+      "opcao_curso": "opcao_curso",
+      "conceito_curso_gp": "conceito_curso_gp",
+      "turno": "turno",
+      "ensino_medio_escola_publica": null,
+      "regiao_ies_alvo": "regiao_ies_alvo",
+      "natureza_juridica_mantenedora": "natureza_juridica_mantenedora",
+      "etnia_cor": "etnia_cor",
+      "sexo": "sexo",
+      "regiao_morar": "regiao_morar",
+      "organizacao_academica": "organizacao_academica_ies",
+      "subarea_conhecimento": "subarea_conhecimento",
+      "concluiu_curso_superior": "concluiu_curso_superior",
+      "beneficiado_creduc_fies": "beneficiado_creduc_fies",
+      "uf_local_oferta": "uf_local_oferta",
+      "data_nascimento": "data_nascimento"
+    },
+    "resumo_categorias": {
+      "ano": {
+        "categorias_originais": 3,
+        "tratamento": "mantida"
+      },
+      "semestre": {
+        "categorias_originais": 2,
+        "tratamento": "mantida"
+      },
+      "opcao_curso": {
+        "categorias_originais": 3,
+        "tratamento": "mantida"
+      },
+      "conceito_curso_gp": {
+        "categorias_originais": 3,
+        "tratamento": "mantida"
+      },
+      "turno": {
+        "categorias_originais": 4,
+        "tratamento": "mantida"
+      },
+      "ensino_medio_escola_publica": {
+        "categorias_originais": 0,
+        "tratamento": "mantida"
+      },
+      "regiao_ies_alvo": {
+        "categorias_originais": 5,
+        "tratamento": "mantida"
+      },
+      "natureza_juridica_mantenedora": {
+        "categorias_originais": 9,
+        "tratamento": "mantida"
+      },
+      "etnia_cor": {
+        "categorias_originais": 5,
+        "tratamento": "mantida"
+      },
+      "sexo": {
+        "categorias_originais": 3,
+        "tratamento": "mantida"
+      },
+      "regiao_morar": {
+        "categorias_originais": 5,
+        "tratamento": "mantida"
+      },
+      "organizacao_academica": {
+        "categorias_originais": 3,
+        "tratamento": "mantida"
+      },
+      "subarea_conhecimento": {
+        "categorias_originais": 34,
+        "tratamento": "mantida"
+      },
+      "concluiu_curso_superior": {
+        "categorias_originais": 2,
+        "tratamento": "mantida"
+      },
+      "beneficiado_creduc_fies": {
+        "categorias_originais": 2,
+        "tratamento": "mantida"
+      },
+      "uf_local_oferta": {
+        "categorias_originais": 27,
+        "tratamento": "mantida"
+      }
+    },
+    "colunas_numericas": [
+      "renda_per_capita",
+      "gap",
+      "renda_gap",
+      "idade",
+      "nota_corte_gp"
+    ],
+    "colunas_categoricas": [
+      "ano",
+      "semestre",
+      "opcao_curso",
+      "conceito_curso_gp",
+      "turno",
+      "ensino_medio_escola_publica",
+      "regiao_ies_alvo",
+      "natureza_juridica_mantenedora",
+      "etnia_cor",
+      "sexo",
+      "regiao_morar",
+      "organizacao_academica",
+      "subarea_conhecimento",
+      "concluiu_curso_superior",
+      "beneficiado_creduc_fies",
+      "uf_local_oferta"
+    ],
+    "variaveis_principais_obrigatorias": [
+      "renda_per_capita",
+      "gap",
+      "renda_gap"
+    ],
+    "observacao": "ABT binária para regressão logística. Não inclui variáveis pós-contratação, como percentual de financiamento."
+  },
+  "observacao": "Árvore de decisão interpretável. As colunas de renda, gap e interação nas tabelas registram importâncias normalizadas agregadas por variável original."
+}

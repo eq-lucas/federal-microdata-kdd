@@ -1,0 +1,12 @@
+\begin{table}
+\caption{Matriz de confusão da árvore de decisão, target binario, recorte geral, experimento E5.}
+\label{tab:matriz_confusao_treeClassification_14_profundidade_binario_recorte_geral_in_sample_e5}
+\begin{tabular}{lrr}
+\toprule
+Classe real & Não contratado & Contratada \\
+\midrule
+Não contratado & 683492 & 341111 \\
+Contratada & 17937 & 142432 \\
+\bottomrule
+\end{tabular}
+\end{table}

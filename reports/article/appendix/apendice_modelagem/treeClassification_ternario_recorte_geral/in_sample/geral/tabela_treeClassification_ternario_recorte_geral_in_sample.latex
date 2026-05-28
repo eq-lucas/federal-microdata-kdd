@@ -1,0 +1,15 @@
+\begin{table}
+\caption{Comparação de experimentos da árvore de decisão, target ternario, recorte geral, avaliação in_sample.}
+\label{tab:tabela_treeClassification_ternario_recorte_geral_in_sample}
+\begin{tabular}{llllllllllllllllll}
+\toprule
+Experimento & Descrição & N & N treino & N teste & ROC-AUC & Acurácia balanceada & F1 macro & Renda & Desempenho & Interação & Primeira divisão & Profundidade & Folhas & Blocos & Colunas finais & Blocos incluídos & Avaliação \\
+\midrule
+E1 - Modelo mínimo substantivo & Renda, desempenho acadêmico relativo e interação entre renda e desempenho. & 1.925.666 & 1.925.666 & 1.925.666 & 0,7626 & 0,5507 & 0,4832 & 0,0555 & 0,1000 & 0,8445 & renda\_gap & 6 & 63 & 3 & 3 & Renda familiar per capita; Desempenho relativo à nota de corte; Interação renda × desempenho & in\_sample \\
+E2 - Modelo mínimo + 3 controles & E1 acrescido de idade, nota de corte e opção de curso. & 1.925.666 & 1.925.666 & 1.925.666 & 0,8249 & 0,6747 & 0,5512 & 0,0207 & 0,0736 & 0,3592 & renda\_gap & 6 & 59 & 6 & 8 & Renda familiar per capita; Desempenho relativo à nota de corte; Interação renda × desempenho; Idade; Nota de corte do grupo; Opção de curso & in\_sample \\
+E3 - Modelo intermediário & E2 acrescido de ano, semestre, conceito do curso, turno e ensino médio público. & 1.925.666 & 1.925.666 & 1.925.666 & 0,8645 & 0,7120 & 0,5786 & 0,0179 & 0,0196 & 0,3095 & renda\_gap & 6 & 58 & 10 & 21 & Renda familiar per capita; Desempenho relativo à nota de corte; Interação renda × desempenho; Idade; Nota de corte do grupo; Opção de curso; Ano do processo seletivo; Semestre do processo seletivo; Conceito do curso; Turno & in\_sample \\
+E4 - Modelo expandido & E3 acrescido de subárea de conhecimento, região da oferta, natureza jurídica e cor/raça ou etnia. & 1.925.666 & 1.925.666 & 1.925.666 & 0,8675 & 0,7142 & 0,5900 & 0,0139 & 0,0350 & 0,3015 & renda\_gap & 6 & 57 & 14 & 74 & Renda familiar per capita; Desempenho relativo à nota de corte; Interação renda × desempenho; Idade; Nota de corte do grupo; Opção de curso; Ano do processo seletivo; Semestre do processo seletivo; Conceito do curso; Turno; Subárea de conhecimento; Região da oferta; Natureza jurídica da mantenedora; Cor/raça ou etnia & in\_sample \\
+E5 - Modelo completo interpretável & E4 acrescido de sexo, região de residência, organização acadêmica, conclusão de curso superior, benefício anterior CREDUC/FIES e UF da oferta. & 1.925.666 & 1.925.666 & 1.925.666 & 0,8714 & 0,7164 & 0,5778 & 0,0136 & 0,0334 & 0,2974 & renda\_gap & 6 & 58 & 20 & 118 & Renda familiar per capita; Desempenho relativo à nota de corte; Interação renda × desempenho; Idade; Nota de corte do grupo; Opção de curso; Ano do processo seletivo; Semestre do processo seletivo; Conceito do curso; Turno; Região da oferta; Natureza jurídica da mantenedora; Cor/raça ou etnia; Sexo; Região de residência; Organização acadêmica; Subárea de conhecimento; Concluiu curso superior; Beneficiado CREDUC/FIES; UF do local de oferta & in\_sample \\
+\bottomrule
+\end{tabular}
+\end{table}

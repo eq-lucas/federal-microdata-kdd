@@ -1,0 +1,46 @@
+|--- num__renda_gap <= -27234.4307
+|   |--- num__renda_gap <= -91890.8984
+|   |   |--- num__gap <= -139.8900
+|   |   |   |--- num__gap <= -177.3500
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |   |--- num__gap >  -177.3500
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |--- num__gap >  -139.8900
+|   |   |   |--- num__renda_gap <= -181100.5234
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |   |--- num__renda_gap >  -181100.5234
+|   |   |   |   |--- truncated branch of depth 7
+|   |--- num__renda_gap >  -91890.8984
+|   |   |--- num__gap <= -83.5100
+|   |   |   |--- num__gap <= -120.4700
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |   |--- num__gap >  -120.4700
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |--- num__gap >  -83.5100
+|   |   |   |--- num__renda_gap <= -47439.1895
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |   |--- num__renda_gap >  -47439.1895
+|   |   |   |   |--- truncated branch of depth 7
+|--- num__renda_gap >  -27234.4307
+|   |--- num__renda_gap <= -10334.2451
+|   |   |--- num__gap <= -40.0100
+|   |   |   |--- num__renda_per_capita <= 399.3150
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |   |--- num__renda_per_capita >  399.3150
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |--- num__gap >  -40.0100
+|   |   |   |--- num__renda_per_capita <= 498.9150
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |   |--- num__renda_per_capita >  498.9150
+|   |   |   |   |--- truncated branch of depth 7
+|   |--- num__renda_gap >  -10334.2451
+|   |   |--- num__renda_per_capita <= 748.3250
+|   |   |   |--- num__renda_per_capita <= 399.3250
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |   |--- num__renda_per_capita >  399.3250
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |--- num__renda_per_capita >  748.3250
+|   |   |   |--- num__gap <= 177.5600
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |   |--- num__gap >  177.5600
+|   |   |   |   |--- truncated branch of depth 6

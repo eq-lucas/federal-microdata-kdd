@@ -1,0 +1,22 @@
+\begin{table}[htbp]
+\centering
+\caption{Resumo das especificações do modelo logístico multinomial, recorte geral, avaliação in\_sample.}
+\label{tab:tabela_compacta_logit_ternario_recorte_geral_in_sample}
+\small
+\begin{tabular}{llllll}
+\toprule
+\rowcolor[gray]{0.85}
+Especificação & N & ROC-AUC & Acurácia balanceada & F1 macro & Variáveis \\
+\midrule
+Modelo 1 & 1.925.666 & 0,7631 & 0,5411 & 0,4380 & 3 \\
+\rowcolor[gray]{0.95}
+Modelo 2 & 1.925.666 & 0,8198 & 0,6641 & 0,5447 & 6 \\
+Modelo 3 & 1.925.666 & 0,8656 & 0,7104 & 0,5929 & 10 \\
+\rowcolor[gray]{0.95}
+Modelo 4 & 1.925.666 & 0,8829 & 0,7287 & 0,6206 & 14 \\
+Modelo 5 & 1.925.666 & 0,8972 & 0,7412 & 0,6349 & 20 \\
+\bottomrule
+\end{tabular}
+\par\footnotesize{Notas: As especificações E1 a E5 adicionam progressivamente controles observáveis antes do desfecho.}
+\par\footnotesize{Fonte: elaboração própria (2026).}
+\end{table}

@@ -1,0 +1,335 @@
+{
+  "registro": {
+    "target": "binario",
+    "recorte": "geral",
+    "avaliacao": "holdout_80_20",
+    "avaliacao_descricao": "holdout_80_20_estratificado",
+    "modelo": "treeClassification_10_profundidade_binario",
+    "modelo_descricao": "Árvore de decisão classificatória binária | profundidade máxima 10 | pré-poda por min_samples_leaf/min_samples_split",
+    "experimento": "E4",
+    "experimento_nome": "Modelo expandido",
+    "experimento_descricao": "E3 acrescido de subárea de conhecimento, região da oferta, natureza jurídica e cor/raça ou etnia.",
+    "n_total_abt": 1184972,
+    "n_treino": 947977,
+    "n_teste": 236995,
+    "tree_criterion": "gini",
+    "tree_max_depth_param": 10,
+    "tree_profile": "treeClassification_10_profundidade",
+    "tree_profile_descricao": "Árvore de decisão com profundidade máxima 10 e pré-poda mínima de 400 amostras por folha.",
+    "tree_min_samples_leaf": 474,
+    "tree_min_samples_split": 948,
+    "tree_depth_observada": 10,
+    "tree_n_leaves": 354,
+    "primeira_divisao": "opcao_curso",
+    "importancia_renda_per_capita": 0.0641772227263278,
+    "importancia_gap": 0.0033555713957704267,
+    "importancia_renda_gap": 0.01936310533452914,
+    "blocos_variaveis_qtd": 14,
+    "colunas_finais_pos_processamento": 74,
+    "blocos_incluidos": "Renda familiar per capita; Desempenho relativo à nota de corte; Interação renda × desempenho; Idade; Nota de corte do grupo; Opção de curso; Ano do processo seletivo; Semestre do processo seletivo; Conceito do curso; Turno; Subárea de conhecimento; Região da oferta; Natureza jurídica da mantenedora; Cor/raça ou etnia",
+    "blocos_ausentes": "Ensino médio em escola pública",
+    "variaveis_numericas": "renda_per_capita; gap; renda_gap; idade; nota_corte_gp",
+    "variaveis_categoricas": "opcao_curso; ano; semestre; conceito_curso_gp; turno; subarea_conhecimento; regiao_ies_alvo; natureza_juridica_mantenedora; etnia_cor",
+    "model_path": "/home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/holdout_80_20/treeClassification_10_profundidade_binario_e4.joblib",
+    "rules_path": "/home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/treeClassification_10_profundidade_binario/holdout_80_20/treeClassification_10_profundidade_binario_e4_regras_depth3.txt",
+    "target_0": "Não contratado",
+    "target_1": "Contratada",
+    "roc_auc": 0.842218865657294,
+    "accuracy": 0.6903099221502563,
+    "balanced_accuracy": 0.7699007278716314,
+    "precision": 0.28855069645580245,
+    "recall": 0.879029743717653,
+    "f1": 0.43447909202283813,
+    "log_loss": 0.49167965654661816,
+    "tn": 135406,
+    "fp": 69515,
+    "fn": 3880,
+    "tp": 28194
+  },
+  "target": "binario",
+  "recorte": "geral",
+  "classes": [
+    "0",
+    "1"
+  ],
+  "class_labels": {
+    "0": "Não contratado",
+    "1": "Contratada"
+  },
+  "experimento": {
+    "id": "E4",
+    "name": "Modelo expandido",
+    "description": "E3 acrescido de subárea de conhecimento, região da oferta, natureza jurídica e cor/raça ou etnia.",
+    "blocks": [
+      "renda_per_capita",
+      "gap",
+      "renda_gap",
+      "idade",
+      "nota_corte_gp",
+      "opcao_curso",
+      "ano",
+      "semestre",
+      "conceito_curso_gp",
+      "turno",
+      "ensino_medio_escola_publica",
+      "subarea_conhecimento",
+      "regiao_ies_alvo",
+      "natureza_juridica_mantenedora",
+      "etnia_cor"
+    ]
+  },
+  "blocos_usados": [
+    "renda_per_capita",
+    "gap",
+    "renda_gap",
+    "idade",
+    "nota_corte_gp",
+    "opcao_curso",
+    "ano",
+    "semestre",
+    "conceito_curso_gp",
+    "turno",
+    "subarea_conhecimento",
+    "regiao_ies_alvo",
+    "natureza_juridica_mantenedora",
+    "etnia_cor"
+  ],
+  "blocos_ausentes": [
+    "ensino_medio_escola_publica"
+  ],
+  "numericas": [
+    "renda_per_capita",
+    "gap",
+    "renda_gap",
+    "idade",
+    "nota_corte_gp"
+  ],
+  "categoricas": [
+    "opcao_curso",
+    "ano",
+    "semestre",
+    "conceito_curso_gp",
+    "turno",
+    "subarea_conhecimento",
+    "regiao_ies_alvo",
+    "natureza_juridica_mantenedora",
+    "etnia_cor"
+  ],
+  "feature_names_out": [
+    "num__renda_per_capita",
+    "num__gap",
+    "num__renda_gap",
+    "num__idade",
+    "num__nota_corte_gp",
+    "cat__opcao_curso_1",
+    "cat__opcao_curso_2",
+    "cat__opcao_curso_3",
+    "cat__ano_2019",
+    "cat__ano_2020",
+    "cat__ano_2021",
+    "cat__semestre_1",
+    "cat__semestre_2",
+    "cat__conceito_curso_gp_3",
+    "cat__conceito_curso_gp_4",
+    "cat__conceito_curso_gp_5",
+    "cat__conceito_curso_gp_Não informado",
+    "cat__turno_INTEGRAL",
+    "cat__turno_MATUTINO",
+    "cat__turno_NOTURNO",
+    "cat__turno_VESPERTINO",
+    "cat__subarea_conhecimento_ADMINISTRAÇÃO, ADMINISTRAÇÃO PÚBLICA, GESTÃO, LOGÍSTICA, NEGÓCIOS E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_AGRONEGÓCIO, AGROINDÚSTRIA E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_AGRONOMIA, ZOOTECNIA, ENGENHARIA FLORESTAL E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_ARTES, CIÊNCIAS SOCIAIS E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_BIOLOGIA (LIC), MATEMÁTICA (LIC), LETRAS-PORTUGUÊS E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_CIÊNCIA DA COMPUTAÇÃO E SISTEMAS DE INFORMAÇÃO E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_CIÊNCIAS AERONÁUTICAS E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_CIÊNCIAS BIOLÓGICAS (BEL), BIOMEDICINA, BIOTECNOLOGIA E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_CIÊNCIAS SOCIAIS, POLÍTICAS, ECONÔMICAS E CONTÁBEIS, PSICOLOGIA E SECRETARIADO",
+    "cat__subarea_conhecimento_COMUNICAÇÃO SOCIAL, JORNALISMO, PUBLICIDADE, MARKETING E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_COMUNICAÇÃO, DESIGN, AUDIO VISUAL E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_DANÇA, TEOLOGIA, MÍDIAS SOCIAIS, DESIGN DE INTERIORES E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_DIREITO, COMÉRCIO EXTERIOR, BIBLIOTECONOMIA E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_ENFERMAGEM, FISIOTERAPIA, FARMÁCIA, NUTRIÇÃO E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_ENGENHARIA CIVIL E AMBIENTAL, ARQUITETURA E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_ENGENHARIA DE PRODUÇÃO, DE MATERIAIS E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_ENGENHARIA DE SEGURANÇA DO TRABALHO, GESTÃO EM SAÚDE E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_ENGENHARIA ELÉTRICA, ELETRÔNICA, DA COMPUTAÇÃO E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_ENGENHARIA MECÂNICA, AERONÁUTICA, NAVAL E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_ENGENHARIA QUÍMICA, DE ALIMENTOS, DE PETRÓLEO E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_ESTÉTICA E COSMÉTICA, GESTÃO DO ESPORTE E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_FÍSICA (BEL), QUÍMICA (BEL), MATEMÁTICA (BEL), GEOGRAFIA (BEL) E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_HISTÓRIA (LIC), GEOGRAFIA (LIC), EDUCAÇÃO FÍSICA (LIC) E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_HOTELARIA E TURISMO, GASTRONOMIA E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_LETRAS - IDIOMAS, FÍSICA (LIC), QUÍMICA (LIC) E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_MEDICINA",
+    "cat__subarea_conhecimento_MEDICINA VETERINÁRIA",
+    "cat__subarea_conhecimento_MODA, DESENHO INDUSTRIAL, MUSEOLOGIA, CINEMA E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_MÚSICA, FOTOGRAFIA, PRODUÇÃO MULTIMÍDIA E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_ODONTOLOGIA, QUIROPRAXIA, FÍSICA MÉDICA E NATUROLOGIA",
+    "cat__subarea_conhecimento_PEDAGOGIA",
+    "cat__subarea_conhecimento_SERVIÇO SOCIAL, FONOAUDIOLOGIA, TERAPIA OCUPACIONAL E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_TRADUÇÃO E INTERPRETAÇÃO, ARQUEOLOGIA, RÁDIO, TV E INTERNET E CURSOS RELACIONADOS",
+    "cat__subarea_conhecimento_infrequent_sklearn",
+    "cat__regiao_ies_alvo_Centro-Oeste",
+    "cat__regiao_ies_alvo_Nordeste",
+    "cat__regiao_ies_alvo_Norte",
+    "cat__regiao_ies_alvo_Sudeste",
+    "cat__regiao_ies_alvo_Sul",
+    "cat__natureza_juridica_mantenedora_FUNDAÇÃO PÚBLICA DE DIREITO PRIVADO MUNICIPAL",
+    "cat__natureza_juridica_mantenedora_PESSOA JURÍDICA DE DIREITO PRIVADO - COM FINS LUCRATIVOS - SOCIEDADE CIVIL",
+    "cat__natureza_juridica_mantenedora_PESSOA JURÍDICA DE DIREITO PRIVADO - COM FINS LUCRATIVOS - SOCIEDADE MERCANTIL OU COMERCIAL",
+    "cat__natureza_juridica_mantenedora_PESSOA JURÍDICA DE DIREITO PRIVADO - SEM FINS LUCRATIVOS - ASSOCIAÇÃO DE UTILIDADE PÚBLICA",
+    "cat__natureza_juridica_mantenedora_PESSOA JURÍDICA DE DIREITO PRIVADO - SEM FINS LUCRATIVOS - FUNDAÇÃO",
+    "cat__natureza_juridica_mantenedora_PESSOA JURÍDICA DE DIREITO PRIVADO - SEM FINS LUCRATIVOS - SOCIEDADE",
+    "cat__natureza_juridica_mantenedora_PESSOA JURÍDICA DE DIREITO PÚBLICO - MUNICIPAL",
+    "cat__natureza_juridica_mantenedora_PRIVADA COM FINS LUCRATIVOS",
+    "cat__natureza_juridica_mantenedora_PRIVADA SEM FINS LUCRATIVOS",
+    "cat__etnia_cor_AMARELA",
+    "cat__etnia_cor_BRANCA",
+    "cat__etnia_cor_INDÍGENA",
+    "cat__etnia_cor_PARDA",
+    "cat__etnia_cor_PRETA"
+  ],
+  "abt_metadata": {
+    "target": "binario",
+    "target_col": "target_binario",
+    "target_map": {
+      "0": "NÃO CONTRATADO",
+      "1": "CONTRATADA"
+    },
+    "recorte": "geral",
+    "path_base": "/home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/04_curated/parquet/inscricoes_fies_2019_2021.parquet",
+    "linhas_apos_target_antes_drop": 1184973,
+    "linhas_abt": 1184972,
+    "colunas_abt": 26,
+    "distribuicao_target": {
+      "0": 1024603,
+      "1": 160369
+    },
+    "mapa_colunas_origem": {
+      "id_estudante": "id_estudante",
+      "ano": "ano",
+      "semestre": "semestre",
+      "situacao_fies": "situacao_fies",
+      "nome_curso": "nome_curso",
+      "renda_per_capita": "renda_per_capita",
+      "media_enem": "media_enem",
+      "nota_corte_gp": "nota_corte_gp",
+      "idade": null,
+      "opcao_curso": "opcao_curso",
+      "conceito_curso_gp": "conceito_curso_gp",
+      "turno": "turno",
+      "ensino_medio_escola_publica": null,
+      "regiao_ies_alvo": "regiao_ies_alvo",
+      "natureza_juridica_mantenedora": "natureza_juridica_mantenedora",
+      "etnia_cor": "etnia_cor",
+      "sexo": "sexo",
+      "regiao_morar": "regiao_morar",
+      "organizacao_academica": "organizacao_academica_ies",
+      "subarea_conhecimento": "subarea_conhecimento",
+      "concluiu_curso_superior": "concluiu_curso_superior",
+      "beneficiado_creduc_fies": "beneficiado_creduc_fies",
+      "uf_local_oferta": "uf_local_oferta",
+      "data_nascimento": "data_nascimento"
+    },
+    "resumo_categorias": {
+      "ano": {
+        "categorias_originais": 3,
+        "tratamento": "mantida"
+      },
+      "semestre": {
+        "categorias_originais": 2,
+        "tratamento": "mantida"
+      },
+      "opcao_curso": {
+        "categorias_originais": 3,
+        "tratamento": "mantida"
+      },
+      "conceito_curso_gp": {
+        "categorias_originais": 3,
+        "tratamento": "mantida"
+      },
+      "turno": {
+        "categorias_originais": 4,
+        "tratamento": "mantida"
+      },
+      "ensino_medio_escola_publica": {
+        "categorias_originais": 0,
+        "tratamento": "mantida"
+      },
+      "regiao_ies_alvo": {
+        "categorias_originais": 5,
+        "tratamento": "mantida"
+      },
+      "natureza_juridica_mantenedora": {
+        "categorias_originais": 9,
+        "tratamento": "mantida"
+      },
+      "etnia_cor": {
+        "categorias_originais": 5,
+        "tratamento": "mantida"
+      },
+      "sexo": {
+        "categorias_originais": 3,
+        "tratamento": "mantida"
+      },
+      "regiao_morar": {
+        "categorias_originais": 5,
+        "tratamento": "mantida"
+      },
+      "organizacao_academica": {
+        "categorias_originais": 3,
+        "tratamento": "mantida"
+      },
+      "subarea_conhecimento": {
+        "categorias_originais": 34,
+        "tratamento": "mantida"
+      },
+      "concluiu_curso_superior": {
+        "categorias_originais": 2,
+        "tratamento": "mantida"
+      },
+      "beneficiado_creduc_fies": {
+        "categorias_originais": 2,
+        "tratamento": "mantida"
+      },
+      "uf_local_oferta": {
+        "categorias_originais": 27,
+        "tratamento": "mantida"
+      }
+    },
+    "colunas_numericas": [
+      "renda_per_capita",
+      "gap",
+      "renda_gap",
+      "idade",
+      "nota_corte_gp"
+    ],
+    "colunas_categoricas": [
+      "ano",
+      "semestre",
+      "opcao_curso",
+      "conceito_curso_gp",
+      "turno",
+      "ensino_medio_escola_publica",
+      "regiao_ies_alvo",
+      "natureza_juridica_mantenedora",
+      "etnia_cor",
+      "sexo",
+      "regiao_morar",
+      "organizacao_academica",
+      "subarea_conhecimento",
+      "concluiu_curso_superior",
+      "beneficiado_creduc_fies",
+      "uf_local_oferta"
+    ],
+    "variaveis_principais_obrigatorias": [
+      "renda_per_capita",
+      "gap",
+      "renda_gap"
+    ],
+    "observacao": "ABT binária para regressão logística. Não inclui variáveis pós-contratação, como percentual de financiamento."
+  },
+  "observacao": "Árvore de decisão interpretável. As colunas de renda, gap e interação nas tabelas registram importâncias normalizadas agregadas por variável original."
+}

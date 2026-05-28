@@ -1,0 +1,48 @@
+================================================================================
+ARTICLE: LOGIT BINÁRIO | GERAL | IN_SAMPLE | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_binario/in_sample/logit_binario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_binaria_geral.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/logit_binario e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_4_4
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/logit_binario/in_sample/geral
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_logit_binario_geral_in_sample_e5_resumo.csv
+================================================================================
+ARTICLE: LOGIT BINÁRIO | GERAL | HOLDOUT_80_20 | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_binario/holdout_80_20/logit_binario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_binaria_geral.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/logit_binario e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_4_4
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/logit_binario/holdout_80_20/geral
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_logit_binario_geral_holdout_80_20_e5_resumo.csv
+================================================================================
+ARTICLE: LOGIT BINÁRIO | GERAL | IN_SAMPLE | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_binario/in_sample/logit_binario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_binaria_geral.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/logit_binario e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_4_4
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/logit_binario/in_sample/geral
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_logit_binario_geral_in_sample_e5_resumo.csv
+================================================================================
+ARTICLE: LOGIT BINÁRIO | GERAL | HOLDOUT_80_20 | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_binario/holdout_80_20/logit_binario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_binaria_geral.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/logit_binario e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_4_4
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/logit_binario/holdout_80_20/geral
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_logit_binario_geral_holdout_80_20_e5_resumo.csv
+================================================================================
+ARTICLE: LOGIT BINÁRIO | GERAL | IN_SAMPLE | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_binario/in_sample/logit_binario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_binaria_geral.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/logit_binario e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_4_4
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/logit_binario/in_sample/geral
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_logit_binario_geral_in_sample_e5_resumo.csv
+================================================================================
+ARTICLE: LOGIT BINÁRIO | GERAL | HOLDOUT_80_20 | E5
+================================================================================
+[OK] Modelo carregado: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/models/general/logit_binario/holdout_80_20/logit_binario_e5.joblib
+[OK] ABT carregada: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/06_abt/abt_contratacao_binaria_geral.parquet
+[OK] Saídas do corpo do artigo: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/figures/logit_binario e /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/tables/secao_4_4
+[OK] Saídas de apêndice: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/article/appendix/apendice_modelagem/logit_binario/holdout_80_20/geral
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/article_logit_binario_geral_holdout_80_20_e5_resumo.csv

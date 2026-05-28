@@ -1,0 +1,46 @@
+|--- num__gap <= -29.1300
+|   |--- num__gap <= -44.4700
+|   |   |--- num__nota_corte_gp <= 709.0900
+|   |   |   |--- num__nota_corte_gp <= 700.1600
+|   |   |   |   |--- truncated branch of depth 2
+|   |   |   |--- num__nota_corte_gp >  700.1600
+|   |   |   |   |--- class: 2
+|   |   |--- num__nota_corte_gp >  709.0900
+|   |   |   |--- cat__conceito_curso_gp_Não informado <= 0.5000
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- cat__conceito_curso_gp_Não informado >  0.5000
+|   |   |   |   |--- truncated branch of depth 3
+|   |--- num__gap >  -44.4700
+|   |   |--- cat__ano_2021 <= 0.5000
+|   |   |   |--- num__gap <= -35.4100
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__gap >  -35.4100
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |--- cat__ano_2021 >  0.5000
+|   |   |   |--- cat__natureza_juridica_mantenedora_PESSOA JURÍDICA DE DIREITO PRIVADO - SEM FINS LUCRATIVOS - ASSOCIAÇÃO DE UTILIDADE PÚBLICA <= 0.5000
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- cat__natureza_juridica_mantenedora_PESSOA JURÍDICA DE DIREITO PRIVADO - SEM FINS LUCRATIVOS - ASSOCIAÇÃO DE UTILIDADE PÚBLICA >  0.5000
+|   |   |   |   |--- truncated branch of depth 3
+|--- num__gap >  -29.1300
+|   |--- cat__opcao_curso_1 <= 0.5000
+|   |   |--- num__nota_corte_gp <= 582.7400
+|   |   |   |--- num__gap <= 262.4300
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__gap >  262.4300
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |--- num__nota_corte_gp >  582.7400
+|   |   |   |--- num__gap <= -15.6900
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__gap >  -15.6900
+|   |   |   |   |--- truncated branch of depth 3
+|   |--- cat__opcao_curso_1 >  0.5000
+|   |   |--- num__gap <= -15.7700
+|   |   |   |--- cat__ano_2021 <= 0.5000
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- cat__ano_2021 >  0.5000
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |--- num__gap >  -15.7700
+|   |   |   |--- num__nota_corte_gp <= 568.8800
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__nota_corte_gp >  568.8800
+|   |   |   |   |--- truncated branch of depth 3

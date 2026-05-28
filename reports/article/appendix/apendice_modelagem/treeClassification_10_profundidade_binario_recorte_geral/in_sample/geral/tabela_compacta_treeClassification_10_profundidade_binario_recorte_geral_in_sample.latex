@@ -1,0 +1,15 @@
+\begin{table}
+\caption{Resumo compacto da árvore de decisão, target binario, recorte geral, avaliação in_sample.}
+\label{tab:tabela_compacta_treeClassification_10_profundidade_binario_recorte_geral_in_sample}
+\begin{tabular}{llllllll}
+\toprule
+Especificação & N & ROC-AUC & Renda & Desempenho & Interação & Variáveis & Profundidade \\
+\midrule
+Modelo 1 & 1.184.972 & 0,6594 & 0,5378 & 0,0431 & 0,4192 & 3 & 10 \\
+Modelo 2 & 1.184.972 & 0,8322 & 0,0746 & 0,0052 & 0,0262 & 6 & 10 \\
+Modelo 3 & 1.184.972 & 0,8405 & 0,0667 & 0,0041 & 0,0220 & 10 & 10 \\
+Modelo 4 & 1.184.972 & 0,8453 & 0,0622 & 0,0028 & 0,0202 & 14 & 10 \\
+Modelo 5 & 1.184.972 & 0,8455 & 0,0619 & 0,0025 & 0,0206 & 20 & 10 \\
+\bottomrule
+\end{tabular}
+\end{table}

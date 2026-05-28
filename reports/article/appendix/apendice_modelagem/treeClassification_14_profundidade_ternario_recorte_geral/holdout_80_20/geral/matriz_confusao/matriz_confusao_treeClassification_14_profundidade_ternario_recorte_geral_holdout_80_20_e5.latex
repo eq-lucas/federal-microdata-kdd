@@ -1,0 +1,13 @@
+\begin{table}
+\caption{Matriz de confusão da árvore de decisão, target ternario, recorte geral, experimento E5.}
+\label{tab:matriz_confusao_treeClassification_14_profundidade_ternario_recorte_geral_holdout_80_20_e5}
+\begin{tabular}{lrrr}
+\toprule
+Classe real & Lista de espera & Não contratado & Contratada \\
+\midrule
+Lista de espera & 126714 & 12197 & 9228 \\
+Não contratado & 18626 & 117159 & 69136 \\
+Contratada & 1716 & 2740 & 27618 \\
+\bottomrule
+\end{tabular}
+\end{table}

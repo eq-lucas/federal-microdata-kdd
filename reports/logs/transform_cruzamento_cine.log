@@ -1,0 +1,72 @@
+================================================================================
+TRANSFORM: CRUZAMENTO FIES × INEP/CINE
+================================================================================
+[OK] Mestre INEP carregado | linhas: 372723 | colunas: 12
+================================================================================
+CRUZAMENTO CINE: inscricoes
+================================================================================
+[INÍCIO] fies_inscricoes_unificadas.parquet | linhas: 2197234 | colunas: 63
+[INFO] inscricoes: anos encontrados para cruzamento: [2019, 2020, 2021]
+[INFO] inscricoes: referência CINE construída | linhas: 177681 | colunas: 14
+[OK] Auxiliar de cursos válidos salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/temporarios/dataset_auxiliar_curso_area_inscricoes.csv
+[OK] Diagnóstico sem CINE salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/temporarios/analise_nomes_sem_cine_inscricoes_antes_manual.csv
+[OK] Diagnóstico sem CINE salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/temporarios/analise_nomes_sem_cine_inscricoes_depois_manual.csv
+[OK] Salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/fies/fies_inscricoes_com_cine.parquet
+[OK] Colunas finais: 76
+[AUDITORIA] inscricoes: linhas totais: 2197234
+[AUDITORIA] inscricoes: linhas sem codigo_curso: 0
+[AUDITORIA] inscricoes: linhas sem CINE geral: 0
+[AUDITORIA] inscricoes: distribuição match CINE: {'ano_exato': 2146826, 'manual_transform_layer_2': 25361, 'fallback_passado': 17078, 'fallback_futuro': 7969}
+================================================================================
+CRUZAMENTO CINE: ofertas
+================================================================================
+[INÍCIO] fies_ofertas_unificadas.parquet | linhas: 143623 | colunas: 68
+[INFO] ofertas: anos encontrados para cruzamento: [2019, 2020, 2021]
+[INFO] ofertas: referência CINE construída | linhas: 177681 | colunas: 14
+[OK] Auxiliar de cursos válidos salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/temporarios/dataset_auxiliar_curso_area_ofertas.csv
+[OK] Diagnóstico sem CINE salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/temporarios/analise_nomes_sem_cine_ofertas_antes_manual.csv
+[OK] Diagnóstico sem CINE salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/temporarios/analise_nomes_sem_cine_ofertas_depois_manual.csv
+[OK] Salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/fies/fies_ofertas_com_cine.parquet
+[OK] Colunas finais: 81
+[AUDITORIA] ofertas: linhas totais: 143623
+[AUDITORIA] ofertas: linhas sem codigo_curso: 1
+[AUDITORIA] ofertas: linhas sem CINE geral: 3
+[AUDITORIA] ofertas: distribuição match CINE: {'ano_exato': 132654, 'manual_transform_layer_2': 6117, 'fallback_passado': 3806, 'fallback_futuro': 1043, 'sem_match': 3}
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/transform_cruzamento_cine_resumo.csv
+Cruzamento FIES × INEP/CINE concluído.
+================================================================================
+TRANSFORM: CRUZAMENTO FIES × INEP/CINE
+================================================================================
+[OK] Mestre INEP carregado | linhas: 372723 | colunas: 12
+================================================================================
+CRUZAMENTO CINE: inscricoes
+================================================================================
+[INÍCIO] fies_inscricoes_unificadas.parquet | linhas: 2197234 | colunas: 63
+[INFO] inscricoes: anos encontrados para cruzamento: [2019, 2020, 2021]
+[INFO] inscricoes: referência CINE construída | linhas: 177681 | colunas: 14
+[OK] Auxiliar de cursos válidos salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/temporarios/dataset_auxiliar_curso_area_inscricoes.csv
+[OK] Diagnóstico sem CINE salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/temporarios/analise_nomes_sem_cine_inscricoes_antes_manual.csv
+[OK] Diagnóstico sem CINE salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/temporarios/analise_nomes_sem_cine_inscricoes_depois_manual.csv
+[OK] Salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/fies/fies_inscricoes_com_cine.parquet
+[OK] Colunas finais: 76
+[AUDITORIA] inscricoes: linhas totais: 2197234
+[AUDITORIA] inscricoes: linhas sem codigo_curso: 0
+[AUDITORIA] inscricoes: linhas sem CINE geral: 0
+[AUDITORIA] inscricoes: distribuição match CINE: {'ano_exato': 2146826, 'manual_transform_layer_2': 25361, 'fallback_passado': 17078, 'fallback_futuro': 7969}
+================================================================================
+CRUZAMENTO CINE: ofertas
+================================================================================
+[INÍCIO] fies_ofertas_unificadas.parquet | linhas: 143623 | colunas: 68
+[INFO] ofertas: anos encontrados para cruzamento: [2019, 2020, 2021]
+[INFO] ofertas: referência CINE construída | linhas: 177681 | colunas: 14
+[OK] Auxiliar de cursos válidos salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/temporarios/dataset_auxiliar_curso_area_ofertas.csv
+[OK] Diagnóstico sem CINE salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/temporarios/analise_nomes_sem_cine_ofertas_antes_manual.csv
+[OK] Diagnóstico sem CINE salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/temporarios/analise_nomes_sem_cine_ofertas_depois_manual.csv
+[OK] Salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/fies/fies_ofertas_com_cine.parquet
+[OK] Colunas finais: 81
+[AUDITORIA] ofertas: linhas totais: 143623
+[AUDITORIA] ofertas: linhas sem codigo_curso: 1
+[AUDITORIA] ofertas: linhas sem CINE geral: 3
+[AUDITORIA] ofertas: distribuição match CINE: {'ano_exato': 132654, 'manual_transform_layer_2': 6117, 'fallback_passado': 3806, 'fallback_futuro': 1043, 'sem_match': 3}
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/transform_cruzamento_cine_resumo.csv
+Cruzamento FIES × INEP/CINE concluído.

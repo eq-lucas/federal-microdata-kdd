@@ -1,0 +1,46 @@
+|--- num__renda_gap <= -27234.4307
+|   |--- num__nota_corte_gp <= 689.4100
+|   |   |--- cat__opcao_curso_1 <= 0.5000
+|   |   |   |--- num__gap <= -79.4900
+|   |   |   |   |--- truncated branch of depth 16
+|   |   |   |--- num__gap >  -79.4900
+|   |   |   |   |--- truncated branch of depth 16
+|   |   |--- cat__opcao_curso_1 >  0.5000
+|   |   |   |--- num__gap <= -92.2300
+|   |   |   |   |--- truncated branch of depth 14
+|   |   |   |--- num__gap >  -92.2300
+|   |   |   |   |--- truncated branch of depth 16
+|   |--- num__nota_corte_gp >  689.4100
+|   |   |--- num__gap <= -22.7500
+|   |   |   |--- num__nota_corte_gp <= 710.3600
+|   |   |   |   |--- truncated branch of depth 5
+|   |   |   |--- num__nota_corte_gp >  710.3600
+|   |   |   |   |--- truncated branch of depth 16
+|   |   |--- num__gap >  -22.7500
+|   |   |   |--- num__gap <= -13.7300
+|   |   |   |   |--- truncated branch of depth 5
+|   |   |   |--- num__gap >  -13.7300
+|   |   |   |   |--- class: 0
+|--- num__renda_gap >  -27234.4307
+|   |--- cat__opcao_curso_1 <= 0.5000
+|   |   |--- num__gap <= -34.2300
+|   |   |   |--- num__nota_corte_gp <= 567.0100
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |   |--- num__nota_corte_gp >  567.0100
+|   |   |   |   |--- truncated branch of depth 11
+|   |   |--- num__gap >  -34.2300
+|   |   |   |--- num__nota_corte_gp <= 710.4800
+|   |   |   |   |--- truncated branch of depth 16
+|   |   |   |--- num__nota_corte_gp >  710.4800
+|   |   |   |   |--- truncated branch of depth 6
+|   |--- cat__opcao_curso_1 >  0.5000
+|   |   |--- num__renda_gap <= -10199.6108
+|   |   |   |--- num__nota_corte_gp <= 710.5400
+|   |   |   |   |--- truncated branch of depth 12
+|   |   |   |--- num__nota_corte_gp >  710.5400
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |--- num__renda_gap >  -10199.6108
+|   |   |   |--- num__renda_per_capita <= 899.9900
+|   |   |   |   |--- truncated branch of depth 16
+|   |   |   |--- num__renda_per_capita >  899.9900
+|   |   |   |   |--- truncated branch of depth 16

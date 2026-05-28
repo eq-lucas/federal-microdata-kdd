@@ -1,0 +1,12 @@
+\begin{table}
+\caption{Matriz de confusão da regressão logística binária, experimento E5.}
+\label{tab:matriz_confusao_logit_binario_geral_holdout_80_20_e5}
+\begin{tabular}{lrr}
+\toprule
+Classe real & Não contratado & Contratada \\
+\midrule
+Não contratado & 134763 & 70158 \\
+Contratada & 3599 & 28475 \\
+\bottomrule
+\end{tabular}
+\end{table}

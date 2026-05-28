@@ -1,0 +1,15 @@
+\begin{table}
+\caption{Resumo compacto da árvore de decisão, target ternario, recorte geral, avaliação in_sample.}
+\label{tab:tabela_compacta_treeClassification_14_profundidade_ternario_recorte_geral_in_sample}
+\begin{tabular}{llllllll}
+\toprule
+Especificação & N & ROC-AUC & Renda & Desempenho & Interação & Variáveis & Profundidade \\
+\midrule
+Modelo 1 & 1.925.666 & 0,7672 & 0,1023 & 0,1013 & 0,7965 & 3 & 14 \\
+Modelo 2 & 1.925.666 & 0,8490 & 0,0272 & 0,0802 & 0,3361 & 6 & 14 \\
+Modelo 3 & 1.925.666 & 0,9041 & 0,0218 & 0,0593 & 0,2688 & 10 & 14 \\
+Modelo 4 & 1.925.666 & 0,9116 & 0,0168 & 0,0684 & 0,2575 & 14 & 14 \\
+Modelo 5 & 1.925.666 & 0,9186 & 0,0157 & 0,0666 & 0,2511 & 20 & 14 \\
+\bottomrule
+\end{tabular}
+\end{table}

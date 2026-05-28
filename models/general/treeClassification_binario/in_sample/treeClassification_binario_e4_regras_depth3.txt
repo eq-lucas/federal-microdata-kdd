@@ -1,0 +1,46 @@
+|--- cat__opcao_curso_1 <= 0.5000
+|   |--- cat__subarea_conhecimento_MEDICINA <= 0.5000
+|   |   |--- cat__subarea_conhecimento_ODONTOLOGIA, QUIROPRAXIA, FÍSICA MÉDICA E NATUROLOGIA <= 0.5000
+|   |   |   |--- num__renda_per_capita <= 499.6050
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__renda_per_capita >  499.6050
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |--- cat__subarea_conhecimento_ODONTOLOGIA, QUIROPRAXIA, FÍSICA MÉDICA E NATUROLOGIA >  0.5000
+|   |   |   |--- num__renda_per_capita <= 730.1600
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__renda_per_capita >  730.1600
+|   |   |   |   |--- truncated branch of depth 3
+|   |--- cat__subarea_conhecimento_MEDICINA >  0.5000
+|   |   |--- cat__opcao_curso_2 <= 0.5000
+|   |   |   |--- num__renda_gap <= 9330.0000
+|   |   |   |   |--- class: 0
+|   |   |   |--- num__renda_gap >  9330.0000
+|   |   |   |   |--- class: 0
+|   |   |--- cat__opcao_curso_2 >  0.5000
+|   |   |   |--- cat__natureza_juridica_mantenedora_PRIVADA COM FINS LUCRATIVOS <= 0.5000
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- cat__natureza_juridica_mantenedora_PRIVADA COM FINS LUCRATIVOS >  0.5000
+|   |   |   |   |--- truncated branch of depth 3
+|--- cat__opcao_curso_1 >  0.5000
+|   |--- num__renda_per_capita <= 748.9350
+|   |   |--- num__renda_per_capita <= 399.3250
+|   |   |   |--- cat__regiao_ies_alvo_Sudeste <= 0.5000
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- cat__regiao_ies_alvo_Sudeste >  0.5000
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |--- num__renda_per_capita >  399.3250
+|   |   |   |--- cat__subarea_conhecimento_ADMINISTRAÇÃO, ADMINISTRAÇÃO PÚBLICA, GESTÃO, LOGÍSTICA, NEGÓCIOS E CURSOS RELACIONADOS <= 0.5000
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- cat__subarea_conhecimento_ADMINISTRAÇÃO, ADMINISTRAÇÃO PÚBLICA, GESTÃO, LOGÍSTICA, NEGÓCIOS E CURSOS RELACIONADOS >  0.5000
+|   |   |   |   |--- truncated branch of depth 3
+|   |--- num__renda_per_capita >  748.9350
+|   |   |--- cat__turno_INTEGRAL <= 0.5000
+|   |   |   |--- num__renda_gap <= -14045.3149
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__renda_gap >  -14045.3149
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |--- cat__turno_INTEGRAL >  0.5000
+|   |   |   |--- num__renda_gap <= -11379.5029
+|   |   |   |   |--- truncated branch of depth 3
+|   |   |   |--- num__renda_gap >  -11379.5029
+|   |   |   |   |--- truncated branch of depth 3

@@ -1,0 +1,15 @@
+\begin{table}
+\caption{Resumo compacto da árvore de decisão, target ternario, recorte medicina, avaliação holdout_80_20.}
+\label{tab:tabela_compacta_treeClassification_19_profundidade_ternario_recorte_medicina_holdout_80_20}
+\begin{tabular}{llllllll}
+\toprule
+Especificação & N & ROC-AUC & Renda & Desempenho & Interação & Variáveis & Profundidade \\
+\midrule
+Modelo 1 & 311.329 & 0,9722 & 0,0321 & 0,9480 & 0,0199 & 3 & 19 \\
+Modelo 2 & 311.329 & 0,9799 & 0,0084 & 0,7995 & 0,0078 & 6 & 18 \\
+Modelo 3 & 311.329 & 0,9802 & 0,0052 & 0,7907 & 0,0093 & 10 & 13 \\
+Modelo 4 & 311.329 & 0,9801 & 0,0066 & 0,7848 & 0,0079 & 13 & 14 \\
+Modelo 5 & 311.329 & 0,9846 & 0,0039 & 0,7656 & 0,0073 & 19 & 15 \\
+\bottomrule
+\end{tabular}
+\end{table}

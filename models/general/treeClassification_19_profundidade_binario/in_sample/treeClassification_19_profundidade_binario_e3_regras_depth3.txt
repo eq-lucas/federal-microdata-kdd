@@ -1,0 +1,46 @@
+|--- cat__opcao_curso_1 <= 0.5000
+|   |--- num__nota_corte_gp <= 710.1600
+|   |   |--- num__renda_per_capita <= 499.0050
+|   |   |   |--- cat__opcao_curso_2 <= 0.5000
+|   |   |   |   |--- truncated branch of depth 13
+|   |   |   |--- cat__opcao_curso_2 >  0.5000
+|   |   |   |   |--- truncated branch of depth 12
+|   |   |--- num__renda_per_capita >  499.0050
+|   |   |   |--- cat__turno_INTEGRAL <= 0.5000
+|   |   |   |   |--- truncated branch of depth 16
+|   |   |   |--- cat__turno_INTEGRAL >  0.5000
+|   |   |   |   |--- truncated branch of depth 8
+|   |--- num__nota_corte_gp >  710.1600
+|   |   |--- cat__opcao_curso_2 <= 0.5000
+|   |   |   |--- num__gap <= -9.3100
+|   |   |   |   |--- class: 0
+|   |   |   |--- num__gap >  -9.3100
+|   |   |   |   |--- class: 0
+|   |   |--- cat__opcao_curso_2 >  0.5000
+|   |   |   |--- num__renda_gap <= -10268.2168
+|   |   |   |   |--- truncated branch of depth 2
+|   |   |   |--- num__renda_gap >  -10268.2168
+|   |   |   |   |--- truncated branch of depth 4
+|--- cat__opcao_curso_1 >  0.5000
+|   |--- num__renda_per_capita <= 748.9350
+|   |   |--- num__renda_per_capita <= 399.3250
+|   |   |   |--- cat__semestre_1 <= 0.5000
+|   |   |   |   |--- truncated branch of depth 11
+|   |   |   |--- cat__semestre_1 >  0.5000
+|   |   |   |   |--- truncated branch of depth 15
+|   |   |--- num__renda_per_capita >  399.3250
+|   |   |   |--- num__renda_gap <= -5861.4800
+|   |   |   |   |--- truncated branch of depth 16
+|   |   |   |--- num__renda_gap >  -5861.4800
+|   |   |   |   |--- truncated branch of depth 16
+|   |--- num__renda_per_capita >  748.9350
+|   |   |--- cat__turno_INTEGRAL <= 0.5000
+|   |   |   |--- num__renda_gap <= -14045.3149
+|   |   |   |   |--- truncated branch of depth 15
+|   |   |   |--- num__renda_gap >  -14045.3149
+|   |   |   |   |--- truncated branch of depth 16
+|   |   |--- cat__turno_INTEGRAL >  0.5000
+|   |   |   |--- num__renda_gap <= -11379.5029
+|   |   |   |   |--- truncated branch of depth 7
+|   |   |   |--- num__renda_gap >  -11379.5029
+|   |   |   |   |--- truncated branch of depth 9

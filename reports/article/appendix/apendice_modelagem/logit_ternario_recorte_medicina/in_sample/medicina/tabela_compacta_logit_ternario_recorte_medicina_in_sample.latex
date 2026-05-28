@@ -1,0 +1,15 @@
+\begin{table}
+\caption{Resumo compacto das especificações da regressão logística multinomial, recorte medicina, avaliação in_sample.}
+\label{tab:tabela_compacta_logit_ternario_recorte_medicina_in_sample}
+\begin{tabular}{lllllll}
+\toprule
+Especificação & N & ROC-AUC & Renda & Desempenho & Interação & Variáveis \\
+\midrule
+Modelo 1 & 311.329 & 0,9433 & -0,1090 & 1,4134 & -0,3189 & 3 \\
+Modelo 2 & 311.329 & 0,9401 & -0,0873 & 1,9750 & -0,2082 & 6 \\
+Modelo 3 & 311.329 & 0,9496 & -0,0852 & 2,3287 & -0,1767 & 10 \\
+Modelo 4 & 311.329 & 0,9528 & -0,0922 & 2,3786 & -0,1566 & 13 \\
+Modelo 5 & 311.329 & 0,9683 & -0,0658 & 2,4271 & -0,1139 & 19 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,46 @@
+================================================================================
+CURATE: BASES FINAIS
+================================================================================
+[INÍCIO] Lendo inscrições: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/fies/fies_inscricoes_com_modalidade.parquet
+[INÍCIO] Lendo ofertas: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/fies/fies_ofertas_com_cine.parquet
+[OK] Inscrições carregadas | linhas: 2197234 | colunas: 86
+[OK] Ofertas carregadas | linhas: 143623 | colunas: 81
+[AVISO] Ofertas sem ano/semestre removidas na curadoria: 1
+[OK] Inscrições curadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/04_curated/parquet/inscricoes_curated.parquet
+[OK] Ofertas curadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/04_curated/parquet/ofertas_curated.parquet
+[OK] Recorte do artigo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/04_curated/parquet/inscricoes_fies_2019_2021.parquet
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/curate_resumo.csv
+[OK] Matriz salva em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/curate_matriz_ano_modalidade.csv
+[OK] Auditoria CINE salva em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/curate_auditoria_cine.csv
+[OK] Auditoria de regiões salva em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/curate_auditoria_regioes.csv
+[INÍCIO] Gravando tabela SQLite: inscricoes | linhas: 2197234
+[OK] Tabela SQLite gravada: inscricoes
+[INÍCIO] Gravando tabela SQLite: ofertas | linhas: 143622
+[OK] Tabela SQLite gravada: ofertas
+[INÍCIO] Gravando tabela SQLite: inscricoes_fies_2019_2021 | linhas: 2197234
+[OK] Tabela SQLite gravada: inscricoes_fies_2019_2021
+[OK] SQLite salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/04_curated/sqlite/fies_curated.sqlite
+Curadoria concluída.
+================================================================================
+CURATE: BASES FINAIS
+================================================================================
+[INÍCIO] Lendo inscrições: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/fies/fies_inscricoes_com_modalidade.parquet
+[INÍCIO] Lendo ofertas: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/fies/fies_ofertas_com_cine.parquet
+[OK] Inscrições carregadas | linhas: 2197234 | colunas: 86
+[OK] Ofertas carregadas | linhas: 143623 | colunas: 81
+[AVISO] Ofertas sem ano/semestre removidas na curadoria: 1
+[OK] Inscrições curadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/04_curated/parquet/inscricoes_curated.parquet
+[OK] Ofertas curadas salvas em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/04_curated/parquet/ofertas_curated.parquet
+[OK] Recorte do artigo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/04_curated/parquet/inscricoes_fies_2019_2021.parquet
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/curate_resumo.csv
+[OK] Matriz salva em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/curate_matriz_ano_modalidade.csv
+[OK] Auditoria CINE salva em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/curate_auditoria_cine.csv
+[OK] Auditoria de regiões salva em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/curate_auditoria_regioes.csv
+[INÍCIO] Gravando tabela SQLite: inscricoes | linhas: 2197234
+[OK] Tabela SQLite gravada: inscricoes
+[INÍCIO] Gravando tabela SQLite: ofertas | linhas: 143622
+[OK] Tabela SQLite gravada: ofertas
+[INÍCIO] Gravando tabela SQLite: inscricoes_fies_2019_2021 | linhas: 2197234
+[OK] Tabela SQLite gravada: inscricoes_fies_2019_2021
+[OK] SQLite salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/04_curated/sqlite/fies_curated.sqlite
+Curadoria concluída.

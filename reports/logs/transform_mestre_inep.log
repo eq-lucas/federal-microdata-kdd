@@ -1,0 +1,62 @@
+================================================================================
+TRANSFORM: MESTRE INEP/CINE
+================================================================================
+[INÍCIO] microdados_cadastro_cursos_2016.csv
+[OK] microdados_cadastro_cursos_2016.csv | linhas: 92866 | cursos sem código: 0 | linhas sem CINE geral: 0
+[INÍCIO] microdados_cadastro_cursos_2017.csv
+[OK] microdados_cadastro_cursos_2017.csv | linhas: 119798 | cursos sem código: 0 | linhas sem CINE geral: 0
+[INÍCIO] microdados_cadastro_cursos_2018.csv
+[OK] microdados_cadastro_cursos_2018.csv | linhas: 182892 | cursos sem código: 0 | linhas sem CINE geral: 0
+[INÍCIO] microdados_cadastro_cursos_2019.csv
+[OK] microdados_cadastro_cursos_2019.csv | linhas: 253139 | cursos sem código: 0 | linhas sem CINE geral: 0
+[INÍCIO] microdados_cadastro_cursos_2020.csv
+[OK] microdados_cadastro_cursos_2020.csv | linhas: 344691 | cursos sem código: 0 | linhas sem CINE geral: 0
+[INÍCIO] microdados_cadastro_cursos_2021.csv
+[OK] microdados_cadastro_cursos_2021.csv | linhas: 444786 | cursos sem código: 0 | linhas sem CINE geral: 0
+[INÍCIO] microdados_cadastro_cursos_2022.csv
+[OK] microdados_cadastro_cursos_2022.csv | linhas: 573019 | cursos sem código: 0 | linhas sem CINE geral: 0
+[INÍCIO] microdados_cadastro_cursos_2023.csv
+[OK] microdados_cadastro_cursos_2023.csv | linhas: 671610 | cursos sem código: 0 | linhas sem CINE geral: 0
+[INÍCIO] microdados_cadastro_cursos_2024.csv
+[OK] microdados_cadastro_cursos_2024.csv | linhas: 720349 | cursos sem código: 0 | linhas sem CINE geral: 0
+[AUDITORIA] Linhas no mestre histórico: 372723
+[AUDITORIA] Duplicatas exatas no mestre histórico: 0
+[AUDITORIA] Combinações únicas ano_censo + codigo_curso: 372723
+[AUDITORIA] Diferença linhas - chaves: 0
+[AUDITORIA] Linhas sem nome_cine_area_geral: 0
+[OK] Mestre histórico salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/inep/inep_cursos_cine_historico_2016_2024.parquet
+[OK] Último registro por curso salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/inep/inep_cursos_cine_ultimo_registro.parquet
+[OK] Linhas no último registro: 59227
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/transform_mestre_inep_resumo.csv
+Mestre INEP/CINE concluído.
+================================================================================
+TRANSFORM: MESTRE INEP/CINE
+================================================================================
+[INÍCIO] microdados_cadastro_cursos_2016.csv
+[OK] microdados_cadastro_cursos_2016.csv | linhas: 92866 | cursos sem código: 0 | linhas sem CINE geral: 0
+[INÍCIO] microdados_cadastro_cursos_2017.csv
+[OK] microdados_cadastro_cursos_2017.csv | linhas: 119798 | cursos sem código: 0 | linhas sem CINE geral: 0
+[INÍCIO] microdados_cadastro_cursos_2018.csv
+[OK] microdados_cadastro_cursos_2018.csv | linhas: 182892 | cursos sem código: 0 | linhas sem CINE geral: 0
+[INÍCIO] microdados_cadastro_cursos_2019.csv
+[OK] microdados_cadastro_cursos_2019.csv | linhas: 253139 | cursos sem código: 0 | linhas sem CINE geral: 0
+[INÍCIO] microdados_cadastro_cursos_2020.csv
+[OK] microdados_cadastro_cursos_2020.csv | linhas: 344691 | cursos sem código: 0 | linhas sem CINE geral: 0
+[INÍCIO] microdados_cadastro_cursos_2021.csv
+[OK] microdados_cadastro_cursos_2021.csv | linhas: 444786 | cursos sem código: 0 | linhas sem CINE geral: 0
+[INÍCIO] microdados_cadastro_cursos_2022.csv
+[OK] microdados_cadastro_cursos_2022.csv | linhas: 573019 | cursos sem código: 0 | linhas sem CINE geral: 0
+[INÍCIO] microdados_cadastro_cursos_2023.csv
+[OK] microdados_cadastro_cursos_2023.csv | linhas: 671610 | cursos sem código: 0 | linhas sem CINE geral: 0
+[INÍCIO] microdados_cadastro_cursos_2024.csv
+[OK] microdados_cadastro_cursos_2024.csv | linhas: 720349 | cursos sem código: 0 | linhas sem CINE geral: 0
+[AUDITORIA] Linhas no mestre histórico: 372723
+[AUDITORIA] Duplicatas exatas no mestre histórico: 0
+[AUDITORIA] Combinações únicas ano_censo + codigo_curso: 372723
+[AUDITORIA] Diferença linhas - chaves: 0
+[AUDITORIA] Linhas sem nome_cine_area_geral: 0
+[OK] Mestre histórico salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/inep/inep_cursos_cine_historico_2016_2024.parquet
+[OK] Último registro por curso salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/03_interim/inep/inep_cursos_cine_ultimo_registro.parquet
+[OK] Linhas no último registro: 59227
+[OK] Resumo salvo em: /home/eq_lucas/Documents/projetos/federal-microdata-kdd/reports/logs/transform_mestre_inep_resumo.csv
+Mestre INEP/CINE concluído.

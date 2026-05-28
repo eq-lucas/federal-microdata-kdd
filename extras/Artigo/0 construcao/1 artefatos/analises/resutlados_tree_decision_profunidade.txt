@@ -1,0 +1,319 @@
+Veredito geral
+
+Está tecnicamente OK:
+
+CSVs lidos: 206
+CSVs com erro: 0
+PDFs: 162
+PNGs: 162
+JSONs: 150
+Logs: 39
+Traceback/erro nos logs das profundidades: não encontrei
+
+As saídas estão completas para:
+
+treeClassification_10_profundidade
+treeClassification_14_profundidade
+treeClassification_19_profundidade
+
+binário geral
+ternário geral
+ternário Medicina
+
+in_sample
+holdout_80_20
+E1 a E5
+
+Mas tem um ponto importante: esses resultados foram gerados antes da correção que removeu nome_cine_area_geral e nome_cine_area_especifica da modelagem. Então, nas importâncias, ainda aparecem:
+
+nome_cine_area_geral
+nome_cine_area_especifica
+
+Para a versão final do artigo, depois você precisa rerodar com o src corrigido. A análise abaixo vale para os resultados que você gerou agora.
+
+1. Resultado principal — E5 holdout
+Modelo	Prof.	ROC-AUC	Acc. bal.	F1 / F1 macro	Log loss	Folhas	1ª divisão
+Binário geral	10	0,8445	0,7727	0,4363	0,4895	324	opcao_curso
+Binário geral	14	0,8485	0,7748	0,4428	0,4865	759	opcao_curso
+Binário geral	19	0,8490	0,7751	0,4420	0,4918	1145	opcao_curso
+Ternário geral	10	0,9100	0,7552	0,6546	0,5834	380	renda_gap
+Ternário geral	14	0,9205	0,7645	0,6650	0,5556	877	renda_gap
+Ternário geral	19	0,9227	0,7680	0,6633	0,5510	1244	renda_gap
+Ternário Medicina	10	0,9850	0,7315	0,5933	0,2469	136	gap
+Ternário Medicina	14	0,9853	0,7269	0,5953	0,2461	166	gap
+Ternário Medicina	19	0,9852	0,7269	0,5953	0,2476	177	gap
+2. Melhor profundidade
+
+Minha leitura:
+
+Binário geral:
+melhor compromisso = profundidade 14
+
+A profundidade 19 melhora o ROC-AUC só de 0,8485 para 0,8490, mas piora o log loss e aumenta muito a árvore. Então 19 não compensa muito.
+
+Ternário geral:
+melhor para F1 macro = profundidade 14
+melhor para ROC-AUC/log loss = profundidade 19
+
+Aqui a 19 tem algum ganho real em ROC-AUC e log loss, mas a 14 é mais enxuta e tem F1 macro levemente melhor.
+
+Ternário Medicina:
+melhor compromisso = profundidade 14
+
+A 19 praticamente repete a matriz da 14, com mais folhas e sem ganho material. Medicina satura cedo porque o gap domina.
+
+3. Interpretação por modelo
+Binário geral
+
+A árvore binária continua dominada por opcao_curso.
+
+Top importâncias no E5 holdout:
+
+profundidade 10:
+opcao_curso          0,8020
+renda_per_capita     0,0602
+subarea_conhecimento 0,0356
+renda_gap            0,0209
+
+profundidade 14:
+opcao_curso          0,7795
+renda_per_capita     0,0639
+subarea_conhecimento 0,0364
+renda_gap            0,0218
+
+profundidade 19:
+opcao_curso          0,7698
+renda_per_capita     0,0652
+subarea_conhecimento 0,0362
+renda_gap            0,0226
+
+A matriz de confusão mostra o padrão esperado: alto recall para contratados, mas precisão baixa.
+
+Na profundidade 14:
+
+Real não contratado -> previsto não contratado: 138.294
+Real não contratado -> previsto contratada:      66.505
+Real contratada     -> previsto não contratado: 4.028
+Real contratada     -> previsto contratada:     28.028
+
+Métricas da classe Contratada:
+
+Precisão: 29,65%
+Recall:   87,43%
+F1:       44,28%
+
+Ou seja: captura muitos contratos reais, mas com muitos falsos positivos.
+
+Ternário geral
+
+Aqui a primeira divisão em todas as profundidades é:
+
+renda_gap
+
+Isso é muito relevante para o argumento do artigo. A árvore ternária geral está dizendo que a separação entre lista de espera, não contratado e contratada depende fortemente da interação entre renda e desempenho.
+
+Top importâncias no E5 holdout:
+
+profundidade 10:
+renda_gap            0,2605
+opcao_curso          0,2385
+nota_corte_gp        0,1682
+ano                  0,0769
+conceito_curso_gp    0,0695
+gap                  0,0631
+
+profundidade 14:
+renda_gap            0,2511
+opcao_curso          0,2282
+nota_corte_gp        0,1697
+ano                  0,0756
+conceito_curso_gp    0,0671
+gap                  0,0649
+
+profundidade 19:
+renda_gap            0,2490
+opcao_curso          0,2257
+nota_corte_gp        0,1704
+ano                  0,0756
+conceito_curso_gp    0,0665
+gap                  0,0648
+
+Na profundidade 14, a matriz ficou:
+
+Real lista de espera -> previsto lista:           126.318
+Real lista de espera -> previsto não contratado:   12.702
+Real lista de espera -> previsto contratada:         6.803
+
+Real não contratado  -> previsto lista:            18.583
+Real não contratado  -> previsto não contratado:  123.942
+Real não contratado  -> previsto contratada:       62.274
+
+Real contratada      -> previsto lista:             1.669
+Real contratada      -> previsto não contratado:    4.034
+Real contratada      -> previsto contratada:       26.353
+
+Métricas por classe na profundidade 14:
+
+Lista de espera:
+precisão 86,18%
+recall   86,62%
+F1       86,40%
+
+Não contratado:
+precisão 88,10%
+recall   60,52%
+F1       71,75%
+
+Contratada:
+precisão 27,62%
+recall   82,21%
+F1       41,34%
+
+A classe Contratada continua com baixa precisão, mas recall alto. Isso é coerente com base desbalanceada.
+
+Ternário Medicina
+
+Aqui o resultado é muito claro: a árvore é dominada por desempenho acadêmico.
+
+Primeira divisão em todas as profundidades:
+
+gap
+
+Top importâncias no E5 holdout:
+
+profundidade 10:
+gap                  0,7796
+opcao_curso          0,0913
+nota_corte_gp        0,0354
+ano                  0,0215
+uf_local_oferta      0,0153
+
+profundidade 14:
+gap                  0,7746
+opcao_curso          0,0906
+nota_corte_gp        0,0377
+ano                  0,0214
+uf_local_oferta      0,0152
+
+profundidade 19:
+gap                  0,7746
+opcao_curso          0,0906
+nota_corte_gp        0,0377
+ano                  0,0214
+uf_local_oferta      0,0152
+
+Na profundidade 14, a matriz ficou:
+
+Real lista de espera -> previsto lista:          52.296
+Real lista de espera -> previsto não contratado: 2.860
+Real lista de espera -> previsto contratada:     1.415
+
+Real não contratado  -> previsto lista:             80
+Real não contratado  -> previsto não contratado: 1.847
+Real não contratado  -> previsto contratada:     1.344
+
+Real contratada      -> previsto lista:             35
+Real contratada      -> previsto não contratado:   415
+Real contratada      -> previsto contratada:     1.009
+
+Métricas por classe:
+
+Lista de espera:
+precisão 99,78%
+recall   92,44%
+F1       95,97%
+
+Não contratado:
+precisão 36,06%
+recall   56,47%
+F1       44,01%
+
+Contratada:
+precisão 26,78%
+recall   69,16%
+F1       38,61%
+
+Medicina separa muito bem lista de espera, mas não separa perfeitamente Não contratado de Contratada. Isso faz sentido: depois que sai da lista de espera, o desfecho contratual depende de fatores não totalmente observados no modelo.
+
+4. Sobre as figuras
+
+As figuras estão coerentes.
+
+As probabilidades previstas das árvores aparecem em blocos, não em curvas suaves. Isso é esperado em árvore de decisão.
+
+Na figura de probabilidades:
+
+binário geral:
+probabilidade maior em faixas melhores de desempenho, mas com não monotonicidades por causa das partições.
+
+ternário geral:
+padrão mais claro de aumento com desempenho e queda em várias faixas de renda.
+
+ternário Medicina:
+concentração muito forte na faixa de desempenho 0 a +50; isso deve ser lido como partição da árvore, não como relação causal monotônica.
+
+As figuras de importância batem com os CSVs:
+
+binário geral -> opcao_curso domina
+ternário geral -> renda_gap, opcao_curso e nota_corte_gp dominam
+ternário Medicina -> gap domina
+
+As matrizes renderizadas batem com os CSVs.
+
+5. Comparação com a árvore padrão de profundidade 6
+
+Comparando com a árvore padrão que analisamos antes:
+
+binário geral:
+profundidade 6  -> ROC-AUC ~0,8299
+profundidade 14 -> ROC-AUC 0,8485
+
+ternário geral:
+profundidade 6  -> ROC-AUC ~0,8748
+profundidade 14 -> ROC-AUC 0,9205
+
+ternário Medicina:
+profundidade 6  -> ROC-AUC ~0,9792
+profundidade 14 -> ROC-AUC 0,9853
+
+Então:
+
+- no binário geral, profundidade maior ajuda moderadamente;
+- no ternário geral, ajuda bastante;
+- em Medicina, ajuda pouco, porque o gap já domina na árvore rasa.
+6. Conclusão para usar no artigo
+
+Eu usaria assim:
+
+Árvore padrão profundidade 6:
+modelo principal de interpretação visual simples.
+
+Profundidade 14:
+melhor robustez geral para comparação/apêndice.
+
+Profundidade 19:
+serve como teste de sensibilidade, mas não como modelo principal.
+
+O melhor compromisso técnico é:
+
+Binário geral: profundidade 14
+Ternário geral: profundidade 14 ou 19
+Ternário Medicina: profundidade 14
+
+Minha recomendação final:
+
+Use profundidade 14 como principal entre as árvores profundas.
+Deixe 10 e 19 como sensibilidade.
+Mantenha a árvore padrão 6 como versão mais interpretável visualmente.
+7. Ponto obrigatório antes da versão final
+
+Como essas saídas ainda têm nome_cine_area_geral e nome_cine_area_especifica, eu não trataria esse pacote como versão final do artigo.
+
+Para a versão final:
+
+python3 main.py reproduce all --refit
+python3 main.py export article --clean
+
+depois de aplicar o src corrigido que mantém só subarea_conhecimento na modelagem.
+
+A análise estatística geral provavelmente não vai mudar radicalmente, mas a versão final precisa ser coerente com a decisão metodológica de não usar as duas variáveis CINE extras nos modelos.

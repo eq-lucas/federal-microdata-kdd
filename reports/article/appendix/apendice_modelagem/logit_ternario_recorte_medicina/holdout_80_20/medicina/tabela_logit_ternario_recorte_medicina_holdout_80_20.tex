@@ -1,0 +1,15 @@
+\begin{table}
+\caption{Comparação de experimentos da regressão logística multinomial, recorte medicina, avaliação holdout_80_20.}
+\label{tab:tabela_logit_ternario_recorte_medicina_holdout_80_20}
+\begin{tabular}{lllllllllllllll}
+\toprule
+Experimento & Descrição & Tamanho da amostra & N treino & N teste & ROC-AUC OVR & Acurácia balanceada & F1 macro & Renda & Desempenho (gap) & Interação & Blocos & Colunas finais & Blocos incluídos & Avaliação \\
+\midrule
+E1 - Modelo mínimo substantivo & Renda, desempenho acadêmico relativo e interação entre renda e desempenho. & 311.329 & 249.063 & 62.266 & 0,9434 & 0,6248 & 0,4704 & -0,1154 & 1,4263 & -0,3367 & 3 & 3 & Renda familiar per capita; Desempenho relativo à nota de corte; Interação renda × desempenho & holdout\_80\_20\_estratificado \\
+E2 - Modelo mínimo + 3 controles & E1 acrescido de idade, nota de corte e opção de curso. & 311.329 & 249.063 & 62.266 & 0,9403 & 0,6754 & 0,4702 & -0,0914 & 1,9766 & -0,2279 & 6 & 8 & Renda familiar per capita; Desempenho relativo à nota de corte; Interação renda × desempenho; Idade; Nota de corte do grupo; Opção de curso & holdout\_80\_20\_estratificado \\
+E3 - Modelo intermediário & E2 acrescido de ano, semestre, conceito do curso, turno e ensino médio público. & 311.329 & 249.063 & 62.266 & 0,9496 & 0,6892 & 0,4946 & -0,0903 & 2,3299 & -0,2003 & 10 & 19 & Renda familiar per capita; Desempenho relativo à nota de corte; Interação renda × desempenho; Idade; Nota de corte do grupo; Opção de curso; Ano do processo seletivo; Semestre do processo seletivo; Conceito do curso; Turno & holdout\_80\_20\_estratificado \\
+E4 - Modelo expandido & E3 acrescido de subárea de conhecimento, região da oferta, natureza jurídica e cor/raça ou etnia. & 311.329 & 249.063 & 62.266 & 0,9528 & 0,6954 & 0,5027 & -0,0974 & 2,3889 & -0,1889 & 13 & 36 & Renda familiar per capita; Desempenho relativo à nota de corte; Interação renda × desempenho; Idade; Nota de corte do grupo; Opção de curso; Ano do processo seletivo; Semestre do processo seletivo; Conceito do curso; Turno; Região da oferta; Natureza jurídica da mantenedora; Cor/raça ou etnia & holdout\_80\_20\_estratificado \\
+E5 - Modelo completo interpretável & E4 acrescido de sexo, região de residência, organização acadêmica, conclusão de curso superior, benefício anterior CREDUC/FIES e UF da oferta. & 311.329 & 249.063 & 62.266 & 0,9685 & 0,7082 & 0,5365 & -0,0702 & 2,4360 & -0,1454 & 19 & 77 & Renda familiar per capita; Desempenho relativo à nota de corte; Interação renda × desempenho; Idade; Nota de corte do grupo; Opção de curso; Ano do processo seletivo; Semestre do processo seletivo; Conceito do curso; Turno; Região da oferta; Natureza jurídica da mantenedora; Cor/raça ou etnia; Sexo; Região de residência; Organização acadêmica; Concluiu curso superior; Beneficiado CREDUC/FIES; UF do local de oferta & holdout\_80\_20\_estratificado \\
+\bottomrule
+\end{tabular}
+\end{table}

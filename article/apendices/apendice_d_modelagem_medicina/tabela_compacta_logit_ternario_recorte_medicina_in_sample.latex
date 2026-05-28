@@ -1,0 +1,22 @@
+\begin{table}[htbp]
+\centering
+\caption{Resumo das especificações do modelo logístico multinomial, recorte medicina, avaliação in\_sample.}
+\label{tab:tabela_compacta_logit_ternario_recorte_medicina_in_sample}
+\small
+\begin{tabular}{llllll}
+\toprule
+\rowcolor[gray]{0.85}
+Especificação & N & ROC-AUC & Acurácia balanceada & F1 macro & Variáveis \\
+\midrule
+Modelo 1 & 311.329 & 0,9433 & 0,6315 & 0,4740 & 3 \\
+\rowcolor[gray]{0.95}
+Modelo 2 & 311.329 & 0,9401 & 0,6722 & 0,4685 & 6 \\
+Modelo 3 & 311.329 & 0,9496 & 0,6877 & 0,4913 & 10 \\
+\rowcolor[gray]{0.95}
+Modelo 4 & 311.329 & 0,9528 & 0,6949 & 0,5017 & 13 \\
+Modelo 5 & 311.329 & 0,9683 & 0,7153 & 0,5395 & 19 \\
+\bottomrule
+\end{tabular}
+\par\footnotesize{Notas: As especificações E1 a E5 adicionam progressivamente controles observáveis antes do desfecho.}
+\par\footnotesize{Fonte: elaboração própria (2026).}
+\end{table}

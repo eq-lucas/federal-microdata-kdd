@@ -1,0 +1,22 @@
+PK_2022 = [
+    'Código e-MEC da Mantenedora',
+    'Código do Local de Oferta',
+    'Cód. Do Grupo de Preferência',
+    'Código do Curso',
+    'Turno',
+]
+
+    PK = [
+    'codigo_e_mec_mantenedora_ofertas',
+    'codigo_local_oferta_ofertas',
+    'codigo_grupo_preferencia_ofertas',
+    'codigo_curso_ofertas',
+    'turno_ofertas',
+        ]
+
+# inscricoes:
+
+    PK= [
+        'id_estudante_inscricao',
+        'opcoes_cursos_inscricao_inscricao'
+        ]

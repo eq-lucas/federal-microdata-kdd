@@ -1,0 +1,30 @@
+\begin{table}[htbp]
+\centering
+\caption{Dez variáveis de maior importância na árvore de decisão multinomial, recorte geral, avaliação in\_sample, E5.}
+\label{tab:top10_importancias_treeClassification_19_ternario_geral_in_sample}
+\small
+\begin{tabular}{lll}
+\toprule
+\rowcolor[gray]{0.85}
+Posição & Variável & Importância \\
+\midrule
+1 & Interação renda × desempenho & 0,2485 \\
+\rowcolor[gray]{0.95}
+2 & Opção de curso & 0,2277 \\
+3 & Nota de corte do grupo & 0,1717 \\
+\rowcolor[gray]{0.95}
+4 & Ano do processo seletivo & 0,0748 \\
+5 & Desempenho relativo à nota de corte & 0,0671 \\
+\rowcolor[gray]{0.95}
+6 & Conceito do curso & 0,0666 \\
+7 & Subárea de conhecimento & 0,0463 \\
+\rowcolor[gray]{0.95}
+8 & Semestre do processo seletivo & 0,0241 \\
+9 & Concluiu curso superior & 0,0172 \\
+\rowcolor[gray]{0.95}
+10 & UF do local de oferta & 0,0161 \\
+\bottomrule
+\end{tabular}
+\par\footnotesize{Notas: Importâncias normalizadas por variável original, calculadas a partir da importância por redução de impureza da árvore. Valores maiores indicam maior contribuição para as partições, sem interpretação causal.}
+\par\footnotesize{Fonte: elaboração própria (2026).}
+\end{table}

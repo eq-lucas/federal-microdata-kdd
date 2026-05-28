@@ -1,0 +1,17 @@
+\begin{table}
+\caption{Associação entre renda familiar per capita e percentual de financiamento concedido no FIES, 2019--2021.}
+\label{tab:associacao_renda_financiamento}
+\begin{tabular}{ll}
+\toprule
+Medida & Valor \\
+\midrule
+Observações válidas & 160.323 \\
+Correlação de Pearson & -0,7057 \\
+p-valor da correlação & < 0,001 \\
+Intercepto & 91,62 \\
+Coeficiente da renda per capita & -0,0188 \\
+Variação estimada a cada R\$ 100 & -1,88 p,p, \\
+R² & 0,4980 \\
+\bottomrule
+\end{tabular}
+\end{table}

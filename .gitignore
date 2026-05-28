@@ -1,0 +1,22 @@
+data/01_raw/inep
+reports/diagnostics/
+__pycache__/
+.venv/
+*.pyc
+.ipynb_checkpoints/
+extras/datasets originais
+*.csv
+*.xlsx
+*.CSV
+*.excalidraw
+*.parquet
+*.db
+*.pyc
+*.tiff
+venv
+*.sqlite
+
+data/01_raw/inep/*
+data/01_raw/inep/microdados_censo_da_educacao_superior_2023
+data/01_raw/inep/microdados_censo_da_educacao_superior_2024
+#qndo tiver tudo pronto fazer gitignore da pasta extras 

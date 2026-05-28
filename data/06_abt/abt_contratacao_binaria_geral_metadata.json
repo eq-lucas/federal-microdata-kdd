@@ -1,0 +1,140 @@
+{
+  "target": "binario",
+  "target_col": "target_binario",
+  "target_map": {
+    "0": "NÃO CONTRATADO",
+    "1": "CONTRATADA"
+  },
+  "recorte": "geral",
+  "path_base": "/home/eq_lucas/Documents/projetos/federal-microdata-kdd/data/04_curated/parquet/inscricoes_fies_2019_2021.parquet",
+  "linhas_apos_target_antes_drop": 1184973,
+  "linhas_abt": 1184972,
+  "colunas_abt": 26,
+  "distribuicao_target": {
+    "0": 1024603,
+    "1": 160369
+  },
+  "mapa_colunas_origem": {
+    "id_estudante": "id_estudante",
+    "ano": "ano",
+    "semestre": "semestre",
+    "situacao_fies": "situacao_fies",
+    "nome_curso": "nome_curso",
+    "renda_per_capita": "renda_per_capita",
+    "media_enem": "media_enem",
+    "nota_corte_gp": "nota_corte_gp",
+    "idade": null,
+    "opcao_curso": "opcao_curso",
+    "conceito_curso_gp": "conceito_curso_gp",
+    "turno": "turno",
+    "ensino_medio_escola_publica": null,
+    "regiao_ies_alvo": "regiao_ies_alvo",
+    "natureza_juridica_mantenedora": "natureza_juridica_mantenedora",
+    "etnia_cor": "etnia_cor",
+    "sexo": "sexo",
+    "regiao_morar": "regiao_morar",
+    "organizacao_academica": "organizacao_academica_ies",
+    "subarea_conhecimento": "subarea_conhecimento",
+    "concluiu_curso_superior": "concluiu_curso_superior",
+    "beneficiado_creduc_fies": "beneficiado_creduc_fies",
+    "uf_local_oferta": "uf_local_oferta",
+    "data_nascimento": "data_nascimento"
+  },
+  "resumo_categorias": {
+    "ano": {
+      "categorias_originais": 3,
+      "tratamento": "mantida"
+    },
+    "semestre": {
+      "categorias_originais": 2,
+      "tratamento": "mantida"
+    },
+    "opcao_curso": {
+      "categorias_originais": 3,
+      "tratamento": "mantida"
+    },
+    "conceito_curso_gp": {
+      "categorias_originais": 3,
+      "tratamento": "mantida"
+    },
+    "turno": {
+      "categorias_originais": 4,
+      "tratamento": "mantida"
+    },
+    "ensino_medio_escola_publica": {
+      "categorias_originais": 0,
+      "tratamento": "mantida"
+    },
+    "regiao_ies_alvo": {
+      "categorias_originais": 5,
+      "tratamento": "mantida"
+    },
+    "natureza_juridica_mantenedora": {
+      "categorias_originais": 9,
+      "tratamento": "mantida"
+    },
+    "etnia_cor": {
+      "categorias_originais": 5,
+      "tratamento": "mantida"
+    },
+    "sexo": {
+      "categorias_originais": 3,
+      "tratamento": "mantida"
+    },
+    "regiao_morar": {
+      "categorias_originais": 5,
+      "tratamento": "mantida"
+    },
+    "organizacao_academica": {
+      "categorias_originais": 3,
+      "tratamento": "mantida"
+    },
+    "subarea_conhecimento": {
+      "categorias_originais": 34,
+      "tratamento": "mantida"
+    },
+    "concluiu_curso_superior": {
+      "categorias_originais": 2,
+      "tratamento": "mantida"
+    },
+    "beneficiado_creduc_fies": {
+      "categorias_originais": 2,
+      "tratamento": "mantida"
+    },
+    "uf_local_oferta": {
+      "categorias_originais": 27,
+      "tratamento": "mantida"
+    }
+  },
+  "colunas_numericas": [
+    "renda_per_capita",
+    "gap",
+    "renda_gap",
+    "idade",
+    "nota_corte_gp"
+  ],
+  "colunas_categoricas": [
+    "ano",
+    "semestre",
+    "opcao_curso",
+    "conceito_curso_gp",
+    "turno",
+    "ensino_medio_escola_publica",
+    "regiao_ies_alvo",
+    "natureza_juridica_mantenedora",
+    "etnia_cor",
+    "sexo",
+    "regiao_morar",
+    "organizacao_academica",
+    "subarea_conhecimento",
+    "concluiu_curso_superior",
+    "beneficiado_creduc_fies",
+    "uf_local_oferta"
+  ],
+  "variaveis_principais_obrigatorias": [
+    "renda_per_capita",
+    "gap",
+    "renda_gap"
+  ],
+  "observacao": "ABT binária para regressão logística. Não inclui variáveis pós-contratação, como percentual de financiamento."
+}
