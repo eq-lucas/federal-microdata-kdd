@@ -49,7 +49,7 @@ O recorte analítico concentra-se no público de baixa renda associado à Modali
 O desfecho central do artigo é a contratação efetiva do financiamento. Para reconstruir o fluxo do processo seletivo, as situações das inscrições foram organizadas em categorias de análise. A lista de espera indica inscrições que não avançaram na chamada regular; a não contratação reúne casos que avançaram no processo, mas não resultaram na formalização do financiamento; e a contratação identifica as inscrições que resultaram em contrato efetivado. Essa organização permite separar duas etapas do processo: a barreira acadêmica inicial e a etapa posterior de formalização do contrato.
 O desempenho acadêmico foi medido pela diferença entre a média do Enem do candidato e a nota de corte do grupo de preferência. Valores positivos indicam desempenho acima da nota de corte, enquanto valores negativos indicam desempenho inferior. Essa medida foi utilizada tanto em valores contínuos quanto em intervalos, permitindo observar como a distância em relação à nota de corte se associa às situações do processo seletivo. A renda familiar per capita foi analisada em valores nominais e em faixas.
 A análise foi organizada em quatro etapas. Primeiro, descreveu-se o fluxo do processo seletivo, considerando vagas ofertadas, inscrições, inscrições com desempenho igual ou superior à nota de corte e contratos efetivados. Em seguida, examinou-se a distribuição das situações de inscrição segundo faixas de renda familiar per capita e desempenho relativo à nota de corte. A terceira etapa analisou, entre os contratos efetivados, a associação entre renda familiar per capita e percentual de financiamento concedido, com o objetivo de verificar como a cobertura do financiamento varia conforme a renda do candidato.
-A quarta etapa examinou a passagem entre classificação acadêmica e contratação. Para isso, foram consideradas duas formas de observar o desfecho. A primeira distingue três situações do fluxo seletivo: lista de espera, não contratação e contratação efetiva. Essa forma permite observar, ao mesmo tempo, a barreira acadêmica inicial e a etapa contratual. A segunda restringe a comparação às inscrições não contratadas e contratadas, com o objetivo de observar mais diretamente a etapa de formalização do financiamento. Os resultados principais são apresentados por meio de probabilidades previstas, pois esse formato permite interpretar de maneira mais direta como renda e desempenho se associam às diferentes situações do processo seletivo.
+A quarta etapa examinou a passagem entre classificação acadêmica e contratação. Para isso, foram consideradas duas formas de observar o desfecho. A primeira distingue três situações do fluxo seletivo: lista de espera, não contratação e contratação efetiva. Essa forma permite observar, ao mesmo tempo, a barreira acadêmica inicial e a etapa contratual. A segunda restringe à comparação às inscrições não contratadas e contratadas, com o objetivo de observar mais diretamente a etapa de formalização do financiamento. Os resultados principais são apresentados por meio de probabilidades previstas, pois esse formato permite interpretar de maneira mais direta como renda e desempenho se associam às diferentes situações do processo seletivo.
 As especificações incluíram progressivamente variáveis associadas ao candidato, ao desempenho acadêmico, ao curso e à instituição. A especificação inicial considerou renda familiar per capita, desempenho relativo à nota de corte e a interação entre renda e desempenho. As especificações seguintes adicionaram controles como idade, nota de corte do grupo de preferência, opção de curso, ano e semestre do processo seletivo, conceito do curso, turno, ensino médio em escola pública, subárea de conhecimento, região da oferta, natureza jurídica da mantenedora, cor/raça ou etnia, sexo, região de residência, organização acadêmica, conclusão prévia de curso superior, benefício anterior pelo CREDUC/FIES e UF do local de oferta. As tabelas complementares dos apêndices apresentam os resultados dessas especificações.
 Além do recorte geral, o artigo examina separadamente o curso de Medicina. Esse recorte foi adotado porque se trata de um curso de alta seletividade e alto custo, no qual a passagem entre desempenho acadêmico suficiente e contratação efetiva do financiamento assume relevância particular. A análise não busca generalizar o caso de Medicina para todos os cursos, mas observar como a conversão entre elegibilidade acadêmica e contratação se comporta em um curso no qual a etapa contratual tende a ser especialmente sensível às condições de financiamento.
 A análise deve ser interpretada como um estudo associativo. Os resultados permitem examinar relações entre renda, desempenho acadêmico, características do curso, percentual financiado e contratação, mas não autorizam afirmar causalidade direta entre coparticipação e não contratação. Além disso, o percentual de financiamento é observado apenas entre contratos efetivados, o que limita a mensuração direta da coparticipação enfrentada por candidatos que não formalizaram contrato. Ainda assim, a estratégia adotada permite analisar uma etapa pouco observada do FIES: a distância entre alcançar desempenho suficiente no processo seletivo e converter essa condição em contrato efetivo.
@@ -507,3 +507,22 @@ Fonte: elaboração própria (2026).
 Disponibilidade
 Disponibilidade de dados e códigos
 Os microdados utilizados neste artigo são públicos e estão disponíveis nos portais oficiais do Ministério da Educação e do Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira. Os códigos de tratamento, análise e geração das tabelas e figuras estão disponíveis no repositório: https://github.com/eq-lucas/federal-microdata-kdd. Os dados brutos não são redistribuídos no repositório e devem ser baixados diretamente das fontes oficiais.
+observacoes
+
+
+Revistas alvo:
+
+
+
+
+ensaio - cesgranrio
+
+
+SBIE
+
+
+RAP
+
+
+Total de palavras:
+* 7829 palavras literalmente, sem contar com cabecalhos e rodapes
