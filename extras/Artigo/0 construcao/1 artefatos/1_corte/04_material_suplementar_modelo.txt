@@ -1,0 +1,55 @@
+# Material suplementar
+
+Este arquivo reúne análises complementares que documentam a robustez das interpretações apresentadas no artigo. O material não substitui os resultados principais e deve ser lido como evidência complementar das associações analisadas, sem interpretação causal.
+
+## S1. Análises complementares do fluxo de seleção
+
+Esta seção verifica se o padrão observado no fluxo principal permanece quando se considera apenas o curso priorizado por candidato. A finalidade é reduzir o efeito da multiplicidade de opções de curso no volume total de registros.
+
+Figura S1 – Evolução quantitativa do fluxo do processo seletivo do FIES, considerando apenas o curso priorizado por cada candidato, 2019–2021.
+Nota: O eixo X indica as fases do processo seletivo regular do FIES: I – vagas ofertadas; II – inscrição priorizada de cada candidato; III – inscrições em que o candidato obteve desempenho igual ou superior à nota de corte do grupo de preferência; IV – contratos efetivados.
+Fonte: elaboração própria (2026).
+
+Figura S2 – Evolução temporal da taxa de conversão entre inscrições priorizadas pelos candidatos no processo seletivo e contratos efetivados na área de Saúde e bem-estar, considerando apenas o curso priorizado por cada candidato, 2019–2021.
+Nota: A taxa de conversão corresponde à proporção de inscrições priorizadas que resultaram em contrato efetivado em cada período.
+Fonte: elaboração própria (2026).
+
+## S2. Distribuição por renda e lista de espera
+
+Esta seção documenta a composição das faixas de renda e a distribuição da lista de espera segundo renda familiar per capita e desempenho relativo à nota de corte. Essas informações sustentam a cautela na leitura das faixas superiores de renda e a interpretação de que a barreira acadêmica inicial está mais diretamente associada ao desempenho relativo à nota de corte.
+
+Tabela S1 – Distribuição das inscrições por faixa de renda familiar per capita no FIES, 2019–2021.
+Nota: As faixas de renda familiar per capita foram definidas em valores nominais, com finalidade descritiva.
+Fonte: elaboração própria (2026).
+
+Figura S3 – Percentual de inscrições em lista de espera por faixa de renda familiar per capita e desempenho relativo à nota de corte no FIES, 2019–2021.
+Nota: O eixo X apresenta as faixas de renda familiar per capita, identificadas por numerais romanos: I – até 600; II – 601 a 1.200; III – 1.201 a 1.800; IV – 1.801 a 2.400; V – 2.401 a 3.000; VI – acima de 3.000.
+Fonte: elaboração própria (2026).
+
+## S3. Especificações complementares no recorte geral
+
+Esta seção reúne evidências complementares da modelagem geral. Os resultados documentam as associações estimadas e a contribuição relativa das variáveis no ajuste dos modelos, sem interpretação causal.
+
+Tabela S2 – Coeficientes-chave do modelo logístico multinomial no recorte geral do FIES, 2019–2021.
+Nota: A tabela apresenta coeficientes selecionados para as situações de lista de espera, não contratação e contratação efetiva. Os resultados devem ser lidos como documentação complementar das associações estimadas, e não como efeitos causais.
+Fonte: elaboração própria (2026).
+
+Tabela S3 – Dez variáveis de maior importância na árvore de decisão binária restrita à etapa contratual no recorte geral do FIES, 2019–2021.
+Nota: As importâncias indicam a contribuição relativa das variáveis no ajuste da árvore de decisão. Os valores não têm interpretação causal e devem ser lidos como evidência complementar sobre a diferenciação entre inscrições não contratadas e contratadas.
+Fonte: elaboração própria (2026).
+
+Tabela S4 – Dez variáveis de maior importância na árvore de decisão com três situações no recorte geral do FIES, 2019–2021.
+Nota: As importâncias indicam a contribuição relativa das variáveis no ajuste da árvore de decisão. Os valores não têm interpretação causal e devem ser lidos como evidência complementar sobre a diferenciação entre lista de espera, não contratação e contratação efetiva.
+Fonte: elaboração própria (2026).
+
+## S4. Especificações complementares no recorte de Medicina
+
+Esta seção documenta os resultados complementares do recorte de Medicina. As análises ajudam a verificar se a diferenciação entre lista de espera, não contratação e contratação efetiva também aparece em um curso de alta seletividade e alto custo, sem generalização automática para as demais áreas.
+
+Tabela S5 – Coeficientes-chave do modelo logístico multinomial no recorte de Medicina, 2019–2021.
+Nota: A tabela apresenta coeficientes selecionados para as situações de lista de espera, não contratação e contratação efetiva. Os resultados devem ser lidos como documentação complementar das associações estimadas, e não como efeitos causais.
+Fonte: elaboração própria (2026).
+
+Tabela S6 – Dez variáveis de maior importância na árvore de decisão com três situações no recorte de Medicina, 2019–2021.
+Nota: As importâncias indicam a contribuição relativa das variáveis no ajuste da árvore de decisão. Os valores não têm interpretação causal e devem ser lidos como evidência complementar sobre a diferenciação entre lista de espera, não contratação e contratação efetiva no recorte de Medicina.
+Fonte: elaboração própria (2026).

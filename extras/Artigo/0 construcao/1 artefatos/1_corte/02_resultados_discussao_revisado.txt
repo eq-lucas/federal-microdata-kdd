@@ -1,0 +1,73 @@
+# 4. Resultados e Discussão
+
+Nesta seção, apresentam-se os resultados da análise dos microdados do FIES de 2019 a 2021, com foco nos fatores associados à efetivação dos contratos na Modalidade I. A exposição acompanha o próprio percurso da política: parte do fluxo geral do processo seletivo, passa pelas situações das inscrições, examina a relação entre renda e cobertura do financiamento, estima probabilidades previstas no fluxo seletivo e, por fim, observa o recorte específico de Medicina.
+
+## 4.1. Fluxo do processo seletivo
+
+Para descrever o fluxo do processo seletivo do FIES, os registros foram organizados em quatro fases sequenciais: (I) vagas ofertadas, (II) inscrições, (III) inscrições em que o candidato obteve média do Enem igual ou superior à nota de corte do grupo de preferência e (IV) contratos efetivados. A Figura 1 apresenta a evolução quantitativa dessas etapas entre 2019 e 2021, com desagregação pelas áreas gerais da CINE contempladas pelo programa.
+
+Verifica-se que o número de vagas ofertadas é superior ao número de inscrições em todos os semestres. Observa-se, ainda, que apenas parte das inscrições alcança desempenho igual ou superior à nota de corte e que, entre essas, somente uma parcela resulta em contrato efetivado. O fluxo revela, portanto, uma redução progressiva entre oferta, inscrição, elegibilidade acadêmica e contratação. Essa passagem não é apenas administrativa: ela indica que alcançar o critério acadêmico é condição importante para avançar no processo seletivo, mas não garante a formalização do financiamento.
+
+Figura 1 – Evolução quantitativa do fluxo do processo seletivo do FIES, por grandes áreas de conhecimento, 2019–2021.
+Notas: O eixo X indica as fases do processo regular do FIES: I – vagas ofertadas pelo FIES; II – inscrições; III – inscrições em que o candidato obteve desempenho igual ou superior à nota de corte do grupo de preferência; IV – contratos efetivados.
+Fonte: elaboração própria (2026).
+
+Para complementar essa leitura, a Figura 2 apresenta a taxa de conversão das inscrições em contratos efetivados na área de Saúde e bem-estar. O recorte é relevante porque inclui Medicina, curso de alto custo, e porque essa área concentra volume expressivo de vagas ofertadas e inscrições no FIES. A taxa permaneceu baixa ao longo do período, ainda que com variações entre semestres, regiões, média nacional da própria área e média geral entre todas as áreas da CINE. A permanência desse padrão em análises que consideram apenas o curso priorizado por candidato é documentada no material suplementar.
+
+Figura 2 – Evolução temporal da taxa de conversão entre inscrições e contratos na área de Saúde e bem-estar, 2019–2021.
+Fonte: elaboração própria (2026).
+
+## 4.2. Situações das inscrições, renda e desempenho
+
+A Tabela 1 apresenta a distribuição das inscrições segundo a situação registrada no processo seletivo. “Lista de Espera” reúne inscrições que não avançaram na chamada regular; “Não Contratado” corresponde a inscrições que avançaram no processo, mas não resultaram na formalização do contrato; e “Contratada” identifica as inscrições com financiamento efetivado. As demais situações registram cancelamentos, opções não contratadas, rejeições documentais, inscrições ainda em tramitação ou postergadas.
+
+Essas três situações concentram a maior parte dos registros e permitem distinguir dois momentos do processo: a barreira acadêmica inicial, associada à lista de espera, e a etapa posterior de formalização do contrato, expressa pela comparação entre não contratação e contratação efetiva.
+
+Tabela 1 – Distribuição das inscrições por situação no processo seletivo do FIES, 2019–2021.
+Fonte: elaboração própria (2026).
+
+A Figura 3 organiza as taxas de contratação e de não contratação segundo faixas de renda familiar per capita e desempenho relativo à nota de corte. Nesta análise, o desempenho relativo à nota de corte corresponde à diferença entre a média do Enem do candidato e a nota de corte do grupo de preferência: valores positivos indicam desempenho acima da nota de corte, e valores negativos indicam desempenho abaixo dela.
+
+No painel de contratação, os maiores percentuais concentram-se nas faixas inferiores de renda, especialmente entre inscrições com desempenho igual ou superior à nota de corte. Nos intervalos abaixo da nota de corte, as taxas de contratação diminuem em toda a distribuição observada. Essa leitura deve considerar que as três primeiras faixas de renda, até R$ 1.800 per capita, concentram a maior parte dos registros, razão pela qual oscilações nos grupos de renda mais elevada devem ser interpretadas com cautela. A distribuição complementar por faixas de renda é apresentada no material suplementar.
+
+No painel de não contratação, os percentuais aumentam das faixas mais baixas para as intermediárias de renda familiar per capita, sobretudo entre inscrições com desempenho igual ou superior à nota de corte. Tomados em conjunto, os painéis indicam que, mesmo dentro da Modalidade I, a passagem entre elegibilidade acadêmica e contratação não ocorre de forma homogênea entre as faixas de renda analisadas.
+
+Figura 3 – Taxas de contratação efetiva e de não contratação por faixa de renda familiar per capita e desempenho relativo à nota de corte no FIES, 2019–2021.
+Notas: O eixo X apresenta as faixas de renda familiar per capita, identificadas por numerais romanos: I – 0 a 600; II – 601 a 1.200; III – 1.201 a 1.800; IV – 1.801 a 2.400; V – 2.401 a 3.000; VI – acima de 3.000.
+Fonte: elaboração própria (2026).
+
+## 4.3. Renda, cobertura do financiamento e coparticipação implícita
+
+Na Modalidade I do FIES, o percentual financiado é definido conforme o comprometimento da renda familiar mensal bruta per capita e o valor do encargo educacional. Entre os contratos efetivados, a Figura 4 mostra associação negativa entre renda e cobertura do financiamento: inscrições de candidatos com maior renda per capita tendem a apresentar percentuais financiados menores.
+
+A correlação de Pearson foi de -0,7057, com R² de 0,4980 na regressão linear simples. A estimativa indica que, a cada aumento de R$ 100,00 na renda familiar per capita, o percentual financiado diminui, em média, cerca de 1,88 ponto percentual. Em termos práticos, uma diferença de R$ 600,00 de renda per capita corresponde a aproximadamente 11,3 pontos percentuais a menos de cobertura estimada. Assim, uma cobertura de 90% passaria para cerca de 78,7%, ampliando de 10% para 21,3% a parcela dos encargos que permaneceria fora do financiamento.
+
+Figura 4 – Associação entre renda familiar per capita e percentual de financiamento entre contratos efetivados do FIES, 2019–2021.
+Notas: Cada ponto representa uma inscrição com contrato efetivado. A correlação de Pearson é de -0,7057; o R² da regressão linear simples é 0,4980; N = 160.323. A estimativa linear indica variação média de -1,88 ponto percentual no percentual financiado a cada R$ 100,00 de renda familiar per capita.
+Fonte: elaboração própria (2026).
+
+Cabe destacar que o percentual financiado é observado apenas entre contratos efetivados. Assim, o resultado documenta como a cobertura varia entre contratos formalizados, mas não mensura diretamente a coparticipação enfrentada por candidatos que não formalizaram contrato.
+
+## 4.4. Probabilidades previstas no fluxo seletivo
+
+A Figura 5 apresenta probabilidades previstas para lista de espera, não contratação e contratação efetiva. Os painéis (a), (b) e (c) mostram essas três situações no fluxo seletivo, enquanto o painel (d) restringe a comparação à etapa contratual, isto é, entre inscrições não contratadas e contratadas.
+
+No painel (a), a permanência em lista de espera é maior entre inscrições com desempenho inferior a -150 pontos e diminui fortemente nos demais intervalos, com menor variação entre faixas de renda. O resultado indica que o desempenho relativo à nota de corte organiza principalmente a barreira de entrada no processo seletivo.
+
+Nos painéis de não contratação e contratação, o desempenho continua relevante, mas não diferencia sozinho as situações das inscrições. Em algumas combinações de renda e desempenho, inscrições de candidatos em faixas de renda mais elevadas apresentam probabilidades de contratação próximas ou inferiores às observadas entre candidatos de menor renda e desempenho inferior. O painel (d), ao isolar a comparação entre inscrições não contratadas e contratadas, reforça a hipótese de que, uma vez superada a barreira acadêmica inicial, a formalização do contrato passa a depender também de condições econômicas enfrentadas pelo candidato, sobretudo da parcela dos encargos educacionais que permanece fora da cobertura do financiamento. As especificações complementares e medidas de importância das variáveis são apresentadas no material suplementar, como documentação das associações estimadas.
+
+Figura 5 – Probabilidades previstas segundo a faixa de renda familiar per capita e desempenho relativo à nota de corte no FIES, 2019–2021.
+Notas: O painel (a) apresenta a probabilidade prevista de lista de espera; o painel (b), de não contratação; o painel (c), de contratação efetiva; e o painel (d), de contratação na estimativa restrita à comparação entre não contratação e contratação. As faixas de renda familiar per capita são identificadas por numerais romanos: I – até 600; II – 601 a 1.200; III – 1.201 a 1.800; IV – 1.801 a 2.400; V – 2.401 a 3.000; VI – acima de 3.000.
+Fonte: elaboração própria (2026).
+
+## 4.5. Medicina: seletividade acadêmica e conversão em curso de alto custo
+
+No recorte de Medicina, as probabilidades previstas mostram que o desempenho relativo à nota de corte organiza fortemente a passagem inicial pelo processo seletivo. Na Figura 6, o painel (a) indica que a permanência em lista de espera diminui à medida que o desempenho se aproxima da nota de corte ou se distancia positivamente dela, com curvas de renda relativamente próximas nessa etapa inicial.
+
+Os painéis de não contratação e contratação mostram, porém, que a saída da lista de espera não se converte automaticamente em contrato. No painel (c), a maior probabilidade prevista de contratação aparece nos intervalos intermediários de desempenho relativo à nota de corte. Já nos intervalos mais elevados, a não contratação ganha espaço. Essa leitura não deve ser compreendida como efeito negativo do desempenho, mas como indicação de que, entre candidatos academicamente competitivos, fatores associados à etapa contratual continuam diferenciando a formalização do financiamento.
+
+No caso da Medicina, portanto, o desempenho relativo à nota de corte reduz fortemente a probabilidade de permanência em lista de espera, mas não elimina a diferenciação posterior entre não contratação e contratação. Trata-se de um curso em que a seletividade acadêmica e o alto custo tornam mais visível a distância entre alcançar o critério acadêmico e converter essa condição em contrato efetivo. As estimativas complementares desse recorte são apresentadas no material suplementar.
+
+Figura 6 – Probabilidades previstas das situações do processo seletivo segundo desempenho relativo à nota de corte no FIES, recorte Medicina, 2019–2021.
+Notas: O painel (a) apresenta a probabilidade prevista de lista de espera; o painel (b), de não contratação; e o painel (c), de contratação efetiva. Os intervalos de desempenho relativo à nota de corte são identificados por numerais romanos: I – abaixo de -150; II – -150 a -50; III – -50 a 0; IV – 0 a +50; V – +50 a +150; VI – acima de +150.
+Fonte: elaboração própria (2026).

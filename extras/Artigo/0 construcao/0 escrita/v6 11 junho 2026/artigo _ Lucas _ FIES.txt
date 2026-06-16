@@ -1,0 +1,511 @@
+﻿resumos e keyWords
+Português
+Título
+Elegibilidade acadêmica e contratação no FIES: fatores associados à conversão em contrato no grupo de baixa renda, 2019–2021
+Resumo
+Este artigo analisa a conversão entre elegibilidade acadêmica e contratação efetiva no FIES, com foco na Modalidade I, entre 2019 e 2021. A partir dos microdados do programa, descreve o fluxo seletivo, examina a relação entre renda, desempenho relativo à nota de corte e cobertura do financiamento, e estima probabilidades previstas para lista de espera, não contratação e contratação. Os resultados indicam que alcançar o critério acadêmico é decisivo para avançar no processo, mas não garante a formalização do contrato. Na etapa contratual, a renda familiar per capita e as condições de financiamento diferenciam a contratação, inclusive em Medicina. Conclui-se que a avaliação do FIES deve considerar não apenas vagas, inscrições ou contratos, mas as condições que transformam elegibilidade em acesso efetivo ao financiamento.
+Palavras-chave: FIES; Educação superior; Financiamento estudantil; Política educacional; Desigualdade educacional.
+English
+Title
+Academic eligibility and FIES loan contracting: factors associated with contract conversion among low-income applicants, 2019–2021
+Abstract
+This article analyzes the conversion between academic eligibility and actual loan contracting in FIES, focusing on Modality I from 2019 to 2021. Using program microdata, it describes the selection flow, examines the relationship between income, performance relative to the cutoff score and financing coverage, and estimates predicted probabilities for waiting list, non-contracting and contracting outcomes. The results indicate that meeting the academic criterion is decisive for moving forward, but does not ensure contract formalization. At the contract formalization stage, per capita family income and financing conditions differentiate contracting, including in Medicine. FIES evaluation should consider not only vacancies, applications or contracts, but also the conditions that turn eligibility into effective access to financing.
+Keywords: FIES; Higher education; Student financing; Educational policy; Educational inequality.
+Español
+Título
+Elegibilidad académica y contratación en el FIES: factores asociados a la conversión en contrato en el grupo de baja renta, 2019–2021
+Resumen
+Este artículo analiza la conversión entre elegibilidad académica y contratación efectiva en el FIES, con foco en la Modalidad I, entre 2019 y 2021. A partir de los microdatos del programa, describe el flujo selectivo, examina la relación entre renta, desempeño relativo a la nota de corte y cobertura del financiamiento, y estima probabilidades previstas para lista de espera, no contratación y contratación. Los resultados indican que alcanzar el criterio académico es decisivo para avanzar, pero no garantiza la formalización del contrato. En la etapa contractual, la renta familiar per cápita y las condiciones de financiamiento diferencian la contratación, incluso en Medicina. La evaluación del FIES debe considerar no solo vacantes, inscripciones o contratos, sino las condiciones que transforman elegibilidad en acceso efectivo al financiamiento.
+Palabras clave: FIES; Educación superior; Financiamiento estudiantil; Política educativa; Desigualdad educativa.
+
+
+introdução
+Introdução
+Dados do Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (Inep, 2024) mostram que, em 2023, as instituições privadas responderam por 79,3% das matrículas de graduação. Embora esse processo tenha sido acompanhado por políticas de ampliação do acesso, estudos recentes indicam que a democratização do ensino superior brasileiro permanece atravessada por desigualdades associadas à origem social e ao desempenho acadêmico (SENKEVICS; CARVALHAES; RIBEIRO, 2022; SALATA; BRINGHENTI; MIRANDA, 2025). Nesse contexto, o Fundo de Financiamento Estudantil (FIES), instituído pela Lei nº 10.260/2001, constitui uma política federal voltada ao financiamento de estudantes matriculados em cursos superiores não gratuitos (BRASIL, 2001). Na documentação oficial do governo federal, o programa é apresentado como um dos principais instrumentos de ampliação do acesso ao ensino superior (FUNDO NACIONAL DE DESENVOLVIMENTO DA EDUCAÇÃO, 2021), perspectiva reforçada na literatura recente por Ikuta e Barreyro (2025), que descrevem o FIES como uma política pública federal de grande impacto na ampliação do acesso à educação superior no Brasil.
+O programa foi reformulado em 2017, com implementação das novas regras a partir de 2018, diante de problemas de sustentabilidade fiscal, governança e funcionamento (TRIBUNAL DE CONTAS DA UNIÃO, 2016; MINISTÉRIO DA FAZENDA, 2017; IKUTA; BARREYRO, 2025). As mudanças passaram a vincular a cobertura do financiamento ao comprometimento da renda e ao encargo educacional, alterando a parcela do custo que permanece sob responsabilidade do estudante (MINISTÉRIO DA FAZENDA, 2017). A partir dessas mudanças, o FIES passou a prever o financiamento para candidatos de baixa renda, com renda familiar mensal bruta per capita de até 3 salários mínimos, na chamada Modalidade I (MINISTÉRIO DA EDUCAÇÃO, 2018; CAIXA ECONÔMICA FEDERAL, 2026). Na regra operacional do programa, o percentual de financiamento passou a ser definido conforme o comprometimento da renda familiar mensal bruta per capita e o valor do encargo educacional (COMITÊ GESTOR DO FUNDO DE FINANCIAMENTO ESTUDANTIL, 2018). Nesse contexto, a relação entre renda, cobertura do financiamento e capacidade de pagamento ganha centralidade à luz da discussão sobre sustentabilidade e desenho financeiro do programa (SILVA, 2022). Ao mesmo tempo, o tema segue presente no debate público e legislativo nacional, com críticas ao teto de financiamento e ao peso da coparticipação para parte dos estudantes (AGÊNCIA CÂMARA NOTÍCIAS, 2025). Essa discussão ganha importância adicional no caso da Medicina, curso associado à expansão recente da oferta privada e à dinâmica de financeirização do ensino superior brasileiro (CARVALHO et al., 2024).
+Considerando esse contexto e o recorte da Modalidade I, o ponto central não é apenas identificar quem alcança o critério acadêmico exigido no processo seletivo, mas quem consegue transformar essa condição em contratação efetiva. A literatura sobre desigualdades no ensino superior mostra que o acesso às oportunidades educacionais não depende somente do desempenho, sobretudo em contextos marcados por fortes desigualdades sociais (SENKEVICS; CARVALHAES; RIBEIRO, 2022; SALATA; BRINGHENTI; MIRANDA, 2025). Tendo em vista esses estudos, formula-se a hipótese de que, no caso do FIES, atingir desempenho suficiente para avançar no processo seletivo pode não ser suficiente para assegurar a formalização do contrato. Mesmo dentro da Modalidade I, a etapa final pode ser limitada por restrições econômicas associadas ao próprio desenho do financiamento (SILVA, 2022).
+Diante disso, surge a seguinte pergunta de pesquisa: em que medida as condições financeiras associadas ao desenho da Modalidade I do FIES, especialmente aquelas ligadas à parcela dos encargos educacionais que permanece fora da cobertura do financiamento, podem estar relacionadas à conversão entre elegibilidade acadêmica e contratação efetiva no período de 2019 a 2021? Para responder a essa questão, este artigo analisa os microdados do programa, tomando a Modalidade I como foco analítico principal. Para isso, descreve o fluxo do processo seletivo e examina as relações entre renda, cobertura do financiamento e desempenho relativo à nota de corte nas inscrições observadas entre 2019 e 2021. A contribuição do trabalho está em mostrar que, mesmo dentro da Modalidade I, a contratação não depende apenas do desempenho acadêmico, mas também das diferenças de renda e das condições financeiras associadas ao desenho do programa. O artigo examina, ainda, como esse padrão aparece em Medicina, curso em que o custo elevado e a estrutura do financiamento tornam particularmente relevante a análise da conversão em contrato.
+trabalhos relacionados
+Literatura relacionada e desenho recente do FIES
+A literatura mais próxima deste artigo pode ser organizada em quatro frentes, às quais se soma o debate específico sobre Medicina no setor privado. A primeira reúne estudos sobre as mudanças recentes do FIES e sobre o redesenho do financiamento a partir de 2017. Silva (2022) analisa o programa sob a ótica da sustentabilidade operacional, com ênfase em custos, subsídios, inadimplência e riscos associados à sua estrutura de financiamento. Em perspectiva histórica e normativa, Ikuta e Barreyro (2025) reconstituem a trajetória do FIES nos governos Temer e Bolsonaro e mostram as redefinições pelas quais o programa passou entre 2016 e 2022. Para este artigo, esses trabalhos são importantes porque situam a contratação não apenas como etapa administrativa do processo seletivo, mas como parte de um desenho institucional e financeiro reformulado no período recente.
+Uma segunda frente é formada por estudos que discutem o ambiente mais amplo em que se articulam financiamento, regulação e expansão do ensino superior privado. Ma e Vieira (2021), ao examinarem os modelos de governança das políticas de educação superior no Brasil pós-1990, identificam o predomínio de formas de condução estatal a distância. Em perspectiva latino-americana, Castro e Navarro (2017) discutem os limites tanto da liberalização irrestrita quanto de arranjos excessivamente controladores. Embora não tratem diretamente da contratação no FIES, esses trabalhos ajudam a compreender o contexto institucional em que o programa opera.
+Outra frente relevante diz respeito aos limites da democratização do acesso ao ensino superior. Moro e Gisi (2023), em revisão narrativa, analisam FIES, ProUni e Reuni como políticas de ampliação do acesso e destacam o caráter incompleto desse processo. Em diálogo com esse debate, Senkevics, Carvalhaes e Ribeiro (2022) mostram que origem social e desempenho escolar se articulam nas chances de ingresso no ensino superior, enquanto Salata, Bringhenti e Miranda (2025) evidenciam a persistência das desigualdades de acesso por classe de origem entre 1992 e 2022. Essa literatura é central para o presente estudo porque sustenta a hipótese de que o alcance de um critério acadêmico não elimina, por si só, os condicionantes sociais e econômicos que moldam o acesso efetivo às oportunidades educacionais.
+Também se aproximam deste trabalho estudos que analisam efeitos recentes do desenho do FIES sobre trajetórias estudantis e sobre a resposta das instituições privadas. Custódio e Braga (2023) mostram que alterações normativas do programa afetaram a permanência estudantil no ensino superior entre 2015 e 2019. Scudeler e Tassoni (2023), por sua vez, indicam que a redução da oferta do FIES, a partir de 2015, foi acompanhada pela expansão da educação a distância como estratégia de captação de alunos no setor privado. Esses trabalhos não examinam diretamente a conversão entre elegibilidade acadêmica e contratação, mas mostram que mudanças no programa produziram efeitos concretos tanto sobre os estudantes quanto sobre o comportamento institucional.
+No caso específico da Medicina, Carvalho et al. (2024) oferecem base adicional para o recorte adotado neste artigo ao analisarem a expansão dos cursos de Medicina nos grupos educacionais de capital aberto entre 2013 e 2022, no contexto da financeirização e da concentração de capital da educação superior privada. Trata-se de um curso de alto custo, em que as condições de financiamento assumem particular relevância, o que justifica sua observação em separado.
+Em conjunto, esses estudos esclarecem o redesenho recente do FIES, o contexto regulatório do ensino superior privado, os limites da democratização do acesso e os efeitos das mudanças do programa sobre estudantes e instituições. Ainda assim, permanece pouco explorada uma etapa específica do funcionamento do FIES: a conversão, na Modalidade I, entre o alcance do critério acadêmico do processo seletivo e a contratação efetiva do financiamento. Essa etapa é relevante porque desloca a análise do simples volume de vagas, inscrições ou contratos para as condições que permitem ou dificultam transformar elegibilidade acadêmica em acesso efetivo ao financiamento estudantil. É nesse ponto que o presente artigo se insere, ao examinar, com base nos microdados do processo seletivo de 2019 a 2021, a associação entre renda, cobertura do financiamento, desempenho relativo à nota de corte e contratação no FIES.
+
+
+
+
+metodologia
+Dados e métodos
+Este artigo analisa os microdados do Fundo de Financiamento Estudantil (FIES) referentes aos processos seletivos de 2019 a 2021. O período foi escolhido por corresponder aos primeiros anos posteriores à reformulação implementada a partir de 2018, quando a cobertura do financiamento passou a depender das condições de renda do candidato e do valor dos encargos educacionais. O objetivo é examinar a passagem entre alcançar desempenho suficiente no processo seletivo e conseguir formalizar o contrato de financiamento.
+A principal fonte de dados são os microdados do FIES, disponibilizados pelo Ministério da Educação. Também foram utilizados os microdados do Censo da Educação Superior, do Inep, como fonte complementar para padronização de informações institucionais e de cursos. As bases foram organizadas de modo a reunir, para cada inscrição, informações sobre ano e semestre do processo seletivo, situação da inscrição, renda familiar mensal bruta per capita, média do Enem, nota de corte do grupo de preferência, curso, área de conhecimento, região da instituição, características da oferta e percentual de financiamento, quando disponível nos registros de contratos efetivados.
+A unidade principal de análise é a inscrição no processo seletivo do FIES, e não o indivíduo. Essa escolha permite acompanhar as situações registradas no fluxo seletivo, desde a inscrição até a efetivação ou não do contrato. Como um mesmo candidato pode registrar mais de uma opção de curso, os resultados devem ser interpretados no nível das inscrições. Para verificar a robustez dessa decisão, análises suplementares consideram apenas o curso priorizado pelo candidato, apresentadas no Apêndice A. Essa distinção evita confundir o volume total de opções registradas com a trajetória priorizada pelo candidato no processo seletivo.
+O recorte analítico concentra-se no público de baixa renda associado à Modalidade I do FIES, voltada a candidatos com renda familiar mensal bruta per capita de até três salários mínimos. Como esse limite é definido em salários mínimos, e não por um valor fixo em reais, as faixas de renda usadas no artigo têm finalidade descritiva. Foram adotadas seis faixas de renda familiar per capita: até R$ 600; R$ 601 a R$ 1.200; R$ 1.201 a R$ 1.800; R$ 1.801 a R$ 2.400; R$ 2.401 a R$ 3.000; e acima de R$ 3.000. A última faixa foi mantida porque o valor correspondente a três salários mínimos varia ao longo do período analisado e porque permite observar os registros situados nas faixas superiores de renda. Como esses grupos concentram menor proporção das inscrições, os resultados dessas faixas são interpretados com cautela.
+O desfecho central do artigo é a contratação efetiva do financiamento. Para reconstruir o fluxo do processo seletivo, as situações das inscrições foram organizadas em categorias de análise. A lista de espera indica inscrições que não avançaram na chamada regular; a não contratação reúne casos que avançaram no processo, mas não resultaram na formalização do financiamento; e a contratação identifica as inscrições que resultaram em contrato efetivado. Essas três situações estruturam o argumento principal do artigo, pois permitem separar a barreira acadêmica inicial e a etapa posterior de formalização do contrato. As demais situações registradas no sistema foram utilizadas apenas na descrição do fluxo e não integram as análises principais de probabilidades previstas.
+O desempenho acadêmico foi operacionalizado como desempenho relativo à nota de corte, medido pela diferença entre a média do Enem do candidato e a nota de corte do grupo de preferência. Valores positivos indicam desempenho acima da nota de corte, enquanto valores negativos indicam desempenho inferior. Essa medida foi utilizada tanto em valores contínuos quanto em intervalos, permitindo observar como a distância em relação à nota de corte se associa às situações do processo seletivo. A renda familiar per capita foi analisada em valores nominais e em faixas.
+A análise empírica foi organizada em quatro etapas. Primeiro, descreveu-se o fluxo do processo seletivo, considerando vagas ofertadas, inscrições, inscrições com desempenho igual ou superior à nota de corte e contratos efetivados. Em seguida, examinou-se a distribuição das situações de inscrição segundo faixas de renda familiar per capita e desempenho relativo à nota de corte. A terceira etapa analisou, entre os contratos efetivados, a associação entre renda familiar per capita e percentual de financiamento registrado, com o objetivo de verificar como a cobertura do financiamento varia conforme a renda do candidato.
+A quarta etapa examinou a passagem entre classificação acadêmica e contratação por meio de estimativas de probabilidades previstas. Para isso, foram consideradas duas formas de organizar a comparação. A primeira distingue três situações do fluxo seletivo: lista de espera, não contratação e contratação efetiva, permitindo observar simultaneamente a barreira acadêmica inicial e a etapa contratual. A segunda restringe a comparação às inscrições não contratadas e contratadas, com o objetivo de observar mais diretamente a etapa de formalização do financiamento. A apresentação por probabilidades previstas foi adotada por permitir interpretação mais direta da associação entre renda, desempenho relativo à nota de corte e situação da inscrição.
+As análises incluíram progressivamente variáveis associadas ao candidato, ao desempenho acadêmico, ao curso e à instituição. A especificação inicial considerou renda familiar per capita, desempenho relativo à nota de corte e a interação entre renda e desempenho. As especificações seguintes adicionaram controles como idade, nota de corte do grupo de preferência, opção de curso, ano e semestre do processo seletivo, conceito do curso, turno, ensino médio em escola pública, subárea de conhecimento, região da oferta, natureza jurídica da mantenedora, cor/raça ou etnia, sexo, região de residência, organização acadêmica, conclusão prévia de curso superior, benefício anterior pelo CREDUC/FIES e UF do local de oferta. As tabelas complementares dos apêndices apresentam os resultados dessas especificações.
+Além do recorte geral, o artigo examina separadamente o curso de Medicina. Esse recorte foi adotado porque se trata de um curso de alta seletividade e alto custo, no qual a passagem entre desempenho acadêmico suficiente e contratação efetiva do financiamento assume relevância particular. O objetivo não é generalizar o caso de Medicina para todos os cursos, mas observar como a conversão entre elegibilidade acadêmica e contratação se comporta em um curso no qual a etapa contratual tende a ser especialmente sensível às condições de financiamento.
+A pesquisa utiliza bases públicas secundárias e apresenta os resultados de forma agregada, sem identificação direta dos candidatos. Os procedimentos de tratamento dos dados, construção das variáveis e geração das tabelas e figuras foram documentados para favorecer a reprodutibilidade dos resultados.
+Os resultados devem ser interpretados como associações. Eles permitem examinar relações entre renda, desempenho relativo à nota de corte, características do curso, cobertura do financiamento e contratação, mas não autorizam afirmar causalidade direta entre coparticipação e não contratação. Além disso, o percentual de financiamento é observado apenas entre contratos efetivados, o que impede mensurar diretamente a coparticipação enfrentada por candidatos que não formalizaram contrato. Ainda assim, a estratégia adotada permite analisar uma etapa pouco observada do FIES: a distância entre alcançar desempenho suficiente no processo seletivo e converter essa condição em contrato efetivo.
+
+
+
+
+
+
+resultados e discussao
+4. Resultados e Discussão
+Nesta seção, apresentam-se os resultados da análise dos microdados do FIES de 2019 a 2021, buscando responder à questão de pesquisa e examinar os fatores associados à efetivação dos contratos na Modalidade I.
+4.1. Fluxo do processo seletivo
+Para descrever o fluxo do processo seletivo do FIES, os registros foram organizados em quatro fases sequenciais: (I) vagas ofertadas, (II) inscrições, (III) inscrições em que o candidato obteve média do Enem igual ou superior à nota de corte do grupo de preferência, e (IV) inscrições com contratos efetivados. A Figura 1 apresenta a evolução quantitativa dessas etapas entre 2019 e 2021, com desagregação pelas 10 Áreas Gerais da CINE que contemplam o FIES. Essa descrição tem caráter panorâmico e situa o funcionamento geral do processo seletivo no período analisado. Nota-se que o número de vagas ofertadas é superior ao número de inscrições em todos os semestres. Observa-se, ainda, que apenas uma parte das inscrições alcança desempenho igual ou superior à nota de corte do grupo de preferência e que, entre esses, somente uma parcela formaliza contrato. Assim, o volume final de vagas ocupadas permanece reduzido quando comparado tanto ao total de vagas ofertadas quanto ao total de inscrições.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figura 1 – Evolução quantitativa do fluxo do processo seletivo do FIES, por grandes áreas de conhecimento, 2019–2021. Notas: O eixo X indica as fases do processo regular do FIES: I – vagas ofertadas pelo FIES; II – inscrições; III – inscrições em que o candidato obteve desempenho igual ou superior à nota de corte do grupo de preferência; IV – contratos efetivados.
+  
+
+Fonte: elaboração própria (2026).
+
+
+Para complementar essa leitura, foi calculada a taxa de conversão das inscrições em contratos efetivados, definida como o percentual de inscrições que resultaram em contratos formalizados em cada semestre. A Figura 2 apresenta essa taxa para a área geral da CINE de Saúde e bem-estar, recorte adotado por incluir Medicina, curso de alto custo, e por concentrar elevado volume de vagas ofertadas e inscrições no FIES. O gráfico mostra que a taxa permaneceu baixa ao longo de todo o período, ainda que com variações entre os semestres, tanto nas regiões da área quanto na média nacional da própria área e na média geral entre todas as áreas da CINE.
+Figura 2 – Evolução temporal da taxa de conversão entre inscrições e contratos na área de Saúde e bem-estar, 2019–2021.
+  
+
+Fonte: elaboração própria (2026).
+Como um mesmo candidato pode registrar mais de uma opção de curso, o volume de registros observados no processo seletivo tende a ser ampliado. Por essa razão, foram elaboradas visualizações complementares no Apêndice A. Consideradas em conjunto, elas reforçam a leitura de que, no FIES, alcançar desempenho igual ou superior à nota de corte do grupo de preferência não se converte automaticamente em contratação efetiva, o que sugere a existência de uma etapa adicional entre elegibilidade acadêmica e formalização do contrato.
+
+
+
+
+4.2. Distribuição das situações das inscrições por variáveis socioeconômicas
+Esta etapa examina a distribuição das situações das inscrições no processo seletivo segundo renda familiar per capita e desempenho relativo à nota de corte, com ênfase na Modalidade I do FIES. A Tabela 1 apresenta a distribuição dos registros por situação da inscrição. As situações correspondem a diferentes momentos do processo seletivo. “Lista de Espera” indica inscrições que não alcançaram classificação na chamada regular; “Participação Cancelada pelo Candidato” corresponde às desistências voluntárias registradas no sistema; “Opção Não Contratada” indica que aquela opção de curso não foi a que seguiu adiante para contratação, porque outra opção priorizada pelo candidato foi a que avançou no processo; “Rejeitada pela CPSA” corresponde aos casos em que a documentação não foi validada pela comissão responsável na instituição; “Não Contratado” reúne inscrições que avançaram no processo, mas não resultaram na formalização do contrato; “Pré-selecionado” designa inscrições ainda em tramitação, sem conclusão das etapas seguintes; “Inscrição Postergada” indica inscrições transferidas para semestre posterior; e “Contratada” corresponde às inscrições que resultaram na efetivação do financiamento. Nota-se, ainda, que “Lista de Espera”, “Não Contratado” e “Contratada” concentram a maior parte das inscrições. Por isso, as análises seguintes concentram-se nessas três situações, que permitem observar a barreira acadêmica inicial e a etapa posterior de formalização do contrato.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tabela 1 – Distribuição das inscrições por situação no processo seletivo do FIES, 2019–2021.
+  
+
+Fonte: elaboração própria (2026).
+A Figura 3 complementa essa descrição ao organizar os registros em duas matrizes bidimensionais, que apresentam as taxas de contratação efetiva, no painel esquerdo, e de não contratação, no painel direito, segundo faixas de renda familiar per capita e desempenho relativo à nota de corte do grupo de preferência. Como o limite de elegibilidade da Modalidade I é definido em salários mínimos, e não por um valor fixo em reais, as faixas de renda utilizadas nesta análise foram definidas em valores nominais, com finalidade descritiva. Nesta análise, o desempenho relativo à nota de corte corresponde à diferença entre a média do Enem do candidato e a nota de corte do grupo de preferência: valores positivos indicam desempenho acima da nota de corte, e valores negativos indicam desempenho abaixo dela.
+No painel de contratação, observa-se uma tendência de maiores percentuais nas faixas inferiores de renda, especialmente entre inscrições com desempenho igual ou superior à nota de corte. Observa-se que inscrições com desempenho igual ou superior à nota de corte tendem a apresentar maiores taxas de contratação, embora essa conversão não seja homogênea entre as faixas de renda. Nos intervalos de desempenho abaixo da nota de corte, as taxas caem em toda a distribuição observada e tendem, de modo geral, a diminuir à medida que se avança para faixas de renda mais elevadas. Essa leitura deve considerar a distribuição apresentada na Tabela B1 do Apêndice B: as três primeiras faixas, até R$ 1.800 per capita, concentram 88% dos registros, de modo que oscilações percentuais nos grupos de renda mais elevada devem ser interpretadas com cautela.
+Figura 3 – Taxas de contratação efetiva e de não contratação por faixa de renda familiar per capita e desempenho relativo à nota de corte no FIES, 2019–2021. Notas: O eixo X apresenta as faixas de renda familiar per capita, identificadas por numerais romanos: I – 0 a 600; II – 601 a 1.200; III – 1.201 a 1.800; IV – 1.801 a 2.400; V – 2.401 a 3.000; VI – acima de 3.000. 
+  
+
+Fonte: elaboração própria (2026).
+No painel de não contratação, a matriz permite observar como esse desfecho se distribui entre as combinações de renda e desempenho. Os percentuais aumentam à medida que se avança das faixas mais baixas para as intermediárias da renda familiar per capita, onde atingem seus maiores valores, especialmente entre inscrições com desempenho igual ou superior à nota de corte. Nas faixas de desempenho negativo, os percentuais são menores, o que é compatível com a maior presença desses registros na lista de espera, apresentada na Figura B1 do Apêndice B. Assim, enquanto o painel de contratação mostra percentuais relativamente mais altos nas faixas inferiores de renda, o painel de não contratação concentra seus maiores valores em faixas intermediárias.
+Em conjunto, os painéis mostram que, mesmo dentro da Modalidade I, a passagem entre elegibilidade acadêmica e contratação não é uniforme entre as faixas de renda analisadas. A contratação aparece com maior intensidade nas faixas inferiores de renda quando o desempenho é favorável, enquanto a não contratação se concentra mais fortemente em faixas intermediárias entre aqueles que já alcançaram desempenho igual ou superior à nota de corte. Esses padrões indicam que a conversão entre elegibilidade acadêmica e formalização do contrato permanece socialmente diferenciada mesmo no interior da Modalidade I do FIES.
+4.3. Renda, cobertura do financiamento e coparticipação implícita
+Na Modalidade I do FIES, o percentual financiado é definido conforme o comprometimento da renda familiar mensal bruta per capita e o valor do encargo educacional. Entre os contratos efetivados, a Figura 4 mostra uma associação negativa entre renda e cobertura do financiamento: candidatos com maior renda per capita tendem a apresentar percentuais financiados menores. A correlação de Pearson foi de -0,7057, indicando uma associação negativa de magnitude moderada a forte. Esse resultado é relevante porque a redução do percentual financiado amplia a parcela dos custos que permanece sob responsabilidade do estudante ou de sua família.
+Figura 4 – Associação entre renda familiar per capita e percentual de financiamento entre contratos efetivados do FIES, 2019–2021. Notas: Cada ponto representa uma inscrição com contrato efetivado. A correlação de Pearson é de -0,7057; o R² da regressão linear simples é 0,4980; N = 160.323.
+  
+
+Fonte: elaboração própria (2026).
+A Tabela 2 quantifica essa relação. A estimativa indica que, a cada aumento de R$ 100,00 na renda familiar per capita, o percentual financiado diminui, em média, cerca de 1,88 ponto percentual. Em termos práticos, uma diferença de R$ 600,00 de renda per capita entre candidatos corresponde a aproximadamente 11,3 pontos percentuais a menos de cobertura estimada. Isso significa, por exemplo, que uma cobertura estimada de 90% passaria para cerca de 78,7%, aumentando de 10% para 21,3% a parcela dos encargos que permaneceria fora do financiamento.
+Tabela 2 – Associação entre renda familiar per capita e percentual de financiamento concedido no FIES, 2019–2021. Notas: p.p. = pontos percentuais, isto é, diferença absoluta entre percentuais.
+  
+
+Fonte: elaboração própria (2026).
+4.4. Probabilidades previstas no fluxo seletivo: da classificação à contratação
+Para examinar a passagem entre classificação acadêmica e formalização do contrato, a Figura 5 apresenta probabilidades previstas para as principais situações das inscrições: lista de espera, não contratação e contratação efetiva. Os painéis (a), (b) e (c) mostram a distribuição dessas três situações no fluxo seletivo, enquanto o painel (d) restringe a comparação à etapa contratual, isto é, entre não contratação e contratação. Observa-se que, no painel (a), a permanência em lista de espera é maior entre inscrições com desempenho inferior a -150 pontos e se reduz fortemente nos demais intervalos, com variação menor entre as faixas de renda. Isso indica que o desempenho relativo à nota de corte segue sendo a principal barreira de entrada no fluxo seletivo. O ponto mais relevante aparece nos painéis de não contratação e contratação. Nessa etapa, o desempenho continua importante, mas já não diferencia sozinho as situações das inscrições: candidatos em faixas de renda mais altas podem apresentar probabilidades de contratação próximas, ou inferiores, às observadas entre candidatos de menor renda e desempenho inferior. A Figura 6, ao reorganizar a mesma informação a partir dos intervalos de desempenho, reforça essa leitura. Nela, as curvas por faixa de renda permanecem próximas no painel de lista de espera, mas se afastam de forma mais visível nos painéis de contratação. Isso mostra que, depois da barreira acadêmica inicial, a renda familiar per capita passa a diferenciar com mais força a probabilidade prevista de contratação. O painel (d), ao isolar a comparação entre inscrições não contratadas e contratadas, reforça a hipótese de que, uma vez superada a barreira acadêmica inicial, a formalização do contrato passa a depender também de condições econômicas enfrentadas pelo candidato, sobretudo da parcela dos encargos educacionais que permanece fora da cobertura do financiamento. As tabelas complementares do Apêndice C reforçam essa leitura ao mostrar que, nas especificações analisadas, o desempenho permanece central para o fluxo geral do processo seletivo, enquanto a renda familiar per capita ganha maior peso relativo quando a análise se restringe à etapa contratual, entre inscrições não contratadas e contratadas.
+Figura 5 – Probabilidades previstas segundo a faixa de renda familiar per capita e desempenho relativo à nota de corte no FIES, 2019–2021. Notas: O painel (a) apresenta a probabilidade prevista de lista de espera; o painel (b), de não contratação; o painel (c), de contratação efetiva; e o painel (d), de contratação na estimativa restrita à comparação entre não contratação e contratação. As faixas de renda familiar per capita são identificadas por numerais romanos: I – até 600; II – 601 a 1.200; III – 1.201 a 1.800; IV – 1.801 a 2.400; V – 2.401 a 3.000; VI – acima de 3.000.
+  
+
+Fonte: elaboração própria (2026).
+
+
+Figura 6 – Probabilidades previstas segundo desempenho relativo à nota de corte e faixa de renda familiar per capita no FIES, 2019–2021. Notas: O painel (a) apresenta a probabilidade prevista de lista de espera; o painel (b), de não contratação; o painel (c), de contratação efetiva; e o painel (d), de contratação na estimativa restrita à comparação entre não contratação e contratação. Os intervalos de desempenho relativo à nota de corte são identificados por numerais romanos: I – abaixo de -150; II – -150 a -50; III – -50 a 0; IV – 0 a +50; V – +50 a +150; VI – acima de +150.
+  
+
+Fonte: elaboração própria (2026).
+4.5. Medicina: seletividade acadêmica e conversão em curso de alto custo
+No recorte de Medicina, as probabilidades previstas mostram que o desempenho relativo à nota de corte organiza fortemente a passagem inicial pelo processo seletivo. A Figura 7 apresenta as situações das inscrições segundo o desempenho relativo à nota de corte, separando as faixas de renda familiar per capita. No painel (a), as curvas das faixas de renda permanecem muito próximas, indicando que a permanência em lista de espera varia pouco segundo a renda quando se observa essa etapa inicial. O que mais diferencia os candidatos, nesse caso, é o desempenho: quanto maior a distância positiva em relação à nota de corte, menor a probabilidade prevista de permanência em lista de espera.
+Os painéis de não contratação e contratação mostram, porém, que a saída da lista de espera não se converte automaticamente em contrato. No painel (c), a maior probabilidade prevista de contratação aparece nos intervalos intermediários de desempenho relativo à nota de corte do grupo de preferência. Já nos intervalos mais elevados de desempenho, a probabilidade de não contratação passa a ganhar espaço. Esse padrão não deve ser lido como efeito negativo do desempenho, mas como indicação de que, entre candidatos academicamente competitivos, outros fatores associados à etapa contratual continuam diferenciando a formalização do financiamento. Assim, em Medicina, o desempenho relativo à nota de corte é decisivo para reduzir a probabilidade de permanência em lista de espera.
+A Figura 8 reorganiza a mesma informação a partir das faixas de renda familiar per capita. No painel (a), observa-se que inscrições com desempenho muito inferior à nota de corte permanecem associadas a alta probabilidade de lista de espera, praticamente sem variação relevante entre as faixas de renda. Isso reforça que, nessa etapa, a barreira acadêmica é predominante. Nos painéis (b) e (c), a renda passa a diferenciar mais os desfechos entre os candidatos que se aproximam da nota de corte ou alcançam desempenho igual ou superior a ela. A probabilidade de não contratação tende a ser maior nas faixas superiores de renda, enquanto a probabilidade de contratação aparece mais elevada nas faixas inferiores e intermediárias.
+Esse padrão indica que, em Medicina, há dois momentos distintos no fluxo seletivo. Primeiro, o desempenho relativo à nota de corte define com força quem permanece em lista de espera. Depois, entre aqueles com desempenho suficiente para avançar no processo, a contratação aparece associada também às condições de renda e à viabilidade de formalização do financiamento. As tabelas complementares do Apêndice D reforçam essa leitura ao mostrar que o desempenho permanece como principal fator de diferenciação no recorte de Medicina, embora a não contratação continue relevante entre inscrições com desempenho favorável.
+
+
+
+
+
+
+
+
+Figura 7 – Probabilidades previstas das situações do processo seletivo segundo desempenho relativo à nota de corte no FIES, recorte Medicina, 2019–2021. Notas: O painel (a) apresenta a probabilidade prevista de lista de espera; o painel (b), de não contratação; e o painel (c), de contratação efetiva. Os intervalos de desempenho relativo à nota de corte são identificados por numerais romanos: I – abaixo de -150; II – -150 a -50; III – -50 a 0; IV – 0 a +50; V – +50 a +150; VI – acima de +150.
+  
+
+Fonte: elaboração própria (2026).
+Figura 8 – Probabilidades previstas das situações do processo seletivo segundo faixa de renda familiar per capita no FIES, recorte Medicina, 2019–2021. Notas: O painel (a) apresenta a probabilidade prevista de lista de espera; o painel (b), de não contratação; e o painel (c), de contratação efetiva. As faixas de renda familiar per capita são identificadas por numerais romanos: I – até 600; II – 601 a 1.200; III – 1.201 a 1.800; IV – 1.801 a 2.400; V – 2.401 a 3.000; VI – acima de 3.000. 
+  
+
+Fonte: elaboração própria (2026).
+Conclusão
+Conclusão
+Os resultados deste artigo mostram que, no recorte analisado da Modalidade I do FIES, a conversão entre elegibilidade acadêmica e contratação efetiva não depende apenas do desempenho acadêmico. Alcançar o critério acadêmico é decisivo para avançar no processo seletivo, mas não garante, por si só, a formalização do contrato. A contratação aparece associada também à renda familiar per capita e às condições concretas de financiamento.
+Esse achado desloca a avaliação do FIES para uma etapa pouco observada da política: a passagem entre estar academicamente apto a avançar no processo seletivo e conseguir efetivamente contratar o financiamento. Os resultados indicam que parte da seletividade ocorre depois da classificação acadêmica, no momento em que o candidato precisa converter a elegibilidade em contrato. Assim, avaliar o programa apenas pelo número de vagas, inscrições ou contratos firmados pode ocultar barreiras que permanecem na etapa final do processo.
+Entre os contratos efetivados, a maior renda familiar per capita esteve associada ao menor percentual financiado. Esse resultado é importante porque a redução da cobertura amplia a parcela dos encargos educacionais que permanece fora do financiamento. Assim, mesmo dentro do grupo de baixa renda atendido pela Modalidade I, diferenças de renda podem alterar as condições concretas de contratação.
+Esse resultado aponta para uma tensão no desenho do FIES a partir de 2018. A reformulação do programa buscou responder a problemas de sustentabilidade fiscal, governança e risco financeiro, mas o modelo baseado em cobertura variável, coparticipação e limites de financiamento pode produzir condições distintas de acesso ao contrato. O FIES permanece formalmente voltado à ampliação do acesso, mas sua efetividade social depende das condições concretas pelas quais candidatos elegíveis conseguem formalizar o financiamento.
+O recorte de Medicina reforça esse argumento. Por se tratar de um curso de alto custo e elevada seletividade acadêmica, o alcance do critério acadêmico não elimina a relevância da etapa contratual. Nesse caso, a política de financiamento precisa ser avaliada não apenas pela oferta de vagas ou pela classificação acadêmica, mas também por sua capacidade de converter candidatos elegíveis em contratos efetivos.
+Do ponto de vista da avaliação de políticas públicas, os achados sugerem que a sustentabilidade do FIES não deve ser discutida separadamente de sua finalidade social. Os resultados não indicam simplesmente a necessidade de ampliar vagas ou contratos, mas de avaliar a relação entre quantidade de vagas, percentual financiado, valor residual potencialmente assumido pelo estudante e público efetivamente atendido. A questão central não é apenas quantos candidatos chegam à etapa de contratação, mas em que condições financeiras essa contratação se torna viável.
+O estudo possui limites. A análise identifica associações entre renda, desempenho relativo à nota de corte, percentual financiado e contratação, mas não permite afirmar causalidade direta entre coparticipação e não contratação. Além disso, o percentual financiado é observado apenas entre contratos efetivados, o que limita a mensuração direta das condições enfrentadas por candidatos que não formalizaram contrato. Ainda assim, os resultados indicam que o desenho financeiro do programa deve ser considerado na avaliação da passagem entre elegibilidade acadêmica e acesso efetivo ao financiamento.
+Como o período analisado antecede a criação do FIES Social pela Resolução CG-Fies nº 58/2024, os resultados oferecem um ponto de comparação para estudos futuros. Investigações posteriores poderão analisar se as novas regras modificaram a conversão em contrato, sobretudo entre os grupos mais vulneráveis e em cursos de mensalidades elevadas, como Medicina. Com isso, a conversão em contrato torna-se uma dimensão relevante para avaliar a efetividade social do FIES.
+
+
+referências
+Referências
+AGÊNCIA CÂMARA NOTÍCIAS. Estudantes pedem fim do teto do FIES e fiscalização das faculdades privadas. Câmara dos Deputados, Brasília, DF, 8 jul. 2025. Disponível em: https://www.camara.leg.br/noticias/1177345-estudantes-pedem-fim-do-teto-do-FIES-e-fiscalizacao-das-faculdades-privadas/. Acesso em: 28 abr. 2026.
+BRASIL. Lei nº 10.260, de 12 de julho de 2001. Dispõe sobre o Fundo de Financiamento ao Estudante do Ensino Superior e dá outras providências. Diário Oficial da União: seção 1, Brasília, DF, 13 jul. 2001.
+CAIXA ECONÔMICA FEDERAL. FIES - Financiamento Estudantil. [S. l.], 2026. Disponível em: https://www.caixa.gov.br/programas-sociais/fies/Paginas/default.aspx. Acesso em: 6 maio 2026.
+CARVALHO, C. H. A. et al. Financeirização da educação superior privada no Brasil: expansão dos cursos de medicina nos grupos de capital aberto (2013–2022). Educação & Sociedade, Campinas, v. 45, e286692, 2024. DOI: 10.1590/ES.286692.
+CASTRO, C. de M.; NAVARRO, J. C. A mão invisível e o ensino superior latino-americano? Ensaio: Avaliação e Políticas Públicas em Educação, Rio de Janeiro, v. 25, n. 96, p. 770-797, 2017. DOI: 10.1590/S0104-40362017002501055.
+COMITÊ GESTOR DO FUNDO DE FINANCIAMENTO ESTUDANTIL. Resolução nº 18, de 30 de janeiro de 2018. Dispõe sobre a definição do percentual de financiamento dos contratos do Fundo de Financiamento Estudantil (FIES) formalizados a partir de 1º de janeiro de 2018. Diário Oficial da União: seção 1, Brasília, DF, 1 fev. 2018. Disponível em: https://www.gov.br/fnde/pt-br/acesso-a-informacao/acoes-e-programas/financiamento/FIES/comite-gestor-FIES-cg-FIES/2018/resolucao-no-18-de-30-de-jan-de-2018.pdf. Acesso em: 2 maio 2026.
+CUSTÓDIO, A. V.; BRAGA, J. T. dos S. O impacto das alterações do FIES na permanência no ensino superior entre 2015 e 2019. Educação e Pesquisa, São Paulo, v. 49, e256547, 2023. DOI: 10.1590/S1678-4634202349256547.
+FUNDO NACIONAL DE DESENVOLVIMENTO DA EDUCAÇÃO. Financiamento estudantil. Gov.br, Brasília, DF, 22 set. 2021. Disponível em: https://www.gov.br/fnde/pt-br/acesso-a-informacao/transparencia-e-prestacao-de-contas/relatorio-de-gestao-1/relatorios-de-gestao-anos-anteriores/relatorio-de-gestao-2021/resultados-da-gestao-1/financiamento-estudantil. Acesso em: 1 maio 2026.
+IKUTA, C. Y. S.; BARREYRO, G. B. Percurso da política do Fundo de Financiamento Estudantil (FIES) nos governos de Temer e Bolsonaro (2016-2022). Education Policy Analysis Archives, [S. l.], v. 33, n. 53, p. 1-25, 2025. DOI: 10.14507/epaa.33.9091.
+INSTITUTO NACIONAL DE ESTUDOS E PESQUISAS EDUCACIONAIS ANÍSIO TEIXEIRA. Censo da Educação Superior 2023: notas estatísticas. Brasília, DF: Inep, 2024. Disponível em: https://www.gov.br/inep/pt-br/centrais-de-conteudo/acervo-linha-editorial/publicacoes-institucionais/estatisticas-e-indicadores-educacionais/censo-da-educacao-superior-2023-notas-estatisticas. Acesso em: 1 maio 2026.
+MA, J. F.; VIEIRA, D. M. Remando ou guiando o barco? Modelos de governança para as políticas de educação superior no Brasil pós-1990. Ensaio: Avaliação e Políticas Públicas em Educação, Rio de Janeiro, v. 29, n. 113, p. 1000-1023, 2021. DOI: 10.1590/S0104-40362020002802419.
+MINISTÉRIO DA EDUCAÇÃO. Portaria nº 209, de 7 de março de 2018. Dispõe sobre as regras e os procedimentos referentes à concessão de financiamento estudantil e do Programa de Financiamento Estudantil a partir do primeiro semestre de 2018. Diário Oficial da União: seção 1, Brasília, DF, 8 mar. 2018. Disponível em: https://www.in.gov.br/materia/-/asset_publisher/Kujrw0TZC2Mb/content/id/5744626/do1-2018-03-08-portaria-n-209-de-7-de-marco-de-2018-5744622. Acesso em: 2 maio 2026.
+MINISTÉRIO DA FAZENDA. As alterações propostas no FIES. Brasília, DF: Secretaria de Acompanhamento Econômico, 2017.
+MORO, G. A. D.; GISI, M. L. FIES, PROUNI e REUNI: caminhos inacabados para a democratização do acesso à educação superior. Avaliação: Revista da Avaliação da Educação Superior, Campinas; Sorocaba, SP, v. 28, e023016, 2023. DOI: 10.1590/S1414-40772023000100017.
+SALATA, A. R.; BRINGHENTI, T. F. S.; MIRANDA, A. C. H. de. Origem social e acesso ao ensino superior no Brasil entre 1992 e 2022. Dados, Rio de Janeiro, v. 68, n. 3, e20230188, 2025. DOI: 10.1590/dados.2025.68.3.376.
+SCUDELER, M. A.; TASSONI, E. C. M. A educação a distância como estratégia de captação de alunos após a redução da oferta do FIES. Avaliação: Revista da Avaliação da Educação Superior, Campinas; Sorocaba, SP, v. 28, e023007, 2023. DOI: 10.1590/S1414-40772023000100007.
+SENKEVICS, A. S.; CARVALHAES, F.; RIBEIRO, C. A. C. Mérito ou berço? Origem social e desempenho no acesso ao ensino superior. Cadernos de Pesquisa, São Paulo, v. 52, e09528, 2022. DOI: 10.1590/198053149528.
+SILVA, A. A. Fundo de Financiamento Estudantil (FIES): uma análise com vistas à sustentabilidade operacional. Brasília, DF: Escola Nacional de Administração Pública, 2022.
+TRIBUNAL DE CONTAS DA UNIÃO. Acórdão nº 3001/2016 – Plenário. Relatório de Auditoria: TC 011.884/2016-9. Brasília, DF: TCU, 2016.
+
+
+Apêndice
+Apêndice A – Análises suplementares do fluxo de seleção
+Figura A1 – Evolução quantitativa do fluxo do processo seletivo do FIES, considerando apenas o curso priorizado por cada candidato, 2019–2021. Nota: O eixo X indica as fases do processo seletivo regular do FIES: I – vagas ofertadas; II – inscrição priorizada de cada candidato; III – inscrições em que o candidato obteve desempenho igual ou superior à nota de corte; IV – contratos efetivados.
+  
+
+Fonte: elaboração própria (2026).
+Figura A2 – Evolução temporal da taxa de conversão entre inscrições priorizadas pelos candidatos no processo seletivo e contratos efetivados na área de Saúde e bem-estar, considerando apenas o curso priorizado por cada candidato, 2019–2021. Nota: A taxa de conversão corresponde à proporção de inscrições priorizadas que resultaram em contrato efetivado em cada período.
+  
+
+Fonte: elaboração própria (2026).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figura A3 – Evolução quantitativa do fluxo do processo seletivo do FIES segundo a região da instituição de ensino superior, 2019–2021. Nota: O eixo X indica as fases do processo seletivo regular do FIES: I – vagas ofertadas; II – inscrições; III – inscrições em que o candidato obteve desempenho igual ou superior à nota de corte do grupo de preferência; IV – contratos efetivados.
+  
+
+Fonte: elaboração própria (2026).
+
+
+
+
+
+
+Apêndice B – Análises suplementares das situações das inscrições segundo variáveis socioeconômicas
+Tabela B1 – Distribuição das inscrições por faixa de renda familiar per capita no FIES, 2019–2021. Nota: As faixas de renda familiar per capita foram definidas em valores nominais, com finalidade descritiva.
+  
+
+Fonte: elaboração própria (2026).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figura B1 – Percentual de inscrições em lista de espera por faixa de renda familiar per capita e desempenho relativo à nota de corte no FIES, 2019–2021. Nota: O eixo X apresenta as faixas de renda familiar per capita, identificadas por numerais romanos: I – até 600; II – 601 a 1.200; III – 1.201 a 1.800; IV – 1.801 a 2.400; V – 2.401 a 3.000; VI – acima de 3.000.
+  
+
+Fonte: elaboração própria (2026).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Apêndice C – Análises complementares da modelagem geral
+Tabela C1 – Coeficientes-chave do modelo logístico multinomial no recorte geral do FIES, 2019–2021. Nota: A tabela apresenta coeficientes selecionados para as situações de lista de espera, não contratação e contratação efetiva. Os resultados devem ser lidos como documentação complementar das associações estimadas, e não como efeitos causais.
+  
+
+Fonte: elaboração própria (2026).
+
+
+
+
+Tabela C2 – Resumo das especificações do modelo logístico multinomial no recorte geral do FIES, 2019–2021. Nota: As especificações E1 a E5 adicionam progressivamente variáveis associadas ao candidato, ao desempenho acadêmico, ao curso e à instituição. As métricas apresentadas têm função de avaliação interna do ajuste.
+  
+
+Fonte: elaboração própria (2026).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tabela C3 – Resumo das especificações da árvore de decisão binária restrita à etapa contratual no recorte geral do FIES, 2019–2021. Nota: A árvore binária compara inscrições não contratadas e contratadas, com o objetivo de observar a etapa de formalização do financiamento. As especificações E1 a E5 adicionam progressivamente variáveis de controle.
+  
+
+Fonte: elaboração própria (2026).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tabela C4 – Resumo das especificações da árvore de decisão com três situações das inscrições no recorte geral do FIES, 2019–2021. Nota: A árvore distingue lista de espera, não contratação e contratação efetiva, permitindo observar simultaneamente a barreira acadêmica inicial e a etapa contratual. As especificações E1 a E5 adicionam progressivamente variáveis de controle.
+  
+
+Fonte: elaboração própria (2026).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tabela C5 – Dez variáveis de maior importância na árvore de decisão binária restrita à etapa contratual no recorte geral do FIES, 2019–2021. Nota: As importâncias indicam a contribuição relativa das variáveis no ajuste da árvore de decisão. Os valores não têm interpretação causal e devem ser lidos como evidência complementar sobre a diferenciação entre inscrições não contratadas e contratadas.
+  
+
+Fonte: elaboração própria (2026).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tabela C6 – Dez variáveis de maior importância na árvore de decisão com três situações no recorte geral do FIES, 2019–2021. Nota: As importâncias indicam a contribuição relativa das variáveis no ajuste da árvore de decisão. Os valores não têm interpretação causal e devem ser lidos como evidência complementar sobre a diferenciação entre lista de espera, não contratação e contratação efetiva.
+  
+
+Fonte: elaboração própria (2026).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Apêndice D – Análises complementares da modelagem no recorte de Medicina
+Tabela D1 – Coeficientes-chave do modelo logístico multinomial no recorte de Medicina, 2019–2021. Nota: A tabela apresenta coeficientes selecionados para as situações de lista de espera, não contratação e contratação efetiva. Os resultados devem ser lidos como documentação complementar das associações estimadas, e não como efeitos causais.
+  
+
+Fonte: elaboração própria (2026).
+
+
+
+
+
+
+
+
+Tabela D2 – Resumo das especificações do modelo logístico multinomial no recorte de Medicina, 2019–2021. Nota: As especificações E1 a E5 adicionam progressivamente variáveis associadas ao candidato, ao desempenho acadêmico, ao curso e à instituição. As métricas apresentadas têm função de avaliação interna do ajuste.
+  
+
+Fonte: elaboração própria (2026).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tabela D3 – Resumo das especificações da árvore de decisão com três situações no recorte de Medicina, 2019–2021. Nota: A árvore distingue lista de espera, não contratação e contratação efetiva, permitindo observar como o desempenho relativo à nota de corte, a renda e as demais variáveis diferenciam as situações do processo seletivo no curso de Medicina.
+  
+
+Fonte: elaboração própria (2026).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tabela D4 – Dez variáveis de maior importância na árvore de decisão com três situações no recorte de Medicina, 2019–2021. Nota: As importâncias indicam a contribuição relativa das variáveis no ajuste da árvore de decisão. Os valores não têm interpretação causal e devem ser lidos como evidência complementar sobre a diferenciação entre lista de espera, não contratação e contratação efetiva no recorte de Medicina.
+  
+
+Fonte: elaboração própria (2026).
+
+
+Disponibilidade
+Disponibilidade de dados e códigos
+Os microdados utilizados neste artigo são públicos e estão disponíveis nos portais oficiais do Ministério da Educação e do Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira. Os códigos de tratamento, análise e geração das tabelas e figuras estão disponíveis no repositório: https://github.com/eq-lucas/federal-microdata-kdd. Os dados brutos não são redistribuídos no repositório e devem ser baixados diretamente das fontes oficiais.

@@ -1,0 +1,39 @@
+# Mapa editorial das mudanças
+
+Este pacote parte da versão original enviada do artigo e aplica uma reorganização voltada à revista Ensaio: Avaliação e Políticas Públicas em Educação. A decisão geral foi preservar o argumento substantivo, reduzir o excesso de documentação técnica no corpo principal e deslocar análises complementares para arquivo separado de material suplementar.
+
+## Decisão sobre figuras, tabelas e material suplementar
+
+- Manter no artigo principal a Figura 1: fluxo quantitativo do processo seletivo do FIES por grandes áreas de conhecimento.
+- Manter no artigo principal a Figura 2: taxa de conversão entre inscrições e contratos na área de Saúde e bem-estar. Esta figura deve permanecer porque faz a ponte entre o fluxo geral e o recorte posterior de Medicina.
+- Manter no artigo principal a Tabela 1: distribuição das inscrições por situação no processo seletivo. Ela justifica o foco em lista de espera, não contratação e contratação.
+- Manter no artigo principal a Figura 3: taxas de contratação e não contratação por renda e desempenho relativo à nota de corte.
+- Manter no artigo principal a Figura 4: associação entre renda familiar per capita e percentual de financiamento entre contratos efetivados.
+- Retirar do artigo principal a Tabela 2. O coeficiente, o R², a correlação e a interpretação prática foram incorporados no texto e na nota da Figura 4.
+- Manter no artigo principal a Figura 5: probabilidades previstas no recorte geral.
+- Retirar do artigo principal a antiga Figura 6. Ela reorganiza a mesma informação da Figura 5 e deve ir para material suplementar ou repositório.
+- Manter no artigo principal a antiga Figura 7, renumerada como Figura 6: probabilidades previstas no recorte de Medicina.
+- Retirar do artigo principal a antiga Figura 8. Ela é útil, mas redundante com a Figura 6 do novo corpo principal; deve ir para material suplementar ou repositório.
+- Retirar os Apêndices A-D do manuscrito principal. No lugar, enviar um DOCX separado chamado Material suplementar.
+
+## O que deve ir ao Material suplementar
+
+Manter no material suplementar apenas o que sustenta diretamente afirmações do artigo principal:
+
+- Figura S1: antiga Figura A1, fluxo considerando apenas curso priorizado por candidato.
+- Figura S2: antiga Figura A2, taxa de conversão em Saúde e bem-estar considerando apenas curso priorizado.
+- Tabela S1: antiga Tabela B1, distribuição das inscrições por faixa de renda familiar per capita.
+- Figura S3: antiga Figura B1, lista de espera por renda e desempenho relativo à nota de corte.
+- Tabela S2: antiga Tabela C1, coeficientes-chave do modelo logístico multinomial no recorte geral.
+- Tabela S3: antiga Tabela C5, variáveis de maior importância na árvore binária da etapa contratual.
+- Tabela S4: antiga Tabela C6, variáveis de maior importância na árvore com três situações.
+- Tabela S5: antiga Tabela D1, coeficientes-chave do modelo logístico multinomial em Medicina.
+- Tabela S6: antiga Tabela D4, variáveis de maior importância no recorte de Medicina.
+
+Não manter no material suplementar principal a antiga Figura A3, Tabela C2, Tabela C3, Tabela C4, Tabela D2 e Tabela D3. Esses itens são mais técnicos ou laterais e podem ficar apenas no repositório, se desejado.
+
+## Lógica de redação adotada
+
+O corpo principal não deve parecer relatório de Ciência da Computação. Por isso, as árvores, coeficientes completos e métricas internas saem do manuscrito principal. A seção de Resultados e Discussão preserva a leitura substantiva: fluxo da política, barreira acadêmica inicial, etapa contratual, renda, cobertura do financiamento e recorte de Medicina.
+
+A Conclusão concentra as sínteses avaliativas: efetividade social, tensão entre sustentabilidade fiscal e finalidade social, limites associativos e agenda de comparação com o FIES Social.

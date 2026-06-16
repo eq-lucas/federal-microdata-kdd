@@ -1,0 +1,42 @@
+# Ajustes de remissões, renumeração e chamadas internas
+
+## Trocas obrigatórias em Dados e métodos
+
+Trocar: “apresentadas no Apêndice A”
+Por: “disponibilizadas em material suplementar”
+
+Trocar: “As tabelas complementares dos apêndices apresentam os resultados dessas especificações.”
+Por: “As tabelas complementares das especificações são disponibilizadas em material suplementar.”
+
+## Renumeração no corpo principal
+
+- Figura 1 permanece Figura 1.
+- Figura 2 permanece Figura 2.
+- Tabela 1 permanece Tabela 1.
+- Figura 3 permanece Figura 3.
+- Figura 4 permanece Figura 4.
+- Tabela 2 sai do corpo principal.
+- Figura 5 permanece Figura 5.
+- Figura 6 sai do corpo principal e vai para material suplementar ou repositório.
+- Figura 7 passa a ser Figura 6.
+- Figura 8 sai do corpo principal e vai para material suplementar ou repositório.
+
+## Chamadas recomendadas ao material suplementar no corpo do artigo
+
+Em 4.1, depois da Figura 2:
+“A permanência desse padrão em análises que consideram apenas o curso priorizado por candidato é documentada no material suplementar.”
+
+Em 4.2, após mencionar cautela nas faixas superiores de renda:
+“A distribuição complementar por faixas de renda é apresentada no material suplementar.”
+
+Em 4.4, ao final da interpretação das probabilidades previstas:
+“As especificações complementares e medidas de importância das variáveis são apresentadas no material suplementar, como documentação das associações estimadas.”
+
+Em 4.5, ao final do recorte de Medicina:
+“As estimativas complementares desse recorte são apresentadas no material suplementar.”
+
+## Chamadas que devem ser removidas
+
+Remover qualquer ocorrência de “Apêndice A”, “Apêndice B”, “Apêndice C” e “Apêndice D” no manuscrito principal, caso o material seja enviado como arquivo separado.
+
+Não usar “prova” ou “comprova” para se referir ao material suplementar. Preferir: “documenta”, “sustenta”, “reforça”, “apresenta evidência complementar”, “verifica a robustez”.

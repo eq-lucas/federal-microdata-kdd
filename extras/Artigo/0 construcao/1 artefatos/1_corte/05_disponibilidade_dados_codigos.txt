@@ -1,0 +1,13 @@
+# Disponibilidade de dados e códigos
+
+## Onde colocar no artigo
+
+A revista Ensaio solicita nota de disponibilidade de dados para pesquisas originais. A forma mais segura é inserir a nota curta na página inicial do manuscrito, após resumos e palavras-chave, ou no local específico indicado pelo sistema de submissão. Caso o sistema permita seção própria ao final, a mesma nota também pode aparecer depois das referências, mas evite duplicação se o template da revista já tiver campo específico.
+
+## Texto recomendado
+
+Disponibilidade de dados e códigos: Os microdados utilizados neste artigo são públicos e estão disponíveis nos portais oficiais do Ministério da Educação e do Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira. Os códigos de tratamento, análise e geração das tabelas e figuras estão disponíveis no repositório: https://github.com/eq-lucas/federal-microdata-kdd. Os dados brutos não são redistribuídos no repositório e devem ser baixados diretamente das fontes oficiais.
+
+## Texto curto para nota de primeira página
+
+Disponibilidade de dados: Os microdados utilizados são públicos e estão disponíveis nos portais oficiais do Ministério da Educação e do Inep. Os códigos de tratamento, análise e geração das tabelas e figuras estão disponíveis em: https://github.com/eq-lucas/federal-microdata-kdd. Os dados brutos não são redistribuídos no repositório.

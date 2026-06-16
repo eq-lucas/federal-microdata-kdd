@@ -1,0 +1,17 @@
+# Conclusão
+
+Os resultados deste artigo mostram que, no recorte analisado da Modalidade I do FIES, a conversão entre elegibilidade acadêmica e contratação efetiva não depende apenas do desempenho acadêmico. Alcançar o critério acadêmico é decisivo para avançar no processo seletivo, mas não garante, por si só, a formalização do contrato. A contratação aparece associada também à renda familiar per capita e às condições concretas de financiamento.
+
+Esse achado desloca a avaliação do FIES para uma etapa pouco observada da política: a passagem entre estar academicamente apto a avançar no processo seletivo e conseguir efetivamente contratar o financiamento. Avaliar o programa apenas pelo número de vagas, inscrições ou contratos firmados pode ocultar barreiras que permanecem na etapa final do processo.
+
+Entre os contratos efetivados, a maior renda familiar per capita esteve associada ao menor percentual financiado. Esse resultado mostra que, mesmo dentro do grupo de baixa renda atendido pela Modalidade I, diferenças de renda podem alterar a cobertura do financiamento e ampliar a parcela dos encargos educacionais que permanece fora do contrato.
+
+Há, portanto, uma tensão relevante no desenho do FIES após a reformulação implementada a partir de 2018. O programa buscou responder a problemas de sustentabilidade fiscal, governança e risco financeiro, mas o modelo baseado em cobertura variável, coparticipação e limites de financiamento pode produzir condições distintas de acesso ao contrato. A efetividade social da política depende, assim, não apenas da oferta de vagas ou da classificação acadêmica, mas das condições concretas pelas quais candidatos elegíveis conseguem formalizar o financiamento.
+
+O recorte de Medicina reforça esse argumento. Por se tratar de um curso de alto custo e elevada seletividade acadêmica, o alcance do critério acadêmico não elimina a relevância da etapa contratual. Nesse caso, a política de financiamento precisa ser avaliada também por sua capacidade de converter candidatos elegíveis em contratos efetivos.
+
+Do ponto de vista da avaliação de políticas públicas, os achados sugerem que a sustentabilidade do FIES não deve ser discutida separadamente de sua finalidade social. A questão central não é apenas quantos candidatos chegam à etapa de contratação, mas em que condições financeiras essa contratação se torna viável.
+
+O estudo possui limites. A análise identifica associações entre renda, desempenho relativo à nota de corte, percentual financiado e contratação, mas não permite afirmar causalidade direta entre coparticipação e não contratação. Além disso, o percentual financiado é observado apenas entre contratos efetivados, o que limita a mensuração direta das condições enfrentadas por candidatos que não formalizaram contrato. Ainda assim, os resultados indicam que o desenho financeiro do programa deve ser considerado na avaliação da passagem entre elegibilidade acadêmica e acesso efetivo ao financiamento.
+
+Como o período analisado antecede a criação do FIES Social pela Resolução CG-Fies nº 58/2024, os resultados oferecem um ponto de comparação para estudos futuros. Investigações posteriores poderão analisar se as novas regras modificaram a conversão em contrato, sobretudo entre os grupos mais vulneráveis e em cursos de mensalidades elevadas, como Medicina.
