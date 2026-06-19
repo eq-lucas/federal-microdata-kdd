@@ -1,0 +1,1577 @@
+ANÁLISE COMPLETA DO REPOSITÓRIO PYTHON DO PROJETO FIES
+
+Arquivo analisado: src.zip + main.py + README.md enviados na conversa.
+Escopo: análise estática e lógica de todos os arquivos Python disponíveis.
+Data da análise: gerada automaticamente nesta sessão.
+
+AVISO DE HONESTIDADE
+--------------------
+Eu analisei o código-fonte, a estrutura de pastas, o CLI e a lógica dos algoritmos. Também compilei os arquivos Python com py_compile, e a checagem sintática passou sem erros. Porém, eu não rodei o pipeline completo com os microdados brutos reais, porque os dados brutos não foram enviados junto. Portanto, esta análise confirma coerência de implementação e lógica; não substitui uma reprodução empírica completa dos números finais.
+
+VEREDITO CURTO
+--------------
+O repositório está coerente e tecnicamente bem estruturado. Ele implementa um pipeline de pesquisa relativamente completo: preparação de dados, curadoria, bases analíticas, ABTs de modelagem, regressão logística, árvores de decisão, métricas, probabilidades previstas, figuras, tabelas, apêndices e exportação do pacote final do artigo.
+
+Os algoritmos centrais estão corretos no essencial:
+- regressão logística binária e multinomial: implementadas de forma adequada;
+- árvores de decisão: implementadas de forma adequada;
+- holdout 80/20 estratificado: adequado para avaliação preliminar;
+- métricas para classes desbalanceadas: adequadas;
+- tratamento de variáveis categóricas e numéricas: adequado;
+- geração de probabilidades previstas: coerente com o artigo;
+- exportação de artefatos: funcional, mas com muitos detalhes e sensível a nomes de arquivos.
+
+Os principais cuidados são:
+1. O código classifica modalidade, mas o recorte principal do artigo não é um filtro administrativo estrito apenas de Modalidade I. Isso está aceitável se o artigo diz “público de baixa renda associado à Modalidade I”.
+2. O README menciona requirements.txt; esse arquivo precisa existir no repositório real.
+3. Alguns comandos exportam por padrão avaliação in_sample; se o artigo técnico usar holdout, é preciso exportar com --avaliacao holdout_80_20.
+4. Há um pequeno ponto de padronização textual em “PARTICIPAÇÃO CANCELADA” em dataset_candidatos_unicos.py.
+5. O arquivo pacote_artigo.py é funcional, mas grande e sensível a caminhos/nomes.
+
+===============================================================================
+1. COMO O PROJETO FUNCIONA NO FLUXO REAL
+===============================================================================
+
+O projeto é organizado como um pipeline de dados e modelagem. A ideia geral é:
+
+Dados brutos oficiais
+  -> staging
+  -> transformação e padronização
+  -> curadoria
+  -> bases analíticas descritivas
+  -> ABTs de modelagem
+  -> modelos estatísticos/de machine learning
+  -> tabelas, figuras e apêndices
+  -> pacote final article/
+
+O arquivo main.py é o ponto de entrada. Ele funciona como CLI, ou seja, uma interface de linha de comando. Em vez de rodar cada módulo manualmente, você chama comandos como:
+
+python3 main.py pipeline all
+python3 main.py analysis all
+python3 main.py article all
+python3 main.py abt binaria
+python3 main.py abt ternaria --recorte geral
+python3 main.py modeling logit --force
+python3 main.py modeling tree-depth --force
+python3 main.py article modelagem
+python3 main.py export article --avaliacao in_sample --clean
+
+O README descreve esse fluxo de forma coerente.
+
+Etapas principais:
+
+1) init/check
+   Cria estrutura de pastas e verifica caminhos.
+
+2) pipeline all
+   Executa staging, transformações e curadoria. Esta é a parte de ETL: Extract, Transform, Load.
+
+3) analysis all
+   Gera bases descritivas: candidatos únicos, funil do processo seletivo e taxas.
+
+4) article all
+   Gera produtos descritivos do artigo: fluxo, taxas, tabelas de distribuição, matrizes renda x desempenho, financiamento/coparticipação.
+
+5) abt binaria / abt ternaria
+   Gera as bases de modelagem. ABT significa Analytical Base Table: uma tabela preparada para treino de modelos, com uma linha por observação, variáveis preditoras e target.
+
+6) modeling logit / modeling tree-depth
+   Treina regressão logística e árvores de decisão.
+
+7) article modelagem
+   Gera tabelas, figuras e apêndices dos modelos.
+
+8) export article
+   Copia e organiza os resultados finais em article/.
+
+Teoria por trás: isso é uma arquitetura de pipeline reprodutível. A vantagem é separar dados brutos, dados intermediários, bases analíticas e resultados finais. Essa separação evita que você misture limpeza de dados, análise e redação do artigo em um único script confuso.
+
+===============================================================================
+2. TEORIA GERAL DAS TÉCNICAS USADAS
+===============================================================================
+
+2.1 ABT
+-------
+ABT é uma tabela analítica para modelagem. No projeto, existem duas ABTs centrais:
+
+- ABT binária: NÃO CONTRATADO = 0; CONTRATADA = 1.
+  Ela olha a etapa contratual.
+
+- ABT ternária: LISTA DE ESPERA = 0; NÃO CONTRATADO = 1; CONTRATADA = 2.
+  Ela olha o fluxo mais amplo, separando a barreira acadêmica inicial da etapa contratual.
+
+2.2 Gap/desempenho relativo à nota de corte
+--------------------------------------------
+O código calcula:
+
+gap = media_enem - nota_corte_gp
+
+Se gap é positivo, o candidato ficou acima da nota de corte do grupo de preferência.
+Se gap é negativo, ficou abaixo.
+
+Também calcula:
+
+renda_gap = renda_per_capita * gap
+
+Essa interação tenta representar que o efeito do desempenho pode mudar conforme a renda, e vice-versa.
+
+2.3 Pré-processamento do scikit-learn
+-------------------------------------
+Nos modelos, o código usa Pipeline e ColumnTransformer.
+
+Pipeline é uma sequência de passos: primeiro transforma os dados, depois treina o modelo. Isso evita vazamento entre treino e teste e deixa o processo reprodutível.
+
+ColumnTransformer aplica transformações diferentes por tipo de coluna:
+- numéricas: imputação por mediana e, na regressão logística, padronização;
+- categóricas: imputação com “Não informado” e OneHotEncoder.
+
+SimpleImputer preenche valores ausentes.
+StandardScaler coloca variáveis numéricas em escala parecida.
+OneHotEncoder transforma categorias em colunas binárias. Exemplo: turno = NOITE vira uma coluna turno_NOITE.
+
+2.4 Regressão logística
+-----------------------
+A regressão logística é um modelo de classificação. No binário, estima probabilidade de uma inscrição ser contratada. No ternário, a versão multinomial estima probabilidades para lista de espera, não contratação e contratação.
+
+O código usa class_weight='balanced', que aumenta o peso das classes menores. Isso é importante porque contratação é minoria.
+
+2.5 Árvore de decisão
+---------------------
+A árvore de decisão separa os dados por regras sucessivas. Exemplo abstrato:
+
+se gap <= X -> um ramo
+se gap > X -> outro ramo
+
+Ela escolhe divisões que deixam os grupos mais “puros”, isto é, mais homogêneos em relação à classe. O código usa critério Gini, que mede impureza.
+
+A profundidade controla complexidade. Profundidade 10, 14 e 19 significam árvores progressivamente mais flexíveis. Árvores mais profundas podem capturar padrões mais complexos, mas também podem sobreajustar.
+
+2.6 Holdout 80/20
+-----------------
+O código separa 80% dos registros para treino e 20% para teste, com estratificação. Estratificação significa preservar a proporção das classes no treino e no teste.
+
+2.7 Métricas
+------------
+Acurácia: percentual total de acertos. Pode enganar em base desbalanceada.
+
+Acurácia balanceada: média do desempenho por classe. Melhor quando as classes têm tamanhos muito diferentes.
+
+Precisão: quando o modelo prevê “contratada”, quantas realmente eram contratadas.
+
+Revocação/recall: de todas as contratadas reais, quantas o modelo conseguiu encontrar.
+
+F1-score: média harmônica entre precisão e revocação.
+
+F1 macro: calcula F1 por classe e tira média simples, dando peso igual a cada classe.
+
+ROC-AUC: mede capacidade de separação entre classes. Valor 0,5 é próximo de aleatório; quanto mais perto de 1, melhor.
+
+Matriz de confusão: mostra acertos e erros por classe.
+
+2.8 Probabilidades previstas
+----------------------------
+O artigo de Educação usa probabilidades previstas porque elas são mais interpretáveis para políticas públicas. Em vez de dizer só “o modelo acertou X”, a figura pode mostrar: para determinada faixa de renda e desempenho, qual a probabilidade prevista de lista de espera, não contratação ou contratação.
+
+===============================================================================
+3. ARQUIVO main.py
+===============================================================================
+
+Responsabilidade geral:
+O main.py é o controlador central do repositório. Ele não implementa os algoritmos pesados diretamente; ele interpreta argumentos da linha de comando e chama os módulos corretos dentro de src/.
+
+Ele está correto como CLI. A lógica é manual, usando sys.argv, e não argparse global. Isso é simples e funciona, embora argparse pudesse deixar o CLI mais padronizado.
+
+Funções do arquivo:
+- tem_flag(nome): Verifica se uma flag como --force ou --clean aparece nos argumentos. É um utilitário simples para opções booleanas.
+- valor_flag(nome, padrao): Busca o valor depois de uma flag. Exemplo: --recorte medicina retorna medicina. Se não houver valor, usa padrão.
+- obter_recorte(padrao): Valida recorte geral/medicina e aceita general como alias de geral.
+- obter_avaliacao(padrao): Valida in_sample, holdout_80_20 ou all.
+- obter_experimento(padrao): Valida E1–E5.
+- obter_target(padrao): Valida binario, ternario ou all.
+- obter_profundidade(padrao): Valida profundidades 10, 14 e 19.
+- ajuda(): Imprime manual de comandos do projeto.
+- executar_transform(etapa): Chama módulos de transformação: tipos FIES, unificação, mestre INEP, CINE e modalidade.
+- executar_pipeline(etapa): Executa staging, transformações e curadoria.
+- executar_analysis(etapa): Gera bases analíticas descritivas.
+- executar_abt(etapa): Gera ABTs binária ou ternária.
+- normalizar_alvo_modelagem(alvo): Converte alvo/recorte informado em lista de recortes para modelagem.
+- executar_modelagem(acao, alvo): Roteia ações de modelagem para regressão logística, árvore padrão ou árvore por profundidade.
+- profundidade_da_acao(acao): Extrai profundidade de comandos específicos de árvore.
+- target_da_acao_tree_profundidade(acao): Descobre se comando de árvore por profundidade é binário ou ternário.
+- executar_modelagem_tree_profundidade(acao, recortes, force): Executa árvore por profundidade para target/recorte/avaliação.
+- executar_artigo(secao): Gera artefatos do artigo por seção.
+- executar_diagnosticos(): Mostra caminhos de logs e diagnósticos.
+- executar_artigos_descritivos(): Gera todos os produtos descritivos.
+- executar_abts_modelagem(): Gera ABTs necessárias para modelagem geral e Medicina.
+- treinar_logit_completo(force): Treina todos os modelos de regressão logística necessários.
+- treinar_arvore_padrao_completa(force): Treina árvores padrão de profundidade 6.
+- treinar_arvores_profundidade(force): Treina árvores de profundidades 10, 14 e 19 para targets/recortes.
+- treinar_arvore_contratual_binaria(force): Treina árvore binária contratual com profundidade 10.
+- treinar_todos_modelos(force): Encadeia logit, árvore padrão e árvores por profundidade.
+- gerar_artigos_logit(): Gera produtos de artigo para regressões logísticas.
+- gerar_artigos_arvore_padrao(): Gera produtos de artigo para árvores padrão.
+- gerar_artigos_arvores_profundidade(): Gera produtos de artigo para árvores por profundidade.
+- gerar_artigos_modelagem(): Gera todos os produtos de modelagem.
+- executar_reproducao(etapa): Comando reproduce: refaz pipeline, análises, modelos e pacote final.
+- executar_export(etapa): Exporta pacote final article/.
+- main(): Lê o primeiro comando e chama a função correspondente.
+
+Avaliação do main.py:
+- Está coerente com o README.
+- A ajuda lista os comandos principais.
+- A lógica de reprodução é clara.
+- Risco: como usa sys.argv diretamente, é menos robusto que argparse completo, mas para projeto acadêmico é aceitável.
+- Atenção: export article usa in_sample por padrão se --avaliacao não for passado.
+
+===============================================================================
+4. README.md
+===============================================================================
+
+Responsabilidade:
+O README explica objetivo, fontes de dados, estrutura do repositório, ambiente, comandos de reprodução e organização do pacote final. Está alinhado com o main.py.
+
+Pontos corretos:
+- Informa que dados brutos devem ser baixados das fontes oficiais.
+- Explica que os dados brutos não são redistribuídos.
+- Explica data lake em camadas: 01_raw, 02_staging, 03_interim, 04_curated, 05_analysis, 06_abt.
+- Mostra comandos para reproduzir pipeline, análise, modelagem e exportação.
+
+Pontos a corrigir/checar:
+- Há erro de digitação: “comapctados extraidos” deveria ser “compactados e extraídos”.
+- O README manda rodar pip install -r requirements.txt. Esse arquivo precisa existir no repositório real.
+- Se o artigo técnico usar holdout, é bom explicitar no README qual export gera tabelas holdout: python3 main.py export article --avaliacao holdout_80_20 --clean.
+
+===============================================================================
+5. ANÁLISE ARQUIVO POR ARQUIVO
+===============================================================================
+
+-------------------------------------------------------------------------------
+src/__init__.py (0 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Arquivo vazio que marca a pasta src como pacote Python. Não executa lógica; serve para permitir imports como from src import constants.
+Não há funções/classes. Se é __init__.py, sua função é estrutural: permitir importação como pacote.
+
+-------------------------------------------------------------------------------
+src/abt/__init__.py (0 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Arquivo vazio que marca src/abt como subpacote. Não contém algoritmo.
+Não há funções/classes. Se é __init__.py, sua função é estrutural: permitir importação como pacote.
+
+-------------------------------------------------------------------------------
+src/abt/build_abt_binaria.py (563 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Constrói a ABT binária de modelagem: NÃO CONTRATADO=0 e CONTRATADA=1. Cria variáveis canônicas, gap, interação renda*gap, filtra classes relevantes, remove ausentes obrigatórios, limita categorias raras e salva metadados.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, PROJECT_ROOT@19, LOGS_DIR@20, ABT_DIR@21, CURATED_PARQUET_DIR@22, CURATED_INSCRICOES_ARTIGO_PATH@24, ABT_BINARIA_GERAL_PATH@30, ABT_BINARIA_MEDICINA_PATH@36, STATUS_CONTRATADA@43, STATUS_NAO_CONTRATADO@44, TARGET_MAP@46, COLUMN_ALIASES@51, COLUNAS_CANONICAS@159, CATEGORICAS@188, NUMERICAS@207, MAX_CATEGORIAS@215.
+Funções e partes do código:
+  * log(message) [linha 218]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * remover_acentos(texto) [linha 228]: Normaliza string Unicode e remove acentos; útil para comparar textos como MEDICINA/medicina e situações com/sem acento.
+  * normalizar_texto(valor) [linha 233]: Limpa espaços, transforma valores vazios/nulos em ausentes e padroniza texto; reduz variações de escrita antes de agrupar ou filtrar.
+  * normalizar_status(valor) [linha 246]: Converte situações do FIES para categorias padronizadas usadas como alvo ou descrição do fluxo.
+  * encontrar_coluna(df, nome_canonico) [linha 273]: Procura, entre vários aliases possíveis, qual coluna existe no DataFrame; deixa o pipeline robusto a nomes diferentes entre arquivos.
+  * converter_numero_serie(serie) [linha 281]: Converte valores em string, porcentagem ou moeda brasileira para número; trata vírgula decimal e ponto de milhar.
+  * extrair_ano_nascimento(serie) [linha 307]: Extrai ano de nascimento de string/data para estimar idade quando idade direta não está disponível.
+  * carregar_base() [linha 314]: Carrega parquet curado/ABT/modelo necessário e falha explicitamente se o arquivo anterior do pipeline ainda não foi gerado.
+  * aplicar_recorte_medicina(df) [linha 329]: Filtra registros cujo curso é Medicina, evitando confundir com Veterinária quando necessário.
+  * construir_colunas_canonicas(df_base) [linha 354]: Cria DataFrame com nomes canônicos, gera gap = média Enem - nota de corte e renda_gap = renda*gap, padroniza numéricas e categóricas.
+  * limitar_categorias(df) [linha 403]: Agrupa categorias muito raras/acima do limite em “Outras categorias” para reduzir explosão dimensional no one-hot encoding.
+  * caminho_saida(recorte) [linha 430]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * construir_abt(recorte) [linha 440]: Executa a lógica central da ABT: carrega base, aplica recorte, cria colunas, filtra target, remove ausentes obrigatórios, gera metadados.
+  * salvar_abt(recorte, abt, metadata) [linha 508]: Salva ABT em parquet, metadados em JSON e resumo em CSV.
+  * run(recorte) [linha 535]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+  * parse_args() [linha 554]: Define argumentos de linha de comando quando o módulo é executado diretamente.
+Nota de avaliação: Correção: a lógica de target binário está certa para etapa contratual. Remove lista de espera e outras situações. A interação renda_gap está correta como variável derivada, mas deve ser interpretada como associação, não causa.
+
+-------------------------------------------------------------------------------
+src/abt/build_abt_ternaria.py (513 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Constrói a ABT ternária: LISTA DE ESPERA=0, NÃO CONTRATADO=1, CONTRATADA=2. Mesma lógica da binária, mas preserva a barreira acadêmica inicial via lista de espera.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, PROJECT_ROOT@19, LOGS_DIR@20, ABT_DIR@21, CURATED_PARQUET_DIR@22, CURATED_INSCRICOES_ARTIGO_PATH@24, ABT_TERNARIA_GERAL_PATH@30, ABT_TERNARIA_MEDICINA_PATH@36, STATUS_LISTA_ESPERA@43, STATUS_NAO_CONTRATADO@44, STATUS_CONTRATADA@45, TARGET_MAP@47, COLUMN_ALIASES@53, COLUNAS_CANONICAS@92, CATEGORICAS@121, NUMERICAS@140, MAX_CATEGORIAS@148.
+Funções e partes do código:
+  * log(message) [linha 151]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * remover_acentos(texto) [linha 161]: Normaliza string Unicode e remove acentos; útil para comparar textos como MEDICINA/medicina e situações com/sem acento.
+  * normalizar_texto(valor) [linha 166]: Limpa espaços, transforma valores vazios/nulos em ausentes e padroniza texto; reduz variações de escrita antes de agrupar ou filtrar.
+  * normalizar_status(valor) [linha 179]: Converte situações do FIES para categorias padronizadas usadas como alvo ou descrição do fluxo.
+  * encontrar_coluna(df, nome_canonico) [linha 197]: Procura, entre vários aliases possíveis, qual coluna existe no DataFrame; deixa o pipeline robusto a nomes diferentes entre arquivos.
+  * converter_numero_serie(serie) [linha 205]: Converte valores em string, porcentagem ou moeda brasileira para número; trata vírgula decimal e ponto de milhar.
+  * extrair_ano_nascimento(serie) [linha 231]: Extrai ano de nascimento de string/data para estimar idade quando idade direta não está disponível.
+  * carregar_base() [linha 238]: Carrega parquet curado/ABT/modelo necessário e falha explicitamente se o arquivo anterior do pipeline ainda não foi gerado.
+  * aplicar_recorte_medicina(df) [linha 253]: Filtra registros cujo curso é Medicina, evitando confundir com Veterinária quando necessário.
+  * aplicar_recorte(df, recorte) [linha 293]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * construir_colunas_canonicas(df_base) [linha 304]: Cria DataFrame com nomes canônicos, gera gap = média Enem - nota de corte e renda_gap = renda*gap, padroniza numéricas e categóricas.
+  * limitar_categorias(df) [linha 353]: Agrupa categorias muito raras/acima do limite em “Outras categorias” para reduzir explosão dimensional no one-hot encoding.
+  * construir_abt(recorte) [linha 380]: Executa a lógica central da ABT: carrega base, aplica recorte, cria colunas, filtra target, remove ausentes obrigatórios, gera metadados.
+  * path_saida_abt(recorte) [linha 448]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_abt(recorte, abt, metadata) [linha 458]: Salva ABT em parquet, metadados em JSON e resumo em CSV.
+  * run(recorte) [linha 485]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+  * parse_args() [linha 504]: Define argumentos de linha de comando quando o módulo é executado diretamente.
+Nota de avaliação: Correção: a lógica ternária está certa para separar lista de espera, não contratação e contratação. Isso sustenta a diferença entre barreira acadêmica inicial e etapa contratual.
+
+-------------------------------------------------------------------------------
+src/analysis/__init__.py (0 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Arquivo vazio que marca src/analysis como subpacote. Não contém algoritmo.
+Não há funções/classes. Se é __init__.py, sua função é estrutural: permitir importação como pacote.
+
+-------------------------------------------------------------------------------
+src/analysis/dataset_candidatos_unicos.py (198 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Gera uma base por candidato-ano-semestre priorizando a situação mais avançada do fluxo. Serve para análises que não querem contar várias opções de curso do mesmo candidato como trajetórias independentes.
+Constantes/variáveis globais importantes: RESUMO_PATH@11, ORDEM_PRIORIDADE_FLUXO@13, CHAVES_AGREGACAO@24, ORDEM_SORT@33, SUBSET_CANDIDATO_SEMESTRE@41.
+Funções e partes do código:
+  * log(message) [linha 48]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * validar_colunas(df, colunas) [linha 58]: Confere se colunas obrigatórias existem; evita erros silenciosos quando arquivo de entrada mudou.
+  * normalizar_texto(valor) [linha 65]: Limpa espaços, transforma valores vazios/nulos em ausentes e padroniza texto; reduz variações de escrita antes de agrupar ou filtrar.
+  * preparar_base(df) [linha 77]: Aplica normalizações iniciais e validações a um DataFrame antes de agregar ou modelar.
+  * gerar_candidatos_unicos(df) [linha 107]: Ordena situações do fluxo por prioridade e escolhe uma linha por candidato/semestre.
+  * gerar_agregado(candidatos) [linha 133]: Agrupa base por chaves analíticas e conta registros.
+  * salvar_resumo(df, candidatos, agregado) [linha 146]: Grava CSV de auditoria/resumo da etapa.
+  * run() [linha 172]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+Nota de avaliação: Alerta pequeno: há uma grafia sem acento para participação cancelada na ordem de prioridade; convém padronizar com a normalização geral. Não parece afetar os resultados centrais.
+
+-------------------------------------------------------------------------------
+src/analysis/dataset_funil_fluxo.py (259 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Gera o dataset do funil do FIES: vagas ofertadas, inscrições, inscrições com nota suficiente e contratos, agregado por ano, semestre, região e área CINE. Base para Figura 1/fluxo seletivo.
+Constantes/variáveis globais importantes: RESUMO_PATH@14, CHAVE_INSCRICOES@16, CHAVE_OFERTAS@17.
+Funções e partes do código:
+  * log(message) [linha 20]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * validar_colunas(df, colunas, nome) [linha 30]: Confere se colunas obrigatórias existem; evita erros silenciosos quando arquivo de entrada mudou.
+  * normalizar_categorias(df, colunas) [linha 37]: Padroniza colunas categóricas para evitar múltiplas grafias da mesma categoria.
+  * preparar_inscricoes(path) [linha 47]: Padroniza inscrições curadas; quando no curate, cria aliases e variáveis derivadas.
+  * preparar_ofertas(path) [linha 81]: Padroniza ofertas curadas; quando no curate, cria aliases e variáveis derivadas.
+  * soma_ofertas(dfo, coluna, saida) [linha 112]: Agrupa vagas ofertadas e soma quantidades.
+  * conta_inscricoes(df, saida) [linha 121]: Conta inscrições por chaves de agregação.
+  * pivot_situacoes(df, prefixo) [linha 130]: Transforma contagens de situações em colunas para facilitar funil.
+  * gerar_funil(dfo, dfi, candidatos) [linha 159]: Combina ofertas, inscrições, nota suficiente e contratos em uma tabela de etapas.
+  * salvar_resumo(dfo, dfi, candidatos, funil) [linha 219]: Grava CSV de auditoria/resumo da etapa.
+  * run() [linha 238]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/analysis/dataset_taxas.py (142 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Calcula taxas a partir do funil, como taxa de inscrição por vaga, taxa de desempenho igual/superior à nota de corte, taxa de ocupação e conversão em contrato. Usa divisão segura para evitar erro quando denominador é zero.
+Constantes/variáveis globais importantes: RESUMO_PATH@11, COLUNAS_BASE@13, TAXAS@22.
+Funções e partes do código:
+  * log(message) [linha 34]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * divisao_segura(numerador, denominador) [linha 44]: Calcula razão sem quebrar quando denominador é zero; retorna ausente quando não faz sentido dividir.
+  * calcular_taxas(df_base) [linha 55]: Calcula taxas derivadas do funil.
+  * validar_colunas(df) [linha 73]: Confere se colunas obrigatórias existem; evita erros silenciosos quando arquivo de entrada mudou.
+  * gerar_taxas(funil) [linha 80]: Aplica cálculo de taxas ao dataset de funil.
+  * salvar_resumo(df) [linha 100]: Grava CSV de auditoria/resumo da etapa.
+  * run() [linha 122]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/article/__init__.py (0 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Arquivo vazio que marca src/article como subpacote. Não contém algoritmo.
+Não há funções/classes. Se é __init__.py, sua função é estrutural: permitir importação como pacote.
+
+-------------------------------------------------------------------------------
+src/article/apendice_logit_binario.py (696 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Gera apêndices completos da regressão logística binária: tabelas completas, compactas, matrizes, heatmaps e curvas.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, SAVE_DPI@16, BINS_RENDA@18, LABELS_RENDA@19, BINS_DESEMPENHO@21, LABELS_DESEMPENHO@22, ORDEM_DESEMPENHO_PLOT@31, COR_CABECALHO@40, COR_LINHA_1@41, COR_LINHA_2@42, COR_BORDA@43, PROJECT_ROOT@421, LOGS_DIR@422, APPENDIX_DIR@423, APPENDIX_LOGIT_DIR@425, COLUNAS_TABELA_COMPLETA@427, COLUNAS_TABELA_COMPACTA@445.
+Funções e partes do código:
+  * obter_fonte_padrao() [linha 46]: Seleciona fonte Matplotlib disponível, tentando Times/DejaVu etc.
+  * configurar_matplotlib() [linha 61]: Configura parâmetros globais de Matplotlib para figuras.
+  * fmt_int(valor) [linha 66]: Formata inteiro com separador para tabelas.
+  * fmt_float(valor, casas) [linha 73]: Formata número decimal com casas e vírgula/ponto conforme função.
+  * quebrar_texto(texto, largura) [linha 80]: Quebra texto longo para caber em células/figuras.
+  * salvar_figura(fig, caminho_base) [linha 84]: Salva figura em múltiplos formatos com DPI configurado.
+  * salvar_tabela_latex(df_tabela, caminho_base, caption, label) [linha 100]: Exporta tabela formatada em LaTeX.
+  * salvar_tabela_como_imagem(df_tabela, caminho_base, figsize, col_widths, fontsize) [linha 114]: Renderiza tabela como imagem Matplotlib.
+  * preparar_base_probabilidades(df, prob_col) [linha 166]: Cria faixas/categorias para probabilidades previstas por renda e desempenho.
+  * matriz_probabilidade_prevista(df_pred, prob_col) [linha 188]: Agrupa probabilidades previstas em matriz renda x desempenho.
+  * tabela_media_prob_por_faixas(df_pred, prob_col) [linha 199]: Calcula médias de probabilidades por faixas.
+  * gerar_heatmap_probabilidade(df_pred, prob_col, caminho_base) [linha 208]: Gera heatmap de probabilidade prevista.
+  * gerar_curvas_desempenho_por_renda(df_pred, prob_col, caminho_base) [linha 259]: Gera curvas variando desempenho dentro de faixas de renda.
+  * gerar_curvas_renda_por_desempenho(df_pred, prob_col, caminho_base) [linha 315]: Gera curvas variando renda dentro de faixas de desempenho.
+  * renderizar_matriz_confusao(matriz, caminho_base) [linha 371]: Renderiza matriz de confusão como figura/tabela.
+  * log(message) [linha 456]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * carregar_metricas(recorte, avaliacao) [linha 466]: Lê CSV de métricas já gerado pela modelagem.
+  * preparar_tabela_completa(df) [linha 478]: Seleciona e formata métricas/coeficientes/importâncias para tabela completa.
+  * preparar_tabela_compacta(df) [linha 502]: Seleciona resumo compacto das métricas principais.
+  * renderizar_tabela_completa(tabela, caminho_base) [linha 518]: Renderiza tabela completa como imagem/LaTeX.
+  * gerar_tabela_completa(recorte, avaliacao) [linha 548]: Gera tabela completa de apêndice.
+  * gerar_tabela_compacta(recorte, avaliacao) [linha 577]: Gera tabela compacta para apêndice/corpo.
+  * gerar_matriz_confusao(recorte, avaliacao, experimento) [linha 614]: Gera matriz de confusão a partir do experimento selecionado.
+  * run(recorte, avaliacao, experimento) [linha 658]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+  * parse_args() [linha 685]: Define argumentos de linha de comando quando o módulo é executado diretamente.
+
+-------------------------------------------------------------------------------
+src/article/apendice_logit_ternario.py (715 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Gera apêndices completos da regressão multinomial: tabelas completas/compactas, matrizes de confusão e figuras de probabilidades previstas.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, SAVE_DPI@16, BINS_RENDA@18, LABELS_RENDA@19, BINS_DESEMPENHO@21, LABELS_DESEMPENHO@22, ORDEM_DESEMPENHO_PLOT@31, COR_CABECALHO@40, COR_LINHA_1@41, COR_LINHA_2@42, COR_BORDA@43, PROJECT_ROOT@421, LOGS_DIR@422, APPENDIX_DIR@423, COLUNAS_TABELA_COMPLETA@426, COLUNAS_TABELA_COMPACTA@444.
+Funções e partes do código:
+  * obter_fonte_padrao() [linha 46]: Seleciona fonte Matplotlib disponível, tentando Times/DejaVu etc.
+  * configurar_matplotlib() [linha 61]: Configura parâmetros globais de Matplotlib para figuras.
+  * fmt_int(valor) [linha 66]: Formata inteiro com separador para tabelas.
+  * fmt_float(valor, casas) [linha 73]: Formata número decimal com casas e vírgula/ponto conforme função.
+  * quebrar_texto(texto, largura) [linha 80]: Quebra texto longo para caber em células/figuras.
+  * salvar_figura(fig, caminho_base) [linha 84]: Salva figura em múltiplos formatos com DPI configurado.
+  * salvar_tabela_latex(df_tabela, caminho_base, caption, label) [linha 100]: Exporta tabela formatada em LaTeX.
+  * salvar_tabela_como_imagem(df_tabela, caminho_base, figsize, col_widths, fontsize) [linha 114]: Renderiza tabela como imagem Matplotlib.
+  * preparar_base_probabilidades(df, prob_col) [linha 166]: Cria faixas/categorias para probabilidades previstas por renda e desempenho.
+  * matriz_probabilidade_prevista(df_pred, prob_col) [linha 188]: Agrupa probabilidades previstas em matriz renda x desempenho.
+  * tabela_media_prob_por_faixas(df_pred, prob_col) [linha 199]: Calcula médias de probabilidades por faixas.
+  * gerar_heatmap_probabilidade(df_pred, prob_col, caminho_base) [linha 208]: Gera heatmap de probabilidade prevista.
+  * gerar_curvas_desempenho_por_renda(df_pred, prob_col, caminho_base) [linha 259]: Gera curvas variando desempenho dentro de faixas de renda.
+  * gerar_curvas_renda_por_desempenho(df_pred, prob_col, caminho_base) [linha 315]: Gera curvas variando renda dentro de faixas de desempenho.
+  * renderizar_matriz_confusao(matriz, caminho_base) [linha 371]: Renderiza matriz de confusão como figura/tabela.
+  * appendix_logit_dir(recorte) [linha 455]: Resolve pasta de apêndice da regressão multinomial por recorte.
+  * log(message) [linha 464]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * carregar_metricas(recorte, avaliacao) [linha 474]: Lê CSV de métricas já gerado pela modelagem.
+  * preparar_tabela_completa(df) [linha 487]: Seleciona e formata métricas/coeficientes/importâncias para tabela completa.
+  * preparar_tabela_compacta(df) [linha 511]: Seleciona resumo compacto das métricas principais.
+  * renderizar_tabela_completa(tabela, caminho_base) [linha 527]: Renderiza tabela completa como imagem/LaTeX.
+  * gerar_tabela_completa(recorte, avaliacao) [linha 557]: Gera tabela completa de apêndice.
+  * gerar_tabela_compacta(recorte, avaliacao) [linha 587]: Gera tabela compacta para apêndice/corpo.
+  * matriz_confusao_da_linha(row) [linha 625]: Converte campos de uma linha de métricas em matriz de confusão.
+  * gerar_matriz_confusao(recorte, avaliacao, experimento) [linha 641]: Gera matriz de confusão a partir do experimento selecionado.
+  * run(recorte, avaliacao, experimento) [linha 677]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+  * parse_args() [linha 704]: Define argumentos de linha de comando quando o módulo é executado diretamente.
+
+-------------------------------------------------------------------------------
+src/article/apendice_treeClassification.py (444 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Gera apêndices para árvores padrão, com tabelas de métricas, importâncias, matrizes e gráficos.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, SAVE_DPI@16, BINS_RENDA@18, LABELS_RENDA@19, BINS_DESEMPENHO@20, LABELS_DESEMPENHO@21, ORDEM_DESEMPENHO_PLOT@22, COR_CABECALHO@24, COR_LINHA_1@25, COR_LINHA_2@26, COR_BORDA@27, PROJECT_ROOT@255, LOGS_DIR@256, APPENDIX_DIR@257.
+Funções e partes do código:
+  * obter_fonte_padrao() [linha 30]: Seleciona fonte Matplotlib disponível, tentando Times/DejaVu etc.
+  * configurar_matplotlib() [linha 41]: Configura parâmetros globais de Matplotlib para figuras.
+  * fmt_int(valor) [linha 46]: Formata inteiro com separador para tabelas.
+  * fmt_float(valor, casas) [linha 52]: Formata número decimal com casas e vírgula/ponto conforme função.
+  * quebrar_texto(texto, largura) [linha 58]: Quebra texto longo para caber em células/figuras.
+  * salvar_figura(fig, caminho_base) [linha 62]: Salva figura em múltiplos formatos com DPI configurado.
+  * salvar_tabela_latex(df_tabela, caminho_base, caption, label) [linha 74]: Exporta tabela formatada em LaTeX.
+  * salvar_tabela_como_imagem(df_tabela, caminho_base, figsize, col_widths, fontsize) [linha 84]: Renderiza tabela como imagem Matplotlib.
+  * preparar_base_probabilidades(df, prob_col) [linha 115]: Cria faixas/categorias para probabilidades previstas por renda e desempenho.
+  * matriz_probabilidade_prevista(df_pred, prob_col) [linha 123]: Agrupa probabilidades previstas em matriz renda x desempenho.
+  * tabela_media_prob_por_faixas(df_pred, prob_col) [linha 134]: Calcula médias de probabilidades por faixas.
+  * gerar_heatmap_probabilidade(df_pred, prob_col, caminho_base) [linha 138]: Gera heatmap de probabilidade prevista.
+  * gerar_curvas_desempenho_por_renda(df_pred, prob_col, caminho_base) [linha 168]: Gera curvas variando desempenho dentro de faixas de renda.
+  * gerar_curvas_renda_por_desempenho(df_pred, prob_col, caminho_base) [linha 188]: Gera curvas variando renda dentro de faixas de desempenho.
+  * renderizar_matriz_confusao(matriz, caminho_base) [linha 208]: Renderiza matriz de confusão como figura/tabela.
+  * gerar_barra_importancias(df_imp, caminho_base, top_n) [linha 233]: Gera gráfico de barras das variáveis mais importantes.
+  * log(message) [linha 260]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * carregar_metricas(target, recorte, avaliacao) [linha 268]: Lê CSV de métricas já gerado pela modelagem.
+  * preparar_tabela_completa(df, target) [linha 278]: Seleciona e formata métricas/coeficientes/importâncias para tabela completa.
+  * preparar_tabela_compacta(df, target) [linha 311]: Seleciona resumo compacto das métricas principais.
+  * renderizar_tabela_completa(tabela, caminho_base) [linha 327]: Renderiza tabela completa como imagem/LaTeX.
+  * gerar_tabela_completa(target, recorte, avaliacao) [linha 342]: Gera tabela completa de apêndice.
+  * gerar_tabela_compacta(target, recorte, avaliacao) [linha 360]: Gera tabela compacta para apêndice/corpo.
+  * matriz_confusao_da_linha(row, target) [linha 378]: Converte campos de uma linha de métricas em matriz de confusão.
+  * gerar_matriz_confusao(target, recorte, avaliacao, experimento) [linha 394]: Gera matriz de confusão a partir do experimento selecionado.
+  * run(target, recorte, avaliacao, experimento) [linha 416]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+  * parse_args() [linha 433]: Define argumentos de linha de comando quando o módulo é executado diretamente.
+
+-------------------------------------------------------------------------------
+src/article/apendice_treeClassification_profundidade.py (461 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Gera apêndices para árvores com profundidades 10/14/19; lógica semelhante ao apêndice da árvore padrão, mas parametrizada por profundidade.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, SAVE_DPI@16, BINS_RENDA@18, LABELS_RENDA@19, BINS_DESEMPENHO@20, LABELS_DESEMPENHO@21, ORDEM_DESEMPENHO_PLOT@22, COR_CABECALHO@24, COR_LINHA_1@25, COR_LINHA_2@26, COR_BORDA@27, PROJECT_ROOT@255, LOGS_DIR@256, APPENDIX_DIR@257, CURRENT_PROFUNDIDADE@260.
+Funções e partes do código:
+  * obter_fonte_padrao() [linha 30]: Seleciona fonte Matplotlib disponível, tentando Times/DejaVu etc.
+  * configurar_matplotlib() [linha 41]: Configura parâmetros globais de Matplotlib para figuras.
+  * fmt_int(valor) [linha 46]: Formata inteiro com separador para tabelas.
+  * fmt_float(valor, casas) [linha 52]: Formata número decimal com casas e vírgula/ponto conforme função.
+  * quebrar_texto(texto, largura) [linha 58]: Quebra texto longo para caber em células/figuras.
+  * salvar_figura(fig, caminho_base) [linha 62]: Salva figura em múltiplos formatos com DPI configurado.
+  * salvar_tabela_latex(df_tabela, caminho_base, caption, label) [linha 74]: Exporta tabela formatada em LaTeX.
+  * salvar_tabela_como_imagem(df_tabela, caminho_base, figsize, col_widths, fontsize) [linha 84]: Renderiza tabela como imagem Matplotlib.
+  * preparar_base_probabilidades(df, prob_col) [linha 115]: Cria faixas/categorias para probabilidades previstas por renda e desempenho.
+  * matriz_probabilidade_prevista(df_pred, prob_col) [linha 123]: Agrupa probabilidades previstas em matriz renda x desempenho.
+  * tabela_media_prob_por_faixas(df_pred, prob_col) [linha 134]: Calcula médias de probabilidades por faixas.
+  * gerar_heatmap_probabilidade(df_pred, prob_col, caminho_base) [linha 138]: Gera heatmap de probabilidade prevista.
+  * gerar_curvas_desempenho_por_renda(df_pred, prob_col, caminho_base) [linha 168]: Gera curvas variando desempenho dentro de faixas de renda.
+  * gerar_curvas_renda_por_desempenho(df_pred, prob_col, caminho_base) [linha 188]: Gera curvas variando renda dentro de faixas de desempenho.
+  * renderizar_matriz_confusao(matriz, caminho_base) [linha 208]: Renderiza matriz de confusão como figura/tabela.
+  * gerar_barra_importancias(df_imp, caminho_base, top_n) [linha 233]: Gera gráfico de barras das variáveis mais importantes.
+  * set_profundidade(profundidade) [linha 263]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * appendix_tree_dir(target, recorte) [linha 269]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * log(message) [linha 275]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * carregar_metricas(target, recorte, avaliacao) [linha 283]: Lê CSV de métricas já gerado pela modelagem.
+  * preparar_tabela_completa(df, target) [linha 293]: Seleciona e formata métricas/coeficientes/importâncias para tabela completa.
+  * preparar_tabela_compacta(df, target) [linha 326]: Seleciona resumo compacto das métricas principais.
+  * renderizar_tabela_completa(tabela, caminho_base) [linha 342]: Renderiza tabela completa como imagem/LaTeX.
+  * gerar_tabela_completa(target, recorte, avaliacao) [linha 357]: Gera tabela completa de apêndice.
+  * gerar_tabela_compacta(target, recorte, avaliacao) [linha 375]: Gera tabela compacta para apêndice/corpo.
+  * matriz_confusao_da_linha(row, target) [linha 393]: Converte campos de uma linha de métricas em matriz de confusão.
+  * gerar_matriz_confusao(target, recorte, avaliacao, experimento) [linha 409]: Gera matriz de confusão a partir do experimento selecionado.
+  * run(target, recorte, avaliacao, experimento, profundidade) [linha 431]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+  * parse_args() [linha 449]: Define argumentos de linha de comando quando o módulo é executado diretamente.
+
+-------------------------------------------------------------------------------
+src/article/efeitos_multinomiais_ternario.py (620 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Gera efeitos/probabilidades previstas do modelo ternário sobre grade de renda e desempenho. É muito relevante para artigo de Educação, pois traduz modelo em probabilidades interpretáveis.
+Constantes/variáveis globais importantes: CLASSE_LABEL@47, FAIXAS_RENDA@54, FAIXAS_GAP@64, TONS_CINZA@73, MARCADORES@74, LINHAS@75.
+Funções e partes do código:
+  * configurar_matplotlib() [linha 78]: Configura parâmetros globais de Matplotlib para figuras.
+  * caminho_abt(recorte) [linha 99]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * caminho_abt_binaria() [linha 110]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * caminho_modelo(recorte, avaliacao, experimento) [linha 129]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * caminho_modelo_binario(avaliacao, experimento) [linha 148]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * estimador_final(modelo) [linha 178]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * classes_modelo(modelo) [linha 184]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * feature_names_modelo(modelo, abt) [linha 201]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * valor_tipico_coluna(serie) [linha 225]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * mediana_faixa(df, coluna, minimo, maximo, fallback) [linha 234]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * construir_grid(abt, features) [linha 247]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * prever_probabilidades(modelo, grid_meta, X_grid) [linha 284]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * prever_probabilidade_binaria(modelo, grid_meta, X_grid) [linha 306]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * probabilidade_binaria_geral(avaliacao, experimento) [linha 332]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * ordenar_por_desempenho(df) [linha 352]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * ordenar_por_renda(df) [linha 359]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * preparar_eixo(ax, titulo) [linha 366]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * plot_painel_por_desempenho(ax, df, titulo) [linha 374]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * plot_painel_por_renda(ax, df, titulo) [linha 399]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_figura(fig, out) [linha 424]: Salva figura em múltiplos formatos com DPI configurado.
+  * legenda_superior(fig, handles, labels, titulo, ncol, y) [linha 431]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * figura_por_desempenho_todas_classes(prob, out, prob_binaria, recorte) [linha 446]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * figura_por_renda_todas_classes(prob, out, prob_binaria, recorte) [linha 499]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * run(recorte, avaliacao, experimento) [linha 552]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+  * parse_args() [linha 610]: Define argumentos de linha de comando quando o módulo é executado diretamente.
+
+-------------------------------------------------------------------------------
+src/article/financiamento_coparticipacao.py (666 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Analisa contratos efetivados: relação entre renda per capita e percentual financiado. Calcula correlação de Pearson, regressão linear simples e gera tabela/figura interpretativa.
+Constantes/variáveis globais importantes: FIGURES_FINANCIAMENTO_DIR@23, TABLES_FINANCIAMENTO_DIR@24, RESUMO_PATH@26, FIG_DPI@33, SAVE_DPI@34, RENDA_MINIMA@36, RENDA_GRAFICO_MAXIMO_PADRAO@37, PERCENTUAL_MINIMO@38, PERCENTUAL_MAXIMO@39, POSSIVEIS_COLUNAS_RENDA@41, POSSIVEIS_COLUNAS_PERCENTUAL@50, POSSIVEIS_COLUNAS_SITUACAO@58, STATUS_CONTRATADA@65.
+Funções e partes do código:
+  * log(message) [linha 72]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * remover_acentos(texto) [linha 82]: Normaliza string Unicode e remove acentos; útil para comparar textos como MEDICINA/medicina e situações com/sem acento.
+  * normalizar_texto(valor) [linha 87]: Limpa espaços, transforma valores vazios/nulos em ausentes e padroniza texto; reduz variações de escrita antes de agrupar ou filtrar.
+  * normalizar_status(valor) [linha 100]: Converte situações do FIES para categorias padronizadas usadas como alvo ou descrição do fluxo.
+  * encontrar_coluna(df, candidatas, nome_logico) [linha 114]: Procura, entre vários aliases possíveis, qual coluna existe no DataFrame; deixa o pipeline robusto a nomes diferentes entre arquivos.
+  * converter_numero_serie(serie) [linha 126]: Converte valores em string, porcentagem ou moeda brasileira para número; trata vírgula decimal e ponto de milhar.
+  * obter_fonte_padrao() [linha 152]: Seleciona fonte Matplotlib disponível, tentando Times/DejaVu etc.
+  * configurar_matplotlib() [linha 165]: Configura parâmetros globais de Matplotlib para figuras.
+  * formatar_inteiro(valor) [linha 173]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * formatar_decimal(valor, casas) [linha 177]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * formatar_pp(valor, casas) [linha 184]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * formatar_p_valor(valor) [linha 191]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * carregar_base() [linha 205]: Carrega parquet curado/ABT/modelo necessário e falha explicitamente se o arquivo anterior do pipeline ainda não foi gerado.
+  * preparar_dados_financiamento(df_base) [linha 220]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * calcular_estatisticas_e_regressao(df) [linha 276]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * montar_tabela_resultados(resultados) [linha 325]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_tabela_latex(tabela, caminho) [linha 367]: Exporta tabela formatada em LaTeX.
+  * salvar_dados_e_tabelas(df, resultados) [linha 379]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * plotar_regressao(df, resultados) [linha 422]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * plotar_tabela_resultados(resultados) [linha 543]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_resumo(registros) [linha 640]: Grava CSV de auditoria/resumo da etapa.
+  * run() [linha 646]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/article/fluxo_selecao.py (680 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Gera figuras e tabelas do fluxo do FIES por etapas, área CINE, semestre e região. Produz visualização do funil vagas→inscrições→nota suficiente→contratos.
+Constantes/variáveis globais importantes: FIG_DPI@19, SAVE_DPI@20, PASTA_SAIDA@22, RESUMO_PATH@23, COLUNAS_INSCRITOS@25, COLUNAS_CANDIDATOS@32, NOMES_CURTO@39, ORDEM_AREAS_CINE@48, MAPA_AREA_EXIBICAO@63.
+Funções e partes do código:
+  * log(message) [linha 79]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * configurar_matplotlib() [linha 89]: Configura parâmetros globais de Matplotlib para figuras.
+  * limpar_nome_arquivo(texto) [linha 110]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * normalizar_area_exibicao(valor) [linha 120]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * estilos_monocromaticos(categorias_list) [linha 134]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * carregar_funil() [linha 176]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * obter_areas(df) [linha 212]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * obter_periodos(df) [linha 223]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * obter_regioes(df) [linha 232]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_figura(fig, nome_arquivo) [linha 241]: Salva figura em múltiplos formatos com DPI configurado.
+  * plot_funil_seguro(df_data, periodos_list, categorias_list, col_categoria, cols_metricas, nome_arquivo, figsize, y_step) [linha 276]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_resumo(saidas) [linha 544]: Grava CSV de auditoria/resumo da etapa.
+  * run() [linha 550]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/article/logit_binario.py (760 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Gera produtos do artigo a partir da regressão logística binária: tabelas, curvas/probabilidades previstas, possivelmente recortes por renda/desempenho e artefatos finais.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, SAVE_DPI@16, BINS_RENDA@18, LABELS_RENDA@19, BINS_DESEMPENHO@21, LABELS_DESEMPENHO@22, ORDEM_DESEMPENHO_PLOT@31, COR_CABECALHO@40, COR_LINHA_1@41, COR_LINHA_2@42, COR_BORDA@43, PROJECT_ROOT@436, LOGS_DIR@437, FIGURES_DIR@438, TABLES_DIR@439, APPENDIX_DIR@440, FIGURES_LOGIT_DIR@442, TABLES_LOGIT_DIR@443, APPENDIX_LOGIT_DIR@444.
+Funções e partes do código:
+  * obter_fonte_padrao() [linha 46]: Seleciona fonte Matplotlib disponível, tentando Times/DejaVu etc.
+  * configurar_matplotlib() [linha 61]: Configura parâmetros globais de Matplotlib para figuras.
+  * fmt_int(valor) [linha 66]: Formata inteiro com separador para tabelas.
+  * fmt_float(valor, casas) [linha 73]: Formata número decimal com casas e vírgula/ponto conforme função.
+  * quebrar_texto(texto, largura) [linha 80]: Quebra texto longo para caber em células/figuras.
+  * salvar_figura(fig, caminho_base) [linha 84]: Salva figura em múltiplos formatos com DPI configurado.
+  * salvar_tabela_latex(df_tabela, caminho_base, caption, label) [linha 100]: Exporta tabela formatada em LaTeX.
+  * salvar_tabela_como_imagem(df_tabela, caminho_base, figsize, col_widths, fontsize) [linha 114]: Renderiza tabela como imagem Matplotlib.
+  * preparar_base_probabilidades(df, prob_col) [linha 166]: Cria faixas/categorias para probabilidades previstas por renda e desempenho.
+  * matriz_probabilidade_prevista(df_pred, prob_col) [linha 188]: Agrupa probabilidades previstas em matriz renda x desempenho.
+  * tabela_media_prob_por_faixas(df_pred, prob_col) [linha 199]: Calcula médias de probabilidades por faixas.
+  * gerar_heatmap_probabilidade(df_pred, prob_col, caminho_base) [linha 208]: Gera heatmap de probabilidade prevista.
+  * gerar_curvas_desempenho_por_renda(df_pred, prob_col, caminho_base) [linha 259]: Gera curvas variando desempenho dentro de faixas de renda.
+  * gerar_curvas_renda_por_desempenho(df_pred, prob_col, caminho_base) [linha 315]: Gera curvas variando renda dentro de faixas de desempenho.
+  * renderizar_matriz_confusao(matriz, caminho_base) [linha 371]: Renderiza matriz de confusão como figura/tabela.
+  * log(message) [linha 447]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * abt_path(recorte) [linha 457]: Resolve caminho da ABT de acordo com target e recorte.
+  * carregar_modelo_metadata_abt(recorte, avaliacao, experimento) [linha 467]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * carregar_metricas(recorte, avaliacao, experimento) [linha 497]: Lê CSV de métricas já gerado pela modelagem.
+  * preparar_X(abt, blocos_usados) [linha 512]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * selecionar_base_para_probabilidades(abt, avaliacao) [linha 524]: Define a base usada para gerar probabilidades previstas no artigo.  - in_sample: usa a ABT inteira, pois o modelo foi ajustado e avaliado na própria base. - holdout_80_20: usa apenas os 20% de teste reconstruídos com o mesmo   split estratificado usado na modelagem.
+  * anexar_probabilidades(modelo, metadata, abt, avaliacao) [linha 555]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * montar_tabela_principal(metricas) [linha 575]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_tabela_principal(metricas, recorte, avaliacao, experimento) [linha 596]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_dados_probabilidades(df_pred, recorte, avaliacao, experimento) [linha 626]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_matriz_confusao_apendice(metricas, recorte, avaliacao, experimento) [linha 639]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_figuras_probabilidades(df_pred, recorte, avaliacao, experimento) [linha 676]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * run(recorte, avaliacao, experimento) [linha 718]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+  * parse_args() [linha 749]: Define argumentos de linha de comando quando o módulo é executado diretamente.
+
+-------------------------------------------------------------------------------
+src/article/logit_ternario.py (757 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Gera produtos do artigo a partir da regressão logística ternária/multinomial: probabilidades para lista de espera, não contratação e contratação, tabelas e figuras.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, SAVE_DPI@16, BINS_RENDA@18, LABELS_RENDA@19, BINS_DESEMPENHO@21, LABELS_DESEMPENHO@22, ORDEM_DESEMPENHO_PLOT@31, COR_CABECALHO@40, COR_LINHA_1@41, COR_LINHA_2@42, COR_BORDA@43, PROJECT_ROOT@437, LOGS_DIR@438, FIGURES_DIR@439, TABLES_DIR@440, APPENDIX_DIR@441.
+Funções e partes do código:
+  * obter_fonte_padrao() [linha 46]: Seleciona fonte Matplotlib disponível, tentando Times/DejaVu etc.
+  * configurar_matplotlib() [linha 61]: Configura parâmetros globais de Matplotlib para figuras.
+  * fmt_int(valor) [linha 66]: Formata inteiro com separador para tabelas.
+  * fmt_float(valor, casas) [linha 73]: Formata número decimal com casas e vírgula/ponto conforme função.
+  * quebrar_texto(texto, largura) [linha 80]: Quebra texto longo para caber em células/figuras.
+  * salvar_figura(fig, caminho_base) [linha 84]: Salva figura em múltiplos formatos com DPI configurado.
+  * salvar_tabela_latex(df_tabela, caminho_base, caption, label) [linha 100]: Exporta tabela formatada em LaTeX.
+  * salvar_tabela_como_imagem(df_tabela, caminho_base, figsize, col_widths, fontsize) [linha 114]: Renderiza tabela como imagem Matplotlib.
+  * preparar_base_probabilidades(df, prob_col) [linha 166]: Cria faixas/categorias para probabilidades previstas por renda e desempenho.
+  * matriz_probabilidade_prevista(df_pred, prob_col) [linha 188]: Agrupa probabilidades previstas em matriz renda x desempenho.
+  * tabela_media_prob_por_faixas(df_pred, prob_col) [linha 199]: Calcula médias de probabilidades por faixas.
+  * gerar_heatmap_probabilidade(df_pred, prob_col, caminho_base) [linha 208]: Gera heatmap de probabilidade prevista.
+  * gerar_curvas_desempenho_por_renda(df_pred, prob_col, caminho_base) [linha 259]: Gera curvas variando desempenho dentro de faixas de renda.
+  * gerar_curvas_renda_por_desempenho(df_pred, prob_col, caminho_base) [linha 315]: Gera curvas variando renda dentro de faixas de desempenho.
+  * renderizar_matriz_confusao(matriz, caminho_base) [linha 371]: Renderiza matriz de confusão como figura/tabela.
+  * figures_logit_dir(recorte) [linha 444]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * tables_logit_dir(recorte) [linha 453]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * appendix_logit_dir(recorte) [linha 462]: Resolve pasta de apêndice da regressão multinomial por recorte.
+  * abt_path(recorte) [linha 471]: Resolve caminho da ABT de acordo com target e recorte.
+  * log(message) [linha 483]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * carregar_modelo_metadata_abt(recorte, avaliacao, experimento) [linha 493]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * carregar_metricas(recorte, avaliacao, experimento) [linha 525]: Lê CSV de métricas já gerado pela modelagem.
+  * preparar_X(abt, blocos_usados) [linha 541]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * selecionar_base_para_probabilidades(abt, avaliacao) [linha 553]: Define a base usada para gerar probabilidades previstas no artigo.  - in_sample: usa a ABT inteira, pois o modelo foi ajustado e avaliado na própria base. - holdout_80_20: usa apenas os 20% de teste reconstruídos com o mesmo   split estratificado usado na modelagem.
+  * anexar_probabilidades(modelo, metadata, abt, avaliacao) [linha 584]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * montar_tabela_principal(metricas) [linha 604]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_tabela_principal(metricas, recorte, avaliacao, experimento) [linha 625]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_dados_probabilidades(df_pred, recorte, avaliacao, experimento) [linha 657]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_figuras_probabilidades(df_pred, recorte, avaliacao, experimento) [linha 672]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * run(recorte, avaliacao, experimento) [linha 715]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+  * parse_args() [linha 746]: Define argumentos de linha de comando quando o módulo é executado diretamente.
+
+-------------------------------------------------------------------------------
+src/article/matrizes_renda_desempenho.py (800 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Gera matrizes/heatmaps por faixas de renda e desempenho relativo à nota de corte. Mostra contratação, não contratação e lista de espera em quadrantes renda x desempenho.
+Constantes/variáveis globais importantes: FIGURES_HEATMAP_CONTRATADOS_DIR@25, APPENDIX_HEATMAP_LISTA_DIR@26, TABLES_MATRIZES_DIR@27, RESUMO_PATH@29, FIG_DPI@36, SAVE_DPI@37, FAIXAS_RENDA_BINS@39, FAIXAS_RENDA_LABELS_FULL@41, FAIXAS_RENDA_LABELS_PLOT@50, FAIXAS_GAP_BINS@52, FAIXAS_GAP_LABELS@54, ORDEM_GAP_PLOT@63, STATUS_CONTRATADA@65, STATUS_NAO_CONTRATADO@66, STATUS_LISTA_ESPERA@67, POSSIVEIS_COLUNAS_RENDA@69, POSSIVEIS_COLUNAS_MEDIA_ENEM@78, POSSIVEIS_COLUNAS_NOTA_CORTE@83, POSSIVEIS_COLUNAS_SITUACAO@88, POSSIVEIS_COLUNAS_OPCAO@95.
+Funções e partes do código:
+  * log(message) [linha 110]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * remover_acentos(texto) [linha 120]: Normaliza string Unicode e remove acentos; útil para comparar textos como MEDICINA/medicina e situações com/sem acento.
+  * normalizar_texto(valor) [linha 125]: Limpa espaços, transforma valores vazios/nulos em ausentes e padroniza texto; reduz variações de escrita antes de agrupar ou filtrar.
+  * normalizar_status(valor) [linha 138]: Converte situações do FIES para categorias padronizadas usadas como alvo ou descrição do fluxo.
+  * encontrar_coluna(df, candidatas, nome_logico) [linha 161]: Procura, entre vários aliases possíveis, qual coluna existe no DataFrame; deixa o pipeline robusto a nomes diferentes entre arquivos.
+  * obter_fonte_padrao() [linha 173]: Seleciona fonte Matplotlib disponível, tentando Times/DejaVu etc.
+  * configurar_matplotlib() [linha 186]: Configura parâmetros globais de Matplotlib para figuras.
+  * limpar_nome_arquivo(texto) [linha 196]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * criar_colormap_cinza() [linha 206]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * formatar_anotacao(valor) [linha 220]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * ajustar_cor_textos_heatmap(ax, limiar_valor) [linha 224]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_figura(fig, pasta, nome_base) [linha 235]: Salva figura em múltiplos formatos com DPI configurado.
+  * carregar_base() [linha 274]: Carrega parquet curado/ABT/modelo necessário e falha explicitamente se o arquivo anterior do pipeline ainda não foi gerado.
+  * preparar_base_matrizes(df) [linha 289]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_decomposicao_por_area(df) [linha 350]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_decomposicao_nacional(df) [linha 396]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * auditar_percentuais(df_analise, chaves, nome) [linha 440]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * matriz_status(dados, status) [linha 464]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * plotar_contratados_nao_contratados(titulo, dados) [linha 495]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * plotar_lista_espera(dados_nacionais) [linha 601]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_dados_auxiliares(df_area, df_nacional) [linha 694]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_resumo(registros) [linha 718]: Grava CSV de auditoria/resumo da etapa.
+  * run() [linha 728]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/article/pacote_artigo.py (1295 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Organiza o pacote final article/: copia tabelas, figuras e apêndices, corrige formatos, monta estrutura de seções e exporta artefatos usados na redação. É o empacotador final.
+Constantes/variáveis globais importantes: REPORTS_ARTICLE_DIR@42, DIAGNOSTICS_MODELING_DIR@43, DEFAULT_OUTPUT_DIR@44, EXTENSOES_EXPORTADAS@46, CLASSE_LABEL@48, LABEL_VARIAVEIS@54.
+Classes:
+- ItemCopia (linha 81): classe definida no arquivo.
+Funções e partes do código:
+  * _ensure_dir(path) [linha 88]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * _limpar_pasta(path) [linha 92]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * _fmt_int_br(valor) [linha 98]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * _fmt_float_br(valor, casas) [linha 104]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * _latex_escape(valor) [linha 110]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * _glob_many(base, padroes) [linha 127]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * _copy_one(origem, destino_dir, nome_base) [linha 135]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * copiar_item(item, output_dir, dry_run) [linha 142]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_tabela_cinza(df, destino_dir, nome_base, caption, label, notas, gerar_imagem) [linha 157]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * _find_csv_contains(partes_obrigatorias, final) [linha 247]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * _col(df, nomes) [linha 256]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * copiar_elementos_fixos(output_dir, dry_run) [linha 263]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * _parse_int_br(valor) [linha 343]: Converte inteiros no padrão brasileiro para número.  Exemplos: - "450.100" -> 450100 - "49.450" -> 49450 - "1.925.666" -> 1925666  Não usa pd.to_numeric diretamente porque o ponto, neste caso, é separador de milhar, não separador decimal.
+  * _fmt_percentual_br(valor, casas) [linha 366]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * corrigir_tabela_b1(output_dir) [linha 372]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_efeitos_multinomiais_se_possivel(recorte, avaliacao) [linha 423]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * copiar_efeitos_multinomiais(recorte, avaliacao, output_dir, dry_run) [linha 431]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * _carregar_metricas_logit_ternario(recorte, avaliacao) [linha 449]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_tabela_compacta_logit_ternario(recorte, avaliacao, output_dir) [linha 461]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * _modelo_path(recorte, avaliacao, experimento) [linha 499]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * _estimador_final(modelo) [linha 510]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * _feature_names_pipeline(modelo) [linha 516]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * _match_feature(feature_names, var) [linha 537]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_tabela_coeficientes_logit_ternario(recorte, avaliacao, output_dir) [linha 554]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * _diagnostics_tree_dir(target, recorte, avaliacao, profundidade) [linha 618]: Diretório canônico dos diagnostics da árvore por profundidade.
+  * _carregar_metricas_tree_profundidade(target, recorte, avaliacao, profundidade) [linha 628]: Carrega a tabela de métricas diretamente dos diagnostics do modelo treinado.
+  * _carregar_importancias_agregadas_tree_profundidade(target, recorte, avaliacao, profundidade, experimento) [linha 665]: Carrega somente importâncias agregadas por variável original.  Usa exclusivamente *_importancias_agregadas.csv. Não mistura com *_importancias_transformadas.csv, porque isso duplicaria a decomposição de importância da mesma árvore. Para `DecisionTreeClassifier.feature_importances_`, a soma das importâncias normalizadas do experimento deve ser 1, salvo erro numérico mínimo ou árvore sem divisões.
+  * _montar_tabela_compacta_tree(df, target) [linha 735]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * _montar_top10_importancias_tree(df) [linha 766]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_tabela_compacta_tree_19_ternario(recorte, avaliacao, output_dir) [linha 788]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_top10_importancias_tree_19_ternario(recorte, avaliacao, output_dir) [linha 811]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_tabela_compacta_tree_10_binario_geral(avaliacao, output_dir) [linha 835]: Gera a tabela compacta da árvore binária da etapa contratual, profundidade 10.  Esta análise usa a ABT binária geral, isto é, compara somente inscrições em não contratação e contratação. Ela é exportada apenas para o Apêndice C.
+  * gerar_top10_importancias_tree_10_binario_geral(avaliacao, output_dir) [linha 865]: Gera top 10 de importâncias da árvore binária da etapa contratual, E5, profundidade 10.
+  * gerar_tabelas_tree_10_binario_geral(avaliacao, output_dir) [linha 892]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * _destino_modelagem(recorte) [linha 904]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * _base_tree_article(recorte, avaliacao) [linha 908]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * _ler_tabela_csv_ou_tex(path_base) [linha 919]: Tenta ler uma tabela a partir de CSV. Se só houver TEX/LATEX, tenta extrair o tabular simples.
+  * _candidatos_tabela_compacta_tree(recorte, avaliacao) [linha 967]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * _candidatos_top10_tree(recorte, avaliacao) [linha 997]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_tabela_compacta_tree_existente_cinza(recorte, avaliacao, output_dir) [linha 1029]: Lê a tabela compacta da árvore já existente e regrava no apêndice em tons de cinza.
+  * _normalizar_tabela_importancias(df) [linha 1057]: Padroniza tabela de importâncias em Posição, Variável, Importância.
+  * gerar_top10_tree_existente_cinza(recorte, avaliacao, output_dir) [linha 1119]: Lê tabela top10/importâncias já existente e regrava no apêndice em tons de cinza.
+  * copiar_tabelas_tree_existentes(recorte, avaliacao, output_dir, dry_run) [linha 1145]: Exporta as tabelas da árvore já existentes, reformatadas em tons de cinza.  Não copia figuras de árvore.
+  * gerar_modelagem(output_dir, avaliacao, dry_run) [linha 1170]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * escrever_textos_guia(output_dir) [linha 1205]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_manifesto(output_dir) [linha 1233]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * run(output_dir, avaliacao, clean, dry_run) [linha 1247]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+  * parse_args() [linha 1284]: Define argumentos de linha de comando quando o módulo é executado diretamente.
+Nota de avaliação: Correção: empacotador final é coerente, mas é o arquivo mais sensível a nomes de pastas/arquivos. Se algum produto intermediário mudar de nome, pode quebrar.
+
+-------------------------------------------------------------------------------
+src/article/tabelas_distribuicao.py (483 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Gera tabelas de distribuição das situações de inscrição e faixas de renda, incluindo tabelas do corpo e apêndice. Formata porcentagens e exporta CSV/LaTeX/imagens.
+Constantes/variáveis globais importantes: FIG_DPI@18, SAVE_DPI@19, PASTA_TABELA_1@21, PASTA_TABELA_B1@22, RESUMO_PATH@24, STATUS_MAPA@26, FAIXAS_RENDA_LABELS@42, FAIXAS_RENDA_BINS@51, POSSIVEIS_COLUNAS_RENDA@53, POSSIVEIS_COLUNAS_SITUACAO@61, POSSIVEIS_COLUNAS_MODALIDADE@67.
+Funções e partes do código:
+  * log(message) [linha 73]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * obter_fonte_padrao() [linha 83]: Seleciona fonte Matplotlib disponível, tentando Times/DejaVu etc.
+  * configurar_matplotlib() [linha 96]: Configura parâmetros globais de Matplotlib para figuras.
+  * normalizar_texto(valor) [linha 102]: Limpa espaços, transforma valores vazios/nulos em ausentes e padroniza texto; reduz variações de escrita antes de agrupar ou filtrar.
+  * encontrar_coluna(df, candidatas, nome_logico) [linha 115]: Procura, entre vários aliases possíveis, qual coluna existe no DataFrame; deixa o pipeline robusto a nomes diferentes entre arquivos.
+  * carregar_base() [linha 127]: Carrega parquet curado/ABT/modelo necessário e falha explicitamente se o arquivo anterior do pipeline ainda não foi gerado.
+  * aplicar_filtro_modalidade_i_se_existir(df) [linha 142]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * preparar_tabela_1(df) [linha 149]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * preparar_tabela_b1(df) [linha 185]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * formatar_inteiro(valor) [linha 232]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * formatar_percentual(valor) [linha 236]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * formatar_tabela_para_exibicao(df_tabela) [linha 243]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_csv_tex(df_tabela, pasta_saida, nome_base, caption, label) [linha 255]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * renderizar_tabela(df_tabela, pasta_saida, nome_base, col_widths, altura_minima, altura_por_linha, fontsize_corpo, fontsize_cabecalho) [linha 284]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_tabela_1(df) [linha 385]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_tabela_b1(df) [linha 423]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_resumo(registros) [linha 461]: Grava CSV de auditoria/resumo da etapa.
+  * run() [linha 467]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/article/taxas_conversao.py (687 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Gera figuras/tabelas de taxas de conversão, especialmente por área de Saúde e bem-estar e recortes regionais/nacionais. Transforma dataset_taxas em artefatos de artigo.
+Constantes/variáveis globais importantes: FIG_DPI@20, SAVE_DPI@21, TAXAS_ARTIGO@23, PASTA_FIGURAS_BASE@42, PASTA_TABELAS@43, RESUMO_PATH@44, COLUNAS_BASE@46, MAPA_AREA_EXIBICAO@55, ORDEM_AREAS_CINE@71, ORDEM_SERIES@87, ESTILOS_LINHAS@97.
+Funções e partes do código:
+  * log(message) [linha 157]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * configurar_matplotlib() [linha 167]: Configura parâmetros globais de Matplotlib para figuras.
+  * limpar_nome_arquivo(texto) [linha 187]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * normalizar_area_exibicao(valor) [linha 197]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * divisao_segura(numerador, denominador) [linha 211]: Calcula razão sem quebrar quando denominador é zero; retorna ausente quando não faz sentido dividir.
+  * formatar_percentual(valor, pos) [linha 222]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * carregar_funil() [linha 232]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * calcular_taxas(df_base) [linha 267]: Calcula taxas derivadas do funil.
+  * preparar_dados() [linha 282]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * ordenar_areas(df) [linha 338]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_figura(fig, pasta, nome_arquivo) [linha 347]: Salva figura em múltiplos formatos com DPI configurado.
+  * plotar_taxa(df_completo, taxa, area, periodos_ordem, mapa_periodos) [linha 382]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_tabelas(df_completo) [linha 567]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_resumo(saidas, df_completo) [linha 624]: Grava CSV de auditoria/resumo da etapa.
+  * run() [linha 645]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/article/treeClassification.py (516 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Gera tabelas, figuras e apêndices para árvores padrão: métricas, importância de variáveis, matriz de confusão e regras.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, SAVE_DPI@16, BINS_RENDA@18, LABELS_RENDA@19, BINS_DESEMPENHO@20, LABELS_DESEMPENHO@21, ORDEM_DESEMPENHO_PLOT@22, COR_CABECALHO@24, COR_LINHA_1@25, COR_LINHA_2@26, COR_BORDA@27, PROJECT_ROOT@271, LOGS_DIR@272, FIGURES_DIR@273, TABLES_DIR@274, APPENDIX_DIR@275.
+Funções e partes do código:
+  * obter_fonte_padrao() [linha 30]: Seleciona fonte Matplotlib disponível, tentando Times/DejaVu etc.
+  * configurar_matplotlib() [linha 41]: Configura parâmetros globais de Matplotlib para figuras.
+  * fmt_int(valor) [linha 46]: Formata inteiro com separador para tabelas.
+  * fmt_float(valor, casas) [linha 52]: Formata número decimal com casas e vírgula/ponto conforme função.
+  * quebrar_texto(texto, largura) [linha 58]: Quebra texto longo para caber em células/figuras.
+  * salvar_figura(fig, caminho_base) [linha 62]: Salva figura em múltiplos formatos com DPI configurado.
+  * salvar_tabela_latex(df_tabela, caminho_base, caption, label) [linha 74]: Exporta tabela formatada em LaTeX.
+  * salvar_tabela_como_imagem(df_tabela, caminho_base, figsize, col_widths, fontsize) [linha 84]: Renderiza tabela como imagem Matplotlib.
+  * preparar_base_probabilidades(df, prob_col) [linha 115]: Cria faixas/categorias para probabilidades previstas por renda e desempenho.
+  * matriz_probabilidade_prevista(df_pred, prob_col) [linha 123]: Agrupa probabilidades previstas em matriz renda x desempenho.
+  * tabela_media_prob_por_faixas(df_pred, prob_col) [linha 134]: Calcula médias de probabilidades por faixas.
+  * gerar_heatmap_probabilidade(df_pred, prob_col, caminho_base) [linha 138]: Gera heatmap de probabilidade prevista.
+  * gerar_curvas_desempenho_por_renda(df_pred, prob_col, caminho_base) [linha 168]: Gera curvas variando desempenho dentro de faixas de renda.
+  * gerar_curvas_renda_por_desempenho(df_pred, prob_col, caminho_base) [linha 188]: Gera curvas variando renda dentro de faixas de desempenho.
+  * renderizar_matriz_confusao(matriz, caminho_base) [linha 208]: Renderiza matriz de confusão como figura/tabela.
+  * gerar_barra_importancias(df_imp, caminho_base, top_n) [linha 233]: Gera gráfico de barras das variáveis mais importantes.
+  * target_suffix(target, recorte) [linha 278]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * figures_tree_dir(target, recorte) [linha 286]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * tables_tree_dir(target, recorte) [linha 290]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * appendix_tree_dir(target, recorte) [linha 294]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * log(message) [linha 298]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * carregar_modelo_metadata_abt(target, recorte, avaliacao, experimento) [linha 306]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * carregar_metricas(target, recorte, avaliacao, experimento) [linha 327]: Lê CSV de métricas já gerado pela modelagem.
+  * carregar_importancias(target, recorte, avaliacao, experimento) [linha 341]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * preparar_X_artigo(abt, metadata, target, avaliacao) [linha 355]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * anexar_probabilidades(modelo, metadata, abt, target, avaliacao) [linha 367]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * montar_tabela_principal(metricas, target) [linha 379]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_tabela_principal(metricas, target, recorte, avaliacao, experimento) [linha 410]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_dados_probabilidades(df_pred, target, recorte, avaliacao, experimento) [linha 425]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_figuras_probabilidades(df_pred, target, recorte, avaliacao, experimento) [linha 438]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_figura_importancias(importancias, target, recorte, avaliacao, experimento) [linha 450]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_figura_arvore(modelo, target, recorte, avaliacao, experimento) [linha 455]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * run(target, recorte, avaliacao, experimento) [linha 477]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+  * parse_args() [linha 505]: Define argumentos de linha de comando quando o módulo é executado diretamente.
+
+-------------------------------------------------------------------------------
+src/article/treeClassification_profundidade.py (527 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Gera produtos para árvores de decisão por profundidade 10/14/19, incluindo importância, métricas e figuras para comparar profundidades.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, SAVE_DPI@16, BINS_RENDA@18, LABELS_RENDA@19, BINS_DESEMPENHO@20, LABELS_DESEMPENHO@21, ORDEM_DESEMPENHO_PLOT@22, COR_CABECALHO@24, COR_LINHA_1@25, COR_LINHA_2@26, COR_BORDA@27, PROJECT_ROOT@273, LOGS_DIR@274, FIGURES_DIR@275, TABLES_DIR@276, APPENDIX_DIR@277, CURRENT_PROFUNDIDADE@280.
+Funções e partes do código:
+  * obter_fonte_padrao() [linha 30]: Seleciona fonte Matplotlib disponível, tentando Times/DejaVu etc.
+  * configurar_matplotlib() [linha 41]: Configura parâmetros globais de Matplotlib para figuras.
+  * fmt_int(valor) [linha 46]: Formata inteiro com separador para tabelas.
+  * fmt_float(valor, casas) [linha 52]: Formata número decimal com casas e vírgula/ponto conforme função.
+  * quebrar_texto(texto, largura) [linha 58]: Quebra texto longo para caber em células/figuras.
+  * salvar_figura(fig, caminho_base) [linha 62]: Salva figura em múltiplos formatos com DPI configurado.
+  * salvar_tabela_latex(df_tabela, caminho_base, caption, label) [linha 74]: Exporta tabela formatada em LaTeX.
+  * salvar_tabela_como_imagem(df_tabela, caminho_base, figsize, col_widths, fontsize) [linha 84]: Renderiza tabela como imagem Matplotlib.
+  * preparar_base_probabilidades(df, prob_col) [linha 115]: Cria faixas/categorias para probabilidades previstas por renda e desempenho.
+  * matriz_probabilidade_prevista(df_pred, prob_col) [linha 123]: Agrupa probabilidades previstas em matriz renda x desempenho.
+  * tabela_media_prob_por_faixas(df_pred, prob_col) [linha 134]: Calcula médias de probabilidades por faixas.
+  * gerar_heatmap_probabilidade(df_pred, prob_col, caminho_base) [linha 138]: Gera heatmap de probabilidade prevista.
+  * gerar_curvas_desempenho_por_renda(df_pred, prob_col, caminho_base) [linha 168]: Gera curvas variando desempenho dentro de faixas de renda.
+  * gerar_curvas_renda_por_desempenho(df_pred, prob_col, caminho_base) [linha 188]: Gera curvas variando renda dentro de faixas de desempenho.
+  * renderizar_matriz_confusao(matriz, caminho_base) [linha 208]: Renderiza matriz de confusão como figura/tabela.
+  * gerar_barra_importancias(df_imp, caminho_base, top_n) [linha 233]: Gera gráfico de barras das variáveis mais importantes.
+  * set_profundidade(profundidade) [linha 283]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * target_suffix(target, recorte) [linha 289]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * figures_tree_dir(target, recorte) [linha 295]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * tables_tree_dir(target, recorte) [linha 299]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * appendix_tree_dir(target, recorte) [linha 303]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * log(message) [linha 307]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * carregar_modelo_metadata_abt(target, recorte, avaliacao, experimento) [linha 315]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * carregar_metricas(target, recorte, avaliacao, experimento) [linha 336]: Lê CSV de métricas já gerado pela modelagem.
+  * carregar_importancias(target, recorte, avaliacao, experimento) [linha 350]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * preparar_X_artigo(abt, metadata, target, avaliacao) [linha 364]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * anexar_probabilidades(modelo, metadata, abt, target, avaliacao) [linha 376]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * montar_tabela_principal(metricas, target) [linha 388]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_tabela_principal(metricas, target, recorte, avaliacao, experimento) [linha 419]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * salvar_dados_probabilidades(df_pred, target, recorte, avaliacao, experimento) [linha 434]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_figuras_probabilidades(df_pred, target, recorte, avaliacao, experimento) [linha 447]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_figura_importancias(importancias, target, recorte, avaliacao, experimento) [linha 459]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * gerar_figura_arvore(modelo, target, recorte, avaliacao, experimento) [linha 464]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * run(target, recorte, avaliacao, experimento, profundidade) [linha 486]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+  * parse_args() [linha 515]: Define argumentos de linha de comando quando o módulo é executado diretamente.
+
+-------------------------------------------------------------------------------
+src/config.py (131 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Cria e checa a estrutura do projeto. Implementa init/check: cria pastas de dados, modelos, reports, article e arquivos __init__.py. Também imprime caminhos importantes.
+Constantes/variáveis globais importantes: RANDOM_STATE@25, TEST_SIZE@26, CLASS_WEIGHT@27, FIGURE_DPI@28, PROJECT_DIRS@31, PACKAGE_INIT_FILES@74, MODULE_FILES@85.
+Funções e partes do código:
+  * ensure_project_structure() [linha 90]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * check_environment() [linha 107]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+
+-------------------------------------------------------------------------------
+src/constants.py (130 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Centraliza caminhos, anos do estudo, camadas de dados, nomes de arquivos curados, ABTs, modelos, relatórios, figuras, tabelas e logs. É a espinha dorsal de configuração de paths do projeto.
+Constantes/variáveis globais importantes: PROJECT_ROOT@8, SRC_DIR@9, PIPELINE_FIES_YEARS@16, PIPELINE_INEP_YEARS@17, ARTICLE_YEARS@19, DATA_DIR@26, RAW_DIR@28, RAW_FIES_DIR@29, RAW_INEP_DIR@30, STAGING_DIR@32, STAGING_FIES_DIR@33, STAGING_FIES_ERRORS_DIR@34, STAGING_INEP_DIR@35, INTERIM_DIR@37, INTERIM_FIES_DIR@38, INTERIM_INEP_DIR@39, TEMP_DIR@40, CURATED_DIR@42, CURATED_PARQUET_DIR@43, CURATED_SQLITE_DIR@44.
+Não há funções/classes. Se é __init__.py, sua função é estrutural: permitir importação como pacote.
+
+-------------------------------------------------------------------------------
+src/modeling/__init__.py (0 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Arquivo vazio que marca src/modeling como subpacote. Não contém algoritmo.
+Não há funções/classes. Se é __init__.py, sua função é estrutural: permitir importação como pacote.
+
+-------------------------------------------------------------------------------
+src/modeling/fit_logit_binario_holdout_80_20.py (17 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Wrapper curto: chama logit_binario_utils.run_modelagem para target binário com avaliação holdout_80_20.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4.
+Funções e partes do código:
+  * run(recorte, force) [linha 11]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/modeling/fit_logit_binario_in_sample.py (17 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Wrapper curto: chama logit_binario_utils.run_modelagem para target binário com avaliação in_sample.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4.
+Funções e partes do código:
+  * run(recorte, force) [linha 11]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/modeling/fit_logit_ternario_holdout_80_20.py (17 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Wrapper curto: chama logit_ternario_utils.run_modelagem para target ternário com avaliação holdout_80_20.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4.
+Funções e partes do código:
+  * run(recorte, force) [linha 11]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/modeling/fit_logit_ternario_in_sample.py (17 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Wrapper curto: chama logit_ternario_utils.run_modelagem para target ternário com avaliação in_sample.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4.
+Funções e partes do código:
+  * run(recorte, force) [linha 11]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/modeling/logit_binario_utils.py (615 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Implementa a regressão logística binária completa: define blocos E1–E5, pré-processamento, split in-sample/holdout, treino, métricas, coeficientes, probabilidades e salvamento de modelos/diagnósticos.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@28, PROJECT_ROOT@36, LOGS_DIR@37, ABT_DIR@38, DIAGNOSTICS_DIR@39, MODELS_GENERAL_DIR@40, MODELS_MEDICINA_DIR@41, ABT_BINARIA_GERAL_PATH@43, ABT_BINARIA_MEDICINA_PATH@49, RANDOM_STATE@56, TEST_SIZE@57, FEATURE_BLOCKS@59, CORE_BLOCKS@83, EXPERIMENTS@89.
+Funções e partes do código:
+  * log(message, log_file) [linha 149]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * abt_path(recorte) [linha 159]: Resolve caminho da ABT de acordo com target e recorte.
+  * metadata_path(recorte) [linha 169]: Resolve caminho dos metadados da ABT.
+  * models_dir(recorte, avaliacao) [linha 175]: Resolve pasta de modelos por target/recorte/avaliação.
+  * diagnostics_dir(recorte, avaliacao) [linha 181]: Resolve pasta de diagnósticos por target/recorte/avaliação.
+  * carregar_abt(recorte) [linha 185]: Carrega a ABT e os metadados para modelagem.
+  * limpar_coluna_categorica(serie) [linha 206]: Converte categóricas para strings limpas antes do scikit-learn.
+  * limpar_coluna_numerica(serie) [linha 232]: Converte numéricas e força valores inválidos para NaN.
+  * bloco_valido(df, bloco) [linha 239]: Verifica se todas as variáveis de um bloco existem na ABT.
+  * blocos_validos_para_experimento(df, experimento) [linha 253]: Seleciona blocos de variáveis disponíveis para E1–E5.
+  * separar_tipos(blocos) [linha 266]: Divide variáveis em numéricas e categóricas.
+  * labels_blocos(blocos) [linha 281]: Gera descrição textual dos blocos usados no experimento.
+  * criar_preprocessador(numericas, categoricas) [linha 285]: Monta ColumnTransformer com pipeline numérico e pipeline categórico.
+  * criar_modelo() [linha 326]: Cria o estimador final: regressão logística ou árvore, com hiperparâmetros definidos no módulo.
+  * criar_pipeline(numericas, categoricas) [linha 337]: Junta pré-processador e modelo final em um Pipeline do scikit-learn.
+  * criar_split(X, y, avaliacao) [linha 346]: Define avaliação in_sample ou holdout 80/20 estratificado.
+  * preparar_xy(df, blocos) [linha 366]: Separa X e y com variáveis dos blocos escolhidos.
+  * obter_feature_names(modelo) [linha 383]: Recupera nomes das features após one-hot/preprocessamento.
+  * calcular_metricas(y_true, proba) [linha 395]: Calcula métricas do modelo a partir de y real, probabilidades e classes.
+  * extrair_coeficientes(modelo) [linha 414]: Extrai coeficientes da regressão logística por feature transformada.
+  * coeficiente_exato(coeficientes, feature_name) [linha 427]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * ajustar_um_experimento(df, metadata_abt, recorte, avaliacao, experimento, force) [linha 436]: Treina e avalia um experimento E1–E5, salva modelo e retorna registros/métricas/importâncias.
+  * salvar_resultados(registros, coeficientes, recorte, avaliacao) [linha 555]: Salva CSVs/JSONs de métricas, coeficientes ou importâncias.
+  * run_modelagem(recorte, avaliacao, force) [linha 582]: Executa a modelagem para todos os experimentos E1–E5.
+  * parse_args_modelagem() [linha 610]: Argumentos CLI para módulos de modelagem.
+Nota de avaliação: Correção: pipeline de regressão logística binária está adequado. Usa imputação, StandardScaler, OneHotEncoder, class_weight balanced, C=0.1 e holdout estratificado quando pedido.
+
+-------------------------------------------------------------------------------
+src/modeling/logit_ternario_utils.py (680 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Implementa regressão logística multinomial para três classes. Usa pipeline de pré-processamento, treino com classe balanceada, métricas multiclasse, coeficientes por classe e probabilidades previstas.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, PROJECT_ROOT@36, LOGS_DIR@37, ABT_DIR@38, DIAGNOSTICS_DIR@39, MODELS_GENERAL_DIR@40, MODELS_MEDICINA_DIR@41, ABT_TERNARIA_GERAL_PATH@43, ABT_TERNARIA_MEDICINA_PATH@49, RANDOM_STATE@56, TEST_SIZE@57, CLASSES_TERNARIAS@58, CLASSE_CONTRATADA@59, CLASS_LABELS@61, FEATURE_BLOCKS@67, CORE_BLOCKS@91, EXPERIMENTS@97.
+Funções e partes do código:
+  * log(message, log_file) [linha 157]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * normalizar_recorte(recorte) [linha 167]: Valida recorte geral/medicina.
+  * abt_path(recorte) [linha 180]: Resolve caminho da ABT de acordo com target e recorte.
+  * metadata_path(recorte) [linha 192]: Resolve caminho dos metadados da ABT.
+  * models_dir(recorte, avaliacao) [linha 197]: Resolve pasta de modelos por target/recorte/avaliação.
+  * diagnostics_dir(recorte, avaliacao) [linha 209]: Resolve pasta de diagnósticos por target/recorte/avaliação.
+  * carregar_abt(recorte) [linha 215]: Carrega a ABT e os metadados para modelagem.
+  * limpar_coluna_categorica(serie) [linha 237]: Converte categóricas para strings limpas antes do scikit-learn.
+  * limpar_coluna_numerica(serie) [linha 252]: Converte numéricas e força valores inválidos para NaN.
+  * bloco_valido(df, bloco) [linha 259]: Verifica se todas as variáveis de um bloco existem na ABT.
+  * blocos_validos_para_experimento(df, experimento) [linha 273]: Seleciona blocos de variáveis disponíveis para E1–E5.
+  * separar_tipos(blocos) [linha 286]: Divide variáveis em numéricas e categóricas.
+  * labels_blocos(blocos) [linha 301]: Gera descrição textual dos blocos usados no experimento.
+  * criar_preprocessador(numericas, categoricas) [linha 305]: Monta ColumnTransformer com pipeline numérico e pipeline categórico.
+  * criar_modelo() [linha 346]: Cria o estimador final: regressão logística ou árvore, com hiperparâmetros definidos no módulo.
+  * criar_pipeline(numericas, categoricas) [linha 357]: Junta pré-processador e modelo final em um Pipeline do scikit-learn.
+  * criar_split(X, y, avaliacao) [linha 366]: Define avaliação in_sample ou holdout 80/20 estratificado.
+  * preparar_xy(df, blocos) [linha 386]: Separa X e y com variáveis dos blocos escolhidos.
+  * obter_feature_names(modelo) [linha 403]: Recupera nomes das features após one-hot/preprocessamento.
+  * predicoes_por_proba(proba, classes) [linha 414]: Transforma probabilidades previstas em classe predita pelo maior valor.
+  * calcular_roc_auc(y_true, proba, classes) [linha 418]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * calcular_metricas(y_true, proba, classes) [linha 433]: Calcula métricas do modelo a partir de y real, probabilidades e classes.
+  * extrair_coeficientes(modelo) [linha 457]: Extrai coeficientes da regressão logística por feature transformada.
+  * coeficiente_exato(coeficientes, feature_name, classe) [linha 481]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * ajustar_um_experimento(df, metadata_abt, recorte, avaliacao, experimento, force) [linha 493]: Treina e avalia um experimento E1–E5, salva modelo e retorna registros/métricas/importâncias.
+  * salvar_resultados(registros, coeficientes, recorte, avaliacao) [linha 620]: Salva CSVs/JSONs de métricas, coeficientes ou importâncias.
+  * run_modelagem(recorte, avaliacao, force) [linha 648]: Executa a modelagem para todos os experimentos E1–E5.
+  * parse_args_modelagem() [linha 675]: Argumentos CLI para módulos de modelagem.
+Nota de avaliação: Correção: regressão multinomial adequada. Métricas macro/weighted e ROC-AUC OVR ponderado fazem sentido para três classes.
+
+-------------------------------------------------------------------------------
+src/modeling/treeClassification_10_profundidade_binario_holdout_80_20.py (28 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Wrapper curto: chama treeClassification_profundidade_utils.run_modelagem para árvore de decisão binario, profundidade 10, avaliação holdout_80_20.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, PROFUNDIDADE@11, TARGET@12, AVALIACAO@13.
+Funções e partes do código:
+  * run(recorte, force) [linha 16]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/modeling/treeClassification_10_profundidade_binario_in_sample.py (28 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Wrapper curto: chama treeClassification_profundidade_utils.run_modelagem para árvore de decisão binario, profundidade 10, avaliação in_sample.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, PROFUNDIDADE@11, TARGET@12, AVALIACAO@13.
+Funções e partes do código:
+  * run(recorte, force) [linha 16]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/modeling/treeClassification_10_profundidade_ternario_holdout_80_20.py (28 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Wrapper curto: chama treeClassification_profundidade_utils.run_modelagem para árvore de decisão ternario, profundidade 10, avaliação holdout_80_20.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, PROFUNDIDADE@11, TARGET@12, AVALIACAO@13.
+Funções e partes do código:
+  * run(recorte, force) [linha 16]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/modeling/treeClassification_10_profundidade_ternario_in_sample.py (28 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Wrapper curto: chama treeClassification_profundidade_utils.run_modelagem para árvore de decisão ternario, profundidade 10, avaliação in_sample.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, PROFUNDIDADE@11, TARGET@12, AVALIACAO@13.
+Funções e partes do código:
+  * run(recorte, force) [linha 16]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/modeling/treeClassification_14_profundidade_binario_holdout_80_20.py (28 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Wrapper curto: chama treeClassification_profundidade_utils.run_modelagem para árvore de decisão binario, profundidade 14, avaliação holdout_80_20.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, PROFUNDIDADE@11, TARGET@12, AVALIACAO@13.
+Funções e partes do código:
+  * run(recorte, force) [linha 16]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/modeling/treeClassification_14_profundidade_binario_in_sample.py (28 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Wrapper curto: chama treeClassification_profundidade_utils.run_modelagem para árvore de decisão binario, profundidade 14, avaliação in_sample.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, PROFUNDIDADE@11, TARGET@12, AVALIACAO@13.
+Funções e partes do código:
+  * run(recorte, force) [linha 16]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/modeling/treeClassification_14_profundidade_ternario_holdout_80_20.py (28 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Wrapper curto: chama treeClassification_profundidade_utils.run_modelagem para árvore de decisão ternario, profundidade 14, avaliação holdout_80_20.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, PROFUNDIDADE@11, TARGET@12, AVALIACAO@13.
+Funções e partes do código:
+  * run(recorte, force) [linha 16]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/modeling/treeClassification_14_profundidade_ternario_in_sample.py (28 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Wrapper curto: chama treeClassification_profundidade_utils.run_modelagem para árvore de decisão ternario, profundidade 14, avaliação in_sample.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, PROFUNDIDADE@11, TARGET@12, AVALIACAO@13.
+Funções e partes do código:
+  * run(recorte, force) [linha 16]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/modeling/treeClassification_19_profundidade_binario_holdout_80_20.py (28 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Wrapper curto: chama treeClassification_profundidade_utils.run_modelagem para árvore de decisão binario, profundidade 19, avaliação holdout_80_20.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, PROFUNDIDADE@11, TARGET@12, AVALIACAO@13.
+Funções e partes do código:
+  * run(recorte, force) [linha 16]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/modeling/treeClassification_19_profundidade_binario_in_sample.py (28 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Wrapper curto: chama treeClassification_profundidade_utils.run_modelagem para árvore de decisão binario, profundidade 19, avaliação in_sample.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, PROFUNDIDADE@11, TARGET@12, AVALIACAO@13.
+Funções e partes do código:
+  * run(recorte, force) [linha 16]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/modeling/treeClassification_19_profundidade_ternario_holdout_80_20.py (28 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Wrapper curto: chama treeClassification_profundidade_utils.run_modelagem para árvore de decisão ternario, profundidade 19, avaliação holdout_80_20.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, PROFUNDIDADE@11, TARGET@12, AVALIACAO@13.
+Funções e partes do código:
+  * run(recorte, force) [linha 16]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/modeling/treeClassification_19_profundidade_ternario_in_sample.py (28 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Wrapper curto: chama treeClassification_profundidade_utils.run_modelagem para árvore de decisão ternario, profundidade 19, avaliação in_sample.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, PROFUNDIDADE@11, TARGET@12, AVALIACAO@13.
+Funções e partes do código:
+  * run(recorte, force) [linha 16]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/modeling/treeClassification_binario_holdout_80_20.py (16 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Wrapper curto: árvore padrão binária em holdout 80/20.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4.
+Funções e partes do código:
+  * run(recorte, force) [linha 10]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/modeling/treeClassification_binario_in_sample.py (16 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Wrapper curto: árvore padrão binária em in_sample.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4.
+Funções e partes do código:
+  * run(recorte, force) [linha 10]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/modeling/treeClassification_profundidade_utils.py (855 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Implementa árvores de decisão com profundidades configuráveis 10, 14 e 19. É a versão central para comparar complexidade das árvores e gerar os resultados principais por profundidade.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, PROJECT_ROOT@36, LOGS_DIR@37, ABT_DIR@38, DIAGNOSTICS_DIR@39, MODELS_GENERAL_DIR@40, MODELS_MEDICINA_DIR@41, ABT_BINARIA_GERAL_PATH@43, ABT_BINARIA_MEDICINA_PATH@44, ABT_TERNARIA_GERAL_PATH@45, ABT_TERNARIA_MEDICINA_PATH@46, RANDOM_STATE@48, TEST_SIZE@49, IMPORTANCIA_TOL@50, TREE_DEPTH_PROFILES@52, TARGET_CONFIG@94, FEATURE_BLOCKS@120, CORE_BLOCKS@144, EXPERIMENTS@146.
+Funções e partes do código:
+  * validar_profundidade(profundidade) [linha 77]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * profile_prefix(profundidade) [linha 84]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * model_dir_name_com_profundidade(target, profundidade) [linha 88]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * log(message, log_file) [linha 202]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * normalizar_recorte(recorte) [linha 210]: Valida recorte geral/medicina.
+  * normalizar_target(target) [linha 217]: Valida target binário/ternário.
+  * target_config(target, profundidade) [linha 231]: Retorna configuração do target: coluna, classe positiva, labels.
+  * abt_path(target, recorte) [linha 249]: Resolve caminho da ABT de acordo com target e recorte.
+  * metadata_path(target, recorte) [linha 265]: Resolve caminho dos metadados da ABT.
+  * models_dir(target, recorte, avaliacao, profundidade) [linha 270]: Resolve pasta de modelos por target/recorte/avaliação.
+  * diagnostics_dir(target, recorte, avaliacao, profundidade) [linha 278]: Resolve pasta de diagnósticos por target/recorte/avaliação.
+  * carregar_abt(target, recorte) [linha 284]: Carrega a ABT e os metadados para modelagem.
+  * limpar_coluna_categorica(serie) [linha 306]: Converte categóricas para strings limpas antes do scikit-learn.
+  * limpar_coluna_numerica(serie) [linha 318]: Converte numéricas e força valores inválidos para NaN.
+  * bloco_valido(df, bloco) [linha 324]: Verifica se todas as variáveis de um bloco existem na ABT.
+  * blocos_validos_para_experimento(df, experimento) [linha 337]: Seleciona blocos de variáveis disponíveis para E1–E5.
+  * separar_tipos(blocos) [linha 348]: Divide variáveis em numéricas e categóricas.
+  * labels_blocos(blocos) [linha 360]: Gera descrição textual dos blocos usados no experimento.
+  * criar_preprocessador(numericas, categoricas) [linha 364]: Monta ColumnTransformer com pipeline numérico e pipeline categórico.
+  * min_leaf_dinamico(n_train, recorte, profundidade) [linha 399]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * min_split_dinamico(n_train, recorte, profundidade) [linha 408]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * criar_modelo(n_train, recorte, profundidade) [linha 417]: Cria o estimador final: regressão logística ou árvore, com hiperparâmetros definidos no módulo.
+  * criar_pipeline(numericas, categoricas, n_train, recorte, profundidade) [linha 433]: Junta pré-processador e modelo final em um Pipeline do scikit-learn.
+  * criar_split(X, y, avaliacao) [linha 442]: Define avaliação in_sample ou holdout 80/20 estratificado.
+  * preparar_xy(df, target, blocos) [linha 458]: Separa X e y com variáveis dos blocos escolhidos.
+  * obter_feature_names(modelo) [linha 475]: Recupera nomes das features após one-hot/preprocessamento.
+  * predicoes_por_proba(proba, classes) [linha 485]: Transforma probabilidades previstas em classe predita pelo maior valor.
+  * calcular_roc_auc_binario(y_true, proba, classes, positive_class) [linha 489]: Calcula ROC-AUC da classe positiva no problema binário.
+  * calcular_roc_auc_multiclasse(y_true, proba, classes) [linha 498]: Calcula ROC-AUC multiclasse em estratégia one-vs-rest ponderada.
+  * calcular_metricas(target, y_true, proba, classes) [linha 505]: Calcula métricas do modelo a partir de y real, probabilidades e classes.
+  * feature_original(feature_transformada) [linha 547]: Mapeia uma feature one-hot/padronizada de volta para a variável original.
+  * validar_importancias_normalizadas(df, coluna, contexto) [linha 559]: Confere se importâncias somam aproximadamente 1 após normalização.
+  * extrair_importancias(modelo) [linha 582]: Extrai feature_importances_ da árvore e associa aos nomes das features.
+  * agregar_importancias_por_variavel(importancias) [linha 605]: Soma importâncias de dummies/categorias no nível da variável original.
+  * importancia_bloco(importancias_agregadas, bloco) [linha 623]: Soma importâncias de variáveis pertencentes a um bloco E1–E5.
+  * primeira_divisao(modelo) [linha 630]: Identifica a feature usada na raiz da árvore.
+  * regras_arvore_texto(modelo, max_depth) [linha 639]: Exporta regras textuais da árvore até uma profundidade limitada.
+  * ajustar_um_experimento(df, metadata_abt, target, recorte, avaliacao, experimento, force, profundidade) [linha 645]: Treina e avalia um experimento E1–E5, salva modelo e retorna registros/métricas/importâncias.
+  * salvar_resultados(registros, importancias_transformadas, importancias_agregadas, target, recorte, avaliacao, profundidade) [linha 781]: Salva CSVs/JSONs de métricas, coeficientes ou importâncias.
+  * run_modelagem(target, recorte, avaliacao, force, profundidade) [linha 817]: Executa a modelagem para todos os experimentos E1–E5.
+  * parse_args_modelagem() [linha 849]: Argumentos CLI para módulos de modelagem.
+Nota de avaliação: Correção: comparação de profundidades 10/14/19 está implementada corretamente. Atenção apenas a risco de overfitting em profundidades maiores; por isso holdout e métricas são importantes.
+
+-------------------------------------------------------------------------------
+src/modeling/treeClassification_ternario_holdout_80_20.py (16 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Wrapper curto: árvore padrão ternária em holdout 80/20.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4.
+Funções e partes do código:
+  * run(recorte, force) [linha 10]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/modeling/treeClassification_ternario_in_sample.py (16 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Wrapper curto: árvore padrão ternária em in_sample.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4.
+Funções e partes do código:
+  * run(recorte, force) [linha 10]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/modeling/treeClassification_utils.py (775 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Implementa árvore de decisão padrão, com profundidade fixa menor, pré-processamento, treino, métricas, importância de variáveis, regras e primeira divisão. Serve como versão base de árvores.
+Constantes/variáveis globais importantes: PROJECT_ROOT_FOR_IMPORT@4, PROJECT_ROOT@36, LOGS_DIR@37, ABT_DIR@38, DIAGNOSTICS_DIR@39, MODELS_GENERAL_DIR@40, MODELS_MEDICINA_DIR@41, ABT_BINARIA_GERAL_PATH@43, ABT_BINARIA_MEDICINA_PATH@44, ABT_TERNARIA_GERAL_PATH@45, ABT_TERNARIA_MEDICINA_PATH@46, RANDOM_STATE@48, TEST_SIZE@49, IMPORTANCIA_TOL@50, TARGET_CONFIG@52, FEATURE_BLOCKS@78, CORE_BLOCKS@102, EXPERIMENTS@104.
+Funções e partes do código:
+  * log(message, log_file) [linha 160]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * normalizar_recorte(recorte) [linha 168]: Valida recorte geral/medicina.
+  * normalizar_target(target) [linha 175]: Valida target binário/ternário.
+  * target_config(target) [linha 189]: Retorna configuração do target: coluna, classe positiva, labels.
+  * abt_path(target, recorte) [linha 193]: Resolve caminho da ABT de acordo com target e recorte.
+  * metadata_path(target, recorte) [linha 209]: Resolve caminho dos metadados da ABT.
+  * models_dir(target, recorte, avaliacao) [linha 214]: Resolve pasta de modelos por target/recorte/avaliação.
+  * diagnostics_dir(target, recorte, avaliacao) [linha 222]: Resolve pasta de diagnósticos por target/recorte/avaliação.
+  * carregar_abt(target, recorte) [linha 228]: Carrega a ABT e os metadados para modelagem.
+  * limpar_coluna_categorica(serie) [linha 250]: Converte categóricas para strings limpas antes do scikit-learn.
+  * limpar_coluna_numerica(serie) [linha 262]: Converte numéricas e força valores inválidos para NaN.
+  * bloco_valido(df, bloco) [linha 268]: Verifica se todas as variáveis de um bloco existem na ABT.
+  * blocos_validos_para_experimento(df, experimento) [linha 281]: Seleciona blocos de variáveis disponíveis para E1–E5.
+  * separar_tipos(blocos) [linha 292]: Divide variáveis em numéricas e categóricas.
+  * labels_blocos(blocos) [linha 304]: Gera descrição textual dos blocos usados no experimento.
+  * criar_preprocessador(numericas, categoricas) [linha 308]: Monta ColumnTransformer com pipeline numérico e pipeline categórico.
+  * min_leaf_dinamico(n_train, recorte) [linha 343]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * criar_modelo(n_train, recorte) [linha 349]: Cria o estimador final: regressão logística ou árvore, com hiperparâmetros definidos no módulo.
+  * criar_pipeline(numericas, categoricas, n_train, recorte) [linha 362]: Junta pré-processador e modelo final em um Pipeline do scikit-learn.
+  * criar_split(X, y, avaliacao) [linha 371]: Define avaliação in_sample ou holdout 80/20 estratificado.
+  * preparar_xy(df, target, blocos) [linha 387]: Separa X e y com variáveis dos blocos escolhidos.
+  * obter_feature_names(modelo) [linha 404]: Recupera nomes das features após one-hot/preprocessamento.
+  * predicoes_por_proba(proba, classes) [linha 414]: Transforma probabilidades previstas em classe predita pelo maior valor.
+  * calcular_roc_auc_binario(y_true, proba, classes, positive_class) [linha 418]: Calcula ROC-AUC da classe positiva no problema binário.
+  * calcular_roc_auc_multiclasse(y_true, proba, classes) [linha 427]: Calcula ROC-AUC multiclasse em estratégia one-vs-rest ponderada.
+  * calcular_metricas(target, y_true, proba, classes) [linha 434]: Calcula métricas do modelo a partir de y real, probabilidades e classes.
+  * feature_original(feature_transformada) [linha 476]: Mapeia uma feature one-hot/padronizada de volta para a variável original.
+  * validar_importancias_normalizadas(df, coluna, contexto) [linha 488]: Confere se importâncias somam aproximadamente 1 após normalização.
+  * extrair_importancias(modelo) [linha 511]: Extrai feature_importances_ da árvore e associa aos nomes das features.
+  * agregar_importancias_por_variavel(importancias) [linha 534]: Soma importâncias de dummies/categorias no nível da variável original.
+  * importancia_bloco(importancias_agregadas, bloco) [linha 552]: Soma importâncias de variáveis pertencentes a um bloco E1–E5.
+  * primeira_divisao(modelo) [linha 559]: Identifica a feature usada na raiz da árvore.
+  * regras_arvore_texto(modelo, max_depth) [linha 568]: Exporta regras textuais da árvore até uma profundidade limitada.
+  * ajustar_um_experimento(df, metadata_abt, target, recorte, avaliacao, experimento, force) [linha 574]: Treina e avalia um experimento E1–E5, salva modelo e retorna registros/métricas/importâncias.
+  * salvar_resultados(registros, importancias_transformadas, importancias_agregadas, target, recorte, avaliacao) [linha 706]: Salva CSVs/JSONs de métricas, coeficientes ou importâncias.
+  * run_modelagem(target, recorte, avaliacao, force) [linha 741]: Executa a modelagem para todos os experimentos E1–E5.
+  * parse_args_modelagem() [linha 770]: Argumentos CLI para módulos de modelagem.
+Nota de avaliação: Correção: árvore padrão está correta. Para árvore, não há scaler numérico, o que é aceitável, pois árvore não depende de escala como regressão logística.
+
+-------------------------------------------------------------------------------
+src/pipeline/__init__.py (0 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Arquivo vazio que marca src/pipeline como subpacote. Não contém algoritmo.
+Não há funções/classes. Se é __init__.py, sua função é estrutural: permitir importação como pacote.
+
+-------------------------------------------------------------------------------
+src/pipeline/curate.py (500 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Cria a base curada. Padroniza aliases de colunas, adiciona regiões, cria campos úteis, filtra anos do artigo 2019–2021, salva parquet e SQLite, e gera auditorias. É a ponte entre transformações brutas e análises/modelagem.
+Constantes/variáveis globais importantes: ARQUIVO_INSCRICOES_ENTRADA@18, ARQUIVO_OFERTAS_ENTRADA@19, ARQUIVO_INSCRICOES_ARTIGO@21, ARQUIVO_RESUMO_CURADORIA@22, ARQUIVO_MATRIZ_CURADORIA@23, ARQUIVO_AUDITORIA_CINE@24, ARQUIVO_AUDITORIA_REGIOES@25, SITUACAO_CONTRATADA@28, SITUACAO_NAO_CONTRATADO@29, SITUACAO_LISTA_ESPERA@30, MAPA_UF_REGIAO@33.
+Funções e partes do código:
+  * log(message) [linha 68]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * validar_colunas(df, colunas, nome_base) [linha 78]: Confere se colunas obrigatórias existem; evita erros silenciosos quando arquivo de entrada mudou.
+  * normalizar_texto(valor) [linha 85]: Limpa espaços, transforma valores vazios/nulos em ausentes e padroniza texto; reduz variações de escrita antes de agrupar ou filtrar.
+  * normalizar_uf(serie) [linha 97]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * to_numeric_nullable(serie) [linha 101]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * to_int_nullable(serie) [linha 105]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * criar_alias_se_existir(df, origem, destino) [linha 109]: Cria coluna alias se a coluna origem existe.
+  * criar_aliases_inscricoes(df) [linha 116]: Cria nomes de coluna padronizados na base de inscrições.
+  * criar_aliases_ofertas(df) [linha 144]: Cria nomes padronizados na base de ofertas.
+  * adicionar_regioes_inscricoes(df) [linha 175]: Deriva região a partir de UF de residência/oferta.
+  * adicionar_regioes_ofertas(df) [linha 209]: Deriva região para base de ofertas.
+  * preparar_inscricoes(df) [linha 233]: Padroniza inscrições curadas; quando no curate, cria aliases e variáveis derivadas.
+  * preparar_ofertas(df) [linha 309]: Padroniza ofertas curadas; quando no curate, cria aliases e variáveis derivadas.
+  * gerar_recorte_artigo(df) [linha 340]: Filtra anos do artigo 2019–2021.
+  * auditar_cine(df, dfo) [linha 345]: Audita disponibilidade de CINE após curadoria.
+  * auditar_regioes(df, dfo) [linha 365]: Audita regiões derivadas.
+  * salvar_sqlite(tabelas) [linha 391]: Salva bases curadas em SQLite para consulta.
+  * salvar_resumo(df, dfo, recorte) [linha 407]: Grava CSV de auditoria/resumo da etapa.
+  * run() [linha 451]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+Nota de avaliação: Correção: curadoria está coerente. Atenção conceitual: o recorte do artigo é por anos 2019–2021 e baixa renda associada à Modalidade I, não filtro administrativo rígido só Modalidade I.
+
+-------------------------------------------------------------------------------
+src/pipeline/staging.py (307 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Primeira etapa do ETL. Lê os CSVs brutos do FIES, remove colunas fantasma, detecta nomes de arquivos, copia arquivos para staging e organiza os arquivos do INEP. Não modela nem filtra analiticamente; apenas prepara a entrada bruta.
+Funções e partes do código:
+  * safe_text(value) [linha 19]: Converte valor para texto seguro, tratando nulos.
+  * log(message) [linha 30]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * read_fies_csv(path) [linha 42]: Lê CSV bruto do FIES com separador/encoding esperado.
+  * remove_colunas_fantasma(df) [linha 67]: Remove colunas vazias ou artefatos de leitura CSV, como “Unnamed”.
+  * nome_saida_fies(nome_original) [linha 81]: Define nome padronizado de saída para arquivo de staging.
+  * copiar_para_errors(origem, motivo) [linha 116]: Move/copia arquivo problemático para pasta de erros com motivo.
+  * staging_fies(overwrite) [linha 123]: Processa arquivos brutos do FIES para a camada staging.
+  * encontrar_pasta_inep_ano(ano) [linha 219]: Localiza pasta do INEP de determinado ano dentro dos dados brutos.
+  * encontrar_arquivo_case_insensitive(pasta, nome_esperado) [linha 234]: Procura arquivo ignorando diferenças de maiúsculas/minúsculas.
+  * staging_inep(overwrite) [linha 249]: Copia/organiza arquivos brutos do INEP para staging.
+  * run(overwrite) [linha 305]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/pipeline/transform/__init__.py (0 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Arquivo vazio que marca src/pipeline/transform como subpacote. Não contém algoritmo.
+Não há funções/classes. Se é __init__.py, sua função é estrutural: permitir importação como pacote.
+
+-------------------------------------------------------------------------------
+src/pipeline/transform/cruzamento_cine.py (1028 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Enriquece FIES com informações CINE/INEP de cursos e áreas. Normaliza nomes/códigos, usa referência do INEP e mapas manuais de correção para inscrições/ofertas que não cruzam automaticamente. Gera auditorias de cobertura CINE.
+Constantes/variáveis globais importantes: ARQUIVO_INSCRICOES_UNIFICADAS@15, ARQUIVO_OFERTAS_UNIFICADAS@16, ARQUIVO_INEP_HISTORICO@18, ARQUIVO_INSCRICOES_COM_CINE@20, ARQUIVO_OFERTAS_COM_CINE@21, RESUMO_CRUZAMENTO_CINE@23, COL_CURSO@25, COL_CINE_NOME@26, COL_CINE_COD@27, COLUNAS_INEP_BASE@30, COLUNAS_INEP_RENOMEADAS@45, MAPA_CORRECAO_MANUAL_INSCRICOES@54, MAPA_CORRECAO_MANUAL_OFERTAS@297.
+Funções e partes do código:
+  * log(message) [linha 567]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * normalizar_nome(valor) [linha 577]: Normaliza nomes para matching textual.
+  * normalizar_nome_sem_acento(valor) [linha 591]: Normaliza texto removendo acento para cruzamento/fallback.
+  * normalizar_codigo_cine(valor) [linha 604]: Padroniza códigos CINE.
+  * preparar_mapa_manual(mapa) [linha 620]: Normaliza mapas manuais de correção.
+  * preparar_inep() [linha 654]: Carrega e prepara base INEP de referência.
+  * preparar_base_fies(path, ano_col) [linha 691]: Prepara base FIES para receber CINE.
+  * construir_referencia_cine(inep, anos_fies) [linha 710]: Monta referência CINE por curso/ano para cruzamento.
+  * salvar_auxiliar_cursos_validos(df, nome_base) [linha 785]: Exporta auxiliar com cursos que possuem CINE válido.
+  * diagnosticar_sem_cine(df, nome_base, momento) [linha 806]: Lista casos sem CINE antes/depois do mapa manual.
+  * aplicar_mapa_manual(df, mapa, nome_base) [linha 835]: Aplica correções manuais para cursos não casados automaticamente.
+  * auditar_resultado(df, nome_base, resumo_manual) [linha 905]: Mede cobertura do cruzamento CINE.
+  * enriquecer_com_cine(arquivo_entrada, arquivo_saida, ano_col, nome_base, inep, mapa_manual) [linha 932]: Executa cruzamento FIES+INEP e salva base enriquecida.
+  * salvar_resumo(registros) [linha 991]: Grava CSV de auditoria/resumo da etapa.
+  * run() [linha 998]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/pipeline/transform/limpeza_tipos_fies.py (576 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Padroniza os arquivos do FIES. Renomeia colunas brutas para nomes canônicos, limpa textos, converte números em formato brasileiro, garante colunas esperadas, separa inscrições e ofertas e salva parquets limpos por arquivo/ano/semestre.
+Constantes/variáveis globais importantes: MAPA_INSCRICOES@17, MAPA_OFERTAS@84, INT_COLS_INSCRICOES@144, FLOAT_COLS_INSCRICOES@168, INT_COLS_OFERTAS@181, FLOAT_COLS_OFERTAS@201, COLUNAS_EVENTUAIS_OFERTAS@209.
+Funções e partes do código:
+  * log(message) [linha 224]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * parse_staging_filename(path) [linha 234]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * limpar_nome_coluna(coluna) [linha 243]: Padroniza nome de coluna removendo acentos, espaços e caracteres especiais.
+  * limpar_texto(valor) [linha 249]: Padroniza valores textuais e transforma marcadores de vazio em ausentes.
+  * limpar_cnpj(valor) [linha 266]: Remove pontuação e padroniza CNPJ quando aparece em campos de mantenedora.
+  * normalizar_semestre_financiamento(valor) [linha 285]: Padroniza semestre/processo seletivo em formato numérico/categórico consistente.
+  * converter_numero_br(serie) [linha 305]: Converte números no padrão brasileiro para numérico pandas.
+  * converter_inteiro(serie) [linha 342]: Converte número para inteiro nulo pandas Int64.
+  * normalizar_textos(df, ignorar) [linha 347]: Aplica limpeza textual em várias colunas, exceto as ignoradas.
+  * coalescer_colunas_duplicadas(df) [linha 358]: Quando há colunas duplicadas por mapeamento, combina valores preenchendo nulos.
+  * garantir_colunas(df, colunas) [linha 383]: Garante presença de colunas esperadas, criando ausentes se necessário.
+  * registrar_colunas_nao_mapeadas(df, mapa, arquivo) [linha 391]: Audita colunas dos brutos que não foram mapeadas explicitamente.
+  * transformar_inscricoes(df, ano_arquivo, semestre_arquivo, arquivo_origem) [linha 404]: Transforma arquivo de inscrições: renomeia, converte tipos, limpa e adiciona metadados de origem.
+  * transformar_ofertas(df, ano_arquivo, semestre_arquivo, arquivo_origem) [linha 461]: Transforma arquivo de ofertas/vagas com lógica análoga à de inscrições.
+  * processar_arquivo(path) [linha 502]: Identifica tipo de arquivo bruto/staging e chama transformação adequada.
+  * run() [linha 551]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/pipeline/transform/mestre_inep.py (406 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Constrói uma base mestre dos cursos do Censo da Educação Superior/INEP. Detecta encoding, seleciona colunas úteis, padroniza nomes, códigos e CINE, cria histórico e último registro de curso.
+Constantes/variáveis globais importantes: ARQUIVO_CURSOS_HISTORICO@14, ARQUIVO_CURSOS_ULTIMO_REGISTRO@15, RESUMO_MESTRE_INEP@16, MAPA_CURSOS_INEP@19, COLUNAS_MINIMAS@42, COLUNAS_CINE_ESPERADAS@48.
+Funções e partes do código:
+  * log(message) [linha 60]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * normalizar_nome_coluna(coluna) [linha 70]: Normaliza nome de coluna para comparação robusta.
+  * limpar_texto(valor) [linha 76]: Padroniza valores textuais e transforma marcadores de vazio em ausentes.
+  * converter_inteiro(serie) [linha 93]: Converte número para inteiro nulo pandas Int64.
+  * detectar_encoding_e_colunas(path) [linha 119]: Testa encodings e lê cabeçalho para descobrir colunas disponíveis.
+  * selecionar_colunas_inep(path) [linha 139]: Escolhe colunas úteis do INEP e monta mapa de renomeação.
+  * parse_ano_arquivo(path) [linha 163]: Extrai ano do nome/caminho do arquivo.
+  * ler_cadastro_cursos(path) [linha 172]: Lê cadastro de cursos do INEP.
+  * coalescer_colunas_duplicadas(df) [linha 200]: Quando há colunas duplicadas por mapeamento, combina valores preenchendo nulos.
+  * padronizar_cadastro_cursos(df, arquivo) [linha 221]: Limpa tipos e nomes da base de cursos INEP.
+  * listar_arquivos_cursos() [linha 271]: Lista arquivos de cursos INEP disponíveis.
+  * auditar_mestre(df) [linha 287]: Gera auditorias sobre a base mestre INEP.
+  * construir_ultimo_registro(df) [linha 304]: Seleciona último registro conhecido por curso/instituição.
+  * salvar_resumo(registros) [linha 325]: Grava CSV de auditoria/resumo da etapa.
+  * run() [linha 334]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/pipeline/transform/modalidade.py (445 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Classifica modalidade FIES com base em renda, salário mínimo do ano e validação de ofertas P-FIES. Gera coluna modalidade_fies e auditorias. Importante: classifica, mas não é o filtro analítico principal do artigo.
+Constantes/variáveis globais importantes: ARQUIVO_INSCRICOES_ENTRADA@9, ARQUIVO_OFERTAS_ENTRADA@10, ARQUIVO_INSCRICOES_SAIDA@12, RESUMO_MODALIDADE@14, MATRIZ_MODALIDADE@15, AUDITORIA_OFERTAS_PFIES@16, SALARIO_MINIMO_ANO@19, MAPA_UF_REGIAO@27, COL_ANO@62, COL_SEMESTRE@63, COL_RENDA@64, COL_UF_RESIDENCIA@65, COL_MODALIDADE@67, COL_REGIAO_RESIDENCIA@68, CHAVES_INSCRICOES@70, CHAVES_OFERTAS@80.
+Funções e partes do código:
+  * log(message) [linha 91]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * validar_colunas(df, colunas, nome_base) [linha 101]: Confere se colunas obrigatórias existem; evita erros silenciosos quando arquivo de entrada mudou.
+  * normalizar_texto(valor) [linha 108]: Limpa espaços, transforma valores vazios/nulos em ausentes e padroniza texto; reduz variações de escrita antes de agrupar ou filtrar.
+  * normalizar_turno(serie) [linha 120]: Padroniza turno para chave de join.
+  * converter_numero(serie) [linha 124]: Função auxiliar específica deste módulo; sua finalidade aparece pelo nome e pelo contexto do arquivo.
+  * converter_inteiro(serie) [linha 152]: Converte número para inteiro nulo pandas Int64.
+  * padronizar_chaves_inscricoes(df) [linha 156]: Converte chaves de inscrições para tipos comparáveis.
+  * padronizar_chaves_ofertas(df) [linha 168]: Converte chaves de ofertas para tipos comparáveis.
+  * normalizar_participa_p_fies(valor) [linha 180]: Normaliza indicação de participação no P-FIES/oferta.
+  * preparar_ofertas_pfies(dfo) [linha 195]: Prepara subset de ofertas P-FIES para validação de modalidade.
+  * classificar_modalidade_por_renda(df) [linha 247]: Classifica modalidade segundo regra de renda/salário mínimo.
+  * validar_pfies(df, dfo_pfies) [linha 310]: Cruza inscrições com ofertas para verificar P-FIES quando aplicável.
+  * salvar_matriz(df) [linha 370]: Salva matriz ano x modalidade para auditoria.
+  * salvar_resumo(registros) [linha 388]: Grava CSV de auditoria/resumo da etapa.
+  * run() [linha 396]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+-------------------------------------------------------------------------------
+src/pipeline/transform/unificacao_fies.py (271 linhas)
+-------------------------------------------------------------------------------
+Sintaxe: OK.
+Responsabilidade: Empilha os parquets limpos de inscrições e de ofertas em bases unificadas. Ordena quando possível, audita duplicatas e chaves, mas não remove registros analíticos por chave.
+Constantes/variáveis globais importantes: ARQUIVO_INSCRICOES_UNIFICADAS@11, ARQUIVO_OFERTAS_UNIFICADAS@12, RESUMO_UNIFICACAO@14, COLUNAS_ORDENACAO_INSCRICOES@17, COLUNAS_ORDENACAO_OFERTAS@26.
+Funções e partes do código:
+  * log(message) [linha 37]: Cria a pasta de logs quando necessário, grava mensagem em arquivo e também imprime no console. Serve para rastreabilidade da execução.
+  * listar_parquets_limpos(tipo) [linha 47]: Lista parquets limpos gerados na etapa anterior.
+  * ler_parquets(arquivos, tipo) [linha 59]: Lê e concatena vários parquets do mesmo tipo.
+  * ordenar_se_possivel(df, colunas) [linha 97]: Ordena DataFrame por colunas disponíveis para saída determinística.
+  * auditar_duplicatas_exatas(df, tipo) [linha 106]: Conta duplicatas exatas sem necessariamente removê-las.
+  * auditar_chaves_inscricoes(df) [linha 112]: Conta combinações únicas de chaves de inscrição para auditoria.
+  * auditar_chaves_ofertas(df) [linha 134]: Audita unicidade de ofertas por chaves de oferta.
+  * salvar_resumo(registros) [linha 163]: Grava CSV de auditoria/resumo da etapa.
+  * unificar_inscricoes() [linha 176]: Une todos os parquets limpos de inscrições.
+  * unificar_ofertas() [linha 215]: Une todos os parquets limpos de ofertas.
+  * run() [linha 254]: Função pública do módulo; executa a etapa completa com parâmetros padrão ou recebidos pelo CLI.
+
+===============================================================================
+6. O QUE O CÓDIGO COBRE EM RELAÇÃO AO ARTIGO TÉCNICO
+===============================================================================
+
+O código cobre bem o artigo técnico de Computação se o artigo afirma que:
+
+1. Foram usados microdados do FIES 2019–2021 e Censo da Educação Superior/INEP.
+2. Foi criado um pipeline de preparação dos dados.
+3. Foram construídas bases analíticas para descrição e modelagem.
+4. Foram criadas duas formulações: binária e ternária.
+5. Foram ajustadas regressões logísticas e árvores de decisão.
+6. Foi usado holdout estratificado 80/20.
+7. Foram usadas métricas como ROC-AUC, acurácia balanceada, F1 e matriz de confusão.
+8. Foram geradas importâncias de variáveis das árvores.
+9. Foram gerados produtos finais para o artigo: tabelas, figuras e apêndices.
+
+O que o artigo técnico deveria explicar um pouco melhor, se quiser ficar 100% alinhado ao código:
+
+- As regressões logísticas usam pipeline com imputação por mediana, StandardScaler nas numéricas, imputação constante nas categóricas e OneHotEncoder.
+- As árvores usam imputação e OneHotEncoder, mas não precisam de StandardScaler.
+- Os modelos usam class_weight='balanced'.
+- A regressão logística usa regularização com C=0.1.
+- As árvores usam critério Gini e profundidades 10, 14 e 19.
+- O target binário e ternário têm definições diferentes e respondem a perguntas diferentes.
+- A avaliação in_sample não deve ser apresentada como generalização; holdout é mais adequado para desempenho fora do treino.
+
+Para uma disciplina, se o artigo já explica o fluxo geral, não é obrigatório reescrever tudo. Para uma banca técnica mais rigorosa, esses detalhes ajudam.
+
+===============================================================================
+7. OS ALGORITMOS ESTÃO CERTOS?
+===============================================================================
+
+Sim, no essencial, os algoritmos estão implementados corretamente.
+
+Regressão logística binária:
+- usa target 0/1;
+- separa X e y;
+- pré-processa variáveis;
+- treina LogisticRegression;
+- calcula probabilidades;
+- calcula métricas adequadas;
+- salva modelo e métricas.
+
+Regressão logística multinomial:
+- usa target com três classes;
+- usa multi_class='multinomial';
+- calcula probabilidades para cada classe;
+- calcula ROC-AUC OVR ponderado e F1 macro/weighted;
+- salva resultados por experimento.
+
+Árvore de decisão:
+- usa DecisionTreeClassifier;
+- usa class_weight balanced;
+- controla profundidade;
+- calcula métricas;
+- extrai importâncias e primeira divisão;
+- salva regras textuais.
+
+Holdout:
+- usa train_test_split com stratify=y;
+- isso preserva a proporção das classes.
+
+Métricas:
+- estão adequadas para classes desbalanceadas;
+- F1 macro no ternário é uma escolha correta;
+- ROC-AUC OVR ponderado no multiclasse é aceitável;
+- matriz de confusão sustenta interpretação de erros.
+
+Probabilidades previstas:
+- fazem sentido para interpretação substantiva;
+- são melhores para artigo de política pública do que apenas coeficientes técnicos.
+
+Limitação honesta:
+- Sem rodar com os dados brutos, não posso garantir que cada arquivo final gerado no seu computador está idêntico ao manuscrito. Mas a lógica de código que produz esses resultados está correta e coerente.
+
+===============================================================================
+8. POSSÍVEIS PERGUNTAS DO PROFESSOR E RESPOSTAS
+===============================================================================
+
+Pergunta: O que o repositório faz?
+Resposta: Ele automatiza todo o fluxo da pesquisa: baixa/recebe dados brutos, padroniza, cruza com INEP/CINE, cria bases analíticas, treina modelos e exporta tabelas/figuras.
+
+Pergunta: O que é ABT?
+Resposta: É a tabela final usada para modelagem. Ela já tem target e variáveis preditoras em formato adequado.
+
+Pergunta: Qual diferença entre binário e ternário?
+Resposta: O binário compara não contratação e contratação, focando na etapa contratual. O ternário inclui lista de espera, então representa também a barreira acadêmica inicial.
+
+Pergunta: Por que regressão logística?
+Resposta: Porque é um modelo clássico, interpretável e adequado para classificação. Serve como base de comparação.
+
+Pergunta: Por que árvore de decisão?
+Resposta: Porque permite capturar relações não lineares e também interpretar variáveis importantes.
+
+Pergunta: O que é class_weight balanced?
+Resposta: É uma forma de compensar o desbalanceamento das classes, dando mais peso às classes menores durante o treino.
+
+Pergunta: Por que não usar só acurácia?
+Resposta: Porque contratação é minoria. Um modelo poderia acertar muito a classe majoritária e ainda ir mal na classe de interesse.
+
+Pergunta: F1 macro significa o quê?
+Resposta: Calcula F1 separadamente para cada classe e tira a média simples. Isso evita que a classe maior domine a avaliação.
+
+Pergunta: O que é ROC-AUC?
+Resposta: Mede capacidade de separação do modelo entre classes. Quanto mais perto de 1, melhor.
+
+Pergunta: Isso prova causalidade?
+Resposta: Não. Mostra associação e capacidade preditiva. O próprio código e o artigo devem interpretar como associação.
+
+Pergunta: O código está certo?
+Resposta: Sim, os algoritmos estão implementados corretamente. O cuidado maior é explicar bem o recorte da Modalidade I e usar a avaliação correta ao exportar resultados.
+
+===============================================================================
+9. RECOMENDAÇÕES FINAIS
+===============================================================================
+
+Para disciplina:
+- Não precisa decorar todos os detalhes de scikit-learn.
+- Entenda o fluxo geral: dados -> limpeza -> ABT -> modelo -> métricas -> figuras.
+- Saiba explicar binário vs ternário.
+- Saiba explicar por que usa métricas além de acurácia.
+- Saiba dizer que não é causalidade.
+
+Para repositório ficar mais forte:
+1. Confirmar requirements.txt.
+2. Corrigir digitação do README.
+3. Documentar melhor in_sample vs holdout.
+4. Padronizar situação “participação cancelada”.
+5. Manter texto do artigo coerente com “público de baixa renda associado à Modalidade I”, e não filtro administrativo exclusivo se o código não filtra assim.
+
+Nota técnica geral: 8/10.
+O código é bom, relativamente avançado, e faz corretamente o que se propõe. Não parece um conjunto aleatório de scripts; é um pipeline real de pesquisa.

@@ -1,0 +1,2351 @@
+ANÁLISE DETALHADA DO CÓDIGO DO REPOSITÓRIO FIES
+=================================================
+
+Arquivo gerado para explicar, em linguagem natural, o que o código faz, como as etapas se conectam e qual é a teoria por trás das partes mais técnicas, especialmente os pipelines do scikit-learn, as regressões logísticas, as árvores de decisão, as métricas e as bases ABT.
+
+Observação honesta: esta análise é estática. Isto significa que o código foi lido, organizado e interpretado arquivo por arquivo. Eu não executei o pipeline completo com os microdados brutos oficiais, porque isso exigiria os arquivos originais posicionados na estrutura esperada. Portanto, quando digo que a lógica está correta, estou falando da implementação e do fluxo do código, não de uma auditoria executada do começo ao fim com os dados reais.
+
+Também não vou insistir aqui na lista de pequenos ajustes que você pediu para ignorar. O foco deste arquivo é: entender o que cada parte faz, como faz e por que faz.
+
+=================================================
+1. VISÃO GERAL DO REPOSITÓRIO
+=================================================
+
+O repositório é um pipeline de pesquisa. Ele pega dados brutos do FIES e do Censo da Educação Superior, organiza esses dados em várias camadas, gera bases analíticas, treina modelos estatísticos/de aprendizado de máquina e exporta tabelas/figuras para o artigo.
+
+A lógica geral é esta:
+
+1) data/01_raw
+   Dados brutos baixados dos portais oficiais.
+
+2) data/02_staging
+   Primeira cópia organizada dos dados brutos. Aqui o código ainda evita transformar muito os dados. A ideia é padronizar nomes de arquivos, remover duplicatas exatas e deixar tudo pronto para a transformação.
+
+3) data/03_interim
+   Dados intermediários já com tipos e nomes mais padronizados. Por exemplo: números convertidos, textos normalizados, colunas renomeadas e bases anuais unificadas.
+
+4) data/04_curated
+   Base curada. Aqui os dados já estão prontos para análise, com aliases, targets auxiliares, regiões, CINE, recorte 2019–2021 etc.
+
+5) data/05_analysis
+   Bases analíticas descritivas: funil, candidatos únicos, taxas etc.
+
+6) data/06_abt
+   ABT significa Analytical Base Table. É a base de modelagem: uma tabela em que cada linha é uma inscrição e cada coluna é uma variável que poderá entrar nos modelos. O código gera ABT binária e ABT ternária.
+
+7) models/
+   Modelos treinados salvos em disco com joblib, junto com metadados e métricas.
+
+8) reports/
+   Logs, diagnósticos e resultados intermediários.
+
+9) article/
+   Pacote final com tabelas, figuras e apêndices usados no artigo.
+
+O arquivo main.py é o ponto de entrada. Ele funciona como um CLI, ou seja, uma interface de linha de comando. Você executa comandos como:
+
+    python3 main.py pipeline all
+    python3 main.py analysis all
+    python3 main.py abt binaria
+    python3 main.py modeling logit --force
+    python3 main.py article modelagem
+    python3 main.py export article --clean
+
+O main.py não contém os algoritmos principais. Ele chama os módulos dentro de src/.
+
+=================================================
+2. O QUE A PASTA src/ FAZ
+=================================================
+
+A pasta src/ é o coração do código. Ela está dividida assim:
+
+src/constants.py
+  Define caminhos, nomes de pastas, anos de análise e arquivos principais.
+
+src/config.py
+  Cria a estrutura de pastas e verifica se o ambiente básico está montado.
+
+src/pipeline/
+  Prepara, transforma, cruza e cura os dados brutos.
+
+src/analysis/
+  Gera bases descritivas: funil do FIES, candidatos únicos e taxas.
+
+src/abt/
+  Constrói as tabelas analíticas de modelagem: ABT binária e ABT ternária.
+
+src/modeling/
+  Treina regressões logísticas e árvores de decisão. Calcula métricas e salva modelos.
+
+src/article/
+  Gera tabelas, figuras, apêndices e pacote final do artigo.
+
+Os arquivos __init__.py existem para transformar as pastas em pacotes Python. Em geral eles estão vazios; isso é normal.
+
+=================================================
+3. COMO O main.py EXECUTA O FLUXO
+=================================================
+
+O main.py lê sys.argv, que é a lista de argumentos passados no terminal. Por exemplo:
+
+    python3 main.py modeling logit --force
+
+nesse caso:
+
+    sys.argv[0] = "main.py"
+    sys.argv[1] = "modeling"
+    sys.argv[2] = "logit"
+    sys.argv[3] = "--force"
+
+O main.py usa funções auxiliares:
+
+    def tem_flag(nome: str) -> bool:
+        return nome in sys.argv
+
+Isso verifica se uma flag aparece no comando. Exemplo: tem_flag("--force") retorna True quando o comando contém --force.
+
+    def valor_flag(nome: str, padrao=None):
+        if nome not in sys.argv:
+            return padrao
+        indice = sys.argv.index(nome)
+        if indice + 1 >= len(sys.argv):
+            return padrao
+        proximo = sys.argv[indice + 1]
+        if proximo.startswith("--"):
+            return padrao
+        return proximo
+
+Essa função pega o valor depois de uma flag. Exemplo:
+
+    python3 main.py abt ternaria --recorte medicina
+
+valor_flag("--recorte", "geral") retorna "medicina".
+
+O main.py valida opções como recorte, target, avaliação, experimento e profundidade. Por exemplo:
+
+    def obter_recorte(padrao: str = "geral") -> str:
+        recorte = valor_flag("--recorte", padrao)
+        if recorte == "general":
+            recorte = "geral"
+        if recorte not in ["geral", "medicina"]:
+            print(f"Recorte inválido: {recorte}")
+            sys.exit(1)
+        return recorte
+
+A lógica é simples: o comando aceita apenas "geral" ou "medicina". Se o usuário digitar outra coisa, o programa para.
+
+Principais comandos do main.py:
+
+pipeline all
+  Chama staging, transformações e curadoria.
+
+analysis all
+  Gera bases descritivas.
+
+abt binaria
+  Gera a ABT binária.
+
+abt ternaria --recorte geral/medicina
+  Gera a ABT ternária para geral ou medicina.
+
+modeling logit --force
+  Treina regressões logísticas.
+
+modeling tree-depth --force
+  Treina árvores de decisão com profundidades 10, 14 e 19.
+
+article all
+  Gera produtos descritivos.
+
+article modelagem
+  Gera produtos de modelagem.
+
+export article
+  Copia/organiza resultados finais na pasta article/.
+
+reproduce all
+  Roda o fluxo completo.
+
+=================================================
+4. TEORIA ESSENCIAL DOS MODELOS E DO PIPELINE DO SCIKIT-LEARN
+=================================================
+
+Antes de explicar os arquivos de modelagem, é importante entender três objetos usados pelo scikit-learn:
+
+1) Pipeline
+2) ColumnTransformer
+3) Estimador final, como LogisticRegression ou DecisionTreeClassifier
+
+-------------------------------------------------
+4.1. O que é Pipeline?
+-------------------------------------------------
+
+No scikit-learn, Pipeline é uma sequência de etapas. Em vez de você fazer manualmente:
+
+    X_limpo = preprocessar(X)
+    modelo.fit(X_limpo, y)
+    previsao = modelo.predict(X_limpo_teste)
+
+você monta:
+
+    Pipeline(
+        steps=[
+            ("preprocessador", alguma_transformacao),
+            ("modelo", algum_modelo),
+        ]
+    )
+
+No seu código aparece assim, na regressão logística:
+
+    def criar_pipeline(numericas: list[str], categoricas: list[str]) -> Pipeline:
+        return Pipeline(
+            steps=[
+                ("preprocessador", criar_preprocessador(numericas, categoricas)),
+                ("modelo", criar_modelo()),
+            ]
+        )
+
+O que isso significa?
+
+- Primeiro, os dados passam pelo preprocessador.
+- Depois, os dados transformados vão para o modelo.
+- Quando você chama modelo.fit(X_train, y_train), o pipeline faz automaticamente:
+  1. preprocessador.fit_transform(X_train)
+  2. modelo.fit(X_train_transformado, y_train)
+
+- Quando você chama modelo.predict_proba(X_test), o pipeline faz automaticamente:
+  1. preprocessador.transform(X_test)
+  2. modelo.predict_proba(X_test_transformado)
+
+Isso evita erro comum: aplicar transformação diferente no treino e no teste. O pipeline garante que o mesmo tratamento aprendido no treino seja usado no teste.
+
+-------------------------------------------------
+4.2. O que é ColumnTransformer?
+-------------------------------------------------
+
+A base tem variáveis numéricas e categóricas.
+
+Exemplos de numéricas:
+
+- renda_per_capita
+- gap
+- renda_gap
+- idade
+- nota_corte_gp
+
+Exemplos de categóricas:
+
+- curso
+- turno
+- região
+- sexo
+- raça/cor
+- subárea
+- UF
+
+Você não trata número e categoria do mesmo jeito. O ColumnTransformer permite dizer:
+
+- Para colunas numéricas, faça uma sequência de tratamentos.
+- Para colunas categóricas, faça outra sequência.
+
+No código da regressão logística:
+
+    def criar_preprocessador(numericas: list[str], categoricas: list[str]) -> ColumnTransformer:
+        numeric_transformer = Pipeline(
+            steps=[
+                ("imputer", SimpleImputer(strategy="median")),
+                ("scaler", StandardScaler()),
+            ]
+        )
+
+        categorical_transformer = Pipeline(
+            steps=[
+                ("imputer", SimpleImputer(missing_values=np.nan, strategy="constant", fill_value="Não informado")),
+                (
+                    "onehot",
+                    OneHotEncoder(
+                        handle_unknown="ignore",
+                        sparse_output=True,
+                        min_frequency=20,
+                    ),
+                ),
+            ]
+        )
+
+        transformers = []
+        if numericas:
+            transformers.append(("num", numeric_transformer, numericas))
+        if categoricas:
+            transformers.append(("cat", categorical_transformer, categoricas))
+
+        return ColumnTransformer(
+            transformers=transformers,
+            remainder="drop",
+            sparse_threshold=0.3,
+            verbose_feature_names_out=True,
+        )
+
+Explicando cada parte:
+
+SimpleImputer(strategy="median")
+  Preenche valores ausentes em colunas numéricas usando a mediana da coluna. Exemplo: se idade está vazia, usa a mediana das idades do treino. Mediana é o valor central. Ela é menos sensível a valores extremos que a média.
+
+StandardScaler()
+  Padroniza as variáveis numéricas. Ele transforma cada valor em algo como:
+
+      valor_padronizado = (valor - média) / desvio padrão
+
+  Isso é importante para regressão logística porque variáveis em escalas muito diferentes podem atrapalhar o ajuste. Renda pode estar em milhares, idade em dezenas, nota em centenas. A padronização coloca tudo em escala comparável.
+
+SimpleImputer(strategy="constant", fill_value="Não informado")
+  Para categorias ausentes, preenche com o texto "Não informado". Assim o modelo não perde a linha inteira só porque uma categoria faltou.
+
+OneHotEncoder(handle_unknown="ignore", min_frequency=20)
+  Transforma categorias em colunas 0/1.
+
+  Exemplo: turno = "MANHÃ", "TARDE", "NOITE" vira:
+
+      turno_MANHÃ  turno_TARDE  turno_NOITE
+      1            0            0
+      0            1            0
+      0            0            1
+
+  handle_unknown="ignore" significa: se no teste aparecer uma categoria que não apareceu no treino, ignore em vez de quebrar o programa.
+
+  min_frequency=20 significa: categorias muito raras são agrupadas/consideradas como infrequentes pelo encoder. Isso evita criar milhares de colunas para categorias quase inexistentes.
+
+remainder="drop"
+  Colunas que não foram listadas em numericas ou categoricas são descartadas. Isso evita que variáveis indevidas entrem sem querer.
+
+sparse_threshold=0.3
+  Permite saída esparsa quando há muitas colunas 0/1. Isso economiza memória, especialmente após one-hot encoding.
+
+verbose_feature_names_out=True
+  Faz as colunas transformadas ficarem com prefixo, como num__renda_per_capita ou cat__turno_NOITE. Isso ajuda depois na interpretação dos coeficientes/importâncias.
+
+-------------------------------------------------
+4.3. Por que a árvore não usa StandardScaler?
+-------------------------------------------------
+
+Na árvore por profundidade, o preprocessador numérico é:
+
+    numeric_transformer = Pipeline(
+        steps=[("imputer", SimpleImputer(strategy="median"))]
+    )
+
+Não tem StandardScaler. Isso faz sentido.
+
+Árvore de decisão não precisa que renda, idade e nota estejam na mesma escala, porque ela trabalha com cortes do tipo:
+
+    renda_per_capita <= 1200?
+    gap <= -50?
+    nota_corte_gp <= 700?
+
+A escala não atrapalha a árvore da mesma forma que pode atrapalhar modelos lineares.
+
+-------------------------------------------------
+4.4. O que é predict_proba?
+-------------------------------------------------
+
+Muitos modelos de classificação não retornam só uma classe. Eles também podem retornar probabilidades:
+
+    modelo.predict_proba(X)
+
+Exemplo binário:
+
+    [0.85, 0.15]
+
+Isso pode significar:
+
+    85% de probabilidade de não contratado
+    15% de probabilidade de contratado
+
+No código, para regressão logística binária:
+
+    proba_teste = modelo.predict_proba(X_teste)[:, 1]
+
+O [:, 1] pega a probabilidade da classe positiva, que é target 1 = contratada.
+
+No ternário, predict_proba retorna três colunas:
+
+    classe 0 = lista de espera
+    classe 1 = não contratado
+    classe 2 = contratada
+
+-------------------------------------------------
+4.5. O que é holdout 80/20?
+-------------------------------------------------
+
+O código usa:
+
+    train_test_split(
+        indices,
+        test_size=TEST_SIZE,
+        random_state=RANDOM_STATE,
+        stratify=y,
+        shuffle=True,
+    )
+
+Explicação:
+
+train_test_split
+  Divide os registros em treino e teste.
+
+test_size=0.20
+  20% para teste, 80% para treino.
+
+random_state=42
+  Semente fixa para reproduzir a mesma divisão.
+
+stratify=y
+  Preserva a proporção das classes no treino e no teste. Isso é importante porque a base é desbalanceada. Sem estratificação, o teste poderia ficar com proporção diferente de contratados.
+
+shuffle=True
+  Embaralha antes de dividir.
+
+O holdout mede desempenho em dados que o modelo não viu no treino. Isso é mais honesto do que avaliar no mesmo conjunto usado para treinar.
+
+-------------------------------------------------
+4.6. O que é in_sample?
+-------------------------------------------------
+
+Quando avaliacao == "in_sample", o código retorna os mesmos índices para treino e teste:
+
+    if avaliacao == "in_sample":
+        return indices, indices, "in_sample"
+
+Isso significa que treina e avalia nos mesmos dados.
+
+Para que serve?
+
+- Diagnóstico.
+- Comparar ajuste interno.
+- Gerar probabilidades previstas no conjunto completo.
+
+Mas não deve ser interpretado como desempenho fora da amostra. Para desempenho preditivo, o holdout 80/20 é mais apropriado.
+
+=================================================
+5. ARQUIVO POR ARQUIVO
+=================================================
+
+A seguir está a análise dos 60 arquivos .py do projeto. Para arquivos pequenos que só chamam uma função principal, explico o papel deles como wrappers. Para arquivos grandes, explico as funções importantes e a lógica interna.
+
+=================================================
+5.1. src/__init__.py
+=================================================
+
+Arquivo praticamente vazio. Serve para Python reconhecer src como pacote. Sem lógica algorítmica.
+
+=================================================
+5.2. src/constants.py
+=================================================
+
+Este arquivo centraliza caminhos e constantes do projeto. Ele evita espalhar caminhos em vários arquivos.
+
+A lógica é:
+
+- descobrir a raiz do projeto;
+- definir pastas de dados;
+- definir pastas de relatório;
+- definir caminhos de bases curadas;
+- definir caminhos das ABTs;
+- definir anos do pipeline e anos do artigo.
+
+Exemplo conceitual:
+
+    PROJECT_ROOT = Path(...)
+    DATA_DIR = PROJECT_ROOT / "data"
+    RAW_DIR = DATA_DIR / "01_raw"
+    STAGING_DIR = DATA_DIR / "02_staging"
+    INTERIM_DIR = DATA_DIR / "03_interim"
+    CURATED_DIR = DATA_DIR / "04_curated"
+    ANALYSIS_DIR = DATA_DIR / "05_analysis"
+    ABT_DIR = DATA_DIR / "06_abt"
+
+Por que isso é bom?
+
+Se um caminho mudar, você muda em um lugar só. Todos os módulos importam constants como C e usam C.ABT_DIR, C.CURATED_DIR etc.
+
+O arquivo também define caminhos como:
+
+- CURATED_INSCRICOES_ARTIGO_PATH
+- ABT_BINARIA_GERAL_PATH
+- ABT_TERNARIA_GERAL_PATH
+- MODELS_GENERAL_DIR
+- ARTICLE_DIR
+
+Teoria por trás: isso é organização de pipeline. Em projetos de dados, é comum separar camadas de dados por nível de tratamento: raw, staging, interim, curated, analysis, abt.
+
+=================================================
+5.3. src/config.py
+=================================================
+
+Este arquivo tem duas funções principais:
+
+    ensure_project_structure()
+    check_environment()
+
+ensure_project_structure()
+  Cria as pastas necessárias do projeto. Ela percorre uma lista de diretórios e chama mkdir.
+
+Conceito:
+
+    path.mkdir(parents=True, exist_ok=True)
+
+parents=True
+  Cria as pastas intermediárias se não existirem.
+
+exist_ok=True
+  Não dá erro se a pasta já existir.
+
+check_environment()
+  Verifica se pastas importantes existem e mostra mensagens de diagnóstico. Ajuda antes de rodar o pipeline.
+
+Esse arquivo não tem algoritmo estatístico. Ele é infraestrutura.
+
+=================================================
+5.4. src/pipeline/__init__.py
+=================================================
+
+Arquivo vazio. Marca src/pipeline como pacote Python.
+
+=================================================
+5.5. src/pipeline/staging.py
+=================================================
+
+Primeira etapa real do pipeline.
+
+Objetivo: pegar dados brutos de data/01_raw e copiar para data/02_staging de forma organizada, sem ainda fazer transformações pesadas.
+
+Funções importantes:
+
+safe_text(error)
+  Converte erro em texto seguro para log. Isso evita quebrar o log por problema de encoding.
+
+log(message)
+  Escreve mensagem no terminal e em arquivo de log.
+
+read_fies_csv(path)
+  Lê CSV do FIES. Usa dtype=str para manter tudo como texto nesta fase. Isso é proposital: no staging, o código ainda não quer decidir se uma coluna é número, texto ou data.
+
+remove_colunas_fantasma(df)
+  Remove colunas do tipo Unnamed, que costumam aparecer quando CSV foi salvo com índice.
+
+nome_saida_fies(nome_original)
+  Interpreta o nome do arquivo bruto e decide se ele é inscrições ou ofertas, ano e semestre. Gera nome padronizado.
+
+staging_fies(overwrite=True)
+  Percorre os CSVs brutos do FIES.
+
+Trecho central:
+
+    arquivos = sorted(RAW_FIES_DIR.glob("*.csv"))
+
+Isso lista todos os CSVs da pasta bruta.
+
+Depois, para cada arquivo:
+
+    df = read_fies_csv(origem)
+    df = remove_colunas_fantasma(df)
+    df = df.drop_duplicates()
+    df.to_csv(destino, index=False, encoding="utf-8")
+
+Explicação:
+
+- lê o arquivo;
+- remove colunas inúteis;
+- remove duplicatas exatas;
+- salva em nome padronizado.
+
+Não há modelagem aqui. É limpeza inicial e controle de entrada.
+
+staging_inep()
+  Localiza arquivos do INEP/Censo da Educação Superior e copia para staging. O INEP é usado depois para enriquecer informações de cursos e instituições.
+
+run()
+  Executa staging_fies e staging_inep.
+
+O que está certo aqui?
+
+A etapa preserva os dados como texto e deixa as conversões para a próxima etapa. Isso é bom porque evita converter errado antes de conhecer bem o formato dos arquivos.
+
+=================================================
+5.6. src/pipeline/transform/__init__.py
+=================================================
+
+Arquivo vazio. Marca transform como subpacote.
+
+=================================================
+5.7. src/pipeline/transform/limpeza_tipos_fies.py
+=================================================
+
+Objetivo: transformar os CSVs padronizados do staging em Parquet limpo, com nomes de colunas padronizados e tipos corrigidos.
+
+Este arquivo separa inscrições e ofertas.
+
+Funções importantes:
+
+parse_staging_filename(path)
+  Lê o nome do arquivo e descobre tipo, ano e semestre.
+
+limpar_nome_coluna(col)
+  Padroniza nome de coluna. Normalmente transforma para minúsculo, remove acentos/espaços estranhos e deixa mais fácil mapear.
+
+limpar_texto(valor)
+  Normaliza textos: remove espaços extras, padroniza strings vazias, possivelmente aplica uppercase.
+
+converter_numero_br(serie)
+  Converte número em formato brasileiro para número de verdade.
+
+Exemplo:
+
+    "1.234,56" -> 1234.56
+
+Isso é importante porque microdados brasileiros muitas vezes usam vírgula como decimal.
+
+coalescer_colunas_duplicadas(df)
+  Quando duas colunas viram o mesmo nome depois da padronização, a função combina valores. A ideia de coalescer é: usar o primeiro valor não vazio entre colunas equivalentes.
+
+transformar_inscricoes(df, ano_arquivo, semestre_arquivo, arquivo_origem)
+  É a função central para inscrições.
+
+Trecho importante:
+
+    df.columns = [limpar_nome_coluna(col) for col in df.columns]
+    df = df.rename(columns=MAPA_INSCRICOES)
+    df = coalescer_colunas_duplicadas(df)
+
+Explicação:
+
+- limpa todos os nomes de colunas;
+- renomeia para nomes canônicos com MAPA_INSCRICOES;
+- resolve duplicidade de colunas.
+
+Depois cria metadados:
+
+    df["arquivo_origem"] = arquivo_origem
+    df["ano_arquivo"] = ano_arquivo
+    df["semestre_arquivo"] = semestre_arquivo
+
+Isso permite rastrear de onde cada linha veio.
+
+Para data de nascimento:
+
+    df["data_nascimento"] = pd.to_datetime(
+        df["data_nascimento"],
+        errors="coerce",
+        dayfirst=True,
+    )
+
+pd.to_datetime converte texto em data. errors="coerce" transforma valor inválido em NaT, em vez de quebrar. dayfirst=True indica formato brasileiro, como 31/12/2000.
+
+Para números:
+
+    for col in FLOAT_COLS_INSCRICOES:
+        if col in df.columns:
+            df[col] = converter_numero_br(df[col])
+
+Ou seja, percorre colunas que devem ser numéricas e converte.
+
+transformar_ofertas(...)
+  Faz a mesma lógica para ofertas. Usa MAPA_OFERTAS e listas próprias de colunas numéricas/inteiras.
+
+processar_arquivo(path)
+  Decide se o arquivo é inscrição ou oferta, chama a transformação correta e salva como Parquet:
+
+    df_out.to_parquet(caminho_saida, index=False)
+
+Parquet é um formato binário eficiente para dados tabulares. É melhor que CSV para pipelines porque preserva tipos e lê mais rápido.
+
+run()
+  Processa todos os arquivos do staging.
+
+O que esse arquivo faz certo?
+
+- Não mistura inscrições e ofertas.
+- Registra arquivo de origem.
+- Converte números e datas em etapa própria.
+- Salva em Parquet para as próximas etapas.
+
+=================================================
+5.8. src/pipeline/transform/unificacao_fies.py
+=================================================
+
+Objetivo: juntar os vários parquets limpos em bases unificadas.
+
+Funções importantes:
+
+listar_parquets_limpos(tipo)
+  Lista arquivos limpos de inscrições ou ofertas.
+
+ler_parquets(paths)
+  Lê vários arquivos Parquet e concatena.
+
+Conceito:
+
+    pd.concat(lista_de_dataframes, ignore_index=True)
+
+Isso empilha as linhas de todos os arquivos.
+
+ordenar_se_possivel(df)
+  Ordena por colunas de ano/semestre quando existem. Isso deixa o arquivo final previsível.
+
+auditar_duplicatas_exatas(df)
+  Conta duplicatas idênticas.
+
+auditar_chaves_inscricoes(df)
+  Verifica chaves que deveriam identificar inscrições.
+
+auditar_chaves_ofertas(df)
+  Verifica chaves de ofertas.
+
+unificar_inscricoes()
+  Lê todos os parquets de inscrições limpas e salva base unificada.
+
+unificar_ofertas()
+  Lê todos os parquets de ofertas limpas e salva base unificada.
+
+run()
+  Executa as duas unificações.
+
+Teoria por trás: depois de limpar arquivos anuais/semestrais, é preciso criar uma base única para análise longitudinal 2019–2021. A unificação empilha registros mantendo ano e semestre.
+
+=================================================
+5.9. src/pipeline/transform/mestre_inep.py
+=================================================
+
+Objetivo: criar uma base mestre de cursos/instituições a partir do Censo da Educação Superior.
+
+Por que isso existe?
+
+O FIES pode ter informações de curso/instituição, mas o INEP/Censo da Educação Superior oferece cadastro mais padronizado. O código usa isso para enriquecer a base.
+
+Funções importantes:
+
+detectar_encoding_e_colunas(path)
+  Tenta ler arquivo com encodings diferentes e detectar colunas. Encoding é a forma como caracteres são codificados. Em bases públicas brasileiras, pode aparecer UTF-8, Latin-1 etc.
+
+selecionar_colunas_inep(df)
+  Seleciona colunas úteis do cadastro de cursos.
+
+ler_cadastro_cursos(path)
+  Lê um arquivo de cursos do INEP.
+
+padronizar_cadastro_cursos(df)
+  Limpa nomes, converte códigos, normaliza texto.
+
+construir_ultimo_registro(df)
+  Para cada curso/instituição, escolhe o registro mais recente. Isso é útil porque o cadastro pode ter o mesmo curso em vários anos.
+
+run()
+  Lê arquivos do INEP, padroniza, audita e salva mestre.
+
+O que este arquivo faz na lógica do artigo?
+
+Ele permite associar inscrições do FIES a informações padronizadas de curso e instituição, como área CINE, organização acadêmica, região, etc.
+
+=================================================
+5.10. src/pipeline/transform/cruzamento_cine.py
+=================================================
+
+Este é um dos arquivos mais longos do pipeline.
+
+Objetivo: cruzar FIES com informações CINE/INEP para classificar cursos por área/subárea de conhecimento.
+
+CINE significa Classificação Internacional Normalizada da Educação. No artigo, ela aparece quando se fala em grandes áreas como Saúde e bem-estar.
+
+Funções importantes:
+
+normalizar_nome(nome)
+  Padroniza nomes para comparar. Exemplo: remove espaços repetidos, deixa maiúsculo.
+
+normalizar_nome_sem_acento(nome)
+  Remove acentos para comparação mais robusta. Exemplo: "MEDICINA VETERINÁRIA" e "MEDICINA VETERINARIA" ficam mais próximos.
+
+normalizar_codigo_cine(codigo)
+  Padroniza códigos CINE.
+
+preparar_mapa_manual()
+  Monta um mapa manual para casos em que o cruzamento automático não resolve.
+
+Por que mapa manual?
+
+Dados administrativos podem ter nomes de curso que não batem exatamente com o cadastro. Exemplo: abreviações, acentos, variações no nome. O mapa manual corrige casos conhecidos.
+
+preparar_inep(df)
+  Prepara base INEP para cruzamento.
+
+preparar_base_fies(df)
+  Prepara base FIES para cruzamento.
+
+construir_referencia_cine(df_inep)
+  Cria referência de códigos e nomes CINE.
+
+diagnosticar_sem_cine(df)
+  Lista casos que ficaram sem CINE depois do cruzamento.
+
+aplicar_mapa_manual(df)
+  Aplica correções manuais.
+
+enriquecer_com_cine(df_fies, df_inep)
+  Junta FIES e INEP para adicionar colunas de área/subárea.
+
+Conceito de merge:
+
+    df_fies.merge(df_inep, how="left", on=chaves)
+
+Isso significa: mantenha todas as linhas do FIES e traga as colunas do INEP quando encontrar correspondência nas chaves.
+
+run()
+  Executa todo o cruzamento e salva resultados.
+
+O que está certo na lógica?
+
+O código combina cruzamento automático e diagnóstico de perdas. Isso é importante porque cruzamento de bases públicas raramente fecha 100% sem inconsistências.
+
+=================================================
+5.11. src/pipeline/transform/modalidade.py
+=================================================
+
+Objetivo: classificar modalidade do FIES com base em renda, salário mínimo e validação com ofertas P-FIES.
+
+Funções importantes:
+
+converter_numero()
+  Converte números de texto para numérico.
+
+padronizar_chaves_inscricoes()
+  Prepara chaves como ano, semestre e identificadores para cruzamento.
+
+padronizar_chaves_ofertas()
+  Faz o mesmo para ofertas.
+
+normalizar_participa_p_fies()
+  Padroniza indicação se a oferta participa do P-FIES.
+
+preparar_ofertas_pfies()
+  Prepara base de ofertas para validar P-FIES.
+
+classificar_modalidade_por_renda(df)
+  Classifica modalidade a partir da renda per capita e salário mínimo.
+
+A lógica conceitual é:
+
+- Modalidade I é associada a renda até 3 salários mínimos per capita.
+- Outros casos podem ser classificados conforme regras regionais/P-FIES.
+
+validar_pfies()
+  Compara classificação e ofertas que participam do P-FIES.
+
+salvar_matriz()
+  Salva matrizes de diagnóstico.
+
+run()
+  Executa a classificação de modalidade.
+
+Importante: este arquivo cria/ajuda a classificar modalidade, mas a modelagem principal trabalha com o recorte analítico 2019–2021 e faixas de renda. No artigo de políticas públicas você já escreve isso com cautela; no artigo técnico basta saber explicar que modalidade aparece como informação de contexto/recorte analítico.
+
+=================================================
+5.12. src/pipeline/curate.py
+=================================================
+
+Objetivo: transformar as bases intermediárias em bases curadas, prontas para análise.
+
+Funções importantes:
+
+validar_colunas(df, colunas, contexto)
+  Confere se colunas obrigatórias existem. Se falta coluna essencial, para com erro. Isso evita seguir pipeline com base quebrada.
+
+normalizar_texto(valor)
+  Padroniza textos.
+
+normalizar_uf(valor)
+  Padroniza unidade federativa.
+
+to_numeric_nullable, to_int_nullable
+  Convertem para numérico/inteiro aceitando ausentes.
+
+criar_aliases_inscricoes(df)
+  Cria nomes alternativos mais simples para colunas importantes. Exemplo: renda_mensal_bruta_per_capita pode virar renda_familiar_per_capita.
+
+adicionar_regioes_inscricoes(df)
+  Mapeia UF para região do Brasil.
+
+preparar_inscricoes(df)
+  É a função central.
+
+Trecho essencial:
+
+    df["renda_familiar_per_capita"] = to_numeric_nullable(df["renda_mensal_bruta_per_capita"])
+    df["nota_enem"] = to_numeric_nullable(df["media_nota_enem"])
+    df["nota_corte"] = to_numeric_nullable(df["nota_corte_grupo_preferencia"])
+    df["gap_nota_corte"] = df["nota_enem"] - df["nota_corte"]
+
+Aqui o código cria o gap, que é uma variável central do artigo:
+
+    gap = média do Enem - nota de corte
+
+Se gap >= 0, o candidato teve desempenho igual ou superior à nota de corte.
+Se gap < 0, ficou abaixo da nota de corte.
+
+Depois cria flags:
+
+    df["elegivel_academicamente"] = df["gap_nota_corte"].ge(0)
+    df["contratada"] = df["situacao_inscricao_fies"].eq(SITUACAO_CONTRATADA)
+    df["nao_contratado"] = df["situacao_inscricao_fies"].eq(SITUACAO_NAO_CONTRATADO)
+    df["lista_espera"] = df["situacao_inscricao_fies"].eq(SITUACAO_LISTA_ESPERA)
+
+Essas flags viram a base do argumento do artigo:
+
+- lista de espera: barreira acadêmica inicial;
+- não contratado: avançou, mas não formalizou;
+- contratada: formalizou contrato.
+
+Depois cria targets:
+
+    df["target_binario_contratacao"] = pd.NA
+    df.loc[df["nao_contratado"], "target_binario_contratacao"] = 0
+    df.loc[df["contratada"], "target_binario_contratacao"] = 1
+
+    df["target_ternario_fluxo"] = pd.NA
+    df.loc[df["lista_espera"], "target_ternario_fluxo"] = 0
+    df.loc[df["nao_contratado"], "target_ternario_fluxo"] = 1
+    df.loc[df["contratada"], "target_ternario_fluxo"] = 2
+
+Esses targets representam exatamente os dois problemas:
+
+- binário: não contratado vs contratada;
+- ternário: lista de espera vs não contratado vs contratada.
+
+preparar_ofertas(df)
+  Prepara base de ofertas, cria aliases, regiões e flags como curso_medicina.
+
+gerar_recorte_artigo(df)
+  Filtra registros marcados como recorte do artigo.
+
+auditar_cine, auditar_regioes
+  Geram diagnósticos de preenchimento.
+
+salvar_sqlite(df)
+  Salva uma versão em SQLite. Isso facilita consultas e auditorias.
+
+run()
+  Lê bases intermediárias, aplica curadoria, salva parquet/csv/sqlite e resumos.
+
+=================================================
+5.13. src/analysis/__init__.py
+=================================================
+
+Arquivo vazio. Marca pacote analysis.
+
+=================================================
+5.14. src/analysis/dataset_candidatos_unicos.py
+=================================================
+
+Objetivo: gerar uma base de candidatos únicos. Como uma pessoa pode ter mais de uma inscrição/opção de curso, esse módulo tenta escolher uma linha representativa por candidato/período.
+
+Funções importantes:
+
+preparar_base(df)
+  Normaliza situação, ano, semestre, curso, área e chaves.
+
+gerar_candidatos_unicos(df)
+  Ordena registros por prioridade de situação e seleciona um registro por candidato.
+
+A ideia é:
+
+- se a pessoa tem várias opções, priorizar a situação mais relevante;
+- gerar base menos inflada por múltiplas opções.
+
+Teoria por trás: unidade de análise. No artigo, a unidade principal é inscrição, mas análises suplementares podem considerar candidato/opção priorizada. Este arquivo ajuda nessa robustez.
+
+gerar_agregado(df)
+  Conta candidatos únicos por chaves como ano, semestre, área e região.
+
+salvar_resumo()
+  Salva logs/resumos.
+
+run()
+  Executa tudo.
+
+=================================================
+5.15. src/analysis/dataset_funil_fluxo.py
+=================================================
+
+Objetivo: construir base do funil do processo seletivo.
+
+O funil é a sequência:
+
+I - vagas ofertadas
+II - inscrições
+III - inscrições com nota suficiente
+IV - contratos efetivados
+
+Funções importantes:
+
+preparar_inscricoes(df)
+  Padroniza inscrições para contagem.
+
+preparar_ofertas(df)
+  Padroniza ofertas.
+
+soma_ofertas(dfo, coluna, nome_saida)
+  Soma vagas por ano/semestre/área/região.
+
+conta_inscricoes(df, nome_saida)
+  Conta inscrições por ano/semestre/área/região.
+
+pivot_situacoes(df)
+  Transforma situações da inscrição em colunas. Exemplo:
+
+    situação: CONTRATADA, NÃO CONTRATADO, LISTA DE ESPERA
+
+vira colunas como:
+
+    inscritos_contratada
+    inscritos_nao_contratado
+    inscritos_lista_espera
+
+No pandas, pivot significa reorganizar linhas em colunas.
+
+gerar_funil(dfo, dfi, candidatos)
+  Junta várias contagens.
+
+Trecho central:
+
+    df_vagas_ofertadas = soma_ofertas(dfo, "vagas_fies", "vagas_fies")
+    df_inscritos_geral = conta_inscricoes(dfi, "Inscritos_Geral")
+    df_inscritos_com_nota = conta_inscricoes(
+        dfi[dfi["media_enem"].ge(dfi["nota_corte_gp"])].copy(),
+        "inscritos_com_nota_suficiente",
+    )
+
+Isso cria métricas usadas no fluxo.
+
+Depois junta tudo:
+
+    funil = bases[0]
+    for base in bases[1:]:
+        funil = funil.merge(base, how="outer", on=CHAVE_INSCRICOES, validate="1:1")
+
+merge outer mantém todas as combinações de chaves existentes nas bases. validate="1:1" exige que cada chave apareça no máximo uma vez em cada lado; isso ajuda a detectar duplicação indevida.
+
+=================================================
+5.16. src/analysis/dataset_taxas.py
+=================================================
+
+Objetivo: calcular taxas a partir do funil.
+
+Funções importantes:
+
+divisao_segura(numerador, denominador)
+  Divide evitando erro quando denominador é zero. Se denominador é zero ou ausente, retorna NaN ou valor seguro.
+
+calcular_taxas(df)
+  Calcula taxas como:
+
+- taxa de conversão;
+- taxa de ocupação;
+- proporção de inscrições com nota suficiente;
+- outras taxas derivadas do funil.
+
+A lógica de taxa é:
+
+    taxa = numerador / denominador
+
+Exemplo:
+
+    taxa_conversao = contratos efetivados / inscrições
+
+run()
+  Lê funil, calcula taxas e salva.
+
+=================================================
+5.17. src/abt/__init__.py
+=================================================
+
+Arquivo vazio. Marca pacote abt.
+
+=================================================
+5.18. src/abt/build_abt_binaria.py
+=================================================
+
+Objetivo: criar a ABT binária para modelagem.
+
+ABT = Analytical Base Table. É uma tabela final para modelo, com:
+
+- uma linha por inscrição;
+- colunas preditoras;
+- uma coluna alvo.
+
+Neste arquivo, o alvo é binário:
+
+    NÃO CONTRATADO -> 0
+    CONTRATADA -> 1
+
+Logo no começo:
+
+    STATUS_CONTRATADA = "CONTRATADA"
+    STATUS_NAO_CONTRATADO = "NÃO CONTRATADO"
+
+    TARGET_MAP = {
+        STATUS_NAO_CONTRATADO: 0,
+        STATUS_CONTRATADA: 1,
+    }
+
+Isso define a tradução de texto para número.
+
+Funções importantes:
+
+normalizar_status(valor)
+  Padroniza texto da situação. Isso é importante porque dados podem ter acento, maiúscula/minúscula, espaços etc.
+
+encontrar_coluna(df, aliases, nome)
+  Procura uma coluna considerando vários nomes possíveis. Exemplo: renda pode aparecer como renda_per_capita, renda_familiar_per_capita etc.
+
+converter_numero_serie(serie)
+  Converte texto para número.
+
+extrair_ano_nascimento()
+  Usa data de nascimento para derivar ano/idade quando necessário.
+
+aplicar_recorte_medicina(df)
+  Filtra curso de Medicina quando o recorte é medicina.
+
+construir_colunas_canonicas(df_base)
+  Monta colunas padronizadas usadas pela ABT.
+
+Parte conceitual central:
+
+    gap = media_enem - nota_corte_gp
+    renda_gap = renda_per_capita * gap
+
+O gap mede desempenho relativo à nota de corte.
+A interação renda_gap tenta capturar que o efeito do desempenho pode variar conforme renda, ou que renda e desempenho combinados podem diferenciar as situações.
+
+limitar_categorias(df)
+  Agrupa categorias raras. Isso evita que variáveis como curso ou UF gerem categorias minúsculas demais.
+
+construir_abt(recorte)
+  É a função principal.
+
+Trecho central:
+
+    df = df[df["situacao_fies"].isin(TARGET_MAP.keys())].copy()
+    df["target_binario"] = df["situacao_fies"].map(TARGET_MAP).astype(int)
+
+Aqui ele mantém apenas NÃO CONTRATADO e CONTRATADA. Lista de espera sai da base binária.
+
+Depois:
+
+    obrigatorias = [
+        "target_binario",
+        "renda_per_capita",
+        "gap",
+        "renda_gap",
+        "nota_corte_gp",
+    ]
+
+    df = df.dropna(subset=obrigatorias).copy()
+
+Isso remove linhas sem as variáveis mínimas necessárias. Por isso contagens podem mudar entre base bruta e ABT.
+
+Depois salva metadata:
+
+    metadata = {
+        "target": "binario",
+        "target_col": "target_binario",
+        "target_map": {...},
+        "linhas_abt": int(len(abt)),
+        "distribuicao_target": ...,
+        "observacao": "ABT binária... Não inclui variáveis pós-contratação..."
+    }
+
+Isso documenta a ABT.
+
+salvar_abt()
+  Salva a tabela em Parquet e metadata em JSON.
+
+run()
+  Executa construir_abt e salvar_abt.
+
+Esse arquivo está logicamente correto para a formulação binária.
+
+=================================================
+5.19. src/abt/build_abt_ternaria.py
+=================================================
+
+Objetivo: criar a ABT ternária.
+
+Aqui o alvo tem três classes:
+
+    LISTA DE ESPERA -> 0
+    NÃO CONTRATADO -> 1
+    CONTRATADA -> 2
+
+Isso aparece no TARGET_MAP.
+
+Diferença para a binária:
+
+- A binária remove lista de espera.
+- A ternária mantém lista de espera como classe.
+
+Função construir_abt(recorte):
+
+    df = df[df["situacao_fies"].isin(TARGET_MAP.keys())].copy()
+    df["target_ternario"] = df["situacao_fies"].map(TARGET_MAP).astype(int)
+
+Depois remove ausentes nas mesmas variáveis obrigatórias:
+
+    target_ternario, renda_per_capita, gap, renda_gap, nota_corte_gp
+
+A teoria por trás:
+
+A ABT ternária representa o fluxo seletivo mais amplo. O modelo não decide apenas “contratou ou não contratou”. Ele tenta distinguir:
+
+- quem ficou em lista de espera;
+- quem avançou mas não formalizou contrato;
+- quem formalizou contrato.
+
+Isso permite separar barreira acadêmica inicial e etapa contratual.
+
+O arquivo também salva metadata e resumo.
+
+=================================================
+5.20. src/modeling/__init__.py
+=================================================
+
+Arquivo vazio. Marca pacote modeling.
+
+=================================================
+5.21. src/modeling/logit_binario_utils.py
+=================================================
+
+Este é um dos arquivos mais importantes.
+
+Objetivo: treinar regressão logística binária para prever contratação entre NÃO CONTRATADO e CONTRATADA.
+
+A regressão logística é um modelo de classificação. No binário, ela estima a probabilidade de classe 1, que aqui é CONTRATADA.
+
+Teoria simples:
+
+A regressão logística calcula algo como:
+
+    z = b0 + b1*x1 + b2*x2 + ... + bk*xk
+
+Depois transforma z em probabilidade:
+
+    p = 1 / (1 + exp(-z))
+
+Se p >= 0,5, o código classifica como 1. Se p < 0,5, classifica como 0.
+
+No código:
+
+FEATURE_BLOCKS
+  Define quais variáveis podem entrar no modelo e se cada uma é numérica ou categórica.
+
+Exemplo:
+
+    "renda_per_capita": {"label": "Renda familiar per capita", "type": "numeric"}
+    "opcao_curso": {"label": "Opção de curso", "type": "categorical"}
+
+EXPERIMENTS
+  Define E1 a E5.
+
+E1 usa só:
+
+- renda_per_capita
+- gap
+- renda_gap
+
+E2 adiciona idade, nota de corte, opção de curso.
+E3 adiciona ano, semestre, conceito, turno etc.
+E4 adiciona subárea, região, natureza jurídica, raça/cor.
+E5 usa tudo.
+
+blocos_validos_para_experimento(df, experimento)
+  Verifica quais colunas do experimento existem e têm dados úteis.
+
+separar_tipos(blocos)
+  Divide variáveis em numéricas e categóricas.
+
+criar_preprocessador(numericas, categoricas)
+  Monta ColumnTransformer com tratamento numérico e categórico.
+
+Código-chave:
+
+    numeric_transformer = Pipeline(
+        steps=[
+            ("imputer", SimpleImputer(strategy="median")),
+            ("scaler", StandardScaler()),
+        ]
+    )
+
+    categorical_transformer = Pipeline(
+        steps=[
+            ("imputer", SimpleImputer(missing_values=np.nan, strategy="constant", fill_value="Não informado")),
+            ("onehot", OneHotEncoder(handle_unknown="ignore", sparse_output=True, min_frequency=20)),
+        ]
+    )
+
+Isso significa:
+
+- numéricas: preencher ausentes com mediana + padronizar;
+- categóricas: preencher ausentes como “Não informado” + transformar categorias em colunas 0/1.
+
+criar_modelo()
+  Cria a regressão logística:
+
+    LogisticRegression(
+        solver="lbfgs",
+        C=0.1,
+        class_weight="balanced",
+        max_iter=5000,
+        tol=1e-4,
+        random_state=42,
+    )
+
+Explicando:
+
+solver="lbfgs"
+  Algoritmo numérico usado para encontrar os coeficientes da regressão.
+
+C=0.1
+  Controla regularização. C menor significa regularização mais forte. Regularização evita coeficientes exagerados e ajuda a reduzir overfitting.
+
+class_weight="balanced"
+  Dá mais peso para a classe minoritária. Como contratada é menor, isso ajuda o modelo a não ignorar essa classe.
+
+max_iter=5000
+  Número máximo de iterações para o algoritmo convergir.
+
+tol=1e-4
+  Tolerância para parar otimização.
+
+criar_pipeline()
+  Junta preprocessador + modelo.
+
+criar_split()
+  Escolhe in_sample ou holdout 80/20.
+
+preparar_xy(df, blocos)
+  Monta X e y.
+
+    X = variáveis explicativas
+    y = target_binario
+
+calcular_metricas(y_true, proba)
+  Calcula métricas.
+
+Código:
+
+    y_pred = (proba >= 0.5).astype(int)
+    matriz = confusion_matrix(y_true, y_pred, labels=[0, 1])
+
+Se probabilidade >= 0,5, classifica como contratada.
+
+Métricas:
+
+roc_auc
+  Mede capacidade de separar contratada e não contratada usando probabilidades.
+
+accuracy
+  Total de acertos.
+
+balanced_accuracy
+  Média do acerto por classe.
+
+precision
+  Quando previu contratada, quantas eram contratadas.
+
+recall
+  Das contratadas reais, quantas encontrou.
+
+f1
+  Equilíbrio entre precision e recall.
+
+log_loss
+  Mede qualidade probabilística. Penaliza previsões confiantes erradas.
+
+confusion_matrix
+  Gera tn, fp, fn, tp.
+
+extrair_coeficientes(modelo)
+  Pega coeficientes da regressão.
+
+Coeficiente positivo significa que, mantendo o resto constante no modelo, aumento naquela variável transformada empurra probabilidade para classe 1. Coeficiente negativo empurra para classe 0. Como há one-hot e padronização, a interpretação precisa ser cautelosa.
+
+ajustar_um_experimento(...)
+  Faz o fluxo completo de um experimento:
+
+1. escolhe blocos E1/E2/E3/E4/E5;
+2. separa numéricas/categóricas;
+3. monta X e y;
+4. divide treino/teste;
+5. cria pipeline;
+6. treina com fit;
+7. calcula predict_proba;
+8. calcula métricas;
+9. extrai coeficientes;
+10. salva modelo e resultados.
+
+run_modelagem(...)
+  Roda todos os experimentos definidos.
+
+Este arquivo está correto para regressão logística binária.
+
+=================================================
+5.22. src/modeling/logit_ternario_utils.py
+=================================================
+
+Objetivo: treinar regressão logística multinomial para três classes.
+
+Classes:
+
+    0 = lista de espera
+    1 = não contratado
+    2 = contratada
+
+Teoria:
+
+A regressão logística multinomial é a extensão da regressão logística para mais de duas classes. Em vez de uma probabilidade, ela estima uma probabilidade para cada classe:
+
+    P(lista de espera)
+    P(não contratado)
+    P(contratada)
+
+A classe prevista é a de maior probabilidade.
+
+O arquivo é parecido com logit_binario_utils, mas muda:
+
+- target_col = target_ternario;
+- métricas multiclasse;
+- coeficientes por classe;
+- ROC-AUC multiclasse OVR.
+
+OVR significa One-vs-Rest, ou um contra o resto. Para calcular ROC-AUC com três classes, o código compara:
+
+- lista de espera vs resto;
+- não contratado vs resto;
+- contratada vs resto;
+
+e depois agrega.
+
+Funções extras:
+
+predicoes_por_proba(proba, classes)
+  Escolhe a classe com maior probabilidade.
+
+calcular_roc_auc(y_true, proba, classes)
+  Calcula ROC-AUC multiclasse.
+
+calcular_metricas(...)
+  Calcula:
+
+- roc_auc_ovr_weighted;
+- accuracy;
+- balanced_accuracy;
+- precision_macro;
+- recall_macro;
+- f1_macro;
+- precision_weighted;
+- recall_weighted;
+- f1_weighted;
+- log_loss;
+- matriz de confusão por par real/predito.
+
+Macro vs weighted:
+
+macro
+  Calcula a métrica para cada classe e tira média simples. Cada classe pesa igual.
+
+weighted
+  Calcula a métrica por classe e pondera pelo tamanho da classe. Classes maiores pesam mais.
+
+Por que F1 macro é importante?
+
+Porque contratada é menor. Se usar só média ponderada, a classe maior pode esconder erros na classe menor.
+
+extrair_coeficientes(modelo)
+  Na multinomial, há coeficientes por classe. Um coeficiente ajuda a explicar como uma variável empurra a probabilidade relativa de determinada classe.
+
+Este arquivo está correto para a tarefa ternária.
+
+=================================================
+5.23 a 5.26. Wrappers de regressão logística
+=================================================
+
+Arquivos:
+
+- src/modeling/fit_logit_binario_in_sample.py
+- src/modeling/fit_logit_binario_holdout_80_20.py
+- src/modeling/fit_logit_ternario_in_sample.py
+- src/modeling/fit_logit_ternario_holdout_80_20.py
+
+Eles são pequenos. Cada um chama run_modelagem com parâmetros fixos.
+
+Exemplo conceitual:
+
+    def run(recorte="geral", force=False):
+        run_modelagem(recorte=recorte, avaliacao="holdout_80_20", force=force)
+
+Eles existem para permitir comandos específicos no main.py. Não implementam algoritmo novo.
+
+=================================================
+5.27. src/modeling/treeClassification_utils.py
+=================================================
+
+Objetivo: treinar árvores de decisão padrão, com profundidade fixa mais simples.
+
+Teoria da árvore de decisão:
+
+Uma árvore faz perguntas sucessivas aos dados. Exemplo:
+
+    gap <= -100?
+       sim -> provavelmente lista de espera
+       não -> renda <= 1200?
+              sim -> ...
+              não -> ...
+
+Cada nó da árvore faz um corte. A árvore escolhe cortes que reduzem a mistura de classes. O critério usado é Gini.
+
+Impureza Gini:
+
+- Gini baixo: nó mais puro, quase só uma classe.
+- Gini alto: nó misturado.
+
+O objetivo da árvore é dividir os dados para deixar os nós filhos mais puros.
+
+Funções importantes:
+
+normalizar_target(target)
+  Aceita binario/ternario e padroniza.
+
+target_config(target)
+  Define classes e labels conforme target.
+
+criar_preprocessador()
+  Parecido com o das regressões, mas sem StandardScaler nas numéricas.
+
+criar_modelo(n_train, recorte)
+  Cria DecisionTreeClassifier.
+
+Na versão padrão, usa profundidade fixa do arquivo.
+
+criar_pipeline()
+  Junta preprocessador + árvore.
+
+calcular_metricas()
+  Calcula métricas binárias ou ternárias.
+
+feature_original(feature_transformada)
+  Converte nome transformado pelo one-hot para variável original.
+
+Exemplo:
+
+    cat__turno_NOTURNO -> turno
+    num__renda_per_capita -> renda_per_capita
+
+extrair_importancias(modelo)
+  Pega feature_importances_ da árvore.
+
+Teoria:
+
+feature_importances_ mede quanto cada variável transformada ajudou a reduzir impureza na árvore. Não é causalidade. É importância interna do modelo.
+
+agregar_importancias_por_variavel()
+  Como one-hot cria várias colunas para uma variável, o código soma importâncias por variável original.
+
+Exemplo:
+
+    cat__turno_MANHÃ
+    cat__turno_NOITE
+    cat__turno_TARDE
+
+viram importância agregada de:
+
+    turno
+
+extrair_primeira_divisao()
+  Descobre qual variável aparece na raiz da árvore. A raiz é a primeira pergunta da árvore, então é interpretativamente importante.
+
+Este arquivo está correto como árvore padrão, mas no artigo técnico os resultados mais relevantes parecem vir de treeClassification_profundidade_utils.py.
+
+=================================================
+5.28. src/modeling/treeClassification_profundidade_utils.py
+=================================================
+
+Este é o arquivo central das árvores de decisão com profundidade 10, 14 e 19.
+
+Ele é mais completo que treeClassification_utils.py.
+
+No começo define:
+
+    TREE_DEPTH_PROFILES = {
+        10: {...},
+        14: {...},
+        19: {...},
+    }
+
+Cada perfil define profundidade máxima e pré-poda mínima.
+
+Profundidade máxima:
+  Número máximo de níveis da árvore. Quanto maior, mais complexa a árvore.
+
+Pré-poda:
+  Regras que impedem a árvore de crescer demais. Exemplo: não permitir folhas com poucos registros.
+
+Funções importantes:
+
+validar_profundidade(profundidade)
+  Só aceita 10, 14 ou 19.
+
+target_config(target)
+  Define se o modelo é binário ou ternário.
+
+criar_preprocessador(numericas, categoricas)
+  Numéricas: SimpleImputer mediana.
+  Categóricas: SimpleImputer + OneHotEncoder.
+
+min_leaf_dinamico(n_train, recorte, profundidade)
+
+Código:
+
+    return int(max(profile["min_samples_leaf_min"], round(n_train * 0.0005)))
+
+Isso define o mínimo de amostras por folha.
+
+Exemplo: se n_train = 1.000.000,
+
+    n_train * 0.0005 = 500
+
+Então a folha precisa ter pelo menos 500 registros, porque max(400, 500) = 500.
+
+Por que isso é bom?
+
+Impede folhas minúsculas, que seriam regras específicas demais e poderiam gerar overfitting.
+
+min_split_dinamico(...)
+
+Código:
+
+    leaf = min_leaf_dinamico(...)
+    return int(max(profile["min_samples_split_min"], 2 * leaf))
+
+Para dividir um nó, exige pelo menos o dobro do tamanho mínimo de folha. Faz sentido: se uma divisão cria dois filhos, cada um deve poder ter pelo menos o mínimo.
+
+criar_modelo(...)
+
+Código:
+
+    DecisionTreeClassifier(
+        criterion="gini",
+        splitter="best",
+        max_depth=profundidade,
+        min_samples_leaf=leaf,
+        min_samples_split=split,
+        class_weight="balanced",
+        random_state=RANDOM_STATE,
+    )
+
+Explicando:
+
+criterion="gini"
+  Usa impureza Gini para escolher cortes.
+
+splitter="best"
+  Escolhe o melhor corte encontrado em cada nó.
+
+max_depth=profundidade
+  Limita complexidade.
+
+min_samples_leaf=leaf
+  Evita folhas pequenas.
+
+min_samples_split=split
+  Evita dividir nós pequenos demais.
+
+class_weight="balanced"
+  Dá mais peso a classes minoritárias.
+
+random_state=42
+  Reprodutibilidade.
+
+calcular_metricas(target, y_true, proba, classes)
+  Calcula métricas. Para binário, usa classe positiva contratada. Para ternário, usa macro/weighted.
+
+extrair_importancias()
+  Pega importâncias transformadas.
+
+validar_importancias_normalizadas()
+  Verifica se a soma das importâncias está coerente. Isso evita erro de agregação.
+
+agregar_importancias_por_variavel()
+  Soma importâncias do one-hot para voltar à variável original.
+
+extrair_regras_arvore()
+  Usa export_text para gerar regras em texto.
+
+export_text
+  Função do scikit-learn que transforma a árvore em regras legíveis. Exemplo:
+
+    |--- gap <= -120
+    |   |--- class: lista de espera
+    |--- gap > -120
+    |   |--- renda <= 1500
+    |   |--- ...
+
+ajustar_um_experimento()
+  Fluxo completo de uma árvore:
+
+1. escolhe variáveis E1-E5;
+2. prepara X/y;
+3. divide treino/teste;
+4. cria pipeline;
+5. treina árvore;
+6. calcula probabilidades;
+7. calcula métricas;
+8. extrai importâncias;
+9. agrega importâncias;
+10. extrai primeira divisão/regras;
+11. salva modelo, métricas e artefatos.
+
+Este arquivo está bem feito e é o núcleo das árvores por profundidade.
+
+=================================================
+5.29 a 5.44. Wrappers das árvores
+=================================================
+
+Arquivos:
+
+- treeClassification_binario_in_sample.py
+- treeClassification_binario_holdout_80_20.py
+- treeClassification_ternario_in_sample.py
+- treeClassification_ternario_holdout_80_20.py
+- treeClassification_10_profundidade_binario_in_sample.py
+- treeClassification_10_profundidade_binario_holdout_80_20.py
+- treeClassification_10_profundidade_ternario_in_sample.py
+- treeClassification_10_profundidade_ternario_holdout_80_20.py
+- treeClassification_14_profundidade_binario_in_sample.py
+- treeClassification_14_profundidade_binario_holdout_80_20.py
+- treeClassification_14_profundidade_ternario_in_sample.py
+- treeClassification_14_profundidade_ternario_holdout_80_20.py
+- treeClassification_19_profundidade_binario_in_sample.py
+- treeClassification_19_profundidade_binario_holdout_80_20.py
+- treeClassification_19_profundidade_ternario_in_sample.py
+- treeClassification_19_profundidade_ternario_holdout_80_20.py
+
+Esses arquivos não implementam o algoritmo da árvore. Eles chamam a função central run_modelagem com parâmetros fixos.
+
+Exemplo conceitual:
+
+    run_modelagem(
+        target="binario",
+        recorte=recorte,
+        avaliacao="holdout_80_20",
+        force=force,
+        profundidade=10,
+    )
+
+Por que existem?
+
+Para permitir rodar uma combinação específica sem escrever todos os parâmetros. Eles são atalhos.
+
+=================================================
+5.45. src/article/__init__.py
+=================================================
+
+Arquivo vazio. Marca pacote article.
+
+=================================================
+5.46. src/article/fluxo_selecao.py
+=================================================
+
+Objetivo: gerar as figuras do fluxo de seleção do FIES.
+
+Ele usa a base de funil gerada em data/05_analysis.
+
+Funções importantes:
+
+configurar_matplotlib()
+  Define fontes, tamanhos e estilo visual dos gráficos.
+
+limpar_nome_arquivo()
+  Cria nomes seguros para arquivos.
+
+normalizar_area_exibicao()
+  Ajusta nomes de áreas para exibição.
+
+estilos_monocromaticos()
+  Define estilos de linha/ponto para gráficos sem depender muito de cor.
+
+carregar_funil()
+  Lê a base do funil.
+
+plot_funil_seguro()
+  Gera gráfico do fluxo.
+
+O gráfico mostra fases como:
+
+I - vagas ofertadas
+II - inscrições
+III - inscrições com desempenho suficiente
+IV - contratos efetivados
+
+A teoria visual é mostrar queda entre etapas. Isso sustenta a tese de que há distância entre elegibilidade acadêmica e contratação.
+
+run()
+  Gera gráficos por área/região e salva em reports/article.
+
+=================================================
+5.47. src/article/taxas_conversao.py
+=================================================
+
+Objetivo: gerar gráficos de taxa de conversão.
+
+Taxa de conversão aqui é, em geral:
+
+    contratos efetivados / inscrições
+
+Funções importantes:
+
+carregar_taxas()
+  Lê base calculada em dataset_taxas.py.
+
+plotar_taxas()
+  Gera visualizações por semestre/região/área.
+
+No artigo de políticas públicas, isso ajuda a mostrar que o volume de contratação é baixo em relação ao volume de inscrições.
+
+=================================================
+5.48. src/article/tabelas_distribuicao.py
+=================================================
+
+Objetivo: gerar tabelas de distribuição de situações e renda.
+
+Ele produz tabelas como:
+
+- distribuição das inscrições por situação;
+- distribuição por faixa de renda;
+- tabela B1 etc.
+
+A lógica é de groupby/value_counts:
+
+    df[coluna].value_counts()
+    df.groupby(...).size()
+
+Depois formata percentuais e salva CSV/LaTeX/imagem.
+
+Isso sustenta a seção descritiva do artigo.
+
+=================================================
+5.49. src/article/matrizes_renda_desempenho.py
+=================================================
+
+Objetivo: gerar matrizes/heatmaps cruzando renda e desempenho relativo à nota de corte.
+
+A lógica é:
+
+1. criar faixas de renda;
+2. criar faixas de gap/desempenho;
+3. agrupar por faixa de renda e faixa de desempenho;
+4. calcular percentual de cada situação;
+5. gerar heatmap.
+
+Heatmap é uma matriz colorida. Cada célula representa uma combinação, por exemplo:
+
+    renda 601–1200 + gap 0 a 50
+
+E o valor pode ser taxa de contratação, não contratação ou lista de espera.
+
+Isso é importante para o artigo porque mostra como desempenho e renda se combinam.
+
+=================================================
+5.50. src/article/financiamento_coparticipacao.py
+=================================================
+
+Objetivo: analisar a relação entre renda familiar per capita e percentual financiado entre contratos efetivados.
+
+Importante: isso NÃO entra como preditor nos modelos, porque percentual financiado só existe para contratos efetivados.
+
+Função preparar_dados_financiamento(df_base):
+
+Trecho central:
+
+    df["_situacao_norm"] = df[coluna_situacao].map(normalizar_status)
+    df = df[df["_situacao_norm"].eq(STATUS_CONTRATADA)].copy()
+
+Isso filtra apenas contratos efetivados.
+
+Depois:
+
+    df["renda_per_capita_analise"] = converter_numero_serie(df[coluna_renda])
+    df["percentual_financiamento_analise"] = converter_numero_serie(df[coluna_percentual])
+
+Converte renda e percentual para número.
+
+Se percentual estiver em escala 0 a 1, converte para 0 a 100:
+
+    if pd.notna(max_percentual) and max_percentual <= 1.5:
+        df["percentual_financiamento_analise"] = df["percentual_financiamento_analise"] * 100
+
+Depois filtra valores válidos.
+
+Função calcular_estatisticas_e_regressao(df):
+
+    pearson_r, pearson_p_value = pearsonr(x, y)
+    regressao = linregress(x, y)
+
+Pearson r:
+  Mede associação linear entre renda e percentual financiado.
+
+linregress:
+  Regressão linear simples:
+
+      percentual_financiamento = intercepto + beta * renda
+
+beta_renda:
+  Quanto o percentual financiado muda quando renda aumenta em 1 real.
+
+efeito_100_reais:
+  beta * 100. Interpreta variação a cada R$ 100.
+
+R²:
+  Proporção da variação do percentual financiado explicada pela renda nessa regressão linear simples.
+
+Este arquivo está correto como análise complementar descritiva/associativa.
+
+=================================================
+5.51. src/article/logit_binario.py
+=================================================
+
+Objetivo: gerar produtos do artigo a partir da regressão logística binária treinada.
+
+Ele não treina o modelo. Ele carrega modelo, ABT, métricas e gera tabelas/figuras.
+
+Funções importantes:
+
+carregar_modelo_metadata_abt()
+  Carrega:
+
+- modelo joblib;
+- metadata JSON;
+- ABT parquet.
+
+preparar_X()
+  Prepara X com as features esperadas pelo modelo.
+
+anexar_probabilidades()
+  Usa predict_proba para anexar probabilidade prevista de contratação a cada inscrição.
+
+montar_tabela_principal()
+  Monta tabela de métricas principais.
+
+gerar_figuras_probabilidades()
+  Gera heatmaps e curvas de probabilidade prevista por renda/desempenho.
+
+Teoria:
+
+A probabilidade prevista não é “certeza”. É a estimativa do modelo para aquele perfil/registro. No artigo, isso ajuda a interpretar associações entre renda, desempenho e contratação.
+
+=================================================
+5.52. src/article/logit_ternario.py
+=================================================
+
+Objetivo: gerar produtos do artigo a partir da regressão logística multinomial.
+
+Parecido com logit_binario.py, mas com três classes.
+
+Ele gera probabilidades para:
+
+- lista de espera;
+- não contratação;
+- contratação.
+
+A lógica central é:
+
+    modelo.predict_proba(X)
+
+retornando uma matriz com três colunas.
+
+Depois o código organiza isso em tabelas e figuras.
+
+Este arquivo sustenta a análise do fluxo geral: barreira acadêmica inicial e etapa contratual.
+
+=================================================
+5.53. src/article/efeitos_multinomiais_ternario.py
+=================================================
+
+Este arquivo é muito importante para o artigo de políticas públicas.
+
+Objetivo: gerar probabilidades previstas por combinações de renda e desempenho relativo à nota de corte.
+
+Ele cria uma grade de perfis hipotéticos/típicos.
+
+Função construir_grid(abt, features):
+
+Trecho central:
+
+    for codigo_renda, label_renda, min_r, max_r, fallback_r in FAIXAS_RENDA:
+        renda_valor = mediana_faixa(abt, "renda_per_capita", min_r, max_r, fallback_r)
+
+        for codigo_gap, label_gap, min_g, max_g, fallback_g in FAIXAS_GAP:
+            gap_valor = mediana_faixa(abt, "gap", min_g, max_g, fallback_g)
+
+            row = dict(base)
+            row["renda_per_capita"] = renda_valor
+            row["gap"] = gap_valor
+            if "renda_gap" in features:
+                row["renda_gap"] = renda_valor * gap_valor
+
+Explicação:
+
+- percorre faixas de renda;
+- percorre faixas de desempenho;
+- cria uma linha para cada combinação;
+- mantém outras variáveis em valores típicos;
+- calcula interação renda_gap.
+
+valor_tipico_coluna()
+  Para variáveis que não são renda/gap, usa valor típico. Para numérica pode ser mediana; para categórica pode ser moda.
+
+prever_probabilidades(modelo, grid_meta, X_grid)
+  Roda predict_proba nessa grade.
+
+Resultado: uma tabela com probabilidades previstas por faixa de renda e desempenho.
+
+Por que isso é importante?
+
+Porque permite dizer coisas como:
+
+- mantendo perfil típico, como muda a probabilidade de lista de espera quando desempenho aumenta?
+- como muda a probabilidade de contratação por faixa de renda?
+- desempenho organiza a barreira inicial, renda aparece mais na etapa contratual?
+
+Este arquivo transforma o modelo em interpretação substantiva para o artigo.
+
+=================================================
+5.54. src/article/apendice_logit_binario.py
+=================================================
+
+Objetivo: gerar apêndices da regressão logística binária.
+
+Ele faz versões completas de:
+
+- tabela de métricas;
+- tabela compacta;
+- matriz de confusão;
+- heatmaps de probabilidade;
+- curvas de probabilidade por renda/desempenho.
+
+Muitas funções são de formatação:
+
+fmt_int, fmt_float
+  Formatam números.
+
+salvar_tabela_latex
+  Salva tabela em LaTeX.
+
+salvar_tabela_como_imagem
+  Renderiza tabela como imagem.
+
+renderizar_matriz_confusao
+  Desenha matriz de confusão.
+
+Este arquivo não altera modelo. Só gera material de apêndice.
+
+=================================================
+5.55. src/article/apendice_logit_ternario.py
+=================================================
+
+Objetivo: gerar apêndices da regressão logística ternária.
+
+Diferença: matriz de confusão é 3x3, pois há três classes.
+
+Ele organiza:
+
+- métricas E1–E5;
+- ROC-AUC OVR;
+- F1 macro;
+- matriz de confusão;
+- tabelas de probabilidades.
+
+Também não treina modelo; só lê resultados salvos.
+
+=================================================
+5.56. src/article/treeClassification.py
+=================================================
+
+Objetivo: gerar produtos do artigo para árvores de decisão padrão.
+
+Funções importantes:
+
+carregar_importancias()
+  Lê importâncias salvas na modelagem.
+
+gerar_barra_importancias()
+  Gera gráfico de barras com variáveis mais importantes.
+
+anexar_probabilidades()
+  Usa predict_proba da árvore.
+
+montar_tabela_principal()
+  Resume métricas.
+
+A lógica é parecida com logit_binario/logit_ternario, mas para árvores.
+
+=================================================
+5.57. src/article/treeClassification_profundidade.py
+=================================================
+
+Objetivo: gerar produtos do artigo para árvores com profundidades 10, 14 e 19.
+
+Este arquivo é relevante para o artigo técnico porque as tabelas compararam profundidades.
+
+Ele recebe target, recorte, avaliação, experimento e profundidade.
+
+Depois:
+
+- localiza modelo correto;
+- carrega métricas;
+- carrega importâncias;
+- gera tabela principal;
+- gera figuras de importância;
+- gera probabilidades.
+
+A profundidade entra para buscar a pasta/arquivo correto.
+
+=================================================
+5.58. src/article/apendice_treeClassification.py
+=================================================
+
+Objetivo: gerar apêndices das árvores padrão.
+
+Gera:
+
+- tabelas completas de métricas;
+- tabelas compactas;
+- matriz de confusão;
+- gráficos de importância.
+
+Não treina modelo. Só monta material de leitura.
+
+=================================================
+5.59. src/article/apendice_treeClassification_profundidade.py
+=================================================
+
+Objetivo: gerar apêndices das árvores por profundidade.
+
+Parecido com o anterior, mas parametrizado por profundidade 10, 14 ou 19.
+
+Isso sustenta tabelas como:
+
+- árvore binária prof. 10/14/19;
+- árvore ternária prof. 10/14/19;
+- in_sample/holdout.
+
+=================================================
+5.60. src/article/pacote_artigo.py
+=================================================
+
+Objetivo: organizar o pacote final article/.
+
+Este arquivo não é modelo estatístico. É um empacotador/exportador.
+
+Ele pega resultados espalhados em reports/ e copia/organiza em article/ com estrutura como:
+
+article/secao_resultados_e_discussoes/
+article/apendices/
+
+Funções comuns dentro dele:
+
+- criar diretórios;
+- copiar arquivos se existirem;
+- limpar pasta antiga se --clean;
+- montar tabela B1;
+- copiar figuras finais;
+- gerar arquivos LaTeX;
+- organizar apêndices.
+
+Teoria por trás: em projetos reprodutíveis, o pipeline não deve apenas gerar números soltos. Ele deve gerar os artefatos finais usados no artigo. Este arquivo faz essa ponte entre análise computacional e manuscrito.
+
+=================================================
+6. COMO OS ALGORITMOS PRINCIPAIS SE CONECTAM AO ARTIGO TÉCNICO
+=================================================
+
+O artigo técnico de Computação fala de:
+
+- classificação supervisionada;
+- regressão logística;
+- árvores de decisão;
+- target binário;
+- target ternário;
+- holdout 80/20;
+- métricas como ROC-AUC, acurácia balanceada e F1;
+- importância de variáveis;
+- comparação de profundidades.
+
+O código realmente implementa isso.
+
+Mapeamento:
+
+Target binário no artigo
+  Implementado em build_abt_binaria.py e logit_binario_utils.py / treeClassification_profundidade_utils.py.
+
+Target ternário no artigo
+  Implementado em build_abt_ternaria.py e logit_ternario_utils.py / treeClassification_profundidade_utils.py.
+
+Regressão logística binária
+  logit_binario_utils.py.
+
+Regressão logística multinomial
+  logit_ternario_utils.py.
+
+Árvores de decisão profundidade 10/14/19
+  treeClassification_profundidade_utils.py.
+
+Holdout 80/20
+  criar_split() nos arquivos de modelagem.
+
+Métricas
+  calcular_metricas() nos arquivos de modelagem.
+
+Importância de variáveis
+  extrair_importancias() e agregar_importancias_por_variavel() nas árvores.
+
+Probabilidades previstas
+  logit_binario.py, logit_ternario.py e efeitos_multinomiais_ternario.py.
+
+=================================================
+7. EXPLICAÇÃO DAS MÉTRICAS COM BASE NO CÓDIGO
+=================================================
+
+No binário, as classes são:
+
+    0 = não contratado
+    1 = contratada
+
+A matriz de confusão é:
+
+    matriz = confusion_matrix(y_true, y_pred, labels=[0, 1])
+
+Ela gera:
+
+    tn = real 0, predito 0
+    fp = real 0, predito 1
+    fn = real 1, predito 0
+    tp = real 1, predito 1
+
+Acurácia:
+
+    (tp + tn) / total
+
+Precision:
+
+    tp / (tp + fp)
+
+Pergunta: quando o modelo disse contratada, quantas eram contratadas?
+
+Recall:
+
+    tp / (tp + fn)
+
+Pergunta: das contratadas reais, quantas o modelo encontrou?
+
+F1:
+
+    2 * precision * recall / (precision + recall)
+
+Equilibra precision e recall.
+
+Balanced accuracy:
+
+    média do recall de cada classe
+
+Serve para classe desbalanceada.
+
+ROC-AUC:
+
+Mede se o modelo atribui probabilidades maiores para positivos reais do que para negativos reais. Não depende de um único corte 0,5.
+
+Log loss:
+
+Penaliza probabilidades erradas. Exemplo: se o modelo dá 0,99 para contratada, mas era não contratado, a punição é alta.
+
+No ternário, macro significa:
+
+    calcula métrica em cada classe e tira média simples
+
+Weighted significa:
+
+    calcula métrica em cada classe e tira média ponderada pelo número de registros da classe
+
+=================================================
+8. O QUE VOCÊ PRECISA SABER FALAR SE PERGUNTAREM
+=================================================
+
+Pergunta: o que o pipeline faz?
+Resposta: baixa/recebe microdados brutos, faz staging, limpa tipos e nomes, unifica anos, cruza informações de curso/INEP/CINE, cura a base, gera bases descritivas, monta ABTs, treina modelos e exporta artefatos do artigo.
+
+Pergunta: o que é ABT?
+Resposta: é a tabela final de modelagem. Cada linha é uma inscrição e as colunas são variáveis usadas pelo modelo, além do target.
+
+Pergunta: qual diferença entre binário e ternário?
+Resposta: binário compara não contratado contra contratado, focando etapa contratual. Ternário inclui lista de espera, não contratado e contratado, representando fluxo mais amplo.
+
+Pergunta: por que usar regressão logística?
+Resposta: é modelo clássico e interpretável para classificação. Serve como referência.
+
+Pergunta: por que árvore de decisão?
+Resposta: é mais flexível e permite interpretar variáveis importantes por divisões da árvore.
+
+Pergunta: por que class_weight="balanced"?
+Resposta: porque as classes são desbalanceadas. Ele aumenta peso da classe menor para o modelo não ignorar contratados.
+
+Pergunta: o que é OneHotEncoder?
+Resposta: transforma categorias em colunas 0/1 para o modelo conseguir usar variáveis como curso, turno, região e UF.
+
+Pergunta: o que é SimpleImputer?
+Resposta: preenche valores ausentes. Numéricas com mediana; categóricas com "Não informado".
+
+Pergunta: o que é StandardScaler?
+Resposta: padroniza variáveis numéricas para média 0 e desvio 1. Ajuda modelos lineares como regressão logística.
+
+Pergunta: por que não padroniza na árvore?
+Resposta: árvore usa cortes, então não precisa da mesma escala numérica.
+
+Pergunta: o que é ROC-AUC?
+Resposta: mede capacidade de separação das classes a partir das probabilidades.
+
+Pergunta: o que é F1 macro?
+Resposta: é a média do F1 das classes, dando peso igual para lista de espera, não contratado e contratado.
+
+Pergunta: isso prova causalidade?
+Resposta: não. O código gera modelos preditivos e associações, não inferência causal.
+
+=================================================
+9. VEREDITO SOBRE A CORREÇÃO DOS ALGORITMOS
+=================================================
+
+Sim, os algoritmos principais estão implementados de forma coerente:
+
+- Pipeline de dados: correto.
+- Construção de targets binário e ternário: correta.
+- Cálculo do gap de nota: correto.
+- Construção da interação renda_gap: correta.
+- Separação treino/teste holdout com estratificação: correta.
+- Regressão logística com preprocessamento: correta.
+- Regressão logística multinomial: correta.
+- Árvore de decisão com controle de profundidade e pré-poda: correta.
+- Métricas binárias e multiclasse: corretas.
+- Extração de coeficientes da logit: correta, com cautela interpretativa.
+- Extração de importâncias das árvores: correta, desde que lida como importância do modelo, não causalidade.
+- Probabilidades previstas por renda/desempenho: logicamente coerentes.
+
+O código é mais avançado do que o básico, principalmente por usar Pipeline, ColumnTransformer, imputação, one-hot, class_weight, métricas macro/weighted e exportação automatizada. Mas a ideia não é impossível de explicar. Você precisa dominar o fluxo e a intuição, não decorar cada função.
+
+=================================================
+10. RESUMO FINAL EM UMA FRASE
+=================================================
+
+O repositório constrói um fluxo reprodutível que transforma microdados brutos do FIES em bases analíticas, modela a contratação por regressão logística e árvores de decisão nas formulações binária e ternária, calcula métricas adequadas para classes desbalanceadas e exporta tabelas/figuras para sustentar o artigo.
